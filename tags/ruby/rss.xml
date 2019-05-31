@@ -1,0 +1,264 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Andrew Zah</title>
+        <link>andrewzah.com</link>
+        <description>Sometimes relevant thoughts by Andrew</description>
+        <generator>Zola</generator>
+        <language>en</language>
+        <atom:link href="andrewzah.com/tags/ruby/rss.xml" rel="self" type="application/rss+xml"/>
+        <lastBuildDate>Thu, 11 Apr 2019 00:00:00 +0000</lastBuildDate>
+        
+            <item>
+                <title>Nested Resource Forms Tutorial with Padrino or Rails</title>
+                <pubDate>Thu, 11 Apr 2019 00:00:00 +0000</pubDate>
+                <link>andrewzah.com/posts/nested-resource-forms-tutorial-with-padrino-rails/</link>
+                <guid>andrewzah.com/posts/nested-resource-forms-tutorial-with-padrino-rails/</guid>
+                <description>&lt;p&gt;This guide was written with Padrino and Sequel in mind, but should more or less work for Rails with minimal adaptations. Let&#x27;s get into it!&lt;&#x2f;p&gt;
+&lt;h2 id=&quot;the-goal&quot;&gt;The Goal&lt;&#x2f;h2&gt;
+&lt;p&gt;I have two models: &lt;code&gt;Grammar&lt;&#x2f;code&gt; and &lt;code&gt;GrammarTranslation&lt;&#x2f;code&gt;. A &lt;code&gt;Grammar&lt;&#x2f;code&gt; has many &lt;code&gt;GrammarTranslations&lt;&#x2f;code&gt;.&lt;&#x2f;p&gt;
+&lt;p&gt;I want to have a form that lets me create a &lt;code&gt;Grammar&lt;&#x2f;code&gt; and one &lt;code&gt;GrammarTranslation&lt;&#x2f;code&gt; at the same time. Then, I want the &lt;code&gt;grammars&#x2f;edit&lt;&#x2f;code&gt; page to let me edit the &lt;code&gt;Grammar&lt;&#x2f;code&gt; and edit any of the existing &lt;code&gt;GrammarTranslation&lt;&#x2f;code&gt;s or create new ones.&lt;&#x2f;p&gt;
+&lt;p&gt;Note: you can see a full example application that uses nested form objects &lt;a href=&quot;https:&#x2f;&#x2f;git.sr.ht&#x2f;%7Eandrewzah&#x2f;korean_grammar_data_entry&quot;&gt;here&lt;&#x2f;a&gt;.&lt;&#x2f;p&gt;
+&lt;h2 id=&quot;setup&quot;&gt;Setup&lt;&#x2f;h2&gt;
+&lt;h3 id=&quot;schema&quot;&gt;Schema&lt;&#x2f;h3&gt;
+&lt;p&gt;This is what the migration schema looks like:&lt;&#x2f;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#0086b3;&quot;&gt;Sequel&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;.migration &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+  up &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+    create_table &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammars &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+      primary_key &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:id
+      &lt;&#x2f;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;String &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;null: false
+      &lt;&#x2f;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;String &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:alternatives
+      &lt;&#x2f;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;String &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:verb_type&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;null: false
+      DateTime :created_at
+    &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+
+    create_table &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar_translations &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+      primary_key &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:id&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+      foreign_key &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar_id&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammars
+      &lt;&#x2f;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;String &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:language_code&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;null: false
+      &lt;&#x2f;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;String &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:meanings&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;null: false
+      &lt;&#x2f;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;String &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:notes
+      DateTime :created_at
+    &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
+  end&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+
+  down &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+    drop_table &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar_translations&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+    drop_table &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammars
+  &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
+end
+
+&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;
+&lt;p&gt;You&#x27;ll want to run&lt;&#x2f;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;padrino generate app &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;&amp;lt;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;app_name&lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;&amp;gt; &lt;&#x2f;span&gt;&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# etc
+&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;padrino generate migration AddGrammarsAndTranslations
+&lt;&#x2f;span&gt;&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# you might have to initialize the table manually if this doesn&amp;#39;t work
+&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;rake sq:create 
+rake sq:migrate
+&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;&lt;h3 id=&quot;models&quot;&gt;Models&lt;&#x2f;h3&gt;
+&lt;p&gt;The main model &lt;code&gt;Grammar&lt;&#x2f;code&gt; needs a tag, which differs by which ORM you&#x27;re using. If it&#x27;s Sequel, use the &lt;code&gt;nested_attributes&lt;&#x2f;code&gt; tag.&lt;a id=&quot;refer-0&quot; href=&quot;#reference-0&quot;&gt;[0]&lt;&#x2f;a&gt; For ActiveRecord users, instead use &lt;code&gt;accepts_nested_attributes_for&lt;&#x2f;code&gt;.&lt;a id=&quot;refer-1&quot; href=&quot;#reference-1&quot;&gt;[1]&lt;&#x2f;a&gt; Both accept the &lt;code&gt;allow_destroy: true&lt;&#x2f;code&gt; option. Padrino also needs the plugin to explicitly be enabled.&lt;&#x2f;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# models&#x2f;grammar.rb
+
+&lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;class &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;Grammar &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;lt; &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#795da3;&quot;&gt;Sequel::Model&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+  one_to_many &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:translations&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;class: &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:GrammarTranslation&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+
+  plugin &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:nested_attributes&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+  nested_attributes &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:translations&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;destroy: true
+
+  &lt;&#x2f;span&gt;&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# Replace ActiveRecord method.
+  # (I had to add this to get padrino to stop complaining)
+  &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;def &lt;&#x2f;span&gt;&lt;span style=&quot;color:#ed6a43;&quot;&gt;self&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;.&lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#795da3;&quot;&gt;find_by_id&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;(id)
+    &lt;&#x2f;span&gt;&lt;span style=&quot;color:#ed6a43;&quot;&gt;self&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;[id] &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;rescue &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;nil
+  &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
+end
+&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# models&#x2f;grammar_translation.rb
+
+&lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;class &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;GrammarTranslation &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;lt; &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#795da3;&quot;&gt;Sequel::Model&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+  many_to_one &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar
+
+  &lt;&#x2f;span&gt;&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# Replace ActiveRecord method.
+  &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;def &lt;&#x2f;span&gt;&lt;span style=&quot;color:#ed6a43;&quot;&gt;self&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;.&lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#795da3;&quot;&gt;find_by_id&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;(id)
+    &lt;&#x2f;span&gt;&lt;span style=&quot;color:#ed6a43;&quot;&gt;self&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;[id] &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;rescue &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;nil
+  &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
+end
+&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;&lt;h3 id=&quot;form-views&quot;&gt;Form Views&lt;&#x2f;h3&gt;
+&lt;p&gt;We use the &lt;code&gt;new&lt;&#x2f;code&gt; and &lt;code&gt;edit&lt;&#x2f;code&gt; templates to initialize the form and pass it as a variable, &lt;code&gt;f&lt;&#x2f;code&gt;.&lt;&#x2f;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;&#x2f;&#x2f; app&#x2f;views&#x2f;grammar&#x2f;new.slim
+
+&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;h2
+  New&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; Grammar
+
+= form_for @grammar, &amp;#39;&#x2f;grammar&#x2f;create&amp;#39; do |f|
+  = partial &amp;#39;grammar&#x2f;form&amp;#39;, :locals =&amp;gt; { :f =&amp;gt; f }
+&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;&#x2f;&#x2f; app&#x2f;views&#x2f;grammar&#x2f;edit.slim
+
+&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;h2
+  Update&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; Grammar
+
+= form_for :grammar, url(:grammar, :update, id: @grammar.id), method: :put do |f|
+  = partial &amp;#39;grammar&#x2f;form&amp;#39;, :locals =&amp;gt; { :f =&amp;gt; f }
+&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;
+&lt;p&gt;Since we won&#x27;t always add a new translation, always marking the fields as required won&#x27;t work. Instead we can mark fields as required only for existing translations, not new ones.&lt;&#x2f;p&gt;
+&lt;p&gt;We can iterate over nested resources with the &lt;code&gt;fields_for :model&lt;&#x2f;code&gt; tag now available to us.&lt;&#x2f;p&gt;
+&lt;p&gt;&lt;strong&gt;Note1&lt;&#x2f;strong&gt;: Don&#x27;t forget to setup the &lt;code&gt;id&lt;&#x2f;code&gt; hidden field! Otherwise the orm won&#x27;t realize it&#x27;s an existing nested resource.&lt;&#x2f;p&gt;
+&lt;p&gt;&lt;strong&gt;Note2&lt;&#x2f;strong&gt;: For the destroy checkbox, you must pass &lt;code&gt;:_delete&lt;&#x2f;code&gt;, Not &lt;code&gt;:_destroy&lt;&#x2f;code&gt;. The padrino docs are incorrect here! I had to do a bit of sleuthing to figure out the correct method to send.&lt;&#x2f;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;&#x2f;&#x2f; app&#x2f;views&#x2f;grammar&#x2f;_form.slim
+
+&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;= f.label &amp;#39;Grammar&amp;#39;
+= f.text_field :grammar, required: true
+
+= f.label &amp;#39;Alternatives (comma separated)&amp;#39;
+= f.text_field :alternatives, required: true
+
+= f.label &amp;quot;Verb Type&amp;quot;
+= f.select :verb_type, options: [&amp;quot;형용사&amp;quot;, &amp;quot;동사&amp;quot;, &amp;quot;Both&amp;quot;],
+  required: true
+
+&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;h3&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; Translations
+
+= f.fields_for :translations do |af|
+  - unless af.object.new?
+    = af.hidden_field :id, value: af.object.id
+
+  = af.label &amp;quot;Language Code&amp;quot;
+  - if af.object.new?
+    = af.text_field :language_code
+  - else
+    = af.text_field :language_code, required: true
+
+  = af.label &amp;quot;Meanings (comma separated)&amp;quot;
+  - if af.object.new?
+    = af.text_field :meanings
+  - else
+    = af.text_field :meanings, required: true
+
+  = af.label &amp;quot;Notes&amp;quot;
+  = af.text_area :notes
+
+  - unless af.object.new?
+    = af.label &amp;quot;Destroy&amp;quot;
+    = af.check_box :_delete
+
+  &lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;hr
+
+&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;= submit_tag pat(:save)
+= submit_tag pat(:save_and_continue), :name =&amp;gt; &amp;#39;save_and_continue&amp;#39;
+= link_to pat(:cancel), url(:grammar, :index)
+&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;&lt;h3 id=&quot;controller-and-routes&quot;&gt;Controller and Routes&lt;&#x2f;h3&gt;
+&lt;p&gt;Lastly we need some basic controller and routing code. &lt;code&gt;index&lt;&#x2f;code&gt; is still simple:&lt;&#x2f;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# app&#x2f;controllers&#x2f;grammar.rb
+&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+get &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:index &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do
+  &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammars &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;= &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;Grammar&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;.all
+  render &lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;grammar&#x2f;index&amp;#39;
+&lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
+&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;
+&lt;p&gt;When it comes to new&#x2f;create, an empty &lt;code&gt;GrammarTranslation&lt;&#x2f;code&gt;s object needs to be initialized. In Padrino this is accomplished by initializing the &lt;code&gt;&amp;lt;model&amp;gt;_attributes&lt;&#x2f;code&gt; field, which comes from the &lt;code&gt;nested_attributes&lt;&#x2f;code&gt; tag.&lt;&#x2f;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# app&#x2f;controllers&#x2f;grammar.rb
+&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+get &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:new &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do
+  &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;= &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;Grammar&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;.&lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;new&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;(&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;translations_attributes: &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;[{}])
+  render &lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;new&amp;#39;
+&lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+
+post &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:create &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do
+  &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;= &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;Grammar&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;.&lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;new&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;(params[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;])
+
+  &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;if &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;(grammar &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;= &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar.save)
+    flash[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:success&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;] &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;= &lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;Successfully saved grammar &amp;amp; translation.&amp;#39;
+
+    &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;if&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; params[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:save_and_continue&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;]
+      redirect url_for(&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;id:&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; grammar.id)
+    &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;else&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+      redirect url(&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:new&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;)
+    &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
+  else&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+    flash[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:error&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;] &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;= &lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;Error saving grammar: &amp;quot; &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;+
+      &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar.errors.map(&lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;&amp;amp;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:message&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;).join(&lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;, &amp;quot;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;)
+    render &lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;new&amp;#39;
+  &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
+end
+&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;
+&lt;p&gt;For the &lt;code&gt;edit&lt;&#x2f;code&gt; route, a new &lt;code&gt;GrammarTranslation&lt;&#x2f;code&gt; is appended because we want to be able to create new &lt;code&gt;GrammarTranslation&lt;&#x2f;code&gt;s from a &lt;code&gt;Grammar&lt;&#x2f;code&gt;&#x27;s edit page.&lt;&#x2f;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# app&#x2f;controllers&#x2f;grammar.rb
+&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+get &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:edit&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;with: :id &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do
+  &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;= &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;Grammar&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;[params[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:id&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;]]
+  @grammar.translations &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;GrammarTranslation&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;.&lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;new
+
+  if &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar
+    render &lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;grammar&#x2f;edit&amp;#39;
+  &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;else&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+    flash[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:warning&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;] &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; pat(
+      &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:create_error&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;,
+      &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;model: &lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;grammar&amp;#39;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;,
+      &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;id:&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; params[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:id&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;].&lt;&#x2f;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;to_s
+    &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;)
+    halt &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;404
+  &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
+end
+&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;
+&lt;p&gt;For &lt;code&gt;update&lt;&#x2f;code&gt;, since we added a blank &lt;code&gt;GrammarTranslation&lt;&#x2f;code&gt;, it&#x27;s necessary to filter it out if none of the fields were filled out in the form. Otherwise, every single time you upated a &lt;code&gt;Grammar&lt;&#x2f;code&gt;, a new &lt;code&gt;GrammarTranslation&lt;&#x2f;code&gt; would be created.&lt;&#x2f;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# app&#x2f;controllers&#x2f;grammar.rb
+&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+put &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:update&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;with: :id &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do
+  &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;= &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;Grammar&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;[params[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:id&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;]]
+
+  &lt;&#x2f;span&gt;&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# filter out the new translation
+&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;  params[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;][&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:translations_attributes&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;]
+    .select!{ |_k, v| v[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:language_code&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;].present? &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;== &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;true &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;}
+
+  &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;if &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar.modified! &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;&amp;amp;&amp;amp; &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar.update(params[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;])
+    flash[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:success&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;] &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; pat(&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:update_success&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;model: &lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;Grammar&amp;#39;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;id:&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; params[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:id&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;].&lt;&#x2f;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;to_s&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;)
+    &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;if&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; params[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:save_and_continue&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;]
+      redirect(url(&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:new&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;))
+    &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;else&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+      redirect(url(&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:edit&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;id: &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar.id))
+    &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
+  else&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+    flash.now[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:error&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;] &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; pat(&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:update_error&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;model: &lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;grammar&amp;#39;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;)
+    render &lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;accounts&#x2f;edit&amp;#39;
+  &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
+end
+&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;&lt;h3 id=&quot;object-views&quot;&gt;Object Views&lt;&#x2f;h3&gt;
+&lt;p&gt;Nothing complicated here. The nested resource is available under the main object, so we can use &lt;code&gt;@grammar.translations&lt;&#x2f;code&gt;.&lt;&#x2f;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;&#x2f;&#x2f; app&#x2f;views&#x2f;grammar&#x2f;index.slim
+
+&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;- @grammars.each do |g|
+  = link_to g.grammar, &amp;quot;&#x2f;grammar&#x2f;&lt;&#x2f;span&gt;&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;#{g.id}&amp;quot;
+  &lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;br
+&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;&#x2f;&#x2f; app&#x2f;views&#x2f;grammar&#x2f;show.slim
+
+&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;h2
+  &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;= @grammar.grammar
+&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;p&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+  | Alternatives:
+  = @grammar.alternatives
+&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;h4&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; Translations
+- @translations.each do |t|
+  &lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;div
+    p&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+      | Lang:
+      =&amp;lt; t.language_code
+    &lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;p&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+      | Meaning:
+      =&amp;lt; t.meanings
+&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;&lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2f;h3&gt;
+&lt;p&gt;I hope this short guide helped you. You should now be able to create a model and a nested object at the same time!&lt;&#x2f;p&gt;
+</description>
+            </item>
+        
+    </channel>
+</rss>

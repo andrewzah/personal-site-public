@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+      <title>Korean for Programmers | Andrew Zah</title>
+
+      <meta charset="UTF-8">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="Korean has similarities with functional programming languages.">
+      <meta name="author" content="Andrew Zah">
+      <meta name="keywords" content="korean programming language hangeul linguistics hangeul perspective">
+
+      <meta property="og:title" content="Korean for Programmers | Andrew Zah" />
+      <meta property="og:author" content="Andrew Zah" />
+      <meta property="og:description" content="Korean has similarities with functional programming languages." />
+      <meta property="article:author" content="Andrew Zah" />
+      <meta property="og:type" content="article" />
+      <meta property="og:url" content="andrewzah.com&#x2f;posts&#x2f;korean-for-programmers&#x2f;" />
+      <meta property="og:image" content="https://andrewzah.com/og.jpg" />
+
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:site" content="@andrew_zah">
+      <meta name="twitter:creator" content="@andrew_zah">
+      <meta name="twitter:image" content="https://andrewzah.com/twitter-image.png">
+
+      <meta name="google-site-verification" content="n5-uDhEF_Bwbyie5UOMQK1EdBy4iKsPQIGNJkSVlNU4" />
+
+      <link rel="stylesheet" href="/main.css">
+
+      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=vMdnJYpmNaa">
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=vMdnJYpmNaa">
+      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=vMdnJYpmNaa">
+      <link rel="manifest" href="/site.webmanifest?v=vMdnJYpmNaa">
+      <link rel="mask-icon" href="/safari-pinned-tab.svg?v=vMdnJYpmNaa" color="#018a70">
+      <link rel="shortcut icon" href="/favicon.ico?v=vMdnJYpmNaa">
+      <meta name="msapplication-TileColor" content="#da532c">
+      <meta name="theme-color" content="#ffffff">
+
+      <script async src="/js/bundle.js"></script>
+      
+  
+
+  </head>
+
+  <script src="//instant.page/1.1.0" type="module" integrity="sha384-EwBObn5QAxP8f09iemwAJljc+sU+eUXeL9vSBw1eNmVarwhKk2F9vBEpaN9rsrtp"></script>
+  <body>
+    <div class="container content">
+      
+        
+  <nav>
+    <div id="nav-links">
+      
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li class="active"><a href="/posts/">Posts</a></li>
+        <li ><a href="/projects/">Projects</a></li>
+        <li ><a href="/talks/">Talks</a></li>
+        <li ><a href="/friends/">Friends</a></li>
+        <li ><a href="/contact/">Contact</a></li>
+        <li ><a href="/quotes/">Quotes</a></li>
+        <li><a href="/rss.xml">RSS</a></li>
+      </ul>
+    </div>
+  </nav>
+
+      
+
+      <main>
+  <div itemtype="http://schema.org/Article" class="container post">
+    <h1 class="page-title" itemprop="name">Korean for Programmers</h1>
+    <div class="page-meta-data">
+      <time itemprop="datePublished" content="2019-02-16" datetime="2019-02-16" class="page-date">
+          Feb 16, 2019
+          
+      </time>
+    </div>
+    <hr>
+    <aside id="toc">
+        <h2>Table of Contents</h2>
+        <ol>
+            <li>
+                <a href="#hangeul-basics">Hangeul Basics</a>
+                <ol>
+                    <li>
+                        <a href="#grid-system">Grid System</a>
+                    </li>
+                </ol>
+            </li><li>
+                <a href="#subject-elision-especially-you">Subject Elision, especially -you-</a>
+                
+            </li><li>
+                <a href="#sentences-grammar">Sentences & Grammar</a>
+                <ol>
+                    <li>
+                        <a href="#sentence-order">Sentence Order</a>
+                    </li><li>
+                        <a href="#finally-a-sentence">Finally, a sentence</a>
+                    </li><li>
+                        <a href="#markers">Markers</a>
+                    </li><li>
+                        <a href="#pipelining-data-transformations">Pipelining Data Transformations</a>
+                    </li><li>
+                        <a href="#adding-to-the-stack">Adding to the Stack</a>
+                    </li><li>
+                        <a href="#language-tidbits">Language Tidbits</a>
+                    </li>
+                </ol>
+            </li><li>
+                <a href="#contributors">Contributors</a>
+                
+            </li>
+        </ol>
+    </aside>
+    <article itemprop="articleBody">
+      <p>I was inspired to write this after reading <em>German for Programmers</em>.<a id="refer-0" href="#reference-0">[0]</a> It's quite likely that I'm just biased to see things a certain way because I work with programming languages for a living, but I often find myself drawing comparisons among Korean and programming.</p>
+<p id="zola-continue-reading"><a name="continue-reading"></a></p>
+<h2 id="hangeul-basics">Hangeul Basics</h2>
+<p>Before we can get into grammar, some explanation about Hangeul–the Korean alphabet–is needed. Korean is actually like English in that letters are put together, so you can read any Korean once you learn Hangeul. However, Korean letters join together in syllable blocks.</p>
+<p>You may have seen the infamous &quot;Learn how to read Hangeul in 10 minutes&quot; graphic. While Hangeul is indeed very easy to learn, it does have exceptions–quite a few actually. So maybe you can read 독립 (independence), but the actual pronunciation is different from what's written due to ㄹ following ㄱ. These are called 받침<a id="refer-1" href="#reference-1">[1]</a> rules and one just has to memorize 'em.</p>
+<h3 id="grid-system">Grid System</h3>
+<p>Unlike Chinese or Japanese, Korean syllable blocks take the Hangeul letters and make them into grids in a particular order.</p>
+<p><a href="https:&#x2f;&#x2f;s3.amazonaws.com&#x2f;andrewzah.com&#x2f;posts&#x2f;008&#x2f;hangeul.png" data-lity data-lity-desc="Hangul Grid Order" alt="Hangul Grid Order">
+<img class="full" async-src="https:&#x2f;&#x2f;s3.amazonaws.com&#x2f;andrewzah.com&#x2f;posts&#x2f;008&#x2f;hangeul.png"/>
+</a></p>
+<p>Each block contains a vowel and it's always the second character. The block are constructed depending on whether the vowel is vertical (ㅣ ㅏ ㅓ) or horizontal (ㅡㅜㅗ). If you want to say &quot;ah&quot;, ㅇ is used as a silent character in the first slot–which makes 아: <code>ㅇ</code> + <code>ㅏ</code>.</p>
+<p>Some vowels can also be combined: <code>ㅚ</code> is <code>ㅜ</code> + <code>ㅣ</code>, <code>ㅙ</code> is <code>ㅗ</code> + <code>ㅐ</code>.</p>
+<p>For Korean fonts, all finished blocks (e.g. 쀍: ㅃㅜㅔㄹㄱ) have to be included because it's possible to construct them via grid rules, but a fair amount are just gibberish. Hangeul is represented by 5 unicode blocks in total and I recommend reading about how they get composed together.<a id="refer-2" href="#reference-2">[2]</a></p>
+<h2 id="subject-elision-especially-you">Subject Elision, especially -you-</h2>
+<p>In English, we (almost) always need to specify the subject. I can't write just &quot;Can't write.&quot; or &quot;Ate an apple.&quot;. In Korean however, the subject isn't necessary in every sentence. In fact, always including it isn't natural at all! Korean is highly contextual, so if you say:</p>
+<p>먹었어요 – literally: ate. --&gt; interpreted as: &quot;I ate&quot;</p>
+<p>In a lot of contexts, that would make most sense as (I) ate. However if someone asks you, &quot;Did Charlie eat?&quot;, you can still say:</p>
+<p>(네,) 먹었어요. – (yes,) ate. --&gt; &quot;Yes, Charlie ate.&quot;</p>
+<p>Similarly if you ask someone else a question, it's usually obvious if they are the subject.</p>
+<p>이 책을 읽었어요? – lit: this book read? --&gt; &quot;Did you read this book?&quot;</p>
+<p>It makes little sense to ask &quot;Did I read this book?&quot; in most situations. (If you want to muse to yourself like &quot;ah, did I (already) read this book..?&quot;, that requires a specific grammar point.)</p>
+<p>If you're wondering, people do clarify from time to time.</p>
+<p>&quot;먹었어요?&quot; - ate? --&gt; &quot;(Did you) eat?&quot;</p>
+<p>&quot;저요? / 저는요?&quot; --&gt; &quot;(were you referring to) Me?&quot; / &quot;As for me?&quot;</p>
+<hr />
+<p>The subject/topic still has to be included when it changes or it's ambiguous. If you start off by saying &quot;저는 ...&quot; (&quot;as for me, ...&quot;), it's implied the following sentences will still be about you.</p>
+<p>In this sense I <em>guess</em> one could say Korean leans toward being duck-ly typed–but that's a tenuous comparison. Anyway, it's different from English where the subject almost always must be specified (strongly typed...?), except in some spoken slang. Even very informal slang like &quot;d'ya eat?&quot; still includes the subject. We're playing a bit fast and loose here with the comparisons.</p>
+<hr />
+<p>A word of caution: Using the direct words for &quot;you&quot; (너, 네가, 당신) is also quite rude unless you are close with someone. Papago and google translate often translate &quot;you&quot; to 너 or 네가. Don't use these until you know what you're doing.  당신 has different nuances and should also be avoided. It's really hard for English speakers to let go of &quot;you&quot;, but you must.</p>
+<h2 id="sentences-grammar">Sentences &amp; Grammar</h2>
+<h3 id="sentence-order">Sentence Order</h3>
+<p>English is an SVO (Subject Verb Object) language. &quot;Billy ate an apple&quot;. Korean is an SOV language. &quot;Billy apple ate&quot;. This reversal makes thinking in Korean actually quite difficult once one gets to causation and more difficult sentences.</p>
+<p>English: I went to the park because it was sunny out today. Korean: It was sunny out today so I went to the park.</p>
+<p>English: I was so tired I could barely walk. Korean: To the extent that I could barely walk I was so tired.</p>
+<hr />
+<p>From the perspective of a native English speaker, I find this reversal utterly fascinating.  With English the last bit of the sentence usually has the important bit:</p>
+<p>&quot;Do you know where the <em>bathroom</em> is?&quot;</p>
+<p>You basically have to finish the whole sentence there before the other person can understand what you intend. Now with Korean:</p>
+<p><em>화장실</em>이 어디에 있는지 아세요?</p>
+<p>I often can barely get this out in time before I start getting an answer.</p>
+<h3 id="finally-a-sentence">Finally, a sentence</h3>
+<p>We made it! Let's start with a simple sample sentence in Korean.</p>
+<p>저는 사과를 어제 먹었어요.</p>
+<p>
+  <span class="hl hl-word hl-green">
+  저(는)
+</span> <span class="hl hl-word hl-red">
+  사과(를)
+</span> <span class="hl hl-word hl-pink">
+  어제
+</span> <span class="hl hl-left hl-blue">
+  먹
+</span><span class="hl hl-middle hl-purple">
+  었
+</span><span class="hl hl-right hl-yellow">
+  어요
+</span>.
+</p>
+<p>
+  <span class="hl hl-word hl-green">
+  subject + marker
+</span> <span class="hl hl-word hl-red">
+  object + marker
+</span> <span class="hl hl-word hl-pink">
+  adverb
+</span> <span class="hl hl-left hl-blue">
+  verb stem
+</span><span class="hl hl-middle hl-purple">
+  past tense modifier
+</span><span class="hl hl-right hl-yellow">
+  politness conjugation
+</span>.
+</p>
+<p>There's already a lot going on here. The first difference you may notice is the markers. In English, one has to identify what the subject is. In Korean, topics and subjects are marked with 은/는 or 이/가, respectively. Objects get marked with 을/를. Just like the subject, these are not always necessary and get dropped in speech and texting all the time.</p>
+<h3 id="markers">Markers</h3>
+<p>Korean has a number of postpositional particles that imbue meaning, some of which vary if the last character is a vowel or not.
+We can easily use a pure function to model this:</p>
+<pre style="background-color:#ffffff;">
+<span style="font-weight:bold;color:#a71d5d;">fn </span><span style="font-weight:bold;color:#795da3;">topic_marker</span><span style="color:#323232;">(word: </span><span style="font-weight:bold;color:#a71d5d;">&amp;str</span><span style="color:#323232;">) -&gt; </span><span style="font-weight:bold;color:#a71d5d;">&amp;str </span><span style="color:#323232;">{
+  </span><span style="font-weight:bold;color:#a71d5d;">match</span><span style="color:#323232;"> word.</span><span style="color:#62a35c;">last_character_type</span><span style="color:#323232;">() {
+    Vowel </span><span style="font-weight:bold;color:#a71d5d;">=&gt; </span><span style="color:#183691;">&quot;는&quot;</span><span style="color:#323232;">,
+    Consonant </span><span style="font-weight:bold;color:#a71d5d;">=&gt; </span><span style="color:#183691;">&quot;은&quot;
+  </span><span style="color:#323232;">}
+}
+
+</span><span style="font-weight:bold;color:#a71d5d;">fn </span><span style="font-weight:bold;color:#795da3;">plural_marker</span><span style="color:#323232;">() -&gt; </span><span style="font-weight:bold;color:#a71d5d;">&amp;str </span><span style="color:#323232;">{
+  </span><span style="color:#183691;">&quot;들&quot;
+</span><span style="color:#323232;">}
+</span></pre>
+<p>Here are a few other markers (with simplified definitions). The text inside the parentheses is used if the last character is a consonant:</p>
+<ul>
+<li>~에서 =&gt; from</li>
+<li>~까지 =&gt; until</li>
+<li>~(으)로 =&gt; several meanings. roughly-speaking it shows how/via what method or material something is carried out, or &quot;toward&quot; a place if used with &quot;to go&quot;, etc.</li>
+</ul>
+<h3 id="pipelining-data-transformations">Pipelining Data Transformations</h3>
+<p>Where the previous sentence started to get interesting was at the end, with the verb, tense, and politeness. That's not all we can transform though.
+The next two sentences here are &quot;I closed the door&quot; (informal impolite, then informal polite), after is &quot;My parents closed the door&quot; (formal, polite).</p>
+<p>
+  <span class="hl hl-word hl-green">
+  나는
+</span> <span class="hl hl-word hl-red">
+  그것을
+</span> <span class="hl hl-left hl-blue">
+  닫
+</span><span class="hl hl-middle hl-purple">
+  았
+</span><span class="hl hl-right hl-yellow">
+  어
+</span>.
+</p>
+<p>
+  <span class="hl hl-word hl-green">
+  저는
+</span> <span class="hl hl-word hl-red">
+  그것을
+</span> <span class="hl hl-left hl-blue">
+  닫
+</span><span class="hl hl-middle hl-purple">
+  았
+</span><span class="hl hl-right hl-yellow">
+  어요
+</span>.
+</p>
+<p>
+  <span class="hl hl-word hl-green">
+  우리 부모님은
+</span> <span class="hl hl-word hl-red">
+  그것을
+</span> <span class="hl hl-left hl-blue">
+  닫
+</span><span class="hl hl-middle hl-orange">
+  으시
+</span><span class="hl hl-middle hl-purple">
+  었
+</span><span class="hl hl-right hl-yellow">
+  습니다
+</span>. (Note that I'm showing <span class="hl hl-left hl-orange">
+  시
+</span><span class="hl hl-right hl-word hl-purple">
+  었
+</span> here separately to break down the components but they would get merged to 셨)
+</p>
+<p>The main verb here is 닫다–to close. All Korean verbs end in 다, so the first thing we need to do is get the stem by removing <code>다</code>.</p>
+<p>Now we need the honorific level. In the first two sentences I'm talking about myself, so I can't use honorifics. However when the actor is &quot;my parents&quot; it's common to use honorifics, which is <code>~(으)시</code>.</p>
+<p>Before we can add a tense, we need to determine what vowel to add, and if it should merge or not. 닫 ends in a consonant, so merging is not possible, but the last vowel is 아 so we append <code>아</code>. (If the verb stem ends in a vowel, like <code>가</code>, the following vowel <code>아</code> would just get merged into <code>가</code>)</p>
+<p>One way to do past tense is <code>~ㅆ</code>, which gets merged with the previous vowel. Other tenses can depend on the last character being a vowel or not, like future tense (<code>~ㄹ/을</code>).</p>
+<p>Finally, we need to think about our relationship to the audience and append or merge a politeness/speech level. See politeness below for more details.</p>
+<p>We can model this as a basic pipeline à la Clojure:</p>
+<pre style="background-color:#ffffff;">
+<span style="color:#323232;">(</span><span style="font-weight:bold;color:#a71d5d;">defn </span><span style="font-weight:bold;color:#795da3;">conjugate-verb
+  </span><span style="color:#323232;">[subject verb speaker audience]
+  (</span><span style="font-weight:bold;color:#a71d5d;">-&gt;&gt; </span><span style="color:#323232;">verb
+    (remove-stem)
+    (maybe-append-honorific subject)
+    (append-or-merge-vowel)
+    (append-or-merge-tense)
+    (append-or-merge-politeness-level speaker audience)
+  )
+)
+</span></pre>
+<p>Note that there are even more transformations that we can apply depending on the grammar point and the nuance of what one is trying to say. Fun, isn't it? At least it's relatively consistent unlike English–even irregular verb rules are fairly regular.</p>
+<h3 id="adding-to-the-stack">Adding to the Stack</h3>
+<blockquote>
+<p>In linguistics, nominalization or nominalisation is the use of a word which is not a noun (e.g., a verb, an adjective or an adverb) as a noun, ...
+The term refers, for instance, to the process of producing a noun from another part of speech by adding a derivational affix (e.g., the noun legalization from the verb legalize).</p>
+</blockquote>
+<p>In Korean, one can nominalize entire clauses and use them in other constructs! Korean lets you do this with the <code>~는 것</code> principle. 것 means thing, but any noun can be used in place of <code>것</code>. Based on the tense, verb type, and whether the verb ends in a vowel, <code>는</code> has variations like <code>~ㄴ</code>, and <code>은</code>. It can also combine with other grammar forms, like <code>던</code>, which is <code>더~ + ~ㄴ/은</code>. Digging into these would be beyond the scope of this post.</p>
+<p>To give you a small example, one way to say &quot;exit&quot; in Korean is literally &quot;going out place&quot;, or &quot;a place that one goes out&quot;.</p>
+<p><a href="https:&#x2f;&#x2f;s3.amazonaws.com&#x2f;andrewzah.com&#x2f;posts&#x2f;008&#x2f;exit.jpg" data-lity data-lity-desc="A Korean subway exit sign." alt="A Korean subway exit sign.">
+<img class="full" async-src="https:&#x2f;&#x2f;s3.amazonaws.com&#x2f;andrewzah.com&#x2f;posts&#x2f;008&#x2f;exit.jpg"/>
+</a></p>
+<h6 id="source-wikipedia-naganeun-ggo">Source: Wikipedia 나가는 곳</h6>
+<p>
+  <span class="hl hl-word hl-purple">
+  나가다
+</span> means "to go out". <span class="hl hl-word hl-red">
+  곳
+</span> means place. A <span class="hl hl-left hl-purple">
+  나가
+</span>는 <span class="hl hl-word hl-red">
+  곳
+</span> is a <span class="hl hl-word hl-purple">
+  going out
+</span> <span class="hl hl-right hl-red">
+  place
+</span>.
+</p>
+<p>Note that 나가다 is a pure Korean word. To the right is 出口 (pronounced 출구), which also means exit, and is derived from classical Chinese. Just like English has Latin and Greek influences, Korean has Chinese and to a small extent, Japanese influences.</p>
+<h4 id="sentence-the-first">Sentence the First</h4>
+<p>So, let's take 'the girl walked to school'. In English and Korean this is straightfoward enough:</p>
+<p>
+  <span class="hl hl-word hl-green">
+  여자는
+</span> <span class="hl hl-left hl-pink">
+  학교
+</span><span class="hl hl-right hl-word hl-purple">
+  로
+</span><span class="hl hl-word hl-blue">
+  걸어
+</span> <span class="hl hl-word hl-blue">
+  갔어요
+</span> — <span class="hl hl-word hl-green">
+  The girl
+</span> <span class="hl hl-word hl-blue">
+  walked
+</span><span class="hl hl-word hl-purple">
+  to
+</span> <span class="hl hl-right hl-word hl-pink">
+  school
+</span>
+</p>
+<p>But what if you wanted to talk <em>about</em> that person? You could say &quot;the girl <em>who</em> walked to school&quot;. In English, this these are known as relative causes. They can begin with <code>who</code>, <code>which</code>, <code>that</code>, <code>where</code>, etc, <em>following</em> the noun. Korean uses the <code>~는 것</code> nominalizer <em>before</em> the noun, which leads to:</p>
+<p>
+  <span class="hl hl-left hl-pink">
+  학교
+</span><span class="hl hl-right hl-word hl-purple">
+  로
+</span> <span class="hl hl-word hl-blue">
+  걸어
+</span> <span class="hl hl-word hl-orange">
+  간
+</span> <span class="hl hl-right hl-word hl-green">
+  여자
+</span>!
+</p>
+<p>Note that <code>갔</code> changed to <code>간</code>. <code>갔</code> is 가다 (to go) + <code>~ㅆ</code> (past tense). But the past tense nominalization form uses <code>~ㄴ (것)</code>. Instead of 것 (thing) we swapped it for another noun 여자 (woman).</p>
+<p>Not that one would only say &quot;the girl who walked to school&quot; by itself, but we can now use the entire construct as a noun in other sentences:</p>
+<p>
+  <span class="hl hl-word hl-green">
+  저는
+</span> <span class="hl hl-word hl-red">
+  학교로 걸어 간 여자를
+</span> <span class="hl hl-right hl-word hl-blue">
+  알았어요
+</span> — <span class="hl hl-word hl-green">
+  I
+</span> <span class="hl hl-word hl-red">
+  the girl who walked to school
+</span> <span class="hl hl-right hl-word hl-blue">
+  knew
+</span>
+</p>
+<h4 id="sentence-the-second">Sentence the Second</h4>
+<p>We can try a more complex sentence now: &quot;That's the place (that) I thought I went to!&quot;. First, we need to break it down in a sentence can that be nominalized. &quot;I thought I went&quot;. Here we can use the grammar point <code>~ㄴ 줄 알다</code> which when used means the speaker thought something was true, but realized it wasn't–due to a lapse in judgement, etc.</p>
+<p>
+  <span class="hl hl-word hl-purple">
+  제가
+</span> <span class="hl hl-word hl-red">
+  간 줄
+</span> <span class="hl hl-right hl-word hl-blue">
+  알다
+</span> – <span class="hl hl-word hl-green">
+  I
+</span> <span class="hl hl-word hl-blue">
+  thought
+</span> <span class="hl hl-word hl-red">
+  (that)
+</span><span class="hl hl-word hl-purple">
+  I
+</span> <span class="hl hl-word hl-red">
+  went
+</span>
+</p>
+<p>You may have noticed that this grammar point itself uses <code>~ㄴ 것</code>, but with <code>줄</code> instead of 것! This 줄 is a bound noun, meaning that it can only be described by a <code>~는 것</code> clause. Outside of <code>~ㄴ 줄 알다</code>, 줄 can also be a regular noun meaning line/rope.</p>
+<p>
+  <span class="hl hl-word hl-green">
+  그곳은
+</span> <span class="hl hl-left hl-red">
+  제가 어디에 간 줄 알았
+</span><span class="hl hl-right hl-word hl-yellow">
+  던
+</span> <span class="hl hl-left hl-purple">
+  곳
+</span><span class="hl hl-right hl-word hl-blue">
+  이야!
+</span> – <span class="hl hl-word hl-green">
+  That
+</span> <span class="hl hl-word hl-blue">
+  is
+</span> <span class="hl hl-word hl-purple">
+  the place
+</span> <span class="hl hl-right hl-red">
+  I thought I went to!
+</span>
+</p>
+<h4 id="sentence-the-third">Sentence the Third</h4>
+<p>Can we go even deeper?</p>
+<p>
+  <span class="hl hl-word hl-green">
+  [나는]
+</span> (((<span class="hl hl-left hl-blue">
+  상황이 억울하다고 말하는
+</span><span class="hl hl-left hl-yellow">
+  불평불만
+</span>)<span class="hl hl-right hl-word hl-red">
+  만 하는 사람은
+</span>) (<span class="hl hl-left hl-pink">
+  별로 좋아하
+</span><span class="hl hl-right hl-purple">
+  지 않는다
+</span>).
+</p>
+<p>
+  <span class="hl hl-word hl-green">
+  [I&#x27;m]
+</span> (<span class="hl hl-word hl-purple">
+  not
+</span> <span class="hl hl-right hl-pink">
+  keen on
+</span>) (<span class="hl hl-word hl-red">
+  people who only
+</span> (<span class="hl hl-word hl-yellow">
+  complain
+</span><span class="hl hl-right hl-blue">
+  that things are unfair
+</span>)).
+</p>
+<p>This sentence doesn't really translate 1:1 to English, as is the case with most intermediate/advanced Korean sentences.</p>
+<hr />
+<p>Nominalizing with <code>~는 것</code> is my favorite aspect of Korean because it's an important grammar point that blew my mind once I learned how it worked. It's quite commonly used as well. In day to day usage I might say something like <span class="hl hl-word hl-purple">
+the house (that)
+</span> <span class="hl hl-word hl-green">
+I
+</span> <span class="hl hl-word hl-red">
+used to
+</span> <span class="hl hl-word hl-blue">
+live (in)
+</span> – <span class="hl hl-word hl-green">
+제가
+</span> <span class="hl hl-left hl-blue">
+살
+</span><span class="hl hl-right hl-word hl-red">
+았던
+</span> <span class="hl hl-right hl-purple">
+집
+</span>, et cetera.</p>
+<h3 id="language-tidbits">Language Tidbits</h3>
+<p>These are some cool traits about Korean, or things related to this post, that don't necessarily have to deal with programming.</p>
+<h4 id="politeness-formality">Politeness / Formality</h4>
+<p>The Korean language conjugates differently based on the status of speaker and intended audience. For example, one of the simplest ways to conjugate any verb is to add <code>~어/아/여</code> to it. This is based on the last <em>vowel</em>, not the last character.</p>
+<p>For example, you may have seen 감사합니다 before (&quot;thank you&quot;, formal polite). This is 감사하다, merged with <code>~ㅂ니다</code> because <code>하</code> ends in a vowel. 고마워요 is another way to say thank you(informal polite): 고맙다 + apply <code>irregular ㅂ</code> consonant ending filter +  <code>~아/어/여요</code>.</p>
+<pre style="background-color:#ffffff;">
+<span style="font-weight:bold;color:#a71d5d;">fn </span><span style="font-weight:bold;color:#795da3;">get_vowel_for_verb</span><span style="color:#323232;">(verb: </span><span style="font-weight:bold;color:#a71d5d;">&amp;str</span><span style="color:#323232;">, formality: Formality) -&gt; {
+  </span><span style="font-style:italic;color:#969896;">// ha = 하
+  </span><span style="font-weight:bold;color:#a71d5d;">if</span><span style="color:#323232;"> verb.</span><span style="color:#62a35c;">stem_ends_with_ha</span><span style="color:#323232;">() {
+    </span><span style="color:#183691;">&quot;여&quot;
+  </span><span style="color:#323232;">} </span><span style="font-weight:bold;color:#a71d5d;">else </span><span style="color:#323232;">{
+    </span><span style="font-weight:bold;color:#a71d5d;">match</span><span style="color:#323232;"> verb.</span><span style="color:#62a35c;">last_vowel</span><span style="color:#323232;">() {
+      </span><span style="color:#183691;">&quot;아&quot; </span><span style="font-weight:bold;color:#a71d5d;">=&gt; </span><span style="color:#183691;">&quot;아&quot;
+      &quot;오&quot; </span><span style="font-weight:bold;color:#a71d5d;">=&gt; </span><span style="color:#183691;">&quot;아&quot;
+      &quot;어&quot; </span><span style="font-weight:bold;color:#a71d5d;">=&gt; </span><span style="color:#183691;">&quot;어&quot;
+      &quot;우&quot; </span><span style="font-weight:bold;color:#a71d5d;">=&gt; </span><span style="color:#183691;">&quot;어&quot;
+      &quot;이&quot; </span><span style="font-weight:bold;color:#a71d5d;">=&gt; </span><span style="color:#183691;">&quot;어&quot;
+      &quot;의&quot; </span><span style="font-weight:bold;color:#a71d5d;">=&gt; </span><span style="color:#183691;">&quot;어&quot;
+      &quot;위&quot; </span><span style="font-weight:bold;color:#a71d5d;">=&gt; </span><span style="color:#183691;">&quot;어&quot;
+    </span><span style="color:#323232;">}
+  }
+}
+</span></pre>
+<p>Korean has seven speech levels <a id="refer-4" href="#reference-4">[4]</a>. When learning Korean, the <code>아/어/여요</code> and <code>~ㅂ/습니다</code> levels are commonly used, in that order. Using <code>아/어/여</code> (no <code>요</code>) to anyone other than close friends (who have agreed to use lowered speech) or young kids is rude. Foreigners get a pass at first but it's still impolite.</p>
+<p>Plain (sometimes known as diary) form is also used, such as in diaries and books/novels.</p>
+<p>English lacks this concept, as we use the same conjugation for everyone – &quot;the prisoner ate&quot;, &quot;the king ate&quot;, and &quot;a God ate&quot;. What English does have is different registers<a id="refer-5" href="#reference-5">[5]</a>, such as when you text versus when you write an academic paper or a business email. This includes overly polite language like &quot;Might you be interested in eating, sir?&quot;, but nevertheless the verb remains the same.</p>
+<h4 id="quoting-statements">Quoting Statements</h4>
+<p>Quoting plain statements in Korean is very easy. All you need to do is take the sentence, conjugate the verb into plain form, and append <code>~고 (말)하다</code>. For verbs, <code>~ㄴ/는다</code> is the plain form. For adjectives, it's just <code>다</code>, or the base verb.</p>
+<p>(저는) 먹었어요. <span class="hl hl-left hl-green">
+(제가) 먹었
+</span><span class="hl hl-right hl-word hl-purple">
+다고 말했다
+</span> – I ate. I said I ate.</p>
+<p>Depending on the type of statement, different particles than 다 are used.</p>
+<ul>
+<li>declarative =&gt; <code>다</code></li>
+<li>inquisitive =&gt; <code>냐</code></li>
+<li>propositive (let's ...) =&gt; <code>자</code></li>
+<li>imperative or =&gt; <code>라</code></li>
+<li>declarative with 이다 (to be) as the verb =&gt; <code>라</code></li>
+</ul>
+<p>이것을 좋아하다고? – (You said that) you like this?</p>
+<p>Since this is used so much in speech, the (말)하다 (to say) part is often omitted. If you're learning Korean, expect to hear this a lot from natives because Korean pronunciation is tough.</p>
+<h4 id="lack-of-romanization">Lack of Romanization</h4>
+<p>Why does this article lack romanization? Because romanization is bad. English and Korean sounds do not map neatly to one another.
+The issue here is that Korean learners mentally map {some english sound} =&gt; {some hangeul letter} and it hurts their pronunciation skills immensely.
+For example, you may see this in beginner resources:</p>
+<p>d = ㄷ</p>
+<p>Except this is wildly wrong because only ㄷ is ㄷ. It is <em>close</em> to d, in the same sense that fresh water is <em>close</em> to salt water. Close enough, right? If you're learning Korean, listen to videos that teach the sound, not the most approximte English letter.</p>
+<p>I also have seen people write things like anyeonghasaeyo jal jinaeyo? or similar, and it hurts my brain and heart trying to read it.</p>
+<p>Furthermore, romanization systems can change over time. 조 used to be romanized as Cho, now it's Jo. So when I read older books that have romanized Korean it forces me to go and learn the older system as well. 조 isn't Jo or Cho anyway... it's somewhere in between.</p>
+<h2 id="contributors">Contributors</h2>
+<ul>
+<li>Article – Andrew Zah</li>
+<li>Editing, sentence suggestions – 웁스</li>
+</ul>
+
+      <div id="email-me">
+        Have any observations, criticisms, or corrections? Feel free to <a href="mailto:blog@andrewzah.com">email me</a>. Have a nice day!
+      </div>
+      
+      
+      
+        
+  <div id="references">
+    <h3> References </h3>
+    <ul>
+      
+        <li>
+          <span>
+            <a
+              id="reference-0"
+              href="#refer-0"
+            >
+              [0] &#x21A9;</a>
+            –
+            <a href="https:&#x2f;&#x2f;wickedchicken.github.io&#x2f;post&#x2f;german-for-programmers&#x2f;">
+              German for Programmers
+            </a>
+          </span>
+        </li>
+      
+        <li>
+          <span>
+            <a
+              id="reference-1"
+              href="#refer-1"
+            >
+              [1] &#x21A9;</a>
+            –
+            <a href="https:&#x2f;&#x2f;www.howtostudykorean.com&#x2f;unit0&#x2f;unit0lesson1&#x2f;">
+              Hangeul Grid Order 
+            </a>
+          </span>
+        </li>
+      
+        <li>
+          <span>
+            <a
+              id="reference-2"
+              href="#refer-2"
+            >
+              [2] &#x21A9;</a>
+            –
+            <a href="http:&#x2f;&#x2f;www.koreanwikiproject.com&#x2f;wiki&#x2f;%EB%B0%9B%EC%B9%A8">
+              Final Consonant Exception Rules
+            </a>
+          </span>
+        </li>
+      
+        <li>
+          <span>
+            <a
+              id="reference-3"
+              href="#refer-3"
+            >
+              [3] &#x21A9;</a>
+            –
+            <a href="https:&#x2f;&#x2f;en.wikipedia.org&#x2f;wiki&#x2f;Korean_language_and_computers#Hangul_in_Unicode">
+              Hangeul in Unicode
+            </a>
+          </span>
+        </li>
+      
+        <li>
+          <span>
+            <a
+              id="reference-4"
+              href="#refer-4"
+            >
+              [4] &#x21A9;</a>
+            –
+            <a href="https:&#x2f;&#x2f;en.wikipedia.org&#x2f;wiki&#x2f;Korean_speech_levels">
+              Korean Speech Levels
+            </a>
+          </span>
+        </li>
+      
+        <li>
+          <span>
+            <a
+              id="reference-5"
+              href="#refer-5"
+            >
+              [5] &#x21A9;</a>
+            –
+            <a href="https:&#x2f;&#x2f;en.wikipedia.org&#x2f;wiki&#x2f;Register_(sociolinguistics)">
+              English Registers
+            </a>
+          </span>
+        </li>
+      
+    </ul>
+  </div>
+
+      
+    </article>
+  </div>
+</main>
+    </div>
+
+    <div class="after-content">
+      <div class="container">
+        <div>
+  <div id="after-main" class="container">
+    <div id="random-quote">
+      <h2> Random quote </h2>
+      <blockquote id="random-quote-quote"></blockquote>
+      <p id="random-quote-citation">
+        <span id="random-quote-author"></span>
+        <span id="random-quote-source"></span>
+      </p>
+    </div>
+    <hr>
+
+    <div class="container after-post">
+        
+          <div id="previous_post">
+            Previous: <i>
+              <a class="prev" href="/posts/korean-cooking-eating-vocabulary-reference">Korean Food &amp; Cooking Vocabulary Reference</a>
+            </i>
+          </div>
+        
+
+        
+          <div id="next_post">
+            Next: <i>
+              <a class="next" href="/posts/korean-progress-1">Korean Progress #1</a>
+            </i>
+          </div>
+        
+
+        
+          
+  
+  <div class="tags">
+    Tags: 
+    
+      
+        <a href="/tags/korean/">Korean</a> | 
+      
+    
+      
+        <a href="/tags/programming/">Programming</a> | 
+      
+    
+      
+        <a href="/tags/linguistics/">Linguistics</a>
+      
+    
+  </div>
+
+  
+  <div class="categories">
+    Categories: 
+    
+      
+        <a href="/categories/general/">General</a>
+      
+    
+  </div>
+
+
+        
+    </div>
+
+    <hr>
+    </div>
+
+    <footer class="footer">
+    <small>
+        &copy; Copyright Andrew Zah <time datetime="2019">2019</time>.
+        | <a href="/contact">Contact</a>
+        | <a href="https://git.sr.ht/~andrewzah/personal-site/tree">Site Source Code (AGPLv3)</a>
+    </small>
+</footer>
+
+    </div>
+      </div>
+    </div>
+  </body>
+</html>

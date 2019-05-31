@@ -1,0 +1,21 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Andrew Zah</title>
+        <link>andrewzah.com</link>
+        <description>Sometimes relevant thoughts by Andrew</description>
+        <generator>Zola</generator>
+        <language>en</language>
+        <atom:link href="andrewzah.com/tags/crystal/rss.xml" rel="self" type="application/rss+xml"/>
+        <lastBuildDate>Mon, 05 Mar 2018 00:00:00 +0000</lastBuildDate>
+        
+            <item>
+                <title>Making a Discord bot in Crystal: Part 0</title>
+                <pubDate>Mon, 05 Mar 2018 00:00:00 +0000</pubDate>
+                <link>andrewzah.com/posts/making-a-discord-bot-in-crystal-part-0/</link>
+                <guid>andrewzah.com/posts/making-a-discord-bot-in-crystal-part-0/</guid>
+                <description>&lt;p&gt;Today, let&#x27;s start with a simple goal: Get a bot up and running via a JSON configuration file, in Crystal, that responds to a &amp;quot;!ping&amp;quot; command.&lt;&#x2f;p&gt;
+</description>
+            </item>
+        
+    </channel>
+</rss>

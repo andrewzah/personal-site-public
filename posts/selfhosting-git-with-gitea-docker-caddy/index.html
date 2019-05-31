@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+      <title>Selfhosting git with Gitea, Docker, Caddy | Andrew Zah</title>
+
+      <meta charset="UTF-8">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="This walks through hosting a git frontend with docker, caddy, and gitea.">
+      <meta name="author" content="Andrew Zah">
+      <meta name="keywords" content="selfhosting virtual private server docker caddy git gitea gogs">
+
+      <meta property="og:title" content="Selfhosting git with Gitea, Docker, Caddy | Andrew Zah" />
+      <meta property="og:author" content="Andrew Zah" />
+      <meta property="og:description" content="This walks through hosting a git frontend with docker, caddy, and gitea." />
+      <meta property="article:author" content="Andrew Zah" />
+      <meta property="og:type" content="article" />
+      <meta property="og:url" content="andrewzah.com&#x2f;posts&#x2f;selfhosting-git-with-gitea-docker-caddy&#x2f;" />
+      <meta property="og:image" content="https://andrewzah.com/og.jpg" />
+
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:site" content="@andrew_zah">
+      <meta name="twitter:creator" content="@andrew_zah">
+      <meta name="twitter:image" content="https://andrewzah.com/twitter-image.png">
+
+      <meta name="google-site-verification" content="n5-uDhEF_Bwbyie5UOMQK1EdBy4iKsPQIGNJkSVlNU4" />
+
+      <link rel="stylesheet" href="/main.css">
+
+      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=vMdnJYpmNaa">
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=vMdnJYpmNaa">
+      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=vMdnJYpmNaa">
+      <link rel="manifest" href="/site.webmanifest?v=vMdnJYpmNaa">
+      <link rel="mask-icon" href="/safari-pinned-tab.svg?v=vMdnJYpmNaa" color="#018a70">
+      <link rel="shortcut icon" href="/favicon.ico?v=vMdnJYpmNaa">
+      <meta name="msapplication-TileColor" content="#da532c">
+      <meta name="theme-color" content="#ffffff">
+
+      <script async src="/js/bundle.js"></script>
+      
+  
+
+  </head>
+
+  <script src="//instant.page/1.1.0" type="module" integrity="sha384-EwBObn5QAxP8f09iemwAJljc+sU+eUXeL9vSBw1eNmVarwhKk2F9vBEpaN9rsrtp"></script>
+  <body>
+    <div class="container content">
+      
+        
+  <nav>
+    <div id="nav-links">
+      
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li class="active"><a href="/posts/">Posts</a></li>
+        <li ><a href="/projects/">Projects</a></li>
+        <li ><a href="/talks/">Talks</a></li>
+        <li ><a href="/friends/">Friends</a></li>
+        <li ><a href="/contact/">Contact</a></li>
+        <li ><a href="/quotes/">Quotes</a></li>
+        <li><a href="/rss.xml">RSS</a></li>
+      </ul>
+    </div>
+  </nav>
+
+      
+
+      <main>
+  <div itemtype="http://schema.org/Article" class="container post">
+    <h1 class="page-title" itemprop="name">Selfhosting git with Gitea, Docker, Caddy</h1>
+    <div class="page-meta-data">
+      <time itemprop="datePublished" content="2018-05-15" datetime="2018-05-15" class="page-date">
+          May 15, 2018
+          
+      </time>
+    </div>
+    <hr>
+    <aside id="toc">
+        <h2>Table of Contents</h2>
+        <ol>
+            <li>
+                <a href="#prerequisites">Prerequisites</a>
+                
+            </li><li>
+                <a href="#docker-compose-part-1">Docker-Compose: Part 1</a>
+                
+            </li><li>
+                <a href="#caddy">Caddy</a>
+                
+            </li><li>
+                <a href="#docker-compose-part-2">Docker-Compose: Part 2</a>
+                
+            </li><li>
+                <a href="#docker-compose-part-3">Docker-Compose: Part 3</a>
+                
+            </li><li>
+                <a href="#editing-sshd">Editing SSHD</a>
+                
+            </li><li>
+                <a href="#docker-compose-final">Docker-Compose: Final</a>
+                
+            </li><li>
+                <a href="#conclusion">Conclusion</a>
+                
+            </li>
+        </ol>
+    </aside>
+    <article itemprop="articleBody">
+      <p>Something I've been doing recently is starting to self-host as much as I can. I don't like relying on businesses, since they can change their services on a whim. I host an <a href="https://en.wikipedia.org/wiki/ZNC">IRC network bouncer</a>, a <a href="https://github.com/miniflux/miniflux">feed reader</a>, and so on. But why not a git frontend?</p>
+<p id="zola-continue-reading"><a name="continue-reading"></a></p>
+<p>It also doesn't make sense to me that <em>Git</em>hub isn't open-source, despite being a company built on <em>git</em>—libre software that powers the programming industry. Gitlab is commendable for actually being open source[[1]], but it's fairly heavy in resource usage and it has a lot of features I don't really need.</p>
+<p>So in comes <a href="https://gitea.io/en-US/">Gitea</a>, a community fork of <a href="https://gogs.io/">Gogs</a>, which is written in go-lang and is quite lightweight. More importantly, it can mirror with both Github and Gitlab, giving us data redundancy. Let's get into it!</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p><code>docker</code> and <code>docker-compose</code> need to be installed on your system. In this case, I'm running it with a bunch of other services on a <a href="https://www.hetzner.de/">hetzner.de</a> Cloud VPS for €5/month. You could probably run it on their €2.50/month plan. (2GB vs 4GB of RAM)</p>
+<h2 id="docker-compose-part-1">Docker-Compose: Part 1</h2>
+<p>In this case, both Gogs and Gitea provide premade docker images for us. Handy! Thankfully they're mindful about docker image size, with <a href="https://hub.docker.com/r/gitea/gitea/tags/">Gitea 1.4</a> clocking in at a mere <code>34MB</code>. </p>
+<p>This means all we have to do is create a <code>docker-compose</code> file:</p>
+<pre style="background-color:#ffffff;">
+<span style="color:#63a35c;">version</span><span style="color:#323232;">: </span><span style="color:#183691;">&quot;3.3&quot;
+
+</span><span style="color:#63a35c;">services</span><span style="color:#323232;">:
+  </span><span style="color:#63a35c;">git</span><span style="color:#323232;">:
+    </span><span style="color:#63a35c;">image</span><span style="color:#323232;">: </span><span style="color:#63a35c;">gitea/gitea:latest
+    ports</span><span style="color:#323232;">:
+      - </span><span style="color:#183691;">&quot;3000&quot;
+    </span><span style="color:#63a35c;">volumes</span><span style="color:#323232;">:
+      - </span><span style="color:#63a35c;">type</span><span style="color:#323232;">: </span><span style="color:#63a35c;">bind
+        source</span><span style="color:#323232;">: </span><span style="color:#63a35c;">./data/git
+        target</span><span style="color:#323232;">: </span><span style="color:#63a35c;">/data
+    restart</span><span style="color:#323232;">: </span><span style="color:#183691;">always
+</span></pre>
+<p>This file defines <code>git</code> as a service, using the mentioned gitea image. You can use <code>latest</code> or keep it at a specific version, it's up to you.</p>
+<p>Next, Gitea runs on port <code>3000</code> by default, so we need to expose the docker container's port likewise. Note that we are <em>not</em> doing <code>3000:3000</code>, which would have the port exposed externally. Instead, we have a tool that'll handle the routing for us.</p>
+<h2 id="caddy">Caddy</h2>
+<p><a href="https://caddyserver.com/">Caddy</a> is an <code>HTTP/2</code> webserver. Its killer feature is automatically handling <a href="https://caddyserver.com/">HTTPS with Let's Encrypt</a>. Seriously, I cannot recommend it enough for personal projects. Gone are the days of manually handling certificates and using <a href="https://www.nginx.com/">nginx</a>. <a href="andrewzah.com/posts/selfhosting-git-with-gitea-docker-caddy/#Footnoes">[2]</a></p>
+<p>Caddy's <code>Caddyfile</code> syntax is fairly simple:</p>
+<pre style="background-color:#ffffff;">
+<span style="color:#323232;">git.andrewzah.com {
+  tls your@email.com
+
+  log / stdout {combined}
+  errors stderr
+
+  proxy / http://git:3000
+}
+</span></pre>
+<p>Here, we're giving instructions for the domain <code>git.andrewzah.com</code>. The <code>TLS</code> directive configures HTTPS connections, and providing an email means Caddy won't prompt us.</p>
+<p>The <code>log</code> and <code>errors</code> directives are self explanatory.</p>
+<p><code>proxy</code> is what we're really interested in. It lets us pass the connection to the local gitea container we just created, on port <code>3000</code>.</p>
+<h2 id="docker-compose-part-2">Docker-Compose: Part 2</h2>
+<p>In order to run Caddy, we need to add it as a service:</p>
+<pre style="background-color:#ffffff;">
+<span style="color:#63a35c;">services</span><span style="color:#323232;">:
+  </span><span style="color:#63a35c;">http</span><span style="color:#323232;">:
+    </span><span style="color:#63a35c;">build</span><span style="color:#323232;">:
+      </span><span style="color:#63a35c;">context</span><span style="color:#323232;">: </span><span style="color:#63a35c;">github.com/abiosoft/caddy-docker.git
+      args</span><span style="color:#323232;">:
+        </span><span style="color:#63a35c;">version</span><span style="color:#323232;">: </span><span style="color:#0086b3;">0.10.11
+    </span><span style="color:#63a35c;">volumes</span><span style="color:#323232;">:
+      - </span><span style="color:#63a35c;">type</span><span style="color:#323232;">: </span><span style="color:#63a35c;">bind
+        source</span><span style="color:#323232;">: </span><span style="color:#63a35c;">./data/sites/
+        target</span><span style="color:#323232;">: </span><span style="color:#63a35c;">/var/www/sites/
+      </span><span style="color:#323232;">- </span><span style="color:#63a35c;">type</span><span style="color:#323232;">: </span><span style="color:#63a35c;">bind
+        source</span><span style="color:#323232;">: </span><span style="color:#63a35c;">./data/caddypath/
+        target</span><span style="color:#323232;">: </span><span style="color:#63a35c;">/var/caddy/
+      </span><span style="color:#323232;">- </span><span style="color:#63a35c;">type</span><span style="color:#323232;">: </span><span style="color:#63a35c;">bind
+        source</span><span style="color:#323232;">: </span><span style="color:#63a35c;">./Caddyfile
+        target</span><span style="color:#323232;">: </span><span style="color:#63a35c;">/etc/Caddyfile
+    environment</span><span style="color:#323232;">:
+      </span><span style="color:#63a35c;">CADDYPATH</span><span style="color:#323232;">: </span><span style="color:#183691;">&quot;/var/caddy&quot;
+    </span><span style="color:#63a35c;">env_file</span><span style="color:#323232;">: </span><span style="color:#63a35c;">./secret.env
+    ports</span><span style="color:#323232;">:
+      - </span><span style="color:#183691;">&quot;xxx.xxx.xxx.xxx:443:443&quot;
+      </span><span style="color:#323232;">- </span><span style="color:#183691;">&quot;xxx.xxx.xxx.xxx:80:80&quot;
+    </span><span style="color:#63a35c;">restart</span><span style="color:#323232;">: </span><span style="color:#183691;">always
+</span></pre>
+<p>Again, a docker image is provided for us thanks to <code>abiosoft</code>. We can specify which caddy version and any caddy plugins if desired. Since we're not running a dns or net server, we don't have to worry about much configuration.</p>
+<p><code>data/sites/</code> and <code>/data/caddypath</code> store information related to Caddy and the automatically generated Let's Encrypt files. <code>/etc/Caddyfile</code> is where Caddy looks, so we bind our caddyfile there.</p>
+<p><code>env_file: ./secret.env</code> is only needed if a caddy plugin requires sensitive data, such as the <code>tls.dns.gandiv5</code> plugin.</p>
+<p>Replace the port IP with your server's IP. The reason we use that is because by default, <code>yyy:zzz</code> will listen on <em>all</em> interfaces.</p>
+<h2 id="docker-compose-part-3">Docker-Compose: Part 3</h2>
+<p>You may have noticed by now that we're missing one big thing... a database. This one is simple, because Gitea is smart and runs on Postgres:</p>
+<pre style="background-color:#ffffff;">
+<span style="color:#63a35c;">services</span><span style="color:#323232;">:
+  </span><span style="color:#63a35c;">git_db</span><span style="color:#323232;">:
+    </span><span style="color:#63a35c;">image</span><span style="color:#323232;">: </span><span style="color:#63a35c;">postgres:9.6.7-alpine
+    env_file</span><span style="color:#323232;">:
+      - </span><span style="color:#63a35c;">./secret.env
+    restart</span><span style="color:#323232;">: </span><span style="color:#63a35c;">always
+    volumes</span><span style="color:#323232;">:
+      - </span><span style="color:#63a35c;">type</span><span style="color:#323232;">: </span><span style="color:#63a35c;">bind
+        source</span><span style="color:#323232;">: </span><span style="color:#63a35c;">./data/postgres/
+        target</span><span style="color:#323232;">: </span><span style="color:#183691;">/var/lib/postgresql/data/
+</span></pre>
+<p>In <code>secret.env</code>, you'll need to set the following:</p>
+<pre style="background-color:#ffffff;">
+<span style="color:#323232;">POSTGRES_USER=xxxx
+POSTGRES_PASSWORD=yyyyyy
+POSTGRES_DB=git
+</span></pre>
+<p>Now that we have a database service, we can add this to the <code>gitea</code> service:</p>
+<pre style="background-color:#ffffff;">
+<span style="color:#63a35c;">services</span><span style="color:#323232;">:
+  </span><span style="color:#63a35c;">git</span><span style="color:#323232;">:
+    </span><span style="color:#63a35c;">depends_on</span><span style="color:#323232;">:
+      - </span><span style="color:#183691;">git_db
+</span></pre><h2 id="editing-sshd">Editing SSHD</h2>
+<p>There's one problem now, which is that if you actually try to run this configuration, you'll be refused. We never actually exposed ssh's default port <code>22</code>, nor did we start listening to it!</p>
+<p>So let's listen to <code>22</code> for git, and <code>2223</code> for regular ssh. Edit, with sudo permissions, <code>/etc/ssh/sshd_config</code>:</p>
+<pre style="background-color:#ffffff;">
+<span style="color:#323232;"># What ports, IPs and protocols we listen for
+Port 2223
+Port 22
+</span></pre>
+<p>At this time, I would also recommend disabling password login, as one can never have enough security. Just make sure you add your <a href="https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/">ssh key</a> output to <code>~/.ssh/authorized_keys</code>! You'll be locked out otherwise.</p>
+<pre style="background-color:#ffffff;">
+<span style="color:#323232;">PermitRootLogin without-password
+PasswordAuthentication no
+</span></pre><h2 id="docker-compose-final">Docker-Compose: Final</h2>
+<p>Lastly, now that we're listening on port <code>22</code>, add this to the <code>docker-compose.yml</code>:</p>
+<pre style="background-color:#ffffff;">
+<span style="color:#63a35c;">services</span><span style="color:#323232;">:
+  </span><span style="color:#63a35c;">git</span><span style="color:#323232;">:
+    </span><span style="color:#63a35c;">image</span><span style="color:#323232;">: </span><span style="color:#63a35c;">gitea/gitea:latest
+    ports</span><span style="color:#323232;">:
+      - </span><span style="color:#183691;">&quot;22:22&quot;
+</span></pre>
+<p>Now when we do <code>git push origin master</code>, with <code>origin</code> set to <code>https://git.andrewzah.com/...</code>, it'll reach the gitea container!</p>
+<p>In total, it should look like this:</p>
+<pre style="background-color:#ffffff;">
+<span style="color:#63a35c;">version</span><span style="color:#323232;">: </span><span style="color:#183691;">&quot;3.3&quot;
+
+</span><span style="color:#63a35c;">services</span><span style="color:#323232;">:
+  </span><span style="color:#63a35c;">git</span><span style="color:#323232;">:
+    </span><span style="color:#63a35c;">image</span><span style="color:#323232;">: </span><span style="color:#63a35c;">gitea/gitea:latest
+    ports</span><span style="color:#323232;">:
+      - </span><span style="color:#183691;">&quot;3000&quot;
+      </span><span style="color:#323232;">- </span><span style="color:#183691;">&quot;22:22&quot;
+    </span><span style="color:#63a35c;">volumes</span><span style="color:#323232;">:
+      - </span><span style="color:#63a35c;">type</span><span style="color:#323232;">: </span><span style="color:#63a35c;">bind
+        source</span><span style="color:#323232;">: </span><span style="color:#63a35c;">./data/git
+        target</span><span style="color:#323232;">: </span><span style="color:#63a35c;">/data
+    restart</span><span style="color:#323232;">: </span><span style="color:#63a35c;">always
+
+  git_db</span><span style="color:#323232;">:
+    </span><span style="color:#63a35c;">image</span><span style="color:#323232;">: </span><span style="color:#63a35c;">postgres:9.6.7-alpine
+    env_file</span><span style="color:#323232;">:
+      - </span><span style="color:#63a35c;">./secret.env&quot;
+    restart</span><span style="color:#323232;">: </span><span style="color:#63a35c;">always
+    volumes</span><span style="color:#323232;">:
+      - </span><span style="color:#63a35c;">type</span><span style="color:#323232;">: </span><span style="color:#63a35c;">bind
+        source</span><span style="color:#323232;">: </span><span style="color:#63a35c;">./data/postgres/
+        target</span><span style="color:#323232;">: </span><span style="color:#63a35c;">/var/lib/postgresql/data/
+
+  http</span><span style="color:#323232;">:
+    </span><span style="color:#63a35c;">build</span><span style="color:#323232;">:
+      </span><span style="color:#63a35c;">context</span><span style="color:#323232;">: </span><span style="color:#63a35c;">github.com/abiosoft/caddy-docker.git
+      args</span><span style="color:#323232;">:
+        </span><span style="color:#63a35c;">version</span><span style="color:#323232;">: </span><span style="color:#0086b3;">0.10.12
+    </span><span style="color:#63a35c;">volumes</span><span style="color:#323232;">:
+      - </span><span style="color:#63a35c;">type</span><span style="color:#323232;">: </span><span style="color:#63a35c;">bind
+        source</span><span style="color:#323232;">: </span><span style="color:#63a35c;">./data/sites/
+        target</span><span style="color:#323232;">: </span><span style="color:#63a35c;">/var/www/sites/
+      </span><span style="color:#323232;">- </span><span style="color:#63a35c;">type</span><span style="color:#323232;">: </span><span style="color:#63a35c;">bind
+        source</span><span style="color:#323232;">: </span><span style="color:#63a35c;">./data/caddypath/
+        target</span><span style="color:#323232;">: </span><span style="color:#63a35c;">/var/caddy/
+      </span><span style="color:#323232;">- </span><span style="color:#63a35c;">type</span><span style="color:#323232;">: </span><span style="color:#63a35c;">bind
+        source</span><span style="color:#323232;">: </span><span style="color:#63a35c;">./Caddyfile
+        target</span><span style="color:#323232;">: </span><span style="color:#63a35c;">/etc/Caddyfile
+    environment</span><span style="color:#323232;">:
+      </span><span style="color:#63a35c;">CADDYPATH</span><span style="color:#323232;">: </span><span style="color:#183691;">&quot;/var/caddy&quot;
+    </span><span style="color:#63a35c;">env_file</span><span style="color:#323232;">: </span><span style="color:#63a35c;">./secret.env
+    ports</span><span style="color:#323232;">:
+      - </span><span style="color:#183691;">&quot;xxx.xxx.xxx.xxx:443:443&quot;
+      </span><span style="color:#323232;">- </span><span style="color:#183691;">&quot;xxx.xxx.xxx.xxx:80:80&quot;
+    </span><span style="color:#63a35c;">restart</span><span style="color:#323232;">: </span><span style="color:#183691;">always
+</span></pre><h2 id="conclusion">Conclusion</h2>
+<p>If everything was done correctly, you should now have a self-hosted git frontend. Nice!</p>
+<p>I recommend checking out <a href="https://github.com/Kickball/awesome-selfhosted">awesome-selfhosted</a> to see a huge list of other software you can host. <a href="https://www.reddit.com/r/selfhosted/">reddit.com/r/selfhosted</a> is also a good resource. The possibilities are endless... You could host a <a href="https://github.com/wekan/wekan">Kanban board</a> or a <a href="https://cockatrice.github.io/">Magic: The Gathering Cockatrice server</a>!</p>
+<p>If you start hosting multiple services, it makes more sense to break them out into separate folders, with <code>http</code> being its own central service. You can check out my <a href="https://git.andrewzah.com/andrei/andrewzah.com">services repository</a> to get an idea.</p>
+
+      <div id="email-me">
+        Have any observations, criticisms, or corrections? Feel free to <a href="mailto:blog@andrewzah.com">email me</a>. Have a nice day!
+      </div>
+      
+      
+        
+  <div id="footnotes">
+    <h3> Footnotes </h3>
+    <ul>
+      
+        <li>
+          <span>
+            <a
+              id="footnote-0"
+              href="#footnote-cite-0"
+            >
+              (0) &#x21A9;</a>
+              –
+              The term &#x27;Free (libre) software&#x27; is often used alongside &#x27;open-source&#x27; software. I personally prefer the emphasis on libre over simply being open to read. I don&#x27;t always agree with RMS, but [he makes a compelling point](https:&#x2f;&#x2f;www.gnu.org&#x2f;philosophy&#x2f;open-source-misses-the-point.html)
+          </span>
+        </li>
+      
+        <li>
+          <span>
+            <a
+              id="footnote-1"
+              href="#footnote-cite-1"
+            >
+              (1) &#x21A9;</a>
+              –
+              Although nginx actually is more performant as of May 2018, so it may not be wise to use Caddy in professional, production servers.
+          </span>
+        </li>
+      
+    </ul>
+  </div>
+
+      
+      
+    </article>
+  </div>
+</main>
+    </div>
+
+    <div class="after-content">
+      <div class="container">
+        <div>
+  <div id="after-main" class="container">
+    <div id="random-quote">
+      <h2> Random quote </h2>
+      <blockquote id="random-quote-quote"></blockquote>
+      <p id="random-quote-citation">
+        <span id="random-quote-author"></span>
+        <span id="random-quote-source"></span>
+      </p>
+    </div>
+    <hr>
+
+    <div class="container after-post">
+        
+          <div id="previous_post">
+            Previous: <i>
+              <a class="prev" href="/posts/making-a-discord-bot-in-crystal-part-0">Making a Discord bot in Crystal: Part 0</a>
+            </i>
+          </div>
+        
+
+        
+          <div id="next_post">
+            Next: <i>
+              <a class="next" href="/posts/finishing-that-marathon">Finishing that Marathon</a>
+            </i>
+          </div>
+        
+
+        
+          
+  
+  <div class="tags">
+    Tags: 
+    
+      
+        <a href="/tags/selfhosting/">Selfhosting</a> | 
+      
+    
+      
+        <a href="/tags/gitea/">Gitea</a> | 
+      
+    
+      
+        <a href="/tags/docker/">Docker</a> | 
+      
+    
+      
+        <a href="/tags/caddy/">Caddy</a>
+      
+    
+  </div>
+
+  
+  <div class="categories">
+    Categories: 
+    
+      
+        <a href="/categories/programming/">Programming</a>
+      
+    
+  </div>
+
+
+        
+    </div>
+
+    <hr>
+    </div>
+
+    <footer class="footer">
+    <small>
+        &copy; Copyright Andrew Zah <time datetime="2019">2019</time>.
+        | <a href="/contact">Contact</a>
+        | <a href="https://git.sr.ht/~andrewzah/personal-site/tree">Site Source Code (AGPLv3)</a>
+    </small>
+</footer>
+
+    </div>
+      </div>
+    </div>
+  </body>
+</html>
