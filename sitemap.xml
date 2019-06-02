@@ -80,6 +80,13 @@
     </url>
   
     <url>
+      <loc>https://andrewzah.com/posts/automatically-deploy-your-blog-via-git-caddy-docker/</loc>
+      
+        <lastmod>2019-06-02</lastmod>
+      
+    </url>
+  
+    <url>
       <loc>https://andrewzah.com/posts/better-anki-usage-guide-2019/</loc>
       
         <lastmod>2019-05-19</lastmod>
@@ -299,6 +306,11 @@
   
     <url>
       <loc>https://andrewzah.com/tags/webassembly/</loc>
+      
+    </url>
+  
+    <url>
+      <loc>https://andrewzah.com/tags/zola/</loc>
       
     </url>
   
