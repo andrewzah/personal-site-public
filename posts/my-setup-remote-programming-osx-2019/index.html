@@ -82,7 +82,7 @@
                 <a href="#development-machine">Development Machine</a>
                 
             </li><li>
-                <a href="#setting-up-osx">Setting up OSX</a>
+                <a href="#configuring-osx-tools">Configuring OSX & Tools</a>
                 <ol>
                     <li>
                         <a href="#poor-man-s-window-tiling">poor man's window tiling</a>
@@ -90,20 +90,21 @@
                         <a href="#poor-man-s-workspaces">poor man's workspaces</a>
                     </li><li>
                         <a href="#apps">apps</a>
-                    </li>
-                </ol>
-            </li><li>
-                <a href="#workflow">Workflow</a>
-                <ol>
-                    <li>
+                    </li><li>
                         <a href="#code-editor">code editor</a>
                     </li><li>
                         <a href="#code-editor-for-c">code editor (for C#)</a>
                     </li>
                 </ol>
             </li><li>
-                <a href="#thoughts-workflow">thoughts workflow</a>
-                
+                <a href="#workflow">Workflow</a>
+                <ol>
+                    <li>
+                        <a href="#tasks">tasks</a>
+                    </li><li>
+                        <a href="#logging-my-thoughts">logging my thoughts</a>
+                    </li>
+                </ol>
             </li><li>
                 <a href="#conclusion">Conclusion</a>
                 
@@ -132,9 +133,9 @@
 <p>Weight-wise it was slightly heavier than my 15&quot; macbook, but the battery life made it unusable. I was getting 4-5 hours, max, and occasionally it would just die earlier than expected.</p>
 <p>Essentially I was always worried about my power source. What's the point of a laptop if you always need it to be plugged in?! I <a href="/posts/living-out-of-two-backpacks-a-three-month-retrospective/">live out of two backpacks</a> and work remotely while traveling, so to say that battery life is important to me is a huge understatement.</p>
 <p>My 2015 13&quot; macbook pro's battery is still good to the point that I can easily work 6-7 hours with C# and Rust without worrying about charging. This doesn't happen often in practice but not having to worry about that is very important.</p>
-<p>I know someone's going to respond with &quot;but oh, you should've just used power++ with x, y, z configurations!&quot;. I <em>did</em> experiment with different settings with power++ and other alternative tools. Call me a grumpy old man but I want to work and get things done... not fiddle about with battery tuning settings and the like.</p>
+<p>I know someone's going to respond with &quot;but oh, you should've just used power++ with x, y, z configurations!&quot;. I <em>did</em> experiment with different settings with power++ and other alternative tools–nothing seemed to help. Call me a grumpy old man but I want to work and get things done... not fiddle about with battery tuning settings and the like.</p>
 <p>Eventually I'll need to replace this mac. All post-2015 macbooks have been a dumpster fire so I'll probably go with a dell xps, a lenovo x1 thinkpad, or <a href="https://www.notebookcheck.net/Enthusiasts-bring-classic-ThinkPad-designs-to-the-modern-era.194630.0.html">a custom x62 thinkpad from China, maybe..?</a> I just want a durable machine with an excellent battery that'll work years later and won't have me configuring things constantly.</p>
-<h2 id="setting-up-osx">Setting up OSX</h2>
+<h2 id="configuring-osx-tools">Configuring OSX &amp; Tools</h2>
 <p>The first thing I always do is install xcode-tools, iTerm2, brew, and zsh. Then I clone the osx branch of my <a href="https://git.sr.ht/%7Eandrewzah/dotfiles/tree">dotfiles repo</a> and symlink the files where they need to be. I should automate this part with a script, but making that script would take me far more more time than just doing it manually. Not worth it.</p>
 <p>You can use <code>brew leaves</code> to see installed items and <code>brew cask list</code> for cask items. I <a href="https://git.sr.ht/%7Eandrewzah/dotfiles/tree/osx/brew-leaves">stored</a> <a href="https://git.sr.ht/%7Eandrewzah/dotfiles/tree/osx/cask-list">mine</a> when I originally started abstracting out my dotfiles.</p>
 <h3 id="poor-man-s-window-tiling">poor man's window tiling</h3>
@@ -186,21 +187,6 @@
 <li>Signal (messaging)</li>
 <li>Anki (flash card study)</li>
 </ul>
-<h2 id="workflow">Workflow</h2>
-<p>Everything starts and ends with meetings and slack. I work on different projects for clients and my team has a daily 5-30min call at 9am (10pm in Korea).</p>
-<p>In Slack and our meetings we'll discuss what needs to be done. I or others will make bullet points of the most pertinent stuff that needs to be done. No agile or anything, <a href="https://steve-yegge.blogspot.com/2006/09/good-agile-bad-agile_27.html">thank god</a>. We previously used a few different ticket tracking systems and I've found that they all suck. <a href="https://www.jetbrains.com/youtrack/">YouTrack</a> sucks, but it was better than the proprietary abomination one of our clients made us use. The only good system I've found is:</p>
-<ol>
-<li>make a list (or queue, if you prefer it that way) of things</li>
-<li>roughly ballpark estimates, with the understanding that estimating things is notoriously difficult</li>
-<li>accurate prioritize those things (not everything is #1 urgency)</li>
-<li>work on those things</li>
-<li>discuss progress and blockers in daily call and/or slack</li>
-<li>repeat</li>
-</ol>
-<p>That's it.</p>
-<p>On top of this, issues in github/gitlab/etc are also pretty good if you come up with good labels. Right now I'm experimenting with Github's Projects and semi-automated issues on our newest project.</p>
-<hr />
-<p>Since I'm 13 hours ahead, this occasionally poses small issues with working with other team members, but I solved this by going to sleep a bit later (about 1am or so). I'm 23 so I stay up until ~1/2 am anyways ¯\_(ツ)_/¯. Having different things to work on is also important– if I'm ever blocked on something, such as waiting for a teammate to wake up and answer a question, I can just work on something else in the meantime.</p>
 <h3 id="code-editor">code editor</h3>
 <p>For non-C# code, I use neovim, vim, or vi, in that order. I don't care what you use. I like (neo)vim, so I use that. I just become disappointed when people reflexively dismiss it because has any learning curve, like at all. There's a <em>reason</em> why it has one, and it's not because Bram Moolenaar is masochistic. Even if you don't use vim, I urge you to read the manuals of the software that you do use. Small tidbits of knowledge add up over time, especially with common repetitive actions.</p>
 <p>It's also good to know a little <code>vi</code> when you mess up your FreeBSD installation and have to dip into an emergency shell. <code>nano</code> won't be accessible then.</p>
@@ -227,11 +213,66 @@
 <p>I use <a href="https://www.jetbrains.com/rider/">IntelliJ Rider</a> on both osx and arch. I think the value is worth it. It's definitely nowhere near as snappy as vim but the autocompletions are excellent. The build profiles and test runners are pretty nice. Modifying environment variables and profile configurations is tedious.</p>
 <p>The Intellij plugin ecosystem is great- you can easily install plugins in any of their editors, to my knowledge. There's even an official <a href="https://intellij-rust.github.io/">rust plugin</a>.</p>
 <p>However, cmd-4 is the shortcut to close windows..?!</p>
-<h2 id="thoughts-workflow">thoughts workflow</h2>
-<p>TODO
--&gt; notational velocity originally
--&gt; now notational vim plugin</p>
-<h2 id="conclusion">Conclusion</h2>
+<h2 id="workflow">Workflow</h2>
+<h3 id="tasks">tasks</h3>
+<p>Everything starts and ends with meetings and slack. I work on different projects for clients and my team has a daily 5-30min call at 9am (10pm in Korea).</p>
+<p>In Slack and our meetings we'll discuss what needs to be done. I or others will make bullet points of the most pertinent stuff that needs to be done. No agile or anything, <a href="https://steve-yegge.blogspot.com/2006/09/good-agile-bad-agile_27.html">thank god</a>. We previously used a few different ticket tracking systems and I've found that they all suck. <a href="https://www.jetbrains.com/youtrack/">YouTrack</a> sucks, but it was better than the proprietary abomination one of our clients made us use. The only good system I've found is:</p>
+<ol>
+<li>make a list (or queue, if you prefer it that way) of things</li>
+<li>roughly ballpark estimates, with the understanding that estimating things is notoriously difficult</li>
+<li>accurate prioritize those things (not everything is #1 urgency)</li>
+<li>work on those things</li>
+<li>discuss progress and blockers in daily call and/or slack</li>
+<li>repeat</li>
+</ol>
+<p>That's it.</p>
+<p>On top of this, issues in github/gitlab/etc are also pretty good if you come up with good labels. Right now I'm experimenting with Github's Projects and semi-automated issues on our newest project.</p>
+<hr />
+<p>Since I'm 13 hours ahead, this occasionally poses small issues with working with other team members, but I solved this by going to sleep a bit later (about 1am or so). I'm 23 so I stay up until ~1/2 am anyways ¯\_(ツ)_/¯. Having different things to work on is also important– if I'm ever blocked on something, such as waiting for a teammate to wake up and answer a question, I can just work on something else in the meantime.</p>
+<h3 id="logging-my-thoughts">logging my thoughts</h3>
+<p>The <a href="http://notational.net/">Notational Velocity</a> application changed my life. At its core, the idea is deceivingly simple.</p>
+<blockquote>
+<p>NOTIONAL VELOCITY is an application that <strong>stores and retrieves notes</strong>.</p>
+<p>It is an attempt to loosen the mental blockages to recording information and to scrape away the tartar of convention that handicaps its retrieval.</p>
+</blockquote>
+<p>You store text in notes. There is only one search box–if a file doesn't exist for your search string, one will automatically be created.</p>
+<p>I began to use it for just about everything, since any and all information I had written down could now be easily searched through and found.</p>
+<ul>
+<li>seldom-used vim tidbits</li>
+<li>miscellaneous knowledge about real languages (I study Korean)</li>
+<li>random snippets for programming languages (how do I open a file in ruby again?)</li>
+<li>tentative to-do lists</li>
+<li>niche, detailed information like serial numbers and specs for equipment that I bought</li>
+</ul>
+<p>It was glorious. Except... it was, and still is, mac only. At home I use *nix systems or windows, so using it became tedious and I eventually stopped.</p>
+<p>As I was writing this article, I discovered <a href="https://brettterpstra.com/projects/nvalt/">nVALT</a>–Brett Terpstra's fork. It has more functionality like markdown support and a better interface. No vim keybindings though, which made it unpleasant for me to use. Terpstra is working on <a href="https://brettterpstra.com/2019/04/10/codename-nvultra/">nvUltra</a> currently which may fix this.</p>
+<hr />
+<p><a href="https:&#x2f;&#x2f;raw.githubusercontent.com&#x2f;alok&#x2f;notational-fzf-vim&#x2f;master&#x2f;screenshots&#x2f;usage.gif" data-lity data-lity-desc="A gif showcasing how notational fzf vim works." alt="A gif showcasing how notational fzf vim works.">
+<img class="full" async-src="https:&#x2f;&#x2f;raw.githubusercontent.com&#x2f;alok&#x2f;notational-fzf-vim&#x2f;master&#x2f;screenshots&#x2f;usage.gif"/>
+</a></p>
+  <p class="image-desc"> Taken from https:&#x2f;&#x2f;github.com&#x2f;Alok&#x2f;notational-fzf-vim </p>
+<p>After I started writing this article, Alex Singh released <a href="https://github.com/alok/notational-fzf-vim">notational-fzf-vim</a>, which is basically notational velocity but in vim! As the name implies, fulltext searching is powered by <a href="https://github.com/junegunn/fzf.vim">fzf</a>, which in turn uses <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a> by default. Both are excellent tools I use daily.</p>
+<p>The preview window is amazing..!</p>
+<p>In order to use it, you need to specify at least one directory for the plugin to search. This will be the primary directory where new notes will be saved, but you can search multiple directories.</p>
+<pre style="background-color:#ffffff;">
+<span style="font-style:italic;color:#969896;">&quot; notational fzf vim
+</span><span style="color:#62a35c;">let </span><span style="color:#323232;">g:nv_search_paths =
+  </span><span style="font-weight:bold;color:#a71d5d;">\</span><span style="color:#323232;"> [</span><span style="color:#183691;">&#39;~/Desktop/Sync/thoughts&#39;</span><span style="color:#323232;">,
+    </span><span style="font-weight:bold;color:#a71d5d;">\ </span><span style="color:#183691;">&#39;~/Desktop/Sync/thoughts/korean&#39;</span><span style="color:#323232;">,
+  </span><span style="font-weight:bold;color:#a71d5d;">\</span><span style="color:#323232;">]
+</span></pre>
+<p>and some example files that I've written to this week:</p>
+<pre style="background-color:#ffffff;">
+<span style="color:#323232;">packing-list.md
+self-publishing.md
+useful-shell-scripts.md
+vim.md
+watches.md
+youtube-videos.md
+korean/colloquial-or-slang.md
+korean/color-names.md
+korean/clothes-verbs.md
+</span></pre><h2 id="conclusion">Conclusion</h2>
 <p>This is my personal setup. It is by no means prescriptive–I merely wanted to share what works for me. I enjoy looking at other people's workflows to see how they handle things. Usually I can take away a thing or two and improve my own workflow. I'm open to improving it!</p>
 
       <div id="email-me">

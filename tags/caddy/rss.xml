@@ -122,7 +122,7 @@ highlight
 &lt;p&gt;&lt;strong&gt;NOTE&lt;&#x2f;strong&gt;!! Use a port (like :2015) for local testing instead of the actual domain! If you run Caddy with this caddyfile locally without the &lt;code&gt;-disable-acme-auth&lt;&#x2f;code&gt;, caddy will repeatedly try to authorize, quickly &lt;strong&gt;ratelimiting you from Let&#x27;s Encrypt&lt;&#x2f;strong&gt;!&lt;a id=&quot;footnote-cite-2&quot; href=&quot;#footnote-2&quot;&gt;(2)&lt;&#x2f;a&gt;&lt;&#x2f;p&gt;
 &lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
 &lt;span style=&quot;color:#323232;&quot;&gt;# Caddyfile
-andrewzah.com, andrei.kr {
+yoursite.com, www.yoursite.com {
   gzip
   cache {
     default_max_age 10m
