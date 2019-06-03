@@ -88,6 +88,8 @@
                         <a href="#poor-man-s-window-tiling">poor man's window tiling</a>
                     </li><li>
                         <a href="#poor-man-s-workspaces">poor man's workspaces</a>
+                    </li><li>
+                        <a href="#apps">apps</a>
                     </li>
                 </ol>
             </li><li>
@@ -100,6 +102,9 @@
                     </li>
                 </ol>
             </li><li>
+                <a href="#thoughts-workflow">thoughts workflow</a>
+                
+            </li><li>
                 <a href="#conclusion">Conclusion</a>
                 
             </li>
@@ -110,29 +115,31 @@
 <img class="full" async-src="https:&#x2f;&#x2f;s3.amazonaws.com&#x2f;andrewzah.com&#x2f;posts&#x2f;015&#x2f;wework-gangnam.jpg"/>
 </a></p>
   <p class="image-desc"> Working remotely at WeWork, 강남, 서울 (Gangnam, Seoul) </p>
-<p>Hi! My name is Andrew, and I work remotely as a software developer. Currently I am in 서울, 대한민국– Seoul, South Korea.</p>
+<p>Hi! My name is Andrew, and I work remotely as a software developer. Currently I am in 서울, 대한민국 – Seoul, South Korea.</p>
 <h2 id="development-machine">Development Machine</h2>
 <p>Before we begin, why apple and osx?</p>
 <ol>
 <li>battery life</li>
 <li>battery life</li>
 <li>battery life</li>
+<li>unix-like environment</li>
 <li>display</li>
-<li>proprietary apps: photoshop, premiere, affinity designer, sketch</li>
+<li>form factor</li>
 </ol>
-<p>Before you scoff, I used arch linux on my home pc as a daily driver. I used a modded thinkpad t430 for a few months as well. I put in an i7-3632QM (quadcore) chip, a quieter heatsink, 2x8gb memory, a t420 old-style keyboard, and a 9 cell battery.</p>
-<p>It was sweet. Until I started lugging it around. </p>
+<p>and to an extent, proprietary or osx-only apps: photoshop, premiere, affinity designer, and sketch.</p>
+<p>Before you scoff, I used freebsd and arch on my home pc as daily drivers. I used a modded thinkpad t430 for a few months as well.<a id="footnote-cite-0" href="#footnote-0">(0)</a> I put in an i7-3632QM (quadcore) chip, a quieter heatsink, 2x8gb memory, a t420 old-style keyboard, and a 9 cell battery.</p>
+<p>It was sweet. Until I started lugging it around.</p>
 <p>Weight-wise it was slightly heavier than my 15&quot; macbook, but the battery life made it unusable. I was getting 4-5 hours, max, and occasionally it would just die earlier than expected.</p>
-<p>Essentially I was always worried about my power source. What's the point of a laptop if you always need it to be plugged in?! I <a href="/posts/living-out-of-two-backpacks-a-three-month-retrospective/">live out of two backpacks</a> and work remotely while traveling, so battery life is pretty damn important to me.</p>
+<p>Essentially I was always worried about my power source. What's the point of a laptop if you always need it to be plugged in?! I <a href="/posts/living-out-of-two-backpacks-a-three-month-retrospective/">live out of two backpacks</a> and work remotely while traveling, so to say that battery life is important to me is a huge understatement.</p>
 <p>My 2015 13&quot; macbook pro's battery is still good to the point that I can easily work 6-7 hours with C# and Rust without worrying about charging. This doesn't happen often in practice but not having to worry about that is very important.</p>
-<p>I know someone's going to respond with &quot;but oh, you should've just used power++ with x y z profile!&quot;. I -did- experiment with different settings with power++ and other arch and freebsd alternatives. I simply want to work, not fiddle about with battery tuning settings and be worried regardless.</p>
-<p>Eventually I'll need to replace this mac. All post-2015 macbooks have been a dumpster fire so I'll probably go with a dell xps, a lenovo x1 thinkpad, or <a href="https://www.notebookcheck.net/Enthusiasts-bring-classic-ThinkPad-designs-to-the-modern-era.194630.0.html">a custom x62 thinkpad from China</a>.</p>
+<p>I know someone's going to respond with &quot;but oh, you should've just used power++ with x, y, z configurations!&quot;. I <em>did</em> experiment with different settings with power++ and other alternative tools. Call me a grumpy old man but I want to work and get things done... not fiddle about with battery tuning settings and the like.</p>
+<p>Eventually I'll need to replace this mac. All post-2015 macbooks have been a dumpster fire so I'll probably go with a dell xps, a lenovo x1 thinkpad, or <a href="https://www.notebookcheck.net/Enthusiasts-bring-classic-ThinkPad-designs-to-the-modern-era.194630.0.html">a custom x62 thinkpad from China, maybe..?</a> I just want a durable machine with an excellent battery that'll work years later and won't have me configuring things constantly.</p>
 <h2 id="setting-up-osx">Setting up OSX</h2>
 <p>The first thing I always do is install xcode-tools, iTerm2, brew, and zsh. Then I clone the osx branch of my <a href="https://git.sr.ht/%7Eandrewzah/dotfiles/tree">dotfiles repo</a> and symlink the files where they need to be. I should automate this part with a script, but making that script would take me far more more time than just doing it manually. Not worth it.</p>
 <p>You can use <code>brew leaves</code> to see installed items and <code>brew cask list</code> for cask items. I <a href="https://git.sr.ht/%7Eandrewzah/dotfiles/tree/osx/brew-leaves">stored</a> <a href="https://git.sr.ht/%7Eandrewzah/dotfiles/tree/osx/cask-list">mine</a> when I originally started abstracting out my dotfiles.</p>
 <h3 id="poor-man-s-window-tiling">poor man's window tiling</h3>
 <p>After using i3 I will never go back to non-tiling windows. I long for the day that i3 works natively on osx. Sigh.</p>
-<p>I've somewhat replicated it with <a href="https://koekeishiya.github.io/chunkwm/">chunkwm</a>, <a href="https://github.com/koekeishiya/skhd">skhd</a>, and <a href="https://github.com/tekezo/Karabiner">karabiner</a>. Chunkwm is a tiling window manager, but it doesn't handle keyboard input. That's whereskhd comes in. I copy/pasted to my <a href="https://git.sr.ht/%7Eandrewzah/dotfiles/tree/osx/.khdrc">khdrc</a> but to be honest I don't use most of these hotkeys still.</p>
+<p>I've somewhat replicated it with <a href="https://koekeishiya.github.io/chunkwm/">chunkwm</a>, <a href="https://github.com/koekeishiya/skhd">skhd</a>, and <a href="https://github.com/tekezo/Karabiner">karabiner</a>. Chunkwm is a tiling window manager, but it doesn't handle keyboard input. That's where skhd comes in. I copy/pasted to my <a href="https://git.sr.ht/%7Eandrewzah/dotfiles/tree/osx/.khdrc">khdrc</a> but to be honest I don't use most of these hotkeys still.</p>
 <p>Then, I use karabiner to make my right command key into a hyper key– it presses shift, command, control, and option.</p>
 <h4 id="cons">cons</h4>
 <p>Some applications have minimum window sizes. So if I have a few windows tiling, they will just overlap. KakaoTalk is an example offender.</p>
@@ -141,22 +148,28 @@
 </a></p>
   <p class="image-desc"> Notice bottom left and bottom middle. </p>
 <h3 id="poor-man-s-workspaces">poor man's workspaces</h3>
-<p>I use 6 Spaces and I mapped hyper+num to swap to that workspace.</p>
-<p>I disable &quot;Automatically rearrange Spaces based on most recent use&quot;, in Settings -&gt; Mission Control. This has got to be one of the worst options ever made.</p>
+<p>I use 10 Spaces. I added shortcuts to quickly focus them: hyper + 1-5, q-t.</p>
+<p>I disable &quot;Automatically rearrange Spaces based on most recent use&quot;, in Settings -&gt; Mission Control. This has got to be one of the worst defaults ever made.</p>
 <p>My workspaces follow this order:</p>
 <ol>
-<li>terminal</li>
-<li>browser</li>
-<li>Rider</li>
+<li>terminal (currently iterm2)</li>
+<li>browser (firefox)</li>
+<li>misc / Rider</li>
 <li>misc</li>
 <li>misc</li>
-<li>Thunderbird</li>
+<li>[q] misc / desktop / vlc / signal</li>
+<li>[w] misc / discord</li>
+<li>[e] kakaotalk, messages app</li>
+<li>[r] anki</li>
+<li>[t] thunderbird</li>
 </ol>
-<p>Misc applications I generally use:</p>
+<h3 id="apps">apps</h3>
+<p>I always have iterm2, firefox, kakaotalk, anki, and thunderbird running.</p>
+<p>Misc tools I generally use:</p>
 <ul>
 <li>DB Browser for SQLite</li>
 <li>Insomnia (REST api testing)</li>
-<li>Azure Data Studio (ms-sql query testing)</li>
+<li>Azure Data Studio (ms-sql querying)</li>
 <li>Datagrip (reading stored procedures / db schemas)</li>
 </ul>
 <p>Task bar apps:</p>
@@ -175,18 +188,21 @@
 </ul>
 <h2 id="workflow">Workflow</h2>
 <p>Everything starts and ends with meetings and slack. I work on different projects for clients and my team has a daily 5-30min call at 9am (10pm in Korea).</p>
-<p>In Slack and our meetings we'll discuss what needs to be done. I or others will make bullet points of the most pertinent stuff that needs to be done. No agile or anything, <a href="https://steve-yegge.blogspot.com/2006/09/good-agile-bad-agile_27.html">thank god</a>. We previously used a few different ticket tracking systems and I've found that they all suck. <a href="https://www.jetbrains.com/youtrack/">YouTrack</a> sucks. The only decent system I've found is:</p>
+<p>In Slack and our meetings we'll discuss what needs to be done. I or others will make bullet points of the most pertinent stuff that needs to be done. No agile or anything, <a href="https://steve-yegge.blogspot.com/2006/09/good-agile-bad-agile_27.html">thank god</a>. We previously used a few different ticket tracking systems and I've found that they all suck. <a href="https://www.jetbrains.com/youtrack/">YouTrack</a> sucks, but it was better than the proprietary abomination one of our clients made us use. The only good system I've found is:</p>
 <ol>
-<li>make a list (or queue, if you prefer it that way) of pertinent things</li>
-<li>do those things</li>
-<li>discuss progress in daily call and/or on slack</li>
+<li>make a list (or queue, if you prefer it that way) of things</li>
+<li>roughly ballpark estimates, with the understanding that estimating things is notoriously difficult</li>
+<li>accurate prioritize those things (not everything is #1 urgency)</li>
+<li>work on those things</li>
+<li>discuss progress and blockers in daily call and/or slack</li>
 <li>repeat</li>
 </ol>
+<p>That's it.</p>
 <p>On top of this, issues in github/gitlab/etc are also pretty good if you come up with good labels. Right now I'm experimenting with Github's Projects and semi-automated issues on our newest project.</p>
 <hr />
-<p>Since I'm 13 hours ahead, this occasionally poses small issues with working with other team members, but I solved this by going to sleep a bit later (about 1am or so) and watching slack for any pings. Having different things to work on is also important– if I'm ever blocked on something, such as waiting for a teammate to wake up and answer a question, I can just work on something else in the meantime.</p>
+<p>Since I'm 13 hours ahead, this occasionally poses small issues with working with other team members, but I solved this by going to sleep a bit later (about 1am or so). I'm 23 so I stay up until ~1/2 am anyways ¯\_(ツ)_/¯. Having different things to work on is also important– if I'm ever blocked on something, such as waiting for a teammate to wake up and answer a question, I can just work on something else in the meantime.</p>
 <h3 id="code-editor">code editor</h3>
-<p>For non-C# code, I use neovim, vim, or vi, in that order. I don't care what you use. I like neovim, so I use that. I just become disappointed when people reflexively dismiss it because has any learning curve, like at all. There's a <em>reason</em> why it has one, and it's not because Bram Moolenaar is masochistic. Even if you don't use vim, I urge you to read the manuals of the software that you do use. Small tidbits of knowledge add up over time, especially with common repetitive actions.</p>
+<p>For non-C# code, I use neovim, vim, or vi, in that order. I don't care what you use. I like (neo)vim, so I use that. I just become disappointed when people reflexively dismiss it because has any learning curve, like at all. There's a <em>reason</em> why it has one, and it's not because Bram Moolenaar is masochistic. Even if you don't use vim, I urge you to read the manuals of the software that you do use. Small tidbits of knowledge add up over time, especially with common repetitive actions.</p>
 <p>It's also good to know a little <code>vi</code> when you mess up your FreeBSD installation and have to dip into an emergency shell. <code>nano</code> won't be accessible then.</p>
 <p><em>Modern Vim</em> by Drew Neil is a fantastic read. I read parts of it here and there to glean ways I can improve my vim usage. Every vim user should read <em>Oil and vinegar - split windows and the project drawer</em> <a href="http://vimcasts.org/blog/2013/01/oil-and-vinegar-split-windows-and-project-drawer/">from vimcasts</a>.</p>
 <hr />
@@ -198,26 +214,51 @@
 <li>using <a href="https://github.com/junegunn/vim-plug">plug</a> to manage plugins and lazily-load them</li>
 <li>disabling vim's annoying swapfile system.</li>
 </ul>
-<p>Oh, and <a href="https://github.com/morhetz/gruvbox">gruvbox</a>, arguably one of the best color schemes ever made. Every once in a while I experiment with a different scheme but I inevitably get drawn back to the GOAT. If someone made <a href="https://github.com/arcticicestudio/nord">Nord</a> but with green as the main color instead of blue, I might use that.</p>
+<p>Oh, and <a href="https://github.com/morhetz/gruvbox">gruvbox</a>, possibly one of the best color schemes ever made. Every once in a while I experiment with a different scheme but I inevitably get drawn back to the king. If someone made <a href="https://github.com/arcticicestudio/nord">Nord</a> but with green as the main color instead of blue, I might use that.</p>
 <p><a href="https:&#x2f;&#x2f;s3.amazonaws.com&#x2f;andrewzah.com&#x2f;posts&#x2f;015&#x2f;nvim.png" data-lity data-lity-desc="Screenshot of neovim with four buffers open and using monaco font" alt="Screenshot of neovim with four buffers open and using monaco font">
 <img class="full" async-src="https:&#x2f;&#x2f;s3.amazonaws.com&#x2f;andrewzah.com&#x2f;posts&#x2f;015&#x2f;nvim.png"/>
 </a></p>
   <p class="image-desc"> neovim with four *buffers* open – and monaco font </p>
-<p>You know, I don't get why people go overboard with stuff like <a href="https://github.com/powerline/powerline">powerline</a> and patched fonts. It's mostly superfluous information at best, and distracting at worst. But, you do you. I only look there to see the column number once in a blue moon.</p>
+<p>You know, I don't get why people go overboard with stuff like <a href="https://github.com/powerline/powerline">powerline</a> and patched fonts. It's mostly superfluous information at best, and distracting at worst. But, you do you.</p>
 <h4 id="cons-1">cons</h4>
-<p>Vim's autocompletion... exists I guess. A while ago I looked into it but it seemed not worth the hassle to set up. Anyway, ctrl-p in <code>insert</code> mode brings up suggestions from open buffers. Good thing <code>p</code> is right next to <code>[</code>, which takes you out of <code>insert</code> mode.</p>
-<p>As an aside, did you know that <code>vim</code> displays <code>Type :quit&lt;Enter&gt; to exit Vim</code> if you hit ctrl-c? Is your joke outdated and unoriginal? Yes, yes it is.</p>
+<p>Vim's autocompletion... exists I guess. A while ago I looked into it but it seemed not worth the hassle to set up. Anyway, ctrl-p in <code>insert</code> mode brings up suggestions from open buffers. Good thing <code>p</code> is right next to <code>[</code>, which takes you out of <code>insert</code> mode. /s</p>
+<p>As an aside, did you know that <code>vim</code> displays <code>Type :quit&lt;Enter&gt; to exit Vim</code> if you hit ctrl-c, and that it's done so for a long time? Is your joke very outdated and unoriginal? Yes, yes it is.</p>
 <h3 id="code-editor-for-c">code editor (for C#)</h3>
-<p>I use <a href="https://www.jetbrains.com/rider/">IntelliJ Rider</a> on both osx and arch. I think the value is worth it. It's definitely nowhere near as snappy as vim but the autocompletions are excellent. The build profiles and test runners are pretty nice.</p>
-<p>The Intellij plugin ecosystem is great- you can easily install plugins in any of their editors, to my knowledge. There's even an official <a href="https://intellij-rust.github.io/">rust plugin</a>, but I prefer using vim for Rust, or really any other language.</p>
-<p><em>Not</em> making cmd-w close tabs is very, very stupid though. Who closes a tab with cmd-4??</p>
+<p>I use <a href="https://www.jetbrains.com/rider/">IntelliJ Rider</a> on both osx and arch. I think the value is worth it. It's definitely nowhere near as snappy as vim but the autocompletions are excellent. The build profiles and test runners are pretty nice. Modifying environment variables and profile configurations is tedious.</p>
+<p>The Intellij plugin ecosystem is great- you can easily install plugins in any of their editors, to my knowledge. There's even an official <a href="https://intellij-rust.github.io/">rust plugin</a>.</p>
+<p>However, cmd-4 is the shortcut to close windows..?!</p>
+<h2 id="thoughts-workflow">thoughts workflow</h2>
+<p>TODO
+-&gt; notational velocity originally
+-&gt; now notational vim plugin</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>This is my personal setup. It is by no means prescriptive– I merely wanted to share what works for me. I enjoy looking at other people's workflows to see how they handle things–usually I can take away a thing or two.</p>
+<p>This is my personal setup. It is by no means prescriptive–I merely wanted to share what works for me. I enjoy looking at other people's workflows to see how they handle things. Usually I can take away a thing or two and improve my own workflow. I'm open to improving it!</p>
 
       <div id="email-me">
         Have any observations, criticisms, or corrections? Feel free to <a href="mailto:blog@andrewzah.com">email me</a>. Have a nice day!
       </div>
       
+      
+        
+  <div id="footnotes">
+    <h3> Footnotes </h3>
+    <ul>
+      
+        <li>
+          <span>
+            <a
+              id="footnote-0"
+              href="#footnote-cite-0"
+            >
+              (0) &#x21A9;</a>
+              –
+              I hate that I have to &#x27;prove&#x27; my creds if I mention that I use OSX over a *nix system.
+          </span>
+        </li>
+      
+    </ul>
+  </div>
+
       
       
     </article>
@@ -241,7 +282,19 @@
 
     <div class="container after-post">
         
+          <div id="previous_post">
+            Previous: <i>
+              <a class="prev" href="/posts/nested-resource-forms-tutorial-with-padrino-rails">Nested Resource Forms Tutorial with Padrino or Rails</a>
+            </i>
+          </div>
+        
 
+        
+          <div id="next_post">
+            Next: <i>
+              <a class="next" href="/posts/things-to-avoid-with-anki">Things to avoid with Anki</a>
+            </i>
+          </div>
         
 
         

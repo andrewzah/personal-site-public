@@ -46,6 +46,11 @@
     </url>
   
     <url>
+      <loc>https://andrewzah.com/categories/self/</loc>
+      
+    </url>
+  
+    <url>
       <loc>https://andrewzah.com/categories/talks/</loc>
       
     </url>
@@ -146,6 +151,13 @@
       <loc>https://andrewzah.com/posts/my-growth-self-taught-software-developer-in-2018/</loc>
       
         <lastmod>2018-11-18</lastmod>
+      
+    </url>
+  
+    <url>
+      <loc>https://andrewzah.com/posts/my-setup-remote-programming-osx-2019/</loc>
+      
+        <lastmod>2019-04-26</lastmod>
       
     </url>
   
@@ -306,6 +318,11 @@
   
     <url>
       <loc>https://andrewzah.com/tags/webassembly/</loc>
+      
+    </url>
+  
+    <url>
+      <loc>https://andrewzah.com/tags/workflow/</loc>
       
     </url>
   

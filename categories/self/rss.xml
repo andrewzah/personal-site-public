@@ -5,7 +5,7 @@
         <description>Sometimes relevant thoughts by Andrew</description>
         <generator>Zola</generator>
         <language>en</language>
-        <atom:link href="andrewzah.com/tags/programming/rss.xml" rel="self" type="application/rss+xml"/>
+        <atom:link href="andrewzah.com/categories/self/rss.xml" rel="self" type="application/rss+xml"/>
         <lastBuildDate>Fri, 26 Apr 2019 00:00:00 +0000</lastBuildDate>
         
             <item>
@@ -135,34 +135,6 @@
 -&amp;gt; now notational vim plugin&lt;&#x2f;p&gt;
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2f;h2&gt;
 &lt;p&gt;This is my personal setup. It is by no means prescriptive–I merely wanted to share what works for me. I enjoy looking at other people&#x27;s workflows to see how they handle things. Usually I can take away a thing or two and improve my own workflow. I&#x27;m open to improving it!&lt;&#x2f;p&gt;
-</description>
-            </item>
-        
-            <item>
-                <title>Korean for Programmers</title>
-                <pubDate>Sat, 16 Feb 2019 00:00:00 +0000</pubDate>
-                <link>andrewzah.com/posts/korean-for-programmers/</link>
-                <guid>andrewzah.com/posts/korean-for-programmers/</guid>
-                <description>&lt;p&gt;I was inspired to write this after reading &lt;em&gt;German for Programmers&lt;&#x2f;em&gt;.&lt;a id=&quot;refer-0&quot; href=&quot;#reference-0&quot;&gt;[0]&lt;&#x2f;a&gt; It&#x27;s quite likely that I&#x27;m just biased to see things a certain way because I work with programming languages for a living, but I often find myself drawing comparisons among Korean and programming.&lt;&#x2f;p&gt;
-</description>
-            </item>
-        
-            <item>
-                <title>My growth as a self-taught developer in 2018</title>
-                <pubDate>Sun, 18 Nov 2018 00:00:00 +0000</pubDate>
-                <link>andrewzah.com/posts/my-growth-self-taught-software-developer-in-2018/</link>
-                <guid>andrewzah.com/posts/my-growth-self-taught-software-developer-in-2018/</guid>
-                <description>&lt;p&gt;Now that 2019 is almost here, I&#x27;ve been reflecting on my personal &amp;amp; professional journey as a self taught programmer so far.
-Here&#x27;s my story of going from a media arts degree and no job to working fulltime remotely.&lt;&#x2f;p&gt;
-</description>
-            </item>
-        
-            <item>
-                <title>Books for 2018</title>
-                <pubDate>Sat, 24 Feb 2018 00:00:00 +0000</pubDate>
-                <link>andrewzah.com/posts/books-for-2018/</link>
-                <guid>andrewzah.com/posts/books-for-2018/</guid>
-                <description>&lt;p&gt;My biggest regret of 2017 was reading few books. I want to change that for 2018, so here&#x27;s a list of books that I am reading, or want to read—and why.&lt;&#x2f;p&gt;
 </description>
             </item>
         
