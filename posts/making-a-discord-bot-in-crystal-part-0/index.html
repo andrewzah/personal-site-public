@@ -298,6 +298,24 @@ client.run
     </div>
 
     <hr>
+
+    <div>
+      <form id="mailing-list"
+        action="https://tinyletter.com/andrewzah"
+        method="post" target="popupwindow"
+        onsubmit="window.open('https://tinyletter.com/andrewzah', 'popupwindow', 'scrollbars=yes,width=800');return true">
+        <label for="tlemail">
+          Enjoy posts like this? Sign up for the mailing list!
+        </label>
+        <div>
+          <input type="text" class="form-label" name="email" id="tlemail" />
+          <input type="hidden" value="1" name="embed"/>
+          <input type="submit" class="button button-primary" style="" value="Subscribe" />
+        </div>
+        Note: I hate spam mail as much as you do.
+      </form>
+    </div>
+    <hr>
     </div>
 
     <footer class="footer">
