@@ -22,32 +22,38 @@ $(document).ready(function() {
   $.getJSON("/quotes/quotes.json", function(json) {
     var quotes = json.quotes;
 
-    if (document.title == 'Quotes I like | Andrew Zah') {
-        quotes = quotes.sort(function(a,b) { a.author.localeCompare(b.author) });
-        quotes.forEach(function(quote) {
-          var quoteText = $("<p class='quote-text'></p>").text(quote.quote);
-          var quoteSource = quote.source;
-          var quoteAuthor = "";
+    if (document.title == 'Quotes I like | AZ') {
+      var collator = new Intl.Collator('en',
+        { numeric: true, sensitivity: 'base' });
+      
+      quotes = quotes.sort(function(a,b) {
+        return collator.compare(a.author, b.author);
+      });
 
-          if (quote.author){
-            quoteAuthor = "— " + quote.author;
-          }
-          if (quote.source) {
-            quoteAuthor = quoteAuthor + ", "
-          }
+      quotes.forEach(function(quote) {
+        var quoteText = $("<p class='quote-text'></p>").text(quote.quote);
+        var quoteSource = quote.source;
+        var quoteAuthor = "";
 
-          $('#quotes').append(
-            $("<div class='quote'/>").append(
-              quoteText,
-              $("<div/>").append(
-                $("<span class='quote-author'/>").text(quoteAuthor),
-                $("<span class='quote-source'/>").append(
-                  $("<i/>").text(quoteSource)
-                )
+        if (quote.author){
+          quoteAuthor = "— " + quote.author;
+        }
+        if (quote.source) {
+          quoteAuthor = quoteAuthor + ", "
+        }
+
+        $('#quotes').append(
+          $("<div class='quote'/>").append(
+            quoteText,
+            $("<div/>").append(
+              $("<span class='quote-author'/>").text(quoteAuthor),
+              $("<span class='quote-source'/>").append(
+                $("<i/>").text(quoteSource)
               )
             )
-          );
-        });
+          )
+        );
+      });
     } else {
       var length = quotes.length;
       var quote = quotes[getRandomInt(length)];
