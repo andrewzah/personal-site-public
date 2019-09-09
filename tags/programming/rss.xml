@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>AZ</title>
@@ -13,157 +14,157 @@
                 <pubDate>Fri, 26 Apr 2019 00:00:00 +0000</pubDate>
                 <link>andrewzah.com/posts/my-setup-remote-programming-osx-2019/</link>
                 <guid>andrewzah.com/posts/my-setup-remote-programming-osx-2019/</guid>
-                <description>&lt;p&gt;&lt;a href=&quot;https:&amp;#x2f;&amp;#x2f;s3.amazonaws.com&amp;#x2f;andrewzah.com&amp;#x2f;posts&amp;#x2f;015&amp;#x2f;wework-gangnam.jpg&quot; data-lity data-lity-desc=&quot;Working remotely at WeWork in Gangnam Seoul&quot; alt=&quot;Working remotely at WeWork in Gangnam Seoul&quot;&gt;
-&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2f;&amp;#x2f;s3.amazonaws.com&amp;#x2f;andrewzah.com&amp;#x2f;posts&amp;#x2f;015&amp;#x2f;wework-gangnam.jpg&quot;&#x2f;&gt;
-&lt;&#x2f;a&gt;&lt;&#x2f;p&gt;
-  &lt;p class=&quot;image-desc&quot;&gt; Working remotely at WeWork, 강남, 서울 (Gangnam, Seoul) &lt;&#x2f;p&gt;
-&lt;p&gt;Hi! My name is Andrew, and I work remotely as a software developer. Currently I am in 서울, 대한민국 – Seoul, South Korea.&lt;&#x2f;p&gt;
-&lt;h2 id=&quot;development-machine&quot;&gt;Development Machine&lt;&#x2f;h2&gt;
-&lt;p&gt;Before we begin, why apple and osx?&lt;&#x2f;p&gt;
+                <description>&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;wework-gangnam.jpg&quot; data-lity data-lity-desc=&quot;Working remotely at WeWork in Gangnam Seoul&quot; alt=&quot;Working remotely at WeWork in Gangnam Seoul&quot;&gt;
+&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;wework-gangnam.jpg&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p class=&quot;image-desc&quot;&gt; Working remotely at WeWork, 강남, 서울 (Gangnam, Seoul) &lt;&#x2F;p&gt;
+&lt;p&gt;Hi! My name is Andrew, and I work remotely as a software developer. Currently I am in 서울, 대한민국 – Seoul, South Korea.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;development-machine&quot;&gt;Development Machine&lt;&#x2F;h2&gt;
+&lt;p&gt;Before we begin, why apple and osx?&lt;&#x2F;p&gt;
 &lt;ol&gt;
-&lt;li&gt;battery life&lt;&#x2f;li&gt;
-&lt;li&gt;battery life&lt;&#x2f;li&gt;
-&lt;li&gt;battery life&lt;&#x2f;li&gt;
-&lt;li&gt;unix-like environment&lt;&#x2f;li&gt;
-&lt;li&gt;display&lt;&#x2f;li&gt;
-&lt;li&gt;form factor&lt;&#x2f;li&gt;
-&lt;&#x2f;ol&gt;
-&lt;p&gt;and to an extent, proprietary or osx-only apps: photoshop, premiere, affinity designer, and sketch.&lt;&#x2f;p&gt;
-&lt;p&gt;Before you scoff, I used freebsd and arch on my home pc as daily drivers. I used a modded thinkpad t430 for a few months as well.&lt;a id=&quot;footnote-cite-0&quot; href=&quot;#footnote-0&quot;&gt;(0)&lt;&#x2f;a&gt; I put in an i7-3632QM (quadcore) chip, a quieter heatsink, 2x8gb memory, a t420 old-style keyboard, and a 9 cell battery.&lt;&#x2f;p&gt;
-&lt;p&gt;It was sweet. Until I started lugging it around.&lt;&#x2f;p&gt;
-&lt;p&gt;Weight-wise it was slightly heavier than my 15&amp;quot; macbook, but the battery life made it unusable. I was getting 4-5 hours, max, and occasionally it would just die earlier than expected.&lt;&#x2f;p&gt;
-&lt;p&gt;Essentially I was always worried about my power source. What&#x27;s the point of a laptop if you always need it to be plugged in?! I &lt;a href=&quot;&#x2f;posts&#x2f;living-out-of-two-backpacks-a-three-month-retrospective&#x2f;&quot;&gt;live out of two backpacks&lt;&#x2f;a&gt; and work remotely while traveling, so to say that battery life is important to me is a huge understatement.&lt;&#x2f;p&gt;
-&lt;p&gt;My 2015 13&amp;quot; macbook pro&#x27;s battery is still good to the point that I can easily work 6-7 hours with C# and Rust without worrying about charging. This doesn&#x27;t happen often in practice but not having to worry about that is very important.&lt;&#x2f;p&gt;
-&lt;p&gt;I know someone&#x27;s going to respond with &amp;quot;but oh, you should&#x27;ve just used power++ with x, y, z configurations!&amp;quot;. I &lt;em&gt;did&lt;&#x2f;em&gt; experiment with different settings with power++ and other alternative tools–nothing seemed to help. Call me a grumpy old man but I want to work and get things done... not fiddle about with battery tuning settings and the like.&lt;&#x2f;p&gt;
-&lt;p&gt;Eventually I&#x27;ll need to replace this mac. All post-2015 macbooks have been a dumpster fire so I&#x27;ll probably go with a dell xps, a lenovo x1 thinkpad, or &lt;a href=&quot;https:&#x2f;&#x2f;www.notebookcheck.net&#x2f;Enthusiasts-bring-classic-ThinkPad-designs-to-the-modern-era.194630.0.html&quot;&gt;a custom x62 thinkpad from China, maybe..?&lt;&#x2f;a&gt; I just want a durable machine with an excellent battery that&#x27;ll work years later and won&#x27;t have me configuring things constantly.&lt;&#x2f;p&gt;
-&lt;h2 id=&quot;configuring-osx-tools&quot;&gt;Configuring OSX &amp;amp; Tools&lt;&#x2f;h2&gt;
-&lt;p&gt;The first thing I always do is install xcode-tools, iTerm2, brew, and zsh. Then I clone the osx branch of my &lt;a href=&quot;https:&#x2f;&#x2f;git.sr.ht&#x2f;%7Eandrewzah&#x2f;dotfiles&#x2f;tree&quot;&gt;dotfiles repo&lt;&#x2f;a&gt; and symlink the files where they need to be. I should automate this part with a script, but making that script would take me far more more time than just doing it manually. Not worth it.&lt;&#x2f;p&gt;
-&lt;p&gt;You can use &lt;code&gt;brew leaves&lt;&#x2f;code&gt; to see installed items and &lt;code&gt;brew cask list&lt;&#x2f;code&gt; for cask items. I &lt;a href=&quot;https:&#x2f;&#x2f;git.sr.ht&#x2f;%7Eandrewzah&#x2f;dotfiles&#x2f;tree&#x2f;osx&#x2f;brew-leaves&quot;&gt;stored&lt;&#x2f;a&gt; &lt;a href=&quot;https:&#x2f;&#x2f;git.sr.ht&#x2f;%7Eandrewzah&#x2f;dotfiles&#x2f;tree&#x2f;osx&#x2f;cask-list&quot;&gt;mine&lt;&#x2f;a&gt; when I originally started abstracting out my dotfiles.&lt;&#x2f;p&gt;
-&lt;h3 id=&quot;poor-man-s-window-tiling&quot;&gt;poor man&#x27;s window tiling&lt;&#x2f;h3&gt;
-&lt;p&gt;After using i3 I will never go back to non-tiling windows. I long for the day that i3 works natively on osx. Sigh.&lt;&#x2f;p&gt;
-&lt;p&gt;I&#x27;ve somewhat replicated it with &lt;a href=&quot;https:&#x2f;&#x2f;koekeishiya.github.io&#x2f;chunkwm&#x2f;&quot;&gt;chunkwm&lt;&#x2f;a&gt;, &lt;a href=&quot;https:&#x2f;&#x2f;github.com&#x2f;koekeishiya&#x2f;skhd&quot;&gt;skhd&lt;&#x2f;a&gt;, and &lt;a href=&quot;https:&#x2f;&#x2f;github.com&#x2f;tekezo&#x2f;Karabiner&quot;&gt;karabiner&lt;&#x2f;a&gt;. Chunkwm is a tiling window manager, but it doesn&#x27;t handle keyboard input. That&#x27;s where skhd comes in. I copy&#x2f;pasted to my &lt;a href=&quot;https:&#x2f;&#x2f;git.sr.ht&#x2f;%7Eandrewzah&#x2f;dotfiles&#x2f;tree&#x2f;osx&#x2f;.khdrc&quot;&gt;khdrc&lt;&#x2f;a&gt; but to be honest I don&#x27;t use most of these hotkeys still.&lt;&#x2f;p&gt;
-&lt;p&gt;Then, I use karabiner to make my right command key into a hyper key– it presses shift, command, control, and option.&lt;&#x2f;p&gt;
-&lt;h4 id=&quot;cons&quot;&gt;cons&lt;&#x2f;h4&gt;
-&lt;p&gt;Some applications have minimum window sizes. So if I have a few windows tiling, they will just overlap. KakaoTalk is an example offender.&lt;&#x2f;p&gt;
-&lt;p&gt;&lt;a href=&quot;https:&amp;#x2f;&amp;#x2f;s3.amazonaws.com&amp;#x2f;andrewzah.com&amp;#x2f;posts&amp;#x2f;015&amp;#x2f;overlap.png&quot; data-lity data-lity-desc=&quot;An example image showing how Kakaotalk does not layout correctly when I have a terminal kakaotalk and two chat windows open&quot; alt=&quot;An example image showing how Kakaotalk does not layout correctly when I have a terminal kakaotalk and two chat windows open&quot;&gt;
-&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2f;&amp;#x2f;s3.amazonaws.com&amp;#x2f;andrewzah.com&amp;#x2f;posts&amp;#x2f;015&amp;#x2f;overlap.png&quot;&#x2f;&gt;
-&lt;&#x2f;a&gt;&lt;&#x2f;p&gt;
-  &lt;p class=&quot;image-desc&quot;&gt; Notice bottom left and bottom middle. &lt;&#x2f;p&gt;
-&lt;h3 id=&quot;poor-man-s-workspaces&quot;&gt;poor man&#x27;s workspaces&lt;&#x2f;h3&gt;
-&lt;p&gt;I use 10 Spaces. I added shortcuts to quickly focus them: hyper + 1-5, q-t.&lt;&#x2f;p&gt;
-&lt;p&gt;I disable &amp;quot;Automatically rearrange Spaces based on most recent use&amp;quot;, in Settings -&amp;gt; Mission Control. This has got to be one of the worst defaults ever made.&lt;&#x2f;p&gt;
-&lt;p&gt;My workspaces follow this order:&lt;&#x2f;p&gt;
+&lt;li&gt;battery life&lt;&#x2F;li&gt;
+&lt;li&gt;battery life&lt;&#x2F;li&gt;
+&lt;li&gt;battery life&lt;&#x2F;li&gt;
+&lt;li&gt;unix-like environment&lt;&#x2F;li&gt;
+&lt;li&gt;display&lt;&#x2F;li&gt;
+&lt;li&gt;form factor&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;and to an extent, proprietary or osx-only apps: photoshop, premiere, affinity designer, and sketch.&lt;&#x2F;p&gt;
+&lt;p&gt;Before you scoff, I used freebsd and arch on my home pc as daily drivers. I used a modded thinkpad t430 for a few months as well.&lt;a id=&quot;footnote-cite-0&quot; href=&quot;#footnote-0&quot;&gt;(0)&lt;&#x2F;a&gt; I put in an i7-3632QM (quadcore) chip, a quieter heatsink, 2x8gb memory, a t420 old-style keyboard, and a 9 cell battery.&lt;&#x2F;p&gt;
+&lt;p&gt;It was sweet. Until I started lugging it around.&lt;&#x2F;p&gt;
+&lt;p&gt;Weight-wise it was slightly heavier than my 15&amp;quot; macbook, but the battery life made it unusable. I was getting 4-5 hours, max, and occasionally it would just die earlier than expected.&lt;&#x2F;p&gt;
+&lt;p&gt;Essentially I was always worried about my power source. What&#x27;s the point of a laptop if you always need it to be plugged in?! I &lt;a href=&quot;&#x2F;posts&#x2F;living-out-of-two-backpacks-a-three-month-retrospective&#x2F;&quot;&gt;live out of two backpacks&lt;&#x2F;a&gt; and work remotely while traveling, so to say that battery life is important to me is a huge understatement.&lt;&#x2F;p&gt;
+&lt;p&gt;My 2015 13&amp;quot; macbook pro&#x27;s battery is still good to the point that I can easily work 6-7 hours with C# and Rust without worrying about charging. This doesn&#x27;t happen often in practice but not having to worry about that is very important.&lt;&#x2F;p&gt;
+&lt;p&gt;I know someone&#x27;s going to respond with &amp;quot;but oh, you should&#x27;ve just used power++ with x, y, z configurations!&amp;quot;. I &lt;em&gt;did&lt;&#x2F;em&gt; experiment with different settings with power++ and other alternative tools–nothing seemed to help. Call me a grumpy old man but I want to work and get things done... not fiddle about with battery tuning settings and the like.&lt;&#x2F;p&gt;
+&lt;p&gt;Eventually I&#x27;ll need to replace this mac. All post-2015 macbooks have been a dumpster fire so I&#x27;ll probably go with a dell xps, a lenovo x1 thinkpad, or &lt;a href=&quot;https:&#x2F;&#x2F;www.notebookcheck.net&#x2F;Enthusiasts-bring-classic-ThinkPad-designs-to-the-modern-era.194630.0.html&quot;&gt;a custom x62 thinkpad from China, maybe..?&lt;&#x2F;a&gt; I just want a durable machine with an excellent battery that&#x27;ll work years later and won&#x27;t have me configuring things constantly.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;configuring-osx-tools&quot;&gt;Configuring OSX &amp;amp; Tools&lt;&#x2F;h2&gt;
+&lt;p&gt;The first thing I always do is install xcode-tools, iTerm2, brew, and zsh. Then I clone the osx branch of my &lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;dotfiles&#x2F;tree&quot;&gt;dotfiles repo&lt;&#x2F;a&gt; and symlink the files where they need to be. I should automate this part with a script, but making that script would take me far more more time than just doing it manually. Not worth it.&lt;&#x2F;p&gt;
+&lt;p&gt;You can use &lt;code&gt;brew leaves&lt;&#x2F;code&gt; to see installed items and &lt;code&gt;brew cask list&lt;&#x2F;code&gt; for cask items. I &lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;dotfiles&#x2F;tree&#x2F;osx&#x2F;brew-leaves&quot;&gt;stored&lt;&#x2F;a&gt; &lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;dotfiles&#x2F;tree&#x2F;osx&#x2F;cask-list&quot;&gt;mine&lt;&#x2F;a&gt; when I originally started abstracting out my dotfiles.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;poor-man-s-window-tiling&quot;&gt;poor man&#x27;s window tiling&lt;&#x2F;h3&gt;
+&lt;p&gt;After using i3 I will never go back to non-tiling windows. I long for the day that i3 works natively on osx. Sigh.&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;ve somewhat replicated it with &lt;a href=&quot;https:&#x2F;&#x2F;koekeishiya.github.io&#x2F;chunkwm&#x2F;&quot;&gt;chunkwm&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;koekeishiya&#x2F;skhd&quot;&gt;skhd&lt;&#x2F;a&gt;, and &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;tekezo&#x2F;Karabiner&quot;&gt;karabiner&lt;&#x2F;a&gt;. Chunkwm is a tiling window manager, but it doesn&#x27;t handle keyboard input. That&#x27;s where skhd comes in. I copy&#x2F;pasted to my &lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;dotfiles&#x2F;tree&#x2F;osx&#x2F;.khdrc&quot;&gt;khdrc&lt;&#x2F;a&gt; but to be honest I don&#x27;t use most of these hotkeys still.&lt;&#x2F;p&gt;
+&lt;p&gt;Then, I use karabiner to make my right command key into a hyper key– it presses shift, command, control, and option.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;cons&quot;&gt;cons&lt;&#x2F;h4&gt;
+&lt;p&gt;Some applications have minimum window sizes. So if I have a few windows tiling, they will just overlap. KakaoTalk is an example offender.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;overlap.png&quot; data-lity data-lity-desc=&quot;An example image showing how Kakaotalk does not layout correctly when I have a terminal kakaotalk and two chat windows open&quot; alt=&quot;An example image showing how Kakaotalk does not layout correctly when I have a terminal kakaotalk and two chat windows open&quot;&gt;
+&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;overlap.png&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p class=&quot;image-desc&quot;&gt; Notice bottom left and bottom middle. &lt;&#x2F;p&gt;
+&lt;h3 id=&quot;poor-man-s-workspaces&quot;&gt;poor man&#x27;s workspaces&lt;&#x2F;h3&gt;
+&lt;p&gt;I use 10 Spaces. I added shortcuts to quickly focus them: hyper + 1-5, q-t.&lt;&#x2F;p&gt;
+&lt;p&gt;I disable &amp;quot;Automatically rearrange Spaces based on most recent use&amp;quot;, in Settings -&amp;gt; Mission Control. This has got to be one of the worst defaults ever made.&lt;&#x2F;p&gt;
+&lt;p&gt;My workspaces follow this order:&lt;&#x2F;p&gt;
 &lt;ol&gt;
-&lt;li&gt;terminal (currently iterm2)&lt;&#x2f;li&gt;
-&lt;li&gt;browser (firefox)&lt;&#x2f;li&gt;
-&lt;li&gt;misc &#x2f; Rider&lt;&#x2f;li&gt;
-&lt;li&gt;misc&lt;&#x2f;li&gt;
-&lt;li&gt;misc&lt;&#x2f;li&gt;
-&lt;li&gt;[q] misc &#x2f; desktop &#x2f; vlc &#x2f; signal&lt;&#x2f;li&gt;
-&lt;li&gt;[w] misc &#x2f; discord&lt;&#x2f;li&gt;
-&lt;li&gt;[e] kakaotalk, messages app&lt;&#x2f;li&gt;
-&lt;li&gt;[r] anki&lt;&#x2f;li&gt;
-&lt;li&gt;[t] thunderbird&lt;&#x2f;li&gt;
-&lt;&#x2f;ol&gt;
-&lt;h3 id=&quot;apps&quot;&gt;apps&lt;&#x2f;h3&gt;
-&lt;p&gt;I always have iterm2, firefox, kakaotalk, anki, and thunderbird running.&lt;&#x2f;p&gt;
-&lt;p&gt;Misc tools I generally use:&lt;&#x2f;p&gt;
+&lt;li&gt;terminal (currently iterm2)&lt;&#x2F;li&gt;
+&lt;li&gt;browser (firefox)&lt;&#x2F;li&gt;
+&lt;li&gt;misc &#x2F; Rider&lt;&#x2F;li&gt;
+&lt;li&gt;misc&lt;&#x2F;li&gt;
+&lt;li&gt;misc&lt;&#x2F;li&gt;
+&lt;li&gt;[q] misc &#x2F; desktop &#x2F; vlc &#x2F; signal&lt;&#x2F;li&gt;
+&lt;li&gt;[w] misc &#x2F; discord&lt;&#x2F;li&gt;
+&lt;li&gt;[e] kakaotalk, messages app&lt;&#x2F;li&gt;
+&lt;li&gt;[r] anki&lt;&#x2F;li&gt;
+&lt;li&gt;[t] thunderbird&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h3 id=&quot;apps&quot;&gt;apps&lt;&#x2F;h3&gt;
+&lt;p&gt;I always have iterm2, firefox, kakaotalk, anki, and thunderbird running.&lt;&#x2F;p&gt;
+&lt;p&gt;Misc tools I generally use:&lt;&#x2F;p&gt;
 &lt;ul&gt;
-&lt;li&gt;DB Browser for SQLite&lt;&#x2f;li&gt;
-&lt;li&gt;Insomnia (REST api testing)&lt;&#x2f;li&gt;
-&lt;li&gt;Azure Data Studio (ms-sql querying)&lt;&#x2f;li&gt;
-&lt;li&gt;Datagrip (reading stored procedures &#x2f; db schemas)&lt;&#x2f;li&gt;
-&lt;&#x2f;ul&gt;
-&lt;p&gt;Task bar apps:&lt;&#x2f;p&gt;
+&lt;li&gt;DB Browser for SQLite&lt;&#x2F;li&gt;
+&lt;li&gt;Insomnia (REST api testing)&lt;&#x2F;li&gt;
+&lt;li&gt;Azure Data Studio (ms-sql querying)&lt;&#x2F;li&gt;
+&lt;li&gt;Datagrip (reading stored procedures &#x2F; db schemas)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Task bar apps:&lt;&#x2F;p&gt;
 &lt;ul&gt;
-&lt;li&gt;Harvest (time tracking)&lt;&#x2f;li&gt;
-&lt;li&gt;Duet (use my ipad as an extra display)&lt;&#x2f;li&gt;
-&lt;li&gt;Caffeine (prevent my computer from sleeping)&lt;&#x2f;li&gt;
-&lt;&#x2f;ul&gt;
-&lt;p&gt;And non programming-related ones:&lt;&#x2f;p&gt;
+&lt;li&gt;Harvest (time tracking)&lt;&#x2F;li&gt;
+&lt;li&gt;Duet (use my ipad as an extra display)&lt;&#x2F;li&gt;
+&lt;li&gt;Caffeine (prevent my computer from sleeping)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;And non programming-related ones:&lt;&#x2F;p&gt;
 &lt;ul&gt;
-&lt;li&gt;Discord (messaging, language study, rss)&lt;&#x2f;li&gt;
-&lt;li&gt;KakaoTalk (messaging)&lt;&#x2f;li&gt;
-&lt;li&gt;Line (messaging)&lt;&#x2f;li&gt;
-&lt;li&gt;Signal (messaging)&lt;&#x2f;li&gt;
-&lt;li&gt;Anki (flash card study)&lt;&#x2f;li&gt;
-&lt;&#x2f;ul&gt;
-&lt;h3 id=&quot;code-editor&quot;&gt;code editor&lt;&#x2f;h3&gt;
-&lt;p&gt;For non-C# code, I use neovim, vim, or vi, in that order. I don&#x27;t care what you use. I like (neo)vim, so I use that. I just become disappointed when people reflexively dismiss it because has any learning curve, like at all. There&#x27;s a &lt;em&gt;reason&lt;&#x2f;em&gt; why it has one, and it&#x27;s not because Bram Moolenaar is masochistic. In particular, modal editing and buffers&lt;a id=&quot;refer-0&quot; href=&quot;#reference-0&quot;&gt;(0)&lt;&#x2f;a&gt; test.&lt;&#x2f;p&gt;
-&lt;p&gt;Even if you don&#x27;t use vim, I urge you to read the manuals of the software that you do use. Small tidbits of knowledge add up over time, especially with common repetitive actions.&lt;&#x2f;p&gt;
-&lt;p&gt;It&#x27;s also good to know a little &lt;code&gt;vi&lt;&#x2f;code&gt; when you mess up your FreeBSD installation and have to dip into an emergency shell. &lt;code&gt;nano&lt;&#x2f;code&gt; won&#x27;t be accessible then.&lt;&#x2f;p&gt;
-&lt;p&gt;&lt;em&gt;Modern Vim&lt;&#x2f;em&gt; by Drew Neil is a fantastic read. I read parts of it here and there to glean ways I can improve my vim usage. Every vim user should read &lt;em&gt;Oil and vinegar - split windows and the project drawer&lt;&#x2f;em&gt; &lt;a href=&quot;http:&#x2f;&#x2f;vimcasts.org&#x2f;blog&#x2f;2013&#x2f;01&#x2f;oil-and-vinegar-split-windows-and-project-drawer&#x2f;&quot;&gt;from vimcasts&lt;&#x2f;a&gt;.&lt;&#x2f;p&gt;
-&lt;hr &#x2f;&gt;
-&lt;p&gt;You can see my &lt;a href=&quot;https:&#x2f;&#x2f;git.sr.ht&#x2f;%7Eandrewzah&#x2f;dotfiles&#x2f;tree&#x2f;osx&#x2f;config&#x2f;nvim&#x2f;init.vim&quot;&gt;neovim configuration here&lt;&#x2f;a&gt; here, although I need to prune it a bit. The biggest changes I&#x27;ve made are:&lt;&#x2f;p&gt;
+&lt;li&gt;Discord (messaging, language study, rss)&lt;&#x2F;li&gt;
+&lt;li&gt;KakaoTalk (messaging)&lt;&#x2F;li&gt;
+&lt;li&gt;Line (messaging)&lt;&#x2F;li&gt;
+&lt;li&gt;Signal (messaging)&lt;&#x2F;li&gt;
+&lt;li&gt;Anki (flash card study)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;code-editor&quot;&gt;code editor&lt;&#x2F;h3&gt;
+&lt;p&gt;For non-C# code, I use neovim, vim, or vi, in that order. I don&#x27;t care what you use. I like (neo)vim, so I use that. I just become disappointed when people reflexively dismiss it because has any learning curve, like at all. There&#x27;s a &lt;em&gt;reason&lt;&#x2F;em&gt; why it has one, and it&#x27;s not because Bram Moolenaar is masochistic. In particular, modal editing and buffers&lt;a id=&quot;refer-0&quot; href=&quot;#reference-0&quot;&gt;(0)&lt;&#x2F;a&gt; test.&lt;&#x2F;p&gt;
+&lt;p&gt;Even if you don&#x27;t use vim, I urge you to read the manuals of the software that you do use. Small tidbits of knowledge add up over time, especially with common repetitive actions.&lt;&#x2F;p&gt;
+&lt;p&gt;It&#x27;s also good to know a little &lt;code&gt;vi&lt;&#x2F;code&gt; when you mess up your FreeBSD installation and have to dip into an emergency shell. &lt;code&gt;nano&lt;&#x2F;code&gt; won&#x27;t be accessible then.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;em&gt;Modern Vim&lt;&#x2F;em&gt; by Drew Neil is a fantastic read. I read parts of it here and there to glean ways I can improve my vim usage. Every vim user should read &lt;em&gt;Oil and vinegar - split windows and the project drawer&lt;&#x2F;em&gt; &lt;a href=&quot;http:&#x2F;&#x2F;vimcasts.org&#x2F;blog&#x2F;2013&#x2F;01&#x2F;oil-and-vinegar-split-windows-and-project-drawer&#x2F;&quot;&gt;from vimcasts&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;You can see my &lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;dotfiles&#x2F;tree&#x2F;osx&#x2F;config&#x2F;nvim&#x2F;init.vim&quot;&gt;neovim configuration here&lt;&#x2F;a&gt; here, although I need to prune it a bit. The biggest changes I&#x27;ve made are:&lt;&#x2F;p&gt;
 &lt;ul&gt;
-&lt;li&gt;mapping jj to escape from insert mode, or otherwise using ctrl-[ otherwise to avoid repetitive strain from hitting escape&lt;&#x2f;li&gt;
-&lt;li&gt;using &lt;a href=&quot;https:&#x2f;&#x2f;github.com&#x2f;junegunn&#x2f;fzf.vim&quot;&gt;fzf&lt;&#x2f;a&gt; + &lt;a href=&quot;https:&#x2f;&#x2f;github.com&#x2f;junegunn&#x2f;fzf&quot;&gt;fzf.vim&lt;&#x2f;a&gt; to fuzzy search through my files.&lt;&#x2f;li&gt;
-&lt;li&gt;using &lt;a href=&quot;https:&#x2f;&#x2f;github.com&#x2f;w0rp&#x2f;ale&quot;&gt;ale&lt;&#x2f;a&gt; to asynchronously lint and fix files (but only on file save. I hate over-eager tools that complain when I&#x27;m halfway through writing code)&lt;&#x2f;li&gt;
-&lt;li&gt;using &lt;a href=&quot;https:&#x2f;&#x2f;github.com&#x2f;junegunn&#x2f;vim-plug&quot;&gt;plug&lt;&#x2f;a&gt; to manage plugins and lazily-load them&lt;&#x2f;li&gt;
-&lt;li&gt;disabling vim&#x27;s annoying swapfile system.&lt;&#x2f;li&gt;
-&lt;&#x2f;ul&gt;
-&lt;p&gt;Oh, and &lt;a href=&quot;https:&#x2f;&#x2f;github.com&#x2f;morhetz&#x2f;gruvbox&quot;&gt;gruvbox&lt;&#x2f;a&gt;, possibly one of the best color schemes ever made. Every once in a while I experiment with a different scheme but I inevitably get drawn back to the king. If someone made &lt;a href=&quot;https:&#x2f;&#x2f;github.com&#x2f;arcticicestudio&#x2f;nord&quot;&gt;Nord&lt;&#x2f;a&gt; but with green as the main color instead of blue, I might use that.&lt;&#x2f;p&gt;
-&lt;p&gt;&lt;a href=&quot;https:&amp;#x2f;&amp;#x2f;s3.amazonaws.com&amp;#x2f;andrewzah.com&amp;#x2f;posts&amp;#x2f;015&amp;#x2f;nvim.png&quot; data-lity data-lity-desc=&quot;Screenshot of neovim with four buffers open and using monaco font&quot; alt=&quot;Screenshot of neovim with four buffers open and using monaco font&quot;&gt;
-&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2f;&amp;#x2f;s3.amazonaws.com&amp;#x2f;andrewzah.com&amp;#x2f;posts&amp;#x2f;015&amp;#x2f;nvim.png&quot;&#x2f;&gt;
-&lt;&#x2f;a&gt;&lt;&#x2f;p&gt;
-  &lt;p class=&quot;image-desc&quot;&gt; neovim with four *buffers* open – and monaco font &lt;&#x2f;p&gt;
-&lt;p&gt;You know, I don&#x27;t get why people go overboard with stuff like &lt;a href=&quot;https:&#x2f;&#x2f;github.com&#x2f;powerline&#x2f;powerline&quot;&gt;powerline&lt;&#x2f;a&gt; and patched fonts. It&#x27;s mostly superfluous information at best, and distracting at worst. But, you do you.&lt;&#x2f;p&gt;
-&lt;h4 id=&quot;cons-1&quot;&gt;cons&lt;&#x2f;h4&gt;
-&lt;p&gt;Vim&#x27;s autocompletion... exists I guess. A while ago I looked into it but it seemed not worth the hassle to set up. Anyway, ctrl-p in &lt;code&gt;insert&lt;&#x2f;code&gt; mode brings up suggestions from open buffers. Good thing &lt;code&gt;p&lt;&#x2f;code&gt; is right next to &lt;code&gt;[&lt;&#x2f;code&gt;, which takes you out of &lt;code&gt;insert&lt;&#x2f;code&gt; mode. &#x2f;s&lt;&#x2f;p&gt;
-&lt;p&gt;As an aside, did you know that &lt;code&gt;vim&lt;&#x2f;code&gt; displays &lt;code&gt;Type :quit&amp;lt;Enter&amp;gt; to exit Vim&lt;&#x2f;code&gt; if you hit ctrl-c, and that it&#x27;s done so for a long time? Is your joke very outdated and unoriginal? Yes, yes it is.&lt;&#x2f;p&gt;
-&lt;h3 id=&quot;code-editor-for-c&quot;&gt;code editor (for C#)&lt;&#x2f;h3&gt;
-&lt;p&gt;I use &lt;a href=&quot;https:&#x2f;&#x2f;www.jetbrains.com&#x2f;rider&#x2f;&quot;&gt;IntelliJ Rider&lt;&#x2f;a&gt; on both osx and arch. I think the value is worth it. It&#x27;s definitely nowhere near as snappy as vim but the autocompletions are excellent. The build profiles and test runners are pretty nice. Modifying environment variables and profile configurations is tedious.&lt;&#x2f;p&gt;
-&lt;p&gt;The Intellij plugin ecosystem is great- you can easily install plugins in any of their editors, to my knowledge. There&#x27;s even an official &lt;a href=&quot;https:&#x2f;&#x2f;intellij-rust.github.io&#x2f;&quot;&gt;rust plugin&lt;&#x2f;a&gt;.&lt;&#x2f;p&gt;
-&lt;p&gt;However, cmd-4 is the shortcut to close windows..?!&lt;&#x2f;p&gt;
-&lt;h2 id=&quot;workflow&quot;&gt;Workflow&lt;&#x2f;h2&gt;
-&lt;h3 id=&quot;tasks&quot;&gt;tasks&lt;&#x2f;h3&gt;
-&lt;p&gt;Everything starts and ends with meetings and slack. I work on different projects for clients and my team has a daily 5-30min call at 9am (10pm in Korea).&lt;&#x2f;p&gt;
-&lt;p&gt;In Slack and our meetings we&#x27;ll discuss what needs to be done. I or others will make bullet points of the most pertinent stuff that needs to be done. No agile or anything, &lt;a href=&quot;https:&#x2f;&#x2f;steve-yegge.blogspot.com&#x2f;2006&#x2f;09&#x2f;good-agile-bad-agile_27.html&quot;&gt;thank god&lt;&#x2f;a&gt;. We previously used a few different ticket tracking systems and I&#x27;ve found that they all suck. &lt;a href=&quot;https:&#x2f;&#x2f;www.jetbrains.com&#x2f;youtrack&#x2f;&quot;&gt;YouTrack&lt;&#x2f;a&gt; sucks, but it was better than the proprietary abomination one of our clients made us use. The only good system I&#x27;ve found is:&lt;&#x2f;p&gt;
+&lt;li&gt;mapping jj to escape from insert mode, or otherwise using ctrl-[ otherwise to avoid repetitive strain from hitting escape&lt;&#x2F;li&gt;
+&lt;li&gt;using &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;junegunn&#x2F;fzf.vim&quot;&gt;fzf&lt;&#x2F;a&gt; + &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;junegunn&#x2F;fzf&quot;&gt;fzf.vim&lt;&#x2F;a&gt; to fuzzy search through my files.&lt;&#x2F;li&gt;
+&lt;li&gt;using &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;w0rp&#x2F;ale&quot;&gt;ale&lt;&#x2F;a&gt; to asynchronously lint and fix files (but only on file save. I hate over-eager tools that complain when I&#x27;m halfway through writing code)&lt;&#x2F;li&gt;
+&lt;li&gt;using &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;junegunn&#x2F;vim-plug&quot;&gt;plug&lt;&#x2F;a&gt; to manage plugins and lazily-load them&lt;&#x2F;li&gt;
+&lt;li&gt;disabling vim&#x27;s annoying swapfile system.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Oh, and &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;morhetz&#x2F;gruvbox&quot;&gt;gruvbox&lt;&#x2F;a&gt;, possibly one of the best color schemes ever made. Every once in a while I experiment with a different scheme but I inevitably get drawn back to the king. If someone made &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;arcticicestudio&#x2F;nord&quot;&gt;Nord&lt;&#x2F;a&gt; but with green as the main color instead of blue, I might use that.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;nvim.png&quot; data-lity data-lity-desc=&quot;Screenshot of neovim with four buffers open and using monaco font&quot; alt=&quot;Screenshot of neovim with four buffers open and using monaco font&quot;&gt;
+&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;nvim.png&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p class=&quot;image-desc&quot;&gt; neovim with four *buffers* open – and monaco font &lt;&#x2F;p&gt;
+&lt;p&gt;You know, I don&#x27;t get why people go overboard with stuff like &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;powerline&#x2F;powerline&quot;&gt;powerline&lt;&#x2F;a&gt; and patched fonts. It&#x27;s mostly superfluous information at best, and distracting at worst. But, you do you.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;cons-1&quot;&gt;cons&lt;&#x2F;h4&gt;
+&lt;p&gt;Vim&#x27;s autocompletion... exists I guess. A while ago I looked into it but it seemed not worth the hassle to set up. Anyway, ctrl-p in &lt;code&gt;insert&lt;&#x2F;code&gt; mode brings up suggestions from open buffers. Good thing &lt;code&gt;p&lt;&#x2F;code&gt; is right next to &lt;code&gt;[&lt;&#x2F;code&gt;, which takes you out of &lt;code&gt;insert&lt;&#x2F;code&gt; mode. &#x2F;s&lt;&#x2F;p&gt;
+&lt;p&gt;As an aside, did you know that &lt;code&gt;vim&lt;&#x2F;code&gt; displays &lt;code&gt;Type :quit&amp;lt;Enter&amp;gt; to exit Vim&lt;&#x2F;code&gt; if you hit ctrl-c, and that it&#x27;s done so for a long time? Is your joke very outdated and unoriginal? Yes, yes it is.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;code-editor-for-c&quot;&gt;code editor (for C#)&lt;&#x2F;h3&gt;
+&lt;p&gt;I use &lt;a href=&quot;https:&#x2F;&#x2F;www.jetbrains.com&#x2F;rider&#x2F;&quot;&gt;IntelliJ Rider&lt;&#x2F;a&gt; on both osx and arch. I think the value is worth it. It&#x27;s definitely nowhere near as snappy as vim but the autocompletions are excellent. The build profiles and test runners are pretty nice. Modifying environment variables and profile configurations is tedious.&lt;&#x2F;p&gt;
+&lt;p&gt;The Intellij plugin ecosystem is great- you can easily install plugins in any of their editors, to my knowledge. There&#x27;s even an official &lt;a href=&quot;https:&#x2F;&#x2F;intellij-rust.github.io&#x2F;&quot;&gt;rust plugin&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;However, cmd-4 is the shortcut to close windows..?!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;workflow&quot;&gt;Workflow&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;tasks&quot;&gt;tasks&lt;&#x2F;h3&gt;
+&lt;p&gt;Everything starts and ends with meetings and slack. I work on different projects for clients and my team has a daily 5-30min call at 9am (10pm in Korea).&lt;&#x2F;p&gt;
+&lt;p&gt;In Slack and our meetings we&#x27;ll discuss what needs to be done. I or others will make bullet points of the most pertinent stuff that needs to be done. No agile or anything, &lt;a href=&quot;https:&#x2F;&#x2F;steve-yegge.blogspot.com&#x2F;2006&#x2F;09&#x2F;good-agile-bad-agile_27.html&quot;&gt;thank god&lt;&#x2F;a&gt;. We previously used a few different ticket tracking systems and I&#x27;ve found that they all suck. &lt;a href=&quot;https:&#x2F;&#x2F;www.jetbrains.com&#x2F;youtrack&#x2F;&quot;&gt;YouTrack&lt;&#x2F;a&gt; sucks, but it was better than the proprietary abomination one of our clients made us use. The only good system I&#x27;ve found is:&lt;&#x2F;p&gt;
 &lt;ol&gt;
-&lt;li&gt;make a list (or queue, if you prefer it that way) of things&lt;&#x2f;li&gt;
-&lt;li&gt;roughly ballpark estimates, with the understanding that estimating things is notoriously difficult&lt;&#x2f;li&gt;
-&lt;li&gt;accurate prioritize those things (not everything is #1 urgency)&lt;&#x2f;li&gt;
-&lt;li&gt;work on those things&lt;&#x2f;li&gt;
-&lt;li&gt;discuss progress and blockers in daily call and&#x2f;or slack&lt;&#x2f;li&gt;
-&lt;li&gt;repeat&lt;&#x2f;li&gt;
-&lt;&#x2f;ol&gt;
-&lt;p&gt;That&#x27;s it.&lt;&#x2f;p&gt;
-&lt;p&gt;On top of this, issues in github&#x2f;gitlab&#x2f;etc are also pretty good if you come up with good labels. Right now I&#x27;m experimenting with Github&#x27;s Projects and semi-automated issues on our newest project.&lt;&#x2f;p&gt;
-&lt;hr &#x2f;&gt;
-&lt;p&gt;Since I&#x27;m 13 hours ahead, this occasionally poses small issues with working with other team members, but I solved this by going to sleep a bit later (about 1am or so). I&#x27;m 23 so I stay up until ~1&#x2f;2 am anyways ¯\_(ツ)_&#x2f;¯. Having different things to work on is also important– if I&#x27;m ever blocked on something, such as waiting for a teammate to wake up and answer a question, I can just work on something else in the meantime.&lt;&#x2f;p&gt;
-&lt;h3 id=&quot;logging-my-thoughts&quot;&gt;logging my thoughts&lt;&#x2f;h3&gt;
-&lt;p&gt;The &lt;a href=&quot;http:&#x2f;&#x2f;notational.net&#x2f;&quot;&gt;Notational Velocity&lt;&#x2f;a&gt; application changed my life. At its core, the idea is deceivingly simple.&lt;&#x2f;p&gt;
+&lt;li&gt;make a list (or queue, if you prefer it that way) of things&lt;&#x2F;li&gt;
+&lt;li&gt;roughly ballpark estimates, with the understanding that estimating things is notoriously difficult&lt;&#x2F;li&gt;
+&lt;li&gt;accurate prioritize those things (not everything is #1 urgency)&lt;&#x2F;li&gt;
+&lt;li&gt;work on those things&lt;&#x2F;li&gt;
+&lt;li&gt;discuss progress and blockers in daily call and&#x2F;or slack&lt;&#x2F;li&gt;
+&lt;li&gt;repeat&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;That&#x27;s it.&lt;&#x2F;p&gt;
+&lt;p&gt;On top of this, issues in github&#x2F;gitlab&#x2F;etc are also pretty good if you come up with good labels. Right now I&#x27;m experimenting with Github&#x27;s Projects and semi-automated issues on our newest project.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;Since I&#x27;m 13 hours ahead, this occasionally poses small issues with working with other team members, but I solved this by going to sleep a bit later (about 1am or so). I&#x27;m 23 so I stay up until ~1&#x2F;2 am anyways ¯\_(ツ)_&#x2F;¯. Having different things to work on is also important– if I&#x27;m ever blocked on something, such as waiting for a teammate to wake up and answer a question, I can just work on something else in the meantime.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;logging-my-thoughts&quot;&gt;logging my thoughts&lt;&#x2F;h3&gt;
+&lt;p&gt;The &lt;a href=&quot;http:&#x2F;&#x2F;notational.net&#x2F;&quot;&gt;Notational Velocity&lt;&#x2F;a&gt; application changed my life. At its core, the idea is deceivingly simple.&lt;&#x2F;p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;NOTIONAL VELOCITY is an application that &lt;strong&gt;stores and retrieves notes&lt;&#x2f;strong&gt;.&lt;&#x2f;p&gt;
-&lt;p&gt;It is an attempt to loosen the mental blockages to recording information and to scrape away the tartar of convention that handicaps its retrieval.&lt;&#x2f;p&gt;
-&lt;&#x2f;blockquote&gt;
-&lt;p&gt;You store text in notes. There is only one search box–if a file doesn&#x27;t exist for your search string, one will automatically be created.&lt;&#x2f;p&gt;
-&lt;p&gt;I began to use it for just about everything, since any and all information I had written down could now be easily searched through and found.&lt;&#x2f;p&gt;
+&lt;p&gt;NOTIONAL VELOCITY is an application that &lt;strong&gt;stores and retrieves notes&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;It is an attempt to loosen the mental blockages to recording information and to scrape away the tartar of convention that handicaps its retrieval.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;You store text in notes. There is only one search box–if a file doesn&#x27;t exist for your search string, one will automatically be created.&lt;&#x2F;p&gt;
+&lt;p&gt;I began to use it for just about everything, since any and all information I had written down could now be easily searched through and found.&lt;&#x2F;p&gt;
 &lt;ul&gt;
-&lt;li&gt;seldom-used vim tidbits&lt;&#x2f;li&gt;
-&lt;li&gt;miscellaneous knowledge about real languages (I study Korean)&lt;&#x2f;li&gt;
-&lt;li&gt;random snippets for programming languages (how do I open a file in ruby again?)&lt;&#x2f;li&gt;
-&lt;li&gt;tentative to-do lists&lt;&#x2f;li&gt;
-&lt;li&gt;niche, detailed information like serial numbers and specs for equipment that I bought&lt;&#x2f;li&gt;
-&lt;&#x2f;ul&gt;
-&lt;p&gt;It was glorious. Except... it was, and still is, mac only. At home I use *nix systems or windows, so using it became tedious and I eventually stopped.&lt;&#x2f;p&gt;
-&lt;p&gt;As I was writing this article, I discovered &lt;a href=&quot;https:&#x2f;&#x2f;brettterpstra.com&#x2f;projects&#x2f;nvalt&#x2f;&quot;&gt;nVALT&lt;&#x2f;a&gt;–Brett Terpstra&#x27;s fork. It has more functionality like markdown support and a better interface. No vim keybindings though, which made it unpleasant for me to use. Terpstra is working on &lt;a href=&quot;https:&#x2f;&#x2f;brettterpstra.com&#x2f;2019&#x2f;04&#x2f;10&#x2f;codename-nvultra&#x2f;&quot;&gt;nvUltra&lt;&#x2f;a&gt; currently which may fix this.&lt;&#x2f;p&gt;
-&lt;hr &#x2f;&gt;
-&lt;p&gt;&lt;a href=&quot;https:&amp;#x2f;&amp;#x2f;raw.githubusercontent.com&amp;#x2f;alok&amp;#x2f;notational-fzf-vim&amp;#x2f;master&amp;#x2f;screenshots&amp;#x2f;usage.gif&quot; data-lity data-lity-desc=&quot;A gif showcasing how notational fzf vim works.&quot; alt=&quot;A gif showcasing how notational fzf vim works.&quot;&gt;
-&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2f;&amp;#x2f;raw.githubusercontent.com&amp;#x2f;alok&amp;#x2f;notational-fzf-vim&amp;#x2f;master&amp;#x2f;screenshots&amp;#x2f;usage.gif&quot;&#x2f;&gt;
-&lt;&#x2f;a&gt;&lt;&#x2f;p&gt;
-  &lt;p class=&quot;image-desc&quot;&gt; Taken from https:&amp;#x2f;&amp;#x2f;github.com&amp;#x2f;Alok&amp;#x2f;notational-fzf-vim &lt;&#x2f;p&gt;
-&lt;p&gt;After I started writing this article, Alex Singh released &lt;a href=&quot;https:&#x2f;&#x2f;github.com&#x2f;alok&#x2f;notational-fzf-vim&quot;&gt;notational-fzf-vim&lt;&#x2f;a&gt;, which is basically notational velocity but in vim! As the name implies, fulltext searching is powered by &lt;a href=&quot;https:&#x2f;&#x2f;github.com&#x2f;junegunn&#x2f;fzf.vim&quot;&gt;fzf&lt;&#x2f;a&gt;, which in turn uses &lt;a href=&quot;https:&#x2f;&#x2f;github.com&#x2f;BurntSushi&#x2f;ripgrep&quot;&gt;ripgrep&lt;&#x2f;a&gt; by default. Both are excellent tools I use daily.&lt;&#x2f;p&gt;
-&lt;p&gt;The preview window is amazing..!&lt;&#x2f;p&gt;
-&lt;p&gt;In order to use it, you need to specify at least one directory for the plugin to search. This will be the primary directory where new notes will be saved, but you can search multiple directories.&lt;&#x2f;p&gt;
+&lt;li&gt;seldom-used vim tidbits&lt;&#x2F;li&gt;
+&lt;li&gt;miscellaneous knowledge about real languages (I study Korean)&lt;&#x2F;li&gt;
+&lt;li&gt;random snippets for programming languages (how do I open a file in ruby again?)&lt;&#x2F;li&gt;
+&lt;li&gt;tentative to-do lists&lt;&#x2F;li&gt;
+&lt;li&gt;niche, detailed information like serial numbers and specs for equipment that I bought&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;It was glorious. Except... it was, and still is, mac only. At home I use *nix systems or windows, so using it became tedious and I eventually stopped.&lt;&#x2F;p&gt;
+&lt;p&gt;As I was writing this article, I discovered &lt;a href=&quot;https:&#x2F;&#x2F;brettterpstra.com&#x2F;projects&#x2F;nvalt&#x2F;&quot;&gt;nVALT&lt;&#x2F;a&gt;–Brett Terpstra&#x27;s fork. It has more functionality like markdown support and a better interface. No vim keybindings though, which made it unpleasant for me to use. Terpstra is working on &lt;a href=&quot;https:&#x2F;&#x2F;brettterpstra.com&#x2F;2019&#x2F;04&#x2F;10&#x2F;codename-nvultra&#x2F;&quot;&gt;nvUltra&lt;&#x2F;a&gt; currently which may fix this.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;raw.githubusercontent.com&amp;#x2F;alok&amp;#x2F;notational-fzf-vim&amp;#x2F;master&amp;#x2F;screenshots&amp;#x2F;usage.gif&quot; data-lity data-lity-desc=&quot;A gif showcasing how notational fzf vim works.&quot; alt=&quot;A gif showcasing how notational fzf vim works.&quot;&gt;
+&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;raw.githubusercontent.com&amp;#x2F;alok&amp;#x2F;notational-fzf-vim&amp;#x2F;master&amp;#x2F;screenshots&amp;#x2F;usage.gif&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p class=&quot;image-desc&quot;&gt; Taken from https:&amp;#x2F;&amp;#x2F;github.com&amp;#x2F;Alok&amp;#x2F;notational-fzf-vim &lt;&#x2F;p&gt;
+&lt;p&gt;After I started writing this article, Alex Singh released &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;alok&#x2F;notational-fzf-vim&quot;&gt;notational-fzf-vim&lt;&#x2F;a&gt;, which is basically notational velocity but in vim! As the name implies, fulltext searching is powered by &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;junegunn&#x2F;fzf.vim&quot;&gt;fzf&lt;&#x2F;a&gt;, which in turn uses &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;BurntSushi&#x2F;ripgrep&quot;&gt;ripgrep&lt;&#x2F;a&gt; by default. Both are excellent tools I use daily.&lt;&#x2F;p&gt;
+&lt;p&gt;The preview window is amazing..!&lt;&#x2F;p&gt;
+&lt;p&gt;In order to use it, you need to specify at least one directory for the plugin to search. This will be the primary directory where new notes will be saved, but you can search multiple directories.&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
 &lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;&amp;quot; notational fzf vim
-&lt;&#x2f;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;let &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;g:nv_search_paths =
-  &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;\&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; [&lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;~&#x2f;Desktop&#x2f;Sync&#x2f;thoughts&amp;#39;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;,
-    &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;\ &lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;~&#x2f;Desktop&#x2f;Sync&#x2f;thoughts&#x2f;korean&amp;#39;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;,
-  &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;\&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;]
-&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;
-&lt;p&gt;and some example files that I&#x27;ve written to this week:&lt;&#x2f;p&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;let &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;g:nv_search_paths =
+  &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;\&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; [&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;~&#x2F;Desktop&#x2F;Sync&#x2F;thoughts&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;,
+    &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;\ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;~&#x2F;Desktop&#x2F;Sync&#x2F;thoughts&#x2F;korean&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;,
+  &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;\&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;]
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and some example files that I&#x27;ve written to this week:&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
 &lt;span style=&quot;color:#323232;&quot;&gt;packing-list.md
 self-publishing.md
@@ -171,11 +172,11 @@ useful-shell-scripts.md
 vim.md
 watches.md
 youtube-videos.md
-korean&#x2f;colloquial-or-slang.md
-korean&#x2f;color-names.md
-korean&#x2f;clothes-verbs.md
-&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2f;h2&gt;
-&lt;p&gt;This is my personal setup. It is by no means prescriptive–I merely wanted to share what works for me. I enjoy looking at other people&#x27;s workflows to see how they handle things. Usually I can take away a thing or two and improve my own workflow. I&#x27;m open to improving it!&lt;&#x2f;p&gt;
+korean&#x2F;colloquial-or-slang.md
+korean&#x2F;color-names.md
+korean&#x2F;clothes-verbs.md
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;This is my personal setup. It is by no means prescriptive–I merely wanted to share what works for me. I enjoy looking at other people&#x27;s workflows to see how they handle things. Usually I can take away a thing or two and improve my own workflow. I&#x27;m open to improving it!&lt;&#x2F;p&gt;
 </description>
             </item>
         
@@ -184,7 +185,7 @@ korean&#x2f;clothes-verbs.md
                 <pubDate>Sat, 16 Feb 2019 00:00:00 +0000</pubDate>
                 <link>andrewzah.com/posts/korean-for-programmers/</link>
                 <guid>andrewzah.com/posts/korean-for-programmers/</guid>
-                <description>&lt;p&gt;I was inspired to write this after reading &lt;em&gt;German for Programmers&lt;&#x2f;em&gt;.&lt;a id=&quot;refer-0&quot; href=&quot;#reference-0&quot;&gt;[0]&lt;&#x2f;a&gt; It&#x27;s quite likely that I&#x27;m just biased to see things a certain way because I work with programming languages for a living, but I often find myself drawing comparisons among Korean and programming.&lt;&#x2f;p&gt;
+                <description>&lt;p&gt;I was inspired to write this after reading &lt;em&gt;German for Programmers&lt;&#x2F;em&gt;.&lt;a id=&quot;refer-0&quot; href=&quot;#reference-0&quot;&gt;[0]&lt;&#x2F;a&gt; It&#x27;s quite likely that I&#x27;m just biased to see things a certain way because I work with programming languages for a living, but I often find myself drawing comparisons among Korean and programming.&lt;&#x2F;p&gt;
 </description>
             </item>
         
@@ -194,7 +195,7 @@ korean&#x2f;clothes-verbs.md
                 <link>andrewzah.com/posts/my-growth-self-taught-software-developer-in-2018/</link>
                 <guid>andrewzah.com/posts/my-growth-self-taught-software-developer-in-2018/</guid>
                 <description>&lt;p&gt;Now that 2019 is almost here, I&#x27;ve been reflecting on my personal &amp;amp; professional journey as a self taught programmer so far.
-Here&#x27;s my story of going from a media arts degree and no job to working fulltime remotely.&lt;&#x2f;p&gt;
+Here&#x27;s my story of going from a media arts degree and no job to working fulltime remotely.&lt;&#x2F;p&gt;
 </description>
             </item>
         
@@ -203,7 +204,7 @@ Here&#x27;s my story of going from a media arts degree and no job to working ful
                 <pubDate>Sat, 24 Feb 2018 00:00:00 +0000</pubDate>
                 <link>andrewzah.com/posts/books-for-2018/</link>
                 <guid>andrewzah.com/posts/books-for-2018/</guid>
-                <description>&lt;p&gt;My biggest regret of 2017 was reading few books. I want to change that for 2018, so here&#x27;s a list of books that I am reading, or want to read—and why.&lt;&#x2f;p&gt;
+                <description>&lt;p&gt;My biggest regret of 2017 was reading few books. I want to change that for 2018, so here&#x27;s a list of books that I am reading, or want to read—and why.&lt;&#x2F;p&gt;
 </description>
             </item>
         

@@ -6,7 +6,7 @@
         <description>Sometimes relevant thoughts by Andrew</description>
         <generator>Zola</generator>
         <language>en</language>
-        <atom:link href="andrewzah.com/tags/docker/rss.xml" rel="self" type="application/rss+xml"/>
+        <atom:link href="andrewzah.com/tags/zola/rss.xml" rel="self" type="application/rss+xml"/>
         <lastBuildDate>Sun, 02 Jun 2019 00:00:00 +0000</lastBuildDate>
         
             <item>
@@ -220,24 +220,6 @@ CMD [&amp;quot;--conf&amp;quot;, &amp;quot;&#x2F;etc&#x2F;Caddyfile&amp;quot;, &
 &lt;p&gt;If you&#x27;re using webhooks, don&#x27;t forget to configure the webhook on github&#x2F;gitlab&#x2F;bitbucket&#x2F;etc.&lt;&#x2F;p&gt;
 &lt;p&gt;If configured correctly, you should now be able to git push your static assets and automatically have the container pull them in!&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
-</description>
-            </item>
-        
-            <item>
-                <title>Selfhosting git with Gitea, Docker, Caddy</title>
-                <pubDate>Tue, 15 May 2018 00:00:00 +0000</pubDate>
-                <link>andrewzah.com/posts/selfhosting-git-with-gitea-docker-caddy/</link>
-                <guid>andrewzah.com/posts/selfhosting-git-with-gitea-docker-caddy/</guid>
-                <description>&lt;p&gt;Something I&#x27;ve been doing recently is starting to self-host as much as I can. I don&#x27;t like relying on businesses, since they can change their services on a whim. I host an &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;ZNC&quot;&gt;IRC network bouncer&lt;&#x2F;a&gt;, a &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;miniflux&#x2F;miniflux&quot;&gt;feed reader&lt;&#x2F;a&gt;, and so on. But why not a git frontend?&lt;&#x2F;p&gt;
-</description>
-            </item>
-        
-            <item>
-                <title>A new year, a new site</title>
-                <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
-                <link>andrewzah.com/posts/a-new-year-a-new-site/</link>
-                <guid>andrewzah.com/posts/a-new-year-a-new-site/</guid>
-                <description>&lt;p&gt;I&#x27;ve migrated my website. Again.&lt;&#x2F;p&gt;
 </description>
             </item>
         

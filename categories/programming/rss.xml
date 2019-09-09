@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>AZ</title>
@@ -13,113 +14,116 @@
                 <pubDate>Sun, 02 Jun 2019 00:00:00 +0000</pubDate>
                 <link>andrewzah.com/posts/automatically-deploy-your-blog-via-git-caddy-docker/</link>
                 <guid>andrewzah.com/posts/automatically-deploy-your-blog-via-git-caddy-docker/</guid>
-                <description>&lt;p&gt;Over the years, I&#x27;ve slowly and incrementally optimized my blog. Originally I used an entire rails setup with postgres, because that was the first thing I really learned how to program. Yet that&#x27;s quite the overkill for a static blog... I don&#x27;t even include comments anymore.&lt;&#x2f;p&gt;
-&lt;p&gt;This is where &lt;a href=&quot;https:&#x2f;&#x2f;getzola.org&quot;&gt;Zola&lt;&#x2f;a&gt; comes in, previously named &lt;em&gt;Gutenberg&lt;&#x2f;em&gt;. It&#x27;s a static site generator written in Rust that uses &lt;a href=&quot;https:&#x2f;&#x2f;tera.netlify.com&#x2f;&quot;&gt;Tera&lt;&#x2f;a&gt; for templating. It serves as a counterpart to &lt;a href=&quot;https:&#x2f;&#x2f;gohugo.io&#x2f;&quot;&gt;Hugo&lt;&#x2f;a&gt;, written in Golang. Both have a similar featureset, so I chose Zola since I know Rust and can contribute if needed.&lt;&#x2f;p&gt;
-&lt;p&gt;However basically &lt;a href=&quot;https:&#x2f;&#x2f;git.sr.ht&#x2f;%7Echarles&#x2f;cdaniels.net&#x2f;tree&#x2f;master&#x2f;bin&#x2f;buildit&quot;&gt;any static site generation system&lt;&#x2f;a&gt; can work, so long as you end up with files generated to your liking.&lt;&#x2f;p&gt;
-&lt;h2 id=&quot;zola&quot;&gt;Zola&lt;&#x2f;h2&gt;
-&lt;p&gt;Feel free to skip this section if you already have your own static site generation system.&lt;&#x2f;p&gt;
-&lt;p&gt;&lt;strong&gt;One caveat&lt;&#x2f;strong&gt;: Zola minifies sass by default but not javascript. I use a &lt;a href=&quot;https:&#x2f;&#x2f;git.sr.ht&#x2f;%7Eandrewzah&#x2f;personal-site&#x2f;tree&#x2f;master&#x2f;Makefile&quot;&gt;Makefile&lt;&#x2f;a&gt; to minify the js files and bundle them.&lt;&#x2f;p&gt;
-&lt;h4 id=&quot;getting-started&quot;&gt;Getting started&lt;&#x2f;h4&gt;
-&lt;p&gt;Zola has a &lt;a href=&quot;https:&#x2f;&#x2f;www.getzola.org&#x2f;documentation&#x2f;getting-started&#x2f;installation&#x2f;&quot;&gt;getting started&lt;&#x2f;a&gt; guide. For inspiration, you can look at the &lt;a href=&quot;https:&#x2f;&#x2f;git.sr.ht&#x2f;%7Eandrewzah&#x2f;personal-site&#x2f;tree&quot;&gt;source code for this very blog&lt;&#x2f;a&gt; or &lt;a href=&quot;https:&#x2f;&#x2f;github.com&#x2f;getzola&#x2f;zola&#x2f;blob&#x2f;master&#x2f;EXAMPLES.md&quot;&gt;different sites using Zola&lt;&#x2f;a&gt;.&lt;a id=&quot;footnote-cite-0&quot; href=&quot;#footnote-0&quot;&gt;(0)&lt;&#x2f;a&gt;&lt;&#x2f;p&gt;
-&lt;h4 id=&quot;my-setup&quot;&gt;My setup&lt;&#x2f;h4&gt;
-&lt;p&gt;This is what my site&#x27;s directory looks like:&lt;&#x2f;p&gt;
+                <description>&lt;p&gt;Over the years, I&#x27;ve slowly and incrementally optimized my blog. Originally I used an entire rails setup with postgres, because that was the first thing I really learned how to program. Yet that&#x27;s quite the overkill for a static blog... I don&#x27;t even include comments anymore.&lt;&#x2F;p&gt;
+&lt;p&gt;This is where &lt;a href=&quot;https:&#x2F;&#x2F;getzola.org&quot;&gt;Zola&lt;&#x2F;a&gt; comes in, previously named &lt;em&gt;Gutenberg&lt;&#x2F;em&gt;. It&#x27;s a static site generator written in Rust that uses &lt;a href=&quot;https:&#x2F;&#x2F;tera.netlify.com&#x2F;&quot;&gt;Tera&lt;&#x2F;a&gt; for templating. It serves as a counterpart to &lt;a href=&quot;https:&#x2F;&#x2F;gohugo.io&#x2F;&quot;&gt;Hugo&lt;&#x2F;a&gt;, written in Golang. Both have a similar featureset, so I chose Zola since I use Rust and can contribute if needed.&lt;&#x2F;p&gt;
+&lt;p&gt;However basically &lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Echarles&#x2F;cdaniels.net&#x2F;tree&#x2F;master&#x2F;bin&#x2F;buildit&quot;&gt;any static site generation system&lt;&#x2F;a&gt; can work, so long as you end up with files generated to your liking.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;zola&quot;&gt;Zola&lt;&#x2F;h2&gt;
+&lt;p&gt;Feel free to skip this section if you already have your own static site generation system.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;One caveat&lt;&#x2F;strong&gt;: Zola minifies sass by default but not javascript. I use a &lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;personal-site&#x2F;tree&#x2F;master&#x2F;Makefile&quot;&gt;Makefile&lt;&#x2F;a&gt; to minify the js files and bundle them.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;getting-started&quot;&gt;Getting started&lt;&#x2F;h4&gt;
+&lt;p&gt;Zola has a &lt;a href=&quot;https:&#x2F;&#x2F;www.getzola.org&#x2F;documentation&#x2F;getting-started&#x2F;installation&#x2F;&quot;&gt;getting started&lt;&#x2F;a&gt; guide. For inspiration, you can look at the &lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;personal-site&#x2F;tree&quot;&gt;source code for this very blog&lt;&#x2F;a&gt; or &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;getzola&#x2F;zola&#x2F;blob&#x2F;master&#x2F;EXAMPLES.md&quot;&gt;different sites using Zola&lt;&#x2F;a&gt;.&lt;a id=&quot;footnote-cite-0&quot; href=&quot;#footnote-0&quot;&gt;(0)&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;my-setup&quot;&gt;My setup&lt;&#x2F;h4&gt;
+&lt;p&gt;This is what my site&#x27;s directory looks like:&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
 &lt;span style=&quot;color:#323232;&quot;&gt;.
-├── binary-data&#x2f;
+├── binary-data&#x2F;
 ├── Caddyfile
 ├── config.toml
-├── content&#x2f;
+├── content&#x2F;
 ├── docker-compose.yml
 ├── Dockerfile
 ├── LICENSE
 ├── Makefile
-├── public&#x2f;
-├── sass&#x2f;
-├── static&#x2f;
-├── syntaxes&#x2f;
-├── templates&#x2f;
-└── themes&#x2f;
-&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;
-&lt;p&gt;&lt;code&gt;binary-data&lt;&#x2f;code&gt; is where I store all the screenshots, pdfs, and other binary data I refer to my posts. For the actual posts I upload these to an amazon S3 bucket, but I keep these as a backup, &lt;em&gt;outside&lt;&#x2f;em&gt; of git.&lt;a id=&quot;footnote-cite-1&quot; href=&quot;#footnote-1&quot;&gt;(1)&lt;&#x2f;a&gt;&lt;&#x2f;p&gt;
-&lt;p&gt;&lt;code&gt;sass&#x2f;&lt;&#x2f;code&gt; and &lt;code&gt;static&#x2f;&lt;&#x2f;code&gt; are pretty easy: the former gets compiled to css, the latter gets copied directly to the &lt;code&gt;public&#x2f;&lt;&#x2f;code&gt; directory during generation.&lt;&#x2f;p&gt;
-&lt;p&gt;For code, &lt;code&gt;themes&lt;&#x2f;code&gt; contains the syntax highlighting theme, and &lt;code&gt;syntaxes&lt;&#x2f;code&gt; contains sublime syntax files I added because Zola doesn&#x27;t support &lt;a href=&quot;http:&#x2f;&#x2f;slim-lang.com&#x2f;&quot;&gt;slim&lt;&#x2f;a&gt; syntax highlighting yet.&lt;&#x2f;p&gt;
-&lt;p&gt;This leaves us &lt;code&gt;content&lt;&#x2f;code&gt;, the actual posts and pages, and &lt;code&gt;templates&lt;&#x2f;code&gt;, for how to render them. &lt;code&gt;templates&lt;&#x2f;code&gt; also contains &lt;code&gt;shortcodes&#x2f;&lt;&#x2f;code&gt;, which function much like wordpress&#x27; shortcodes.&lt;&#x2f;p&gt;
-&lt;h4 id=&quot;templating&quot;&gt;Templating&lt;&#x2f;h4&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2f;&#x2f;git.sr.ht&#x2f;%7Eandrewzah&#x2f;personal-site&#x2f;tree&#x2f;master&#x2f;templates&quot;&gt;These&lt;&#x2f;a&gt; are all the templates I&#x27;ve made. Naturally it can get as complex as you want. I generally have one per page or page type, such as &#x2f;projects or &#x2f;posts.&lt;&#x2f;p&gt;
-&lt;p&gt;At a minimum, you probably want a &lt;a href=&quot;https:&#x2f;&#x2f;git.sr.ht&#x2f;%7Eandrewzah&#x2f;personal-site&#x2f;tree&#x2f;master&#x2f;templates&#x2f;base.html&quot;&gt;base.html&lt;&#x2f;a&gt; to deal with the oh-so-fun SEO stuff, and a &lt;code&gt;macros.html&lt;&#x2f;code&gt; for &amp;quot;dynamically&amp;quot; rendering things. I use it for the navigation bar, footnotes, references, citations, and rendering links.&lt;&#x2f;p&gt;
-&lt;p&gt;With child templates, you can use blocks to inject content back to the parent:&lt;&#x2f;p&gt;
+├── public&#x2F;
+├── sass&#x2F;
+├── static&#x2F;
+├── syntaxes&#x2F;
+├── templates&#x2F;
+└── themes&#x2F;
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;code&gt;binary-data&lt;&#x2F;code&gt; is where I store all the screenshots, pdfs, and other binary data I refer to my posts. For the actual posts I upload these to an amazon S3 bucket, but I keep these as a backup, &lt;em&gt;outside&lt;&#x2F;em&gt; of git.&lt;a id=&quot;footnote-cite-1&quot; href=&quot;#footnote-1&quot;&gt;(1)&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;sass&#x2F;&lt;&#x2F;code&gt; and &lt;code&gt;static&#x2F;&lt;&#x2F;code&gt; are pretty easy: the former gets compiled to css, the latter gets copied directly to the &lt;code&gt;public&#x2F;&lt;&#x2F;code&gt; directory during generation.&lt;&#x2F;p&gt;
+&lt;p&gt;For code, &lt;code&gt;themes&lt;&#x2F;code&gt; contains the syntax highlighting theme, and &lt;code&gt;syntaxes&lt;&#x2F;code&gt; contains sublime syntax files I added because Zola doesn&#x27;t support &lt;a href=&quot;http:&#x2F;&#x2F;slim-lang.com&#x2F;&quot;&gt;slim&lt;&#x2F;a&gt; syntax highlighting yet.&lt;&#x2F;p&gt;
+&lt;p&gt;This leaves us &lt;code&gt;content&lt;&#x2F;code&gt;, the actual posts and pages, and &lt;code&gt;templates&lt;&#x2F;code&gt;, for how to render them. &lt;code&gt;templates&lt;&#x2F;code&gt; also contains &lt;code&gt;shortcodes&#x2F;&lt;&#x2F;code&gt;, which function much like wordpress&#x27; shortcodes.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;templating&quot;&gt;Templating&lt;&#x2F;h4&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;personal-site&#x2F;tree&#x2F;master&#x2F;templates&quot;&gt;These&lt;&#x2F;a&gt; are all the templates I&#x27;ve made. Naturally it can get as complex as you want. I generally have one per page or page type, such as &#x2F;projects or &#x2F;posts.&lt;&#x2F;p&gt;
+&lt;p&gt;At a minimum, you probably want a &lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;personal-site&#x2F;tree&#x2F;master&#x2F;templates&#x2F;base.html&quot;&gt;base.html&lt;&#x2F;a&gt; to deal with the oh-so-fun SEO stuff, and a &lt;code&gt;macros.html&lt;&#x2F;code&gt; for &amp;quot;dynamically&amp;quot; rendering things. I use it for the navigation bar, footnotes, references, citations, and rendering links.&lt;&#x2F;p&gt;
+&lt;p&gt;With child templates, you can use blocks to inject content back to the parent:&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
 &lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;&amp;lt;!-- base.html --&amp;gt;
-&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;lt;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;head&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;
-  &lt;&#x2f;span&gt;&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;&amp;lt;!-- constants in base.html header --&amp;gt;
-  &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;lt;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;meta &lt;&#x2f;span&gt;&lt;span style=&quot;color:#795da3;&quot;&gt;charset&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;=&lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;UTF-8&amp;quot;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;head&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;
+  &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;&amp;lt;!-- constants in base.html header --&amp;gt;
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;meta &lt;&#x2F;span&gt;&lt;span style=&quot;color:#795da3;&quot;&gt;charset&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;UTF-8&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;
 
-  &lt;&#x2f;span&gt;&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;&amp;lt;!-- set from child --&amp;gt;
-  &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;lt;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;title&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;{% block title %}{% endblock title %}&amp;lt;&#x2f;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;title&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;
+  &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;&amp;lt;!-- set from child --&amp;gt;
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;title&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;{% block title %}{% endblock title %}&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;title&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;
   {% block head %}{% endblock head %}
-&amp;lt;&#x2f;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;head&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;
-&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;
-&lt;p&gt;then in the child you define the block:&lt;&#x2f;p&gt;
+&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;head&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;then in the child you define the block:&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
-&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;&amp;lt;!-- zola provides objects like page&#x2f;section&#x2f;config, see the docs --&amp;gt;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;&amp;lt;!-- zola provides objects like page&#x2F;section&#x2F;config, see the docs --&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
 {% block title %}{{ page.title }} | {{ config.title }}{% endblock title %}
-&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;
-&lt;p&gt;Thrilling stuff.&lt;&#x2f;p&gt;
-&lt;p&gt;If you look at my source it can appear a tad complex now, but I just slowly added things as they came up– like the page title, then custom SEO attributes, etc.&lt;&#x2f;p&gt;
-&lt;h4 id=&quot;macros&quot;&gt;Macros&lt;&#x2f;h4&gt;
-&lt;p&gt;Tera&#x27;s macro system is really useful. One of my use cases was to show the tags and categories below a post:&lt;&#x2f;p&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Thrilling stuff.&lt;&#x2F;p&gt;
+&lt;p&gt;If you look at my source it can appear a tad complex now, but I just slowly added things as they came up– like the page title, then custom SEO attributes, etc.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;macros&quot;&gt;Macros&lt;&#x2F;h4&gt;
+&lt;p&gt;Tera&#x27;s macro system is really useful. One of my use cases was to show the tags and categories below a post:&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
 &lt;span style=&quot;color:#323232;&quot;&gt;{% macro render_tags(tags) %}
-  &amp;lt;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;div &lt;&#x2f;span&gt;&lt;span style=&quot;color:#795da3;&quot;&gt;class&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;=&lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;tags&amp;quot;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;
+  &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;div &lt;&#x2F;span&gt;&lt;span style=&quot;color:#795da3;&quot;&gt;class&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;tags&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;
     Tags: 
     {% for tag in tags %}
       {% if loop.last %}
-        &amp;lt;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;a &lt;&#x2f;span&gt;&lt;span style=&quot;color:#795da3;&quot;&gt;href&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;=&lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;&#x2f;tags&#x2f;{{ tag | slugify }}&#x2f;&amp;quot;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;{{ tag | title }}&amp;lt;&#x2f;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;a&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;
+        &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;a &lt;&#x2F;span&gt;&lt;span style=&quot;color:#795da3;&quot;&gt;href&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;&#x2F;tags&#x2F;{{ tag | slugify }}&#x2F;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;{{ tag | title }}&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;a&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;
       {% else %}
-        &amp;lt;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;a &lt;&#x2f;span&gt;&lt;span style=&quot;color:#795da3;&quot;&gt;href&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;=&lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;&#x2f;tags&#x2f;{{ tag | slugify }}&#x2f;&amp;quot;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;{{ tag | title }}&amp;lt;&#x2f;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;a&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt; | 
+        &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;a &lt;&#x2F;span&gt;&lt;span style=&quot;color:#795da3;&quot;&gt;href&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;&#x2F;tags&#x2F;{{ tag | slugify }}&#x2F;&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;{{ tag | title }}&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;a&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt; | 
       {% endif %}
     {% endfor %}
-  &amp;lt;&#x2f;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;div&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;
+  &amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;div&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;
 {% endmacro render_tags %}
-&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;
-&lt;p&gt;Yes, I should probably clean them up a bit. They work good enough for now.&lt;&#x2f;p&gt;
-&lt;h4 id=&quot;shortcodes&quot;&gt;Shortcodes&lt;&#x2f;h4&gt;
-&lt;p&gt;Shortcodes are awesome. Two main things I use them for:&lt;&#x2f;p&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Yes, I should probably clean them up a bit. They work good enough for now.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;shortcodes&quot;&gt;Shortcodes&lt;&#x2F;h4&gt;
+&lt;p&gt;Shortcodes are awesome. Two main things I use them for:&lt;&#x2F;p&gt;
 &lt;ul&gt;
-&lt;li&gt;footnotes, citations, references&lt;&#x2f;li&gt;
-&lt;li&gt;generating boilerplate for lity.js (a lightbox lib)&lt;&#x2f;li&gt;
-&lt;&#x2f;ul&gt;
+&lt;li&gt;footnotes, citations, references&lt;&#x2F;li&gt;
+&lt;li&gt;generating boilerplate for lity.js (a lightbox lib)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
 &lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
 &lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;&amp;lt;!-- img.html --&amp;gt;
-&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;lt;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;a &lt;&#x2f;span&gt;&lt;span style=&quot;color:#795da3;&quot;&gt;href&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;=&lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;{{url}}&amp;quot; &lt;&#x2f;span&gt;&lt;span style=&quot;color:#795da3;&quot;&gt;data-lity data-lity-desc&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;=&lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;{{desc}}&amp;quot; &lt;&#x2f;span&gt;&lt;span style=&quot;color:#795da3;&quot;&gt;alt&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;=&lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;{{desc}}&amp;quot;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;
-  &amp;lt;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;img &lt;&#x2f;span&gt;&lt;span style=&quot;color:#795da3;&quot;&gt;class&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;=&lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;full&amp;quot; &lt;&#x2f;span&gt;&lt;span style=&quot;color:#795da3;&quot;&gt;async-src&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;=&lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;{{url}}&amp;quot;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&#x2f;&amp;gt;
-&amp;lt;&#x2f;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;a&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;a &lt;&#x2F;span&gt;&lt;span style=&quot;color:#795da3;&quot;&gt;href&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;{{url}}&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#795da3;&quot;&gt;data-lity data-lity-desc&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;{{desc}}&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#795da3;&quot;&gt;alt&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;{{desc}}&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;
+  &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;img &lt;&#x2F;span&gt;&lt;span style=&quot;color:#795da3;&quot;&gt;class&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;full&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#795da3;&quot;&gt;async-src&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;{{url}}&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&#x2F;&amp;gt;
+&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;a&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;
 {% if t %}
-  &amp;lt;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;p &lt;&#x2f;span&gt;&lt;span style=&quot;color:#795da3;&quot;&gt;class&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;=&lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;image-desc&amp;quot;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt; {{t}} &amp;lt;&#x2f;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;p&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;
+  &amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;p &lt;&#x2F;span&gt;&lt;span style=&quot;color:#795da3;&quot;&gt;class&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;image-desc&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt; {{t}} &amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;p&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;
 {% endif %}
-&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
 &lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;&amp;lt;!-- fn.html --&amp;gt;
-&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;lt;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;a &lt;&#x2f;span&gt;&lt;span style=&quot;color:#795da3;&quot;&gt;id&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;=&lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;footnote-cite-{{num}}&amp;quot; &lt;&#x2f;span&gt;&lt;span style=&quot;color:#795da3;&quot;&gt;href&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;=&lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;#footnote-{{num}}&amp;quot;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;({{num}})&amp;lt;&#x2f;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;a&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;
-&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;
-&lt;p&gt;My &lt;a href=&quot;..&#x2f;korean-for-programmers&#x2f;#finally-a-sentence&quot;&gt;Korean for Programmers&lt;&#x2f;a&gt; post uses ~5 shortcodes to &lt;span class=&quot;hl hl-red&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;a &lt;&#x2F;span&gt;&lt;span style=&quot;color:#795da3;&quot;&gt;id&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;footnote-cite-{{num}}&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#795da3;&quot;&gt;href&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;#footnote-{{num}}&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;({{num}})&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;a&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;My &lt;a href=&quot;..&#x2F;korean-for-programmers&#x2F;#finally-a-sentence&quot;&gt;Korean for Programmers&lt;&#x2F;a&gt; post uses ~5 shortcodes to &lt;span class=&quot;hl hl-red&quot;&gt;
 highlight
-&lt;&#x2f;span&gt; words in different colors:&lt;&#x2f;p&gt;
+&lt;&#x2F;span&gt; words in different colors:&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
 &lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;&amp;lt;!-- hlm.html --&amp;gt;
 &amp;lt;!-- where t=text,c=css color class name--&amp;gt;
-&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;lt;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;span &lt;&#x2f;span&gt;&lt;span style=&quot;color:#795da3;&quot;&gt;class&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;=&lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;hl hl-middle hl-{{c}}&amp;quot;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;span &lt;&#x2F;span&gt;&lt;span style=&quot;color:#795da3;&quot;&gt;class&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;hl hl-middle hl-{{c}}&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;
   {{t}}
-&amp;lt;&#x2f;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;span&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;
-&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;
-&lt;p&gt;Okay, okay.. Time for the real stuff.&lt;&#x2f;p&gt;
-&lt;h2 id=&quot;static-assets-repo&quot;&gt;Static Assets Repo&lt;&#x2f;h2&gt;
-&lt;p&gt;Now that you have your static files, commit them to a new git repo. With Zola, I use &lt;code&gt;rsync&lt;&#x2f;code&gt; to move the output from &lt;code&gt;public&#x2f;&lt;&#x2f;code&gt; to another directory–since &lt;code&gt;zola build&lt;&#x2f;code&gt; nukes it each time.&lt;&#x2f;p&gt;
-&lt;p&gt;As stated earlier I keep binary files like images in a separate directory, and in the posts themselves I link to amazon s3. If you want to link to assets locally, you might need something like &lt;a href=&quot;https:&#x2f;&#x2f;git-lfs.github.com&#x2f;&quot;&gt;Git LFS&lt;&#x2f;a&gt; from Github or or a different solution.&lt;&#x2f;p&gt;
-&lt;p&gt;I keep my statically generated assets at &lt;a href=&quot;https:&#x2f;&#x2f;github.com&#x2f;azah&#x2f;personal-site-public&quot;&gt;github.com&#x2f;azah&#x2f;personal-site-public&lt;&#x2f;a&gt; because sourcehut doesn&#x27;t support webhooks yet.&lt;&#x2f;p&gt;
-&lt;h2 id=&quot;caddy&quot;&gt;Caddy&lt;&#x2f;h2&gt;
-&lt;p&gt;&lt;a href=&quot;https:&#x2f;&#x2f;caddyserver.com&#x2f;&quot;&gt;Caddy&lt;&#x2f;a&gt; is an awesome HTTP&#x2f;2 web server. It handles SSL certs for you automatically via Lets Encrypt, and it has a &lt;code&gt;git&lt;&#x2f;code&gt; plugin which we&#x27;ll be using. The git plugin clones or updates a repo for us, so we can now push content to a git repo and have it automatically update!&lt;&#x2f;p&gt;
-&lt;p&gt;Let&#x27;s create the Caddyfile:&lt;&#x2f;p&gt;
-&lt;p&gt;&lt;strong&gt;NOTE&lt;&#x2f;strong&gt;!! Use a port (like :2015) for local testing instead of the actual domain! If you run Caddy with this caddyfile locally without the &lt;code&gt;-disable-acme-auth&lt;&#x2f;code&gt;, caddy will repeatedly try to authorize, quickly &lt;strong&gt;ratelimiting you from Let&#x27;s Encrypt&lt;&#x2f;strong&gt;!&lt;a id=&quot;footnote-cite-2&quot; href=&quot;#footnote-2&quot;&gt;(2)&lt;&#x2f;a&gt;&lt;&#x2f;p&gt;
+&amp;lt;&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;span&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Okay, okay.. Time for the real stuff.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;static-assets-repo&quot;&gt;Static Assets Repo&lt;&#x2F;h2&gt;
+&lt;p&gt;Now that you have your static files, commit them to a new git repo. With Zola, I use &lt;code&gt;rsync&lt;&#x2F;code&gt; to move the output from &lt;code&gt;public&#x2F;&lt;&#x2F;code&gt; to another directory–since &lt;code&gt;zola build&lt;&#x2F;code&gt; nukes it each time.&lt;&#x2F;p&gt;
+&lt;p&gt;As stated earlier I keep binary files like images in a separate directory, and in the posts themselves I link to amazon s3. If you want to link to assets locally, you might need something like &lt;a href=&quot;https:&#x2F;&#x2F;git-lfs.github.com&#x2F;&quot;&gt;Git LFS&lt;&#x2F;a&gt; from Github or or a different solution.&lt;&#x2F;p&gt;
+&lt;p&gt;I keep my statically generated assets at &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;azah&#x2F;personal-site-public&quot;&gt;github.com&#x2F;azah&#x2F;personal-site-public&lt;&#x2F;a&gt; because sourcehut doesn&#x27;t support webhooks yet.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;caddy&quot;&gt;Caddy&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;caddyserver.com&#x2F;&quot;&gt;Caddy&lt;&#x2F;a&gt; is an awesome HTTP&#x2F;2 web server. It handles SSL certs for you automatically via Lets Encrypt, and it has a &lt;code&gt;git&lt;&#x2F;code&gt; plugin which we&#x27;ll be using. The git plugin clones or updates a repo for us, so we can now push content to a git repo and have it automatically update!&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s create the Caddyfile:&lt;&#x2F;p&gt;
+&lt;div class=&quot;note note-Warning&quot;&gt;
+  &lt;h4&gt;Warning&lt;&#x2F;h4&gt;
+  &lt;span&gt;Use a port (like :2015) for local testing instead of the actual domain! If you run Caddy with this caddyfile locally without the -disable-acme-auth, caddy will repeatedly try to authorize, quickly ratelimiting you from Let&amp;#x27;s Encrypt!&lt;&#x2F;span&gt;
+&lt;&#x2F;div&gt;
 &lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
 &lt;span style=&quot;color:#323232;&quot;&gt;# Caddyfile
 yoursite.com, www.yoursite.com {
@@ -129,8 +133,8 @@ yoursite.com, www.yoursite.com {
   }
 
   git {
-    hook &#x2f;webhook {%SITE_WEBHOOK%}
-    repo https:&#x2f;&#x2f;github.com&#x2f;azah&#x2f;personal-site-public.git
+    hook &#x2F;webhook {%SITE_WEBHOOK%}
+    repo https:&#x2F;&#x2F;github.com&#x2F;azah&#x2F;personal-site-public.git
     branch master
     clone_args --recurse-submodules
     pull_args --recurse-submodules
@@ -138,32 +142,32 @@ yoursite.com, www.yoursite.com {
     hook_type github
   }
 
-  root &#x2f;www&#x2f;public
+  root &#x2F;www&#x2F;public
 }
-&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;
-&lt;p&gt;The &lt;code&gt;SITE_WEBHOOK&lt;&#x2f;code&gt; environment variable is set in &lt;code&gt;.env&lt;&#x2f;code&gt;.&lt;&#x2f;p&gt;
-&lt;p&gt;Note that a webhook is optional. In fact, &lt;a href=&quot;https:&#x2f;&#x2f;caddyserver.com&#x2f;docs&#x2f;http.git&quot;&gt;all of the git directives here are optional&lt;&#x2f;a&gt; besides the repo path itself. By default the plugin clones to the root path, &lt;code&gt;&#x2f;www&#x2f;public&lt;&#x2f;code&gt; in this case.&lt;&#x2f;p&gt;
-&lt;p&gt;I&#x27;ve set it to pull once per day as well as listen for requests on &lt;code&gt;&#x2f;webhook&lt;&#x2f;code&gt;. Right now I use github webhooks as &lt;code&gt;sourcehut&lt;&#x2f;code&gt; doesn&#x27;t seem to support webhooks yet.&lt;&#x2f;p&gt;
-&lt;p&gt;If you&#x27;re running multiple containerized services you can use caddy as a proxy as well. You can see the &lt;a href=&quot;https:&#x2f;&#x2f;git.sr.ht&#x2f;%7Eandrewzah&#x2f;andrewzah.com&#x2f;tree&quot;&gt;source for andrewzah.com&#x27;s docker script&lt;&#x2f;a&gt; as an example. I have an &lt;code&gt;http&lt;&#x2f;code&gt; docker service that proxies to my &lt;code&gt;website&lt;&#x2f;code&gt; service, which looks like the following:&lt;&#x2f;p&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The &lt;code&gt;SITE_WEBHOOK&lt;&#x2F;code&gt; environment variable is set in &lt;code&gt;.env&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Note that a webhook is optional. In fact, &lt;a href=&quot;https:&#x2F;&#x2F;caddyserver.com&#x2F;docs&#x2F;http.git&quot;&gt;all of the git directives here are optional&lt;&#x2F;a&gt; besides the repo path itself. By default the plugin clones to the root path, &lt;code&gt;&#x2F;www&#x2F;public&lt;&#x2F;code&gt; in this case.&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;ve set it to pull once per day as well as listen for requests on &lt;code&gt;&#x2F;webhook&lt;&#x2F;code&gt;. Right now I use github webhooks as &lt;code&gt;sourcehut&lt;&#x2F;code&gt; doesn&#x27;t seem to support webhooks yet.&lt;&#x2F;p&gt;
+&lt;p&gt;If you&#x27;re running multiple containerized services you can use caddy as a proxy as well. You can see the &lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;andrewzah.com&#x2F;tree&quot;&gt;source for andrewzah.com&#x27;s docker script&lt;&#x2F;a&gt; as an example. I have an &lt;code&gt;http&lt;&#x2F;code&gt; docker service that proxies to my &lt;code&gt;website&lt;&#x2F;code&gt; service, which looks like the following:&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
-&lt;span style=&quot;color:#323232;&quot;&gt;# services&#x2f;http&#x2f;Caddyfile
+&lt;span style=&quot;color:#323232;&quot;&gt;# services&#x2F;http&#x2F;Caddyfile
 www.andrewzah.com, andrewzah.com, andrei.blue {
   gzip
   tls zah@andrewzah.com
 
-  log &#x2f; stdout {combined}
+  log &#x2F; stdout {combined}
   errors stderr
 
-  proxy &#x2f;webhook http:&#x2f;&#x2f;website:1111&#x2f;webhook {
+  proxy &#x2F;webhook http:&#x2F;&#x2F;website:1111&#x2F;webhook {
     transparent
   }
 
-  proxy &#x2f; http:&#x2f;&#x2f;website:1111
+  proxy &#x2F; http:&#x2F;&#x2F;website:1111
 }
 
 ...
-&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;&lt;h2 id=&quot;docker&quot;&gt;Docker&lt;&#x2f;h2&gt;
-&lt;p&gt;Lastly, we&#x27;ll run all of this inside a docker container, so we need a &lt;code&gt;Dockerfile&lt;&#x2f;code&gt;:&lt;&#x2f;p&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;docker&quot;&gt;Docker&lt;&#x2F;h2&gt;
+&lt;p&gt;Lastly, we&#x27;ll run all of this inside a docker container, so we need a &lt;code&gt;Dockerfile&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
 &lt;span style=&quot;color:#323232;&quot;&gt;FROM alpine:edge
 LABEL caddy_version = &amp;quot;1.0.0&amp;quot; architecture=&amp;quot;amd64&amp;quot;
@@ -177,45 +181,45 @@ ARG version=v1.0.0
 RUN apk add --no-cache --virtual .build-caddy openssh-client tar curl \
   &amp;amp;&amp;amp; apk add --no-cache git \
   &amp;amp;&amp;amp; curl --silent --show-error --fail --location \
-  --header &amp;quot;Accept: application&#x2f;tar+gzip, application&#x2f;x-zip, application&#x2f;octet-stream&amp;quot; -p \
-  &amp;quot;https:&#x2f;&#x2f;caddyserver.com&#x2f;download&#x2f;linux&#x2f;amd64?version=${version}&amp;amp;plugins=${plugins}&amp;amp;license=personal&amp;amp;telemetry=off&amp;quot; \
-  | tar --no-same-owner -C &#x2f;usr&#x2f;bin -xz caddy \
-  &amp;amp;&amp;amp; chmod 0755 &#x2f;usr&#x2f;bin&#x2f;caddy \
+  --header &amp;quot;Accept: application&#x2F;tar+gzip, application&#x2F;x-zip, application&#x2F;octet-stream&amp;quot; -p \
+  &amp;quot;https:&#x2F;&#x2F;caddyserver.com&#x2F;download&#x2F;linux&#x2F;amd64?version=${version}&amp;amp;plugins=${plugins}&amp;amp;license=personal&amp;amp;telemetry=off&amp;quot; \
+  | tar --no-same-owner -C &#x2F;usr&#x2F;bin -xz caddy \
+  &amp;amp;&amp;amp; chmod 0755 &#x2F;usr&#x2F;bin&#x2F;caddy \
   &amp;amp;&amp;amp; apk del --purge .build-caddy
 
-RUN &#x2f;usr&#x2f;bin&#x2f;caddy --plugins
-RUN mkdir &#x2f;www \
-  &amp;amp;&amp;amp; chown -R caddy &#x2f;www
+RUN &#x2F;usr&#x2F;bin&#x2F;caddy --plugins
+RUN mkdir &#x2F;www \
+  &amp;amp;&amp;amp; chown -R caddy &#x2F;www
 
-COPY Caddyfile &#x2f;etc&#x2f;Caddyfile
+COPY Caddyfile &#x2F;etc&#x2F;Caddyfile
 
 USER caddy
-ENTRYPOINT [&amp;quot;&#x2f;usr&#x2f;bin&#x2f;caddy&amp;quot;]
-CMD [&amp;quot;--conf&amp;quot;, &amp;quot;&#x2f;etc&#x2f;Caddyfile&amp;quot;, &amp;quot;--log&amp;quot;, &amp;quot;stdout&amp;quot;, &amp;quot;-agree&amp;quot;]
-&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;
-&lt;p&gt;and a corresponding &lt;code&gt;docker-compose&lt;&#x2f;code&gt; file:&lt;&#x2f;p&gt;
+ENTRYPOINT [&amp;quot;&#x2F;usr&#x2F;bin&#x2F;caddy&amp;quot;]
+CMD [&amp;quot;--conf&amp;quot;, &amp;quot;&#x2F;etc&#x2F;Caddyfile&amp;quot;, &amp;quot;--log&amp;quot;, &amp;quot;stdout&amp;quot;, &amp;quot;-agree&amp;quot;]
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and a corresponding &lt;code&gt;docker-compose&lt;&#x2F;code&gt; file:&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
-&lt;span style=&quot;color:#63a35c;&quot;&gt;version&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;: &lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;3.7&amp;#39;
+&lt;span style=&quot;color:#63a35c;&quot;&gt;version&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;3.7&amp;#39;
 
-&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;services&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;:
-  &lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;web&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;:
-    &lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;restart&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;: &lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;always
-    build&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;:
-      &lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;context&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;: &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;.
-    &lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;image&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;: &lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;&amp;lt;your_dockerhub_username&amp;gt;&#x2f;personal-site
-    ports&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;:
-      - &lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;1111&amp;quot;
-    &lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;env_file&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;:
-      - &lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;.env&amp;quot;
-&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;
-&lt;p&gt;I try to use alpine docker whenever possible. This image fetches a predefined Caddy version, v1.0.0, with the &lt;code&gt;cache&lt;&#x2f;code&gt; and &lt;code&gt;git&lt;&#x2f;code&gt; plugins.&lt;&#x2f;p&gt;
-&lt;p&gt;We need to pass the &lt;code&gt;-agree&lt;&#x2f;code&gt; flag to agree to Let&#x27;s Encrypt&#x27;s Subscriber Agreement. Caddy will not run otherwise unless you use &lt;code&gt;-disable-http-challenge&lt;&#x2f;code&gt; (or specify http&#x2f;a port), but we want HTTPS, no?&lt;&#x2f;p&gt;
-&lt;p&gt;Deploying the image is just &lt;code&gt;docker push&lt;&#x2f;code&gt; once you&#x27;ve signed in via the docker cli. &lt;&#x2f;p&gt;
-&lt;hr &#x2f;&gt;
-&lt;p&gt;...and that&#x27;s pretty much it. For your VPS, you&#x27;ll want to install docker and&#x2f;or docker-compose, then run the image. If you set up a corresponding docker-compose file, you can do &lt;code&gt;docker-compose pull &amp;amp;&amp;amp; docker-compose up -d&lt;&#x2f;code&gt;.&lt;&#x2f;p&gt;
-&lt;p&gt;If you&#x27;re using webhooks, don&#x27;t forget to configure the webhook on github&#x2f;gitlab&#x2f;bitbucket&#x2f;etc.&lt;&#x2f;p&gt;
-&lt;p&gt;If configured correctly, you should now be able to git push your static assets and automatically have the container pull them in!&lt;&#x2f;p&gt;
-&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2f;h2&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;services&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;:
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;web&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;:
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;restart&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;always
+    build&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;:
+      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;context&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;.
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;image&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;&amp;lt;your_dockerhub_username&amp;gt;&#x2F;personal-site
+    ports&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;:
+      - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;1111&amp;quot;
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;env_file&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;:
+      - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;.env&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I try to use alpine docker whenever possible. This image fetches a predefined Caddy version, v1.0.0, with the &lt;code&gt;cache&lt;&#x2F;code&gt; and &lt;code&gt;git&lt;&#x2F;code&gt; plugins.&lt;&#x2F;p&gt;
+&lt;p&gt;We need to pass the &lt;code&gt;-agree&lt;&#x2F;code&gt; flag to agree to Let&#x27;s Encrypt&#x27;s Subscriber Agreement. Caddy will not run otherwise unless you use &lt;code&gt;-disable-http-challenge&lt;&#x2F;code&gt; (or specify http&#x2F;a port), but we want HTTPS, no?&lt;&#x2F;p&gt;
+&lt;p&gt;Deploying the image is just &lt;code&gt;docker push&lt;&#x2F;code&gt; once you&#x27;ve signed in via the docker cli. &lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;...and that&#x27;s pretty much it. For your VPS, you&#x27;ll want to install docker and&#x2F;or docker-compose, then run the image. If you set up a corresponding docker-compose file, you can do &lt;code&gt;docker-compose pull &amp;amp;&amp;amp; docker-compose up -d&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;If you&#x27;re using webhooks, don&#x27;t forget to configure the webhook on github&#x2F;gitlab&#x2F;bitbucket&#x2F;etc.&lt;&#x2F;p&gt;
+&lt;p&gt;If configured correctly, you should now be able to git push your static assets and automatically have the container pull them in!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
 </description>
             </item>
         
@@ -224,104 +228,104 @@ CMD [&amp;quot;--conf&amp;quot;, &amp;quot;&#x2f;etc&#x2f;Caddyfile&amp;quot;, &
                 <pubDate>Thu, 11 Apr 2019 00:00:00 +0000</pubDate>
                 <link>andrewzah.com/posts/nested-resource-forms-tutorial-with-padrino-rails/</link>
                 <guid>andrewzah.com/posts/nested-resource-forms-tutorial-with-padrino-rails/</guid>
-                <description>&lt;p&gt;This guide was written with Padrino and Sequel in mind, but should more or less work for Rails with minimal adaptations. Let&#x27;s get into it!&lt;&#x2f;p&gt;
-&lt;h2 id=&quot;the-goal&quot;&gt;The Goal&lt;&#x2f;h2&gt;
-&lt;p&gt;I have two models: &lt;code&gt;Grammar&lt;&#x2f;code&gt; and &lt;code&gt;GrammarTranslation&lt;&#x2f;code&gt;. A &lt;code&gt;Grammar&lt;&#x2f;code&gt; has many &lt;code&gt;GrammarTranslations&lt;&#x2f;code&gt;.&lt;&#x2f;p&gt;
-&lt;p&gt;I want to have a form that lets me create a &lt;code&gt;Grammar&lt;&#x2f;code&gt; and one &lt;code&gt;GrammarTranslation&lt;&#x2f;code&gt; at the same time. Then, I want the &lt;code&gt;grammars&#x2f;edit&lt;&#x2f;code&gt; page to let me edit the &lt;code&gt;Grammar&lt;&#x2f;code&gt; and edit any of the existing &lt;code&gt;GrammarTranslation&lt;&#x2f;code&gt;s or create new ones.&lt;&#x2f;p&gt;
-&lt;p&gt;Note: you can see a full example application that uses nested form objects &lt;a href=&quot;https:&#x2f;&#x2f;git.sr.ht&#x2f;%7Eandrewzah&#x2f;korean_grammar_data_entry&quot;&gt;here&lt;&#x2f;a&gt;.&lt;&#x2f;p&gt;
-&lt;h2 id=&quot;setup&quot;&gt;Setup&lt;&#x2f;h2&gt;
-&lt;h3 id=&quot;schema&quot;&gt;Schema&lt;&#x2f;h3&gt;
-&lt;p&gt;This is what the migration schema looks like:&lt;&#x2f;p&gt;
+                <description>&lt;p&gt;This guide was written with Padrino and Sequel in mind, but should more or less work for Rails with minimal adaptations. Let&#x27;s get into it!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-goal&quot;&gt;The Goal&lt;&#x2F;h2&gt;
+&lt;p&gt;I have two models: &lt;code&gt;Grammar&lt;&#x2F;code&gt; and &lt;code&gt;GrammarTranslation&lt;&#x2F;code&gt;. A &lt;code&gt;Grammar&lt;&#x2F;code&gt; has many &lt;code&gt;GrammarTranslations&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;I want to have a form that lets me create a &lt;code&gt;Grammar&lt;&#x2F;code&gt; and one &lt;code&gt;GrammarTranslation&lt;&#x2F;code&gt; at the same time. Then, I want the &lt;code&gt;grammars&#x2F;edit&lt;&#x2F;code&gt; page to let me edit the &lt;code&gt;Grammar&lt;&#x2F;code&gt; and edit any of the existing &lt;code&gt;GrammarTranslation&lt;&#x2F;code&gt;s or create new ones.&lt;&#x2F;p&gt;
+&lt;p&gt;Note: you can see a full example application that uses nested form objects &lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;korean_grammar_data_entry&quot;&gt;here&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;setup&quot;&gt;Setup&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;schema&quot;&gt;Schema&lt;&#x2F;h3&gt;
+&lt;p&gt;This is what the migration schema looks like:&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
-&lt;span style=&quot;color:#0086b3;&quot;&gt;Sequel&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;.migration &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
-  up &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
-    create_table &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammars &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
-      primary_key &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:id
-      &lt;&#x2f;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;String &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;null: false
-      &lt;&#x2f;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;String &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:alternatives
-      &lt;&#x2f;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;String &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:verb_type&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;null: false
+&lt;span style=&quot;color:#0086b3;&quot;&gt;Sequel&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;.migration &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+  up &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+    create_table &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammars &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+      primary_key &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:id
+      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;String &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;null: false
+      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;String &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:alternatives
+      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;String &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:verb_type&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;null: false
       DateTime :created_at
-    &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+    &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
 
-    create_table &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar_translations &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
-      primary_key &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:id&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
-      foreign_key &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar_id&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammars
-      &lt;&#x2f;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;String &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:language_code&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;null: false
-      &lt;&#x2f;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;String &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:meanings&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;null: false
-      &lt;&#x2f;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;String &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:notes
+    create_table &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar_translations &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+      primary_key &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:id&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+      foreign_key &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar_id&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammars
+      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;String &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:language_code&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;null: false
+      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;String &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:meanings&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;null: false
+      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;String &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:notes
       DateTime :created_at
-    &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
-  end&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+    &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
+  end&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
 
-  down &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
-    drop_table &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar_translations&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
-    drop_table &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammars
-  &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
+  down &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+    drop_table &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar_translations&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+    drop_table &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammars
+  &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
 end
 
-&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;
-&lt;p&gt;You&#x27;ll want to run&lt;&#x2f;p&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;You&#x27;ll want to run&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
-&lt;span style=&quot;color:#323232;&quot;&gt;padrino generate app &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;&amp;lt;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;app_name&lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;&amp;gt; &lt;&#x2f;span&gt;&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# etc
-&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;padrino generate migration AddGrammarsAndTranslations
-&lt;&#x2f;span&gt;&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# you might have to initialize the table manually if this doesn&amp;#39;t work
-&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;rake sq:create 
+&lt;span style=&quot;color:#323232;&quot;&gt;padrino generate app &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;app_name&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# etc
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;padrino generate migration AddGrammarsAndTranslations
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# you might have to initialize the table manually if this doesn&amp;#39;t work
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;rake sq:create 
 rake sq:migrate
-&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;&lt;h3 id=&quot;models&quot;&gt;Models&lt;&#x2f;h3&gt;
-&lt;p&gt;The main model &lt;code&gt;Grammar&lt;&#x2f;code&gt; needs a tag, which differs by which ORM you&#x27;re using. If it&#x27;s Sequel, use the &lt;code&gt;nested_attributes&lt;&#x2f;code&gt; tag.&lt;a id=&quot;refer-0&quot; href=&quot;#reference-0&quot;&gt;[0]&lt;&#x2f;a&gt; For ActiveRecord users, instead use &lt;code&gt;accepts_nested_attributes_for&lt;&#x2f;code&gt;.&lt;a id=&quot;refer-1&quot; href=&quot;#reference-1&quot;&gt;[1]&lt;&#x2f;a&gt; Both accept the &lt;code&gt;allow_destroy: true&lt;&#x2f;code&gt; option. Padrino also needs the plugin to explicitly be enabled.&lt;&#x2f;p&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;&lt;h3 id=&quot;models&quot;&gt;Models&lt;&#x2F;h3&gt;
+&lt;p&gt;The main model &lt;code&gt;Grammar&lt;&#x2F;code&gt; needs a tag, which differs by which ORM you&#x27;re using. If it&#x27;s Sequel, use the &lt;code&gt;nested_attributes&lt;&#x2F;code&gt; tag.&lt;a id=&quot;refer-0&quot; href=&quot;#reference-0&quot;&gt;[0]&lt;&#x2F;a&gt; For ActiveRecord users, instead use &lt;code&gt;accepts_nested_attributes_for&lt;&#x2F;code&gt;.&lt;a id=&quot;refer-1&quot; href=&quot;#reference-1&quot;&gt;[1]&lt;&#x2F;a&gt; Both accept the &lt;code&gt;allow_destroy: true&lt;&#x2F;code&gt; option. Padrino also needs the plugin to explicitly be enabled.&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
-&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# models&#x2f;grammar.rb
+&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# models&#x2F;grammar.rb
 
-&lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;class &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;Grammar &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;lt; &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#795da3;&quot;&gt;Sequel::Model&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
-  one_to_many &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:translations&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;class: &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:GrammarTranslation&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;class &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;Grammar &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;lt; &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#795da3;&quot;&gt;Sequel::Model&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+  one_to_many &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:translations&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;class: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:GrammarTranslation&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
 
-  plugin &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:nested_attributes&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
-  nested_attributes &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:translations&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;destroy: true
+  plugin &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:nested_attributes&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+  nested_attributes &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:translations&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;destroy: true
 
-  &lt;&#x2f;span&gt;&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# Replace ActiveRecord method.
+  &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# Replace ActiveRecord method.
   # (I had to add this to get padrino to stop complaining)
-  &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;def &lt;&#x2f;span&gt;&lt;span style=&quot;color:#ed6a43;&quot;&gt;self&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;.&lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#795da3;&quot;&gt;find_by_id&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;(id)
-    &lt;&#x2f;span&gt;&lt;span style=&quot;color:#ed6a43;&quot;&gt;self&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;[id] &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;rescue &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;nil
-  &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
+  &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;def &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed6a43;&quot;&gt;self&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#795da3;&quot;&gt;find_by_id&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;(id)
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed6a43;&quot;&gt;self&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;[id] &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;rescue &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;nil
+  &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
 end
-&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
-&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# models&#x2f;grammar_translation.rb
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# models&#x2F;grammar_translation.rb
 
-&lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;class &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;GrammarTranslation &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;lt; &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#795da3;&quot;&gt;Sequel::Model&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
-  many_to_one &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;class &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;GrammarTranslation &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;lt; &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#795da3;&quot;&gt;Sequel::Model&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+  many_to_one &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar
 
-  &lt;&#x2f;span&gt;&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# Replace ActiveRecord method.
-  &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;def &lt;&#x2f;span&gt;&lt;span style=&quot;color:#ed6a43;&quot;&gt;self&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;.&lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#795da3;&quot;&gt;find_by_id&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;(id)
-    &lt;&#x2f;span&gt;&lt;span style=&quot;color:#ed6a43;&quot;&gt;self&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;[id] &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;rescue &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;nil
-  &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
+  &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# Replace ActiveRecord method.
+  &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;def &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed6a43;&quot;&gt;self&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#795da3;&quot;&gt;find_by_id&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;(id)
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#ed6a43;&quot;&gt;self&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;[id] &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;rescue &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;nil
+  &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
 end
-&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;&lt;h3 id=&quot;form-views&quot;&gt;Form Views&lt;&#x2f;h3&gt;
-&lt;p&gt;We use the &lt;code&gt;new&lt;&#x2f;code&gt; and &lt;code&gt;edit&lt;&#x2f;code&gt; templates to initialize the form and pass it as a variable, &lt;code&gt;f&lt;&#x2f;code&gt;.&lt;&#x2f;p&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;&lt;h3 id=&quot;form-views&quot;&gt;Form Views&lt;&#x2F;h3&gt;
+&lt;p&gt;We use the &lt;code&gt;new&lt;&#x2F;code&gt; and &lt;code&gt;edit&lt;&#x2F;code&gt; templates to initialize the form and pass it as a variable, &lt;code&gt;f&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
-&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;&#x2f;&#x2f; app&#x2f;views&#x2f;grammar&#x2f;new.slim
+&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;&#x2F;&#x2F; app&#x2F;views&#x2F;grammar&#x2F;new.slim
 
-&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;h2
-  New&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; Grammar
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;h2
+  New&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; Grammar
 
-= form_for @grammar, &amp;#39;&#x2f;grammar&#x2f;create&amp;#39; do |f|
-  = partial &amp;#39;grammar&#x2f;form&amp;#39;, :locals =&amp;gt; { :f =&amp;gt; f }
-&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
-&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;&#x2f;&#x2f; app&#x2f;views&#x2f;grammar&#x2f;edit.slim
+= form_for @grammar, &amp;#39;&#x2F;grammar&#x2F;create&amp;#39; do |f|
+  = partial &amp;#39;grammar&#x2F;form&amp;#39;, :locals =&amp;gt; { :f =&amp;gt; f }
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;&#x2F;&#x2F; app&#x2F;views&#x2F;grammar&#x2F;edit.slim
 
-&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;h2
-  Update&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; Grammar
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;h2
+  Update&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; Grammar
 
 = form_for :grammar, url(:grammar, :update, id: @grammar.id), method: :put do |f|
-  = partial &amp;#39;grammar&#x2f;form&amp;#39;, :locals =&amp;gt; { :f =&amp;gt; f }
-&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;
-&lt;p&gt;Since we won&#x27;t always add a new translation, always marking the fields as required won&#x27;t work. Instead we can mark fields as required only for existing translations, not new ones.&lt;&#x2f;p&gt;
-&lt;p&gt;We can iterate over nested resources with the &lt;code&gt;fields_for :model&lt;&#x2f;code&gt; tag now available to us.&lt;&#x2f;p&gt;
-&lt;p&gt;&lt;strong&gt;Note1&lt;&#x2f;strong&gt;: Don&#x27;t forget to setup the &lt;code&gt;id&lt;&#x2f;code&gt; hidden field! Otherwise the orm won&#x27;t realize it&#x27;s an existing nested resource.&lt;&#x2f;p&gt;
-&lt;p&gt;&lt;strong&gt;Note2&lt;&#x2f;strong&gt;: For the destroy checkbox, you must pass &lt;code&gt;:_delete&lt;&#x2f;code&gt;, Not &lt;code&gt;:_destroy&lt;&#x2f;code&gt;. The padrino docs are incorrect here! I had to do a bit of sleuthing to figure out the correct method to send.&lt;&#x2f;p&gt;
+  = partial &amp;#39;grammar&#x2F;form&amp;#39;, :locals =&amp;gt; { :f =&amp;gt; f }
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Since we won&#x27;t always add a new translation, always marking the fields as required won&#x27;t work. Instead we can mark fields as required only for existing translations, not new ones.&lt;&#x2F;p&gt;
+&lt;p&gt;We can iterate over nested resources with the &lt;code&gt;fields_for :model&lt;&#x2F;code&gt; tag now available to us.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Note1&lt;&#x2F;strong&gt;: Don&#x27;t forget to setup the &lt;code&gt;id&lt;&#x2F;code&gt; hidden field! Otherwise the orm won&#x27;t realize it&#x27;s an existing nested resource.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Note2&lt;&#x2F;strong&gt;: For the destroy checkbox, you must pass &lt;code&gt;:_delete&lt;&#x2F;code&gt;, Not &lt;code&gt;:_destroy&lt;&#x2F;code&gt;. The padrino docs are incorrect here! I had to do a bit of sleuthing to figure out the correct method to send.&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
-&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;&#x2f;&#x2f; app&#x2f;views&#x2f;grammar&#x2f;_form.slim
+&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;&#x2F;&#x2F; app&#x2F;views&#x2F;grammar&#x2F;_form.slim
 
-&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;= f.label &amp;#39;Grammar&amp;#39;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;= f.label &amp;#39;Grammar&amp;#39;
 = f.text_field :grammar, required: true
 
 = f.label &amp;#39;Alternatives (comma separated)&amp;#39;
@@ -331,7 +335,7 @@ end
 = f.select :verb_type, options: [&amp;quot;형용사&amp;quot;, &amp;quot;동사&amp;quot;, &amp;quot;Both&amp;quot;],
   required: true
 
-&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;h3&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; Translations
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;h3&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; Translations
 
 = f.fields_for :translations do |af|
   - unless af.object.new?
@@ -356,118 +360,118 @@ end
     = af.label &amp;quot;Destroy&amp;quot;
     = af.check_box :_delete
 
-  &lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;hr
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;hr
 
-&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;= submit_tag pat(:save)
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;= submit_tag pat(:save)
 = submit_tag pat(:save_and_continue), :name =&amp;gt; &amp;#39;save_and_continue&amp;#39;
 = link_to pat(:cancel), url(:grammar, :index)
-&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;&lt;h3 id=&quot;controller-and-routes&quot;&gt;Controller and Routes&lt;&#x2f;h3&gt;
-&lt;p&gt;Lastly we need some basic controller and routing code. &lt;code&gt;index&lt;&#x2f;code&gt; is still simple:&lt;&#x2f;p&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;&lt;h3 id=&quot;controller-and-routes&quot;&gt;Controller and Routes&lt;&#x2F;h3&gt;
+&lt;p&gt;Lastly we need some basic controller and routing code. &lt;code&gt;index&lt;&#x2F;code&gt; is still simple:&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
-&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# app&#x2f;controllers&#x2f;grammar.rb
-&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
-get &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:index &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do
-  &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammars &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;= &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;Grammar&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;.all
-  render &lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;grammar&#x2f;index&amp;#39;
-&lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
-&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;
-&lt;p&gt;When it comes to new&#x2f;create, an empty &lt;code&gt;GrammarTranslation&lt;&#x2f;code&gt;s object needs to be initialized. In Padrino this is accomplished by initializing the &lt;code&gt;&amp;lt;model&amp;gt;_attributes&lt;&#x2f;code&gt; field, which comes from the &lt;code&gt;nested_attributes&lt;&#x2f;code&gt; tag.&lt;&#x2f;p&gt;
+&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# app&#x2F;controllers&#x2F;grammar.rb
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+get &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:index &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammars &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;Grammar&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;.all
+  render &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;grammar&#x2F;index&amp;#39;
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;When it comes to new&#x2F;create, an empty &lt;code&gt;GrammarTranslation&lt;&#x2F;code&gt;s object needs to be initialized. In Padrino this is accomplished by initializing the &lt;code&gt;&amp;lt;model&amp;gt;_attributes&lt;&#x2F;code&gt; field, which comes from the &lt;code&gt;nested_attributes&lt;&#x2F;code&gt; tag.&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
-&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# app&#x2f;controllers&#x2f;grammar.rb
-&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
-get &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:new &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do
-  &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;= &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;Grammar&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;.&lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;new&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;(&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;translations_attributes: &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;[{}])
-  render &lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;new&amp;#39;
-&lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# app&#x2F;controllers&#x2F;grammar.rb
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+get &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:new &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;Grammar&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;new&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;translations_attributes: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;[{}])
+  render &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;new&amp;#39;
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
 
-post &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:create &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do
-  &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;= &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;Grammar&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;.&lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;new&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;(params[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;])
+post &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:create &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;Grammar&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;new&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;(params[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;])
 
-  &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;if &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;(grammar &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;= &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar.save)
-    flash[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:success&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;] &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;= &lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;Successfully saved grammar &amp;amp; translation.&amp;#39;
+  &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;(grammar &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar.save)
+    flash[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:success&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;] &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;Successfully saved grammar &amp;amp; translation.&amp;#39;
 
-    &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;if&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; params[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:save_and_continue&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;]
-      redirect url_for(&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;id:&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; grammar.id)
-    &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;else&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
-      redirect url(&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:new&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;)
-    &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
-  else&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
-    flash[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:error&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;] &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;= &lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;Error saving grammar: &amp;quot; &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;+
-      &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar.errors.map(&lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;&amp;amp;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:message&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;).join(&lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;, &amp;quot;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;)
-    render &lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;new&amp;#39;
-  &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
+    &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;if&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; params[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:save_and_continue&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;]
+      redirect url_for(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;id:&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; grammar.id)
+    &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;else&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+      redirect url(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:new&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;)
+    &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
+  else&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+    flash[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:error&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;] &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;Error saving grammar: &amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;+
+      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar.errors.map(&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;&amp;amp;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:message&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;).join(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;, &amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;)
+    render &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;new&amp;#39;
+  &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
 end
-&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;
-&lt;p&gt;For the &lt;code&gt;edit&lt;&#x2f;code&gt; route, a new &lt;code&gt;GrammarTranslation&lt;&#x2f;code&gt; is appended because we want to be able to create new &lt;code&gt;GrammarTranslation&lt;&#x2f;code&gt;s from a &lt;code&gt;Grammar&lt;&#x2f;code&gt;&#x27;s edit page.&lt;&#x2f;p&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;For the &lt;code&gt;edit&lt;&#x2F;code&gt; route, a new &lt;code&gt;GrammarTranslation&lt;&#x2F;code&gt; is appended because we want to be able to create new &lt;code&gt;GrammarTranslation&lt;&#x2F;code&gt;s from a &lt;code&gt;Grammar&lt;&#x2F;code&gt;&#x27;s edit page.&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
-&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# app&#x2f;controllers&#x2f;grammar.rb
-&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
-get &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:edit&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;with: :id &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do
-  &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;= &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;Grammar&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;[params[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:id&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;]]
-  @grammar.translations &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;GrammarTranslation&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;.&lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;new
+&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# app&#x2F;controllers&#x2F;grammar.rb
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+get &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:edit&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;with: :id &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;Grammar&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;[params[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:id&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;]]
+  @grammar.translations &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;&amp;lt;&amp;lt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;GrammarTranslation&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;new
 
-  if &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar
-    render &lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;grammar&#x2f;edit&amp;#39;
-  &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;else&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
-    flash[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:warning&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;] &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; pat(
-      &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:create_error&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;,
-      &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;model: &lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;grammar&amp;#39;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;,
-      &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;id:&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; params[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:id&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;].&lt;&#x2f;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;to_s
-    &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;)
-    halt &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;404
-  &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
+  if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar
+    render &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;grammar&#x2F;edit&amp;#39;
+  &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;else&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+    flash[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:warning&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;] &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; pat(
+      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:create_error&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;,
+      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;model: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;grammar&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;,
+      &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;id:&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; params[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:id&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;].&lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;to_s
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;)
+    halt &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;404
+  &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
 end
-&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;
-&lt;p&gt;For &lt;code&gt;update&lt;&#x2f;code&gt;, since we added a blank &lt;code&gt;GrammarTranslation&lt;&#x2f;code&gt;, it&#x27;s necessary to filter it out if none of the fields were filled out in the form. Otherwise, every single time you upated a &lt;code&gt;Grammar&lt;&#x2f;code&gt;, a new &lt;code&gt;GrammarTranslation&lt;&#x2f;code&gt; would be created.&lt;&#x2f;p&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;For &lt;code&gt;update&lt;&#x2F;code&gt;, since we added a blank &lt;code&gt;GrammarTranslation&lt;&#x2F;code&gt;, it&#x27;s necessary to filter it out if none of the fields were filled out in the form. Otherwise, every single time you upated a &lt;code&gt;Grammar&lt;&#x2F;code&gt;, a new &lt;code&gt;GrammarTranslation&lt;&#x2F;code&gt; would be created.&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
-&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# app&#x2f;controllers&#x2f;grammar.rb
-&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
-put &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:update&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;with: :id &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do
-  &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;= &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;Grammar&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;[params[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:id&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;]]
+&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# app&#x2F;controllers&#x2F;grammar.rb
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+put &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:update&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;with: :id &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;do
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;Grammar&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;[params[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:id&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;]]
 
-  &lt;&#x2f;span&gt;&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# filter out the new translation
-&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;  params[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;][&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:translations_attributes&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;]
-    .select!{ |_k, v| v[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:language_code&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;].present? &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;== &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;true &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;}
+  &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# filter out the new translation
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;  params[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;][&lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:translations_attributes&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;]
+    .select!{ |_k, v| v[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:language_code&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;].present? &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;== &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;true &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;}
 
-  &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;if &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar.modified! &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;&amp;amp;&amp;amp; &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar.update(params[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;])
-    flash[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:success&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;] &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; pat(&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:update_success&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;model: &lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;Grammar&amp;#39;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;id:&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; params[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:id&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;].&lt;&#x2f;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;to_s&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;)
-    &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;if&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; params[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:save_and_continue&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;]
-      redirect(url(&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:new&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;))
-    &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;else&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
-      redirect(url(&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:edit&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;id: &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar.id))
-    &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
-  else&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
-    flash.now[&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:error&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;] &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; pat(&lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:update_error&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2f;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;model: &lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;grammar&amp;#39;&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;)
-    render &lt;&#x2f;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;accounts&#x2f;edit&amp;#39;
-  &lt;&#x2f;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
+  &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar.modified! &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;&amp;amp;&amp;amp; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar.update(params[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;])
+    flash[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:success&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;] &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; pat(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:update_success&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;model: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;Grammar&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;id:&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; params[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:id&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;].&lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;to_s&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;)
+    &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;if&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; params[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:save_and_continue&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;]
+      redirect(url(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:new&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;))
+    &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;else&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+      redirect(url(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:grammar&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:edit&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;id: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@grammar.id))
+    &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
+  else&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+    flash.now[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:error&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;] &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; pat(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;:update_error&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;model: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;grammar&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;)
+    render &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;accounts&#x2F;edit&amp;#39;
+  &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;end
 end
-&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;&lt;h3 id=&quot;object-views&quot;&gt;Object Views&lt;&#x2f;h3&gt;
-&lt;p&gt;Nothing complicated here. The nested resource is available under the main object, so we can use &lt;code&gt;@grammar.translations&lt;&#x2f;code&gt;.&lt;&#x2f;p&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;&lt;h3 id=&quot;object-views&quot;&gt;Object Views&lt;&#x2F;h3&gt;
+&lt;p&gt;Nothing complicated here. The nested resource is available under the main object, so we can use &lt;code&gt;@grammar.translations&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
-&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;&#x2f;&#x2f; app&#x2f;views&#x2f;grammar&#x2f;index.slim
+&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;&#x2F;&#x2F; app&#x2F;views&#x2F;grammar&#x2F;index.slim
 
-&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;- @grammars.each do |g|
-  = link_to g.grammar, &amp;quot;&#x2f;grammar&#x2f;&lt;&#x2f;span&gt;&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;#{g.id}&amp;quot;
-  &lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;br
-&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
-&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;&#x2f;&#x2f; app&#x2f;views&#x2f;grammar&#x2f;show.slim
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;- @grammars.each do |g|
+  = link_to g.grammar, &amp;quot;&#x2F;grammar&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;#{g.id}&amp;quot;
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;br
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;&#x2F;&#x2F; app&#x2F;views&#x2F;grammar&#x2F;show.slim
 
-&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;h2
-  &lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;= @grammar.grammar
-&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;p&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;h2
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;= @grammar.grammar
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;p&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
   | Alternatives:
   = @grammar.alternatives
-&lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;h4&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; Translations
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;h4&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; Translations
 - @translations.each do |t|
-  &lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;div
-    p&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;div
+    p&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
       | Lang:
       =&amp;lt; t.language_code
-    &lt;&#x2f;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;p&lt;&#x2f;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;p&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;
       | Meaning:
       =&amp;lt; t.meanings
-&lt;&#x2f;span&gt;&lt;&#x2f;pre&gt;&lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2f;h3&gt;
-&lt;p&gt;I hope this short guide helped you. You should now be able to create a model and a nested object at the same time!&lt;&#x2f;p&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;&lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h3&gt;
+&lt;p&gt;I hope this short guide helped you. You should now be able to create a model and a nested object at the same time!&lt;&#x2F;p&gt;
 </description>
             </item>
         
@@ -476,7 +480,7 @@ end
                 <pubDate>Tue, 15 May 2018 00:00:00 +0000</pubDate>
                 <link>andrewzah.com/posts/selfhosting-git-with-gitea-docker-caddy/</link>
                 <guid>andrewzah.com/posts/selfhosting-git-with-gitea-docker-caddy/</guid>
-                <description>&lt;p&gt;Something I&#x27;ve been doing recently is starting to self-host as much as I can. I don&#x27;t like relying on businesses, since they can change their services on a whim. I host an &lt;a href=&quot;https:&#x2f;&#x2f;en.wikipedia.org&#x2f;wiki&#x2f;ZNC&quot;&gt;IRC network bouncer&lt;&#x2f;a&gt;, a &lt;a href=&quot;https:&#x2f;&#x2f;github.com&#x2f;miniflux&#x2f;miniflux&quot;&gt;feed reader&lt;&#x2f;a&gt;, and so on. But why not a git frontend?&lt;&#x2f;p&gt;
+                <description>&lt;p&gt;Something I&#x27;ve been doing recently is starting to self-host as much as I can. I don&#x27;t like relying on businesses, since they can change their services on a whim. I host an &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;ZNC&quot;&gt;IRC network bouncer&lt;&#x2F;a&gt;, a &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;miniflux&#x2F;miniflux&quot;&gt;feed reader&lt;&#x2F;a&gt;, and so on. But why not a git frontend?&lt;&#x2F;p&gt;
 </description>
             </item>
         
@@ -485,7 +489,7 @@ end
                 <pubDate>Mon, 05 Mar 2018 00:00:00 +0000</pubDate>
                 <link>andrewzah.com/posts/making-a-discord-bot-in-crystal-part-0/</link>
                 <guid>andrewzah.com/posts/making-a-discord-bot-in-crystal-part-0/</guid>
-                <description>&lt;p&gt;Today, let&#x27;s start with a simple goal: Get a bot up and running via a JSON configuration file, in Crystal, that responds to a &amp;quot;!ping&amp;quot; command.&lt;&#x2f;p&gt;
+                <description>&lt;p&gt;Today, let&#x27;s start with a simple goal: Get a bot up and running via a JSON configuration file, in Crystal, that responds to a &amp;quot;!ping&amp;quot; command.&lt;&#x2F;p&gt;
 </description>
             </item>
         
@@ -494,7 +498,7 @@ end
                 <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
                 <link>andrewzah.com/posts/a-new-year-a-new-site/</link>
                 <guid>andrewzah.com/posts/a-new-year-a-new-site/</guid>
-                <description>&lt;p&gt;I&#x27;ve migrated my website. Again.&lt;&#x2f;p&gt;
+                <description>&lt;p&gt;I&#x27;ve migrated my website. Again.&lt;&#x2F;p&gt;
 </description>
             </item>
         
