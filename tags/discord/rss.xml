@@ -10,11 +10,11 @@
         <lastBuildDate>Mon, 05 Mar 2018 00:00:00 +0000</lastBuildDate>
         
             <item>
-                <title>Making a Discord bot in Crystal: Part 0</title>
+                <title>Making a Discord bot in Crystal: Intro</title>
                 <pubDate>Mon, 05 Mar 2018 00:00:00 +0000</pubDate>
-                <link>andrewzah.com/posts/making-a-discord-bot-in-crystal-part-0/</link>
-                <guid>andrewzah.com/posts/making-a-discord-bot-in-crystal-part-0/</guid>
-                <description>&lt;p&gt;Today, let&#x27;s start with a simple goal: Get a bot up and running via a JSON configuration file, in Crystal, that responds to a &amp;quot;!ping&amp;quot; command.&lt;&#x2F;p&gt;
+                <link>andrewzah.com/posts/making-a-discord-bot-in-crystal-intro/</link>
+                <guid>andrewzah.com/posts/making-a-discord-bot-in-crystal-intro/</guid>
+                <description>&lt;p&gt;Our goal today is simple: Get a bot up and running via a JSON configuration file, in Crystal, that responds to a &amp;quot;!ping&amp;quot; command.&lt;&#x2F;p&gt;
 </description>
             </item>
         

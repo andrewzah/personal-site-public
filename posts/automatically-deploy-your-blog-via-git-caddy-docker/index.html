@@ -215,14 +215,14 @@ highlight
 <h2 id="caddy">Caddy</h2>
 <p><a href="https://caddyserver.com/">Caddy</a> is an awesome HTTP/2 web server. It handles SSL certs for you automatically via Lets Encrypt, and it has a <code>git</code> plugin which we'll be using. The git plugin clones or updates a repo for us, so we can now push content to a git repo and have it automatically update!</p>
 <p>Let's create the Caddyfile:</p>
-<div class="note note-Warning">
-  <h4>Warning</h4>
-  <span>Use a port (like :2015) for local testing instead of the actual domain! If you run Caddy with this caddyfile locally without the -disable-acme-auth, caddy will repeatedly try to authorize, quickly ratelimiting you from Let&#x27;s Encrypt!</span>
-</div>
+<p>{{note(c=&quot;Warning&quot;, t=&quot;Use a port (like :2015) for local testing instead of the actual domain! If you run Caddy with this caddyfile locally without the -disable-acme-auth, caddy will repeatedly try to authorize, quickly ratelimiting you from Let's Encrypt! You can also use &quot;tls off&quot; to skip it entirely.&quot;)
+}}</p>
 <pre style="background-color:#ffffff;">
 <span style="color:#323232;"># Caddyfile
 yoursite.com, www.yoursite.com {
   gzip
+  tls your@email.gtld
+
   cache {
     default_max_age 10m
   }
@@ -395,6 +395,12 @@ CMD [&quot;--conf&quot;, &quot;/etc/Caddyfile&quot;, &quot;--log&quot;, &quot;st
           </div>
         
 
+        
+          <div id="next_post">
+            Next: <i>
+              <a class="next" href="/posts/living-out-of-two-backpacks-a-six-month-retrospective">Living out of 2 backpacks: A 6-month retrospective</a>
+            </i>
+          </div>
         
 
         

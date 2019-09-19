@@ -120,14 +120,14 @@ highlight
 &lt;h2 id=&quot;caddy&quot;&gt;Caddy&lt;&#x2F;h2&gt;
 &lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;caddyserver.com&#x2F;&quot;&gt;Caddy&lt;&#x2F;a&gt; is an awesome HTTP&#x2F;2 web server. It handles SSL certs for you automatically via Lets Encrypt, and it has a &lt;code&gt;git&lt;&#x2F;code&gt; plugin which we&#x27;ll be using. The git plugin clones or updates a repo for us, so we can now push content to a git repo and have it automatically update!&lt;&#x2F;p&gt;
 &lt;p&gt;Let&#x27;s create the Caddyfile:&lt;&#x2F;p&gt;
-&lt;div class=&quot;note note-Warning&quot;&gt;
-  &lt;h4&gt;Warning&lt;&#x2F;h4&gt;
-  &lt;span&gt;Use a port (like :2015) for local testing instead of the actual domain! If you run Caddy with this caddyfile locally without the -disable-acme-auth, caddy will repeatedly try to authorize, quickly ratelimiting you from Let&amp;#x27;s Encrypt!&lt;&#x2F;span&gt;
-&lt;&#x2F;div&gt;
+&lt;p&gt;{{note(c=&amp;quot;Warning&amp;quot;, t=&amp;quot;Use a port (like :2015) for local testing instead of the actual domain! If you run Caddy with this caddyfile locally without the -disable-acme-auth, caddy will repeatedly try to authorize, quickly ratelimiting you from Let&#x27;s Encrypt! You can also use &amp;quot;tls off&amp;quot; to skip it entirely.&amp;quot;)
+}}&lt;&#x2F;p&gt;
 &lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
 &lt;span style=&quot;color:#323232;&quot;&gt;# Caddyfile
 yoursite.com, www.yoursite.com {
   gzip
+  tls your@email.gtld
+
   cache {
     default_max_age 10m
   }
