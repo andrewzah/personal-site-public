@@ -7,67 +7,67 @@
         <generator>Zola</generator>
         <language>en</language>
         <atom:link href="andrewzah.com/tags/programming/rss.xml" rel="self" type="application/rss+xml"/>
-        <lastBuildDate>Fri, 26 Apr 2019 00:00:00 +0000</lastBuildDate>
+        <lastBuildDate>Sat, 19 Oct 2019 00:00:00 +0000</lastBuildDate>
         
             <item>
                 <title>My setup for remote programming on OSX in 2019</title>
-                <pubDate>Fri, 26 Apr 2019 00:00:00 +0000</pubDate>
+                <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
                 <link>andrewzah.com/posts/my-setup-remote-programming-osx-2019/</link>
                 <guid>andrewzah.com/posts/my-setup-remote-programming-osx-2019/</guid>
                 <description>&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;wework-gangnam.jpg&quot; data-lity data-lity-desc=&quot;Working remotely at WeWork in Gangnam Seoul&quot; alt=&quot;Working remotely at WeWork in Gangnam Seoul&quot;&gt;
 &lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;wework-gangnam.jpg&quot;&#x2F;&gt;
 &lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
 &lt;p class=&quot;image-desc&quot;&gt; Working remotely at WeWork, 강남, 서울 (Gangnam, Seoul) &lt;&#x2F;p&gt;
-&lt;p&gt;Hi! My name is Andrew, and I work remotely as a software developer. Currently I am in 서울, 대한민국 – Seoul, South Korea.&lt;&#x2F;p&gt;
+&lt;p&gt;Hi! My name is Andrew, and I work remotely as a software developer. I&#x27;ve worked while traveling across America with spotty or no internet connection. I&#x27;ve worked in countries like South Korea and Japan. I like traveling, and this is how I stay productive.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;development-machine&quot;&gt;Development Machine&lt;&#x2F;h2&gt;
 &lt;p&gt;Before we begin, why apple and osx?&lt;&#x2F;p&gt;
 &lt;ol&gt;
 &lt;li&gt;battery life&lt;&#x2F;li&gt;
-&lt;li&gt;battery life&lt;&#x2F;li&gt;
-&lt;li&gt;battery life&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;battery life&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;weight&lt;&#x2F;li&gt;
 &lt;li&gt;unix-like environment&lt;&#x2F;li&gt;
-&lt;li&gt;display&lt;&#x2F;li&gt;
-&lt;li&gt;form factor&lt;&#x2F;li&gt;
 &lt;&#x2F;ol&gt;
-&lt;p&gt;and to an extent, proprietary or osx-only apps: photoshop, premiere, affinity designer, and sketch.&lt;&#x2F;p&gt;
+&lt;p&gt;and to an extent, some proprietary or osx-only apps: photoshop, premiere, affinity designer, and sketch.&lt;&#x2F;p&gt;
 &lt;p&gt;Before you scoff, I used freebsd and arch on my home pc as daily drivers. I used a modded thinkpad t430 for a few months as well.&lt;a id=&quot;footnote-cite-0&quot; href=&quot;#footnote-0&quot;&gt;(0)&lt;&#x2F;a&gt; I put in an i7-3632QM (quadcore) chip, a quieter heatsink, 2x8gb memory, a t420 old-style keyboard, and a 9 cell battery.&lt;&#x2F;p&gt;
-&lt;p&gt;It was sweet. Until I started lugging it around.&lt;&#x2F;p&gt;
-&lt;p&gt;Weight-wise it was slightly heavier than my 15&amp;quot; macbook, but the battery life made it unusable. I was getting 4-5 hours, max, and occasionally it would just die earlier than expected.&lt;&#x2F;p&gt;
-&lt;p&gt;Essentially I was always worried about my power source. What&#x27;s the point of a laptop if you always need it to be plugged in?! I &lt;a href=&quot;&#x2F;posts&#x2F;living-out-of-two-backpacks-a-three-month-retrospective&#x2F;&quot;&gt;live out of two backpacks&lt;&#x2F;a&gt; and work remotely while traveling, so to say that battery life is important to me is a huge understatement.&lt;&#x2F;p&gt;
-&lt;p&gt;My 2015 13&amp;quot; macbook pro&#x27;s battery is still good to the point that I can easily work 6-7 hours with C# and Rust without worrying about charging. This doesn&#x27;t happen often in practice but not having to worry about that is very important.&lt;&#x2F;p&gt;
+&lt;p&gt;It was sweet... before I started lugging it around.&lt;&#x2F;p&gt;
+&lt;p&gt;Weight-wise it was slightly heavier than my 15&amp;quot; macbook (~4.5lbs?), and the battery life made it unusable. I was getting 4-5 hours, max, and occasionally it would just die earlier than expected. (Forcing me to go reset the system time in BIOS).&lt;&#x2F;p&gt;
+&lt;p&gt;I was always worried about my power source. I &lt;a href=&quot;&#x2F;posts&#x2F;living-out-of-two-backpacks-a-six-month-retrospective&#x2F;&quot;&gt;have lived out of two backpacks&lt;&#x2F;a&gt; and worked remotely while traveling, so I can&#x27;t rely on always being next to an outlet.  My 2015 13&amp;quot; macbook pro&#x27;s battery is still good to the point that I can get 6-7 hours out of it while working with Rust&#x2F;C#. It&#x27;s more like 8-9 if I&#x27;m only doing light writing, etc. &lt;&#x2F;p&gt;
 &lt;p&gt;I know someone&#x27;s going to respond with &amp;quot;but oh, you should&#x27;ve just used power++ with x, y, z configurations!&amp;quot;. I &lt;em&gt;did&lt;&#x2F;em&gt; experiment with different settings with power++ and other alternative tools–nothing seemed to help. Call me a grumpy old man but I want to work and get things done... not fiddle about with battery tuning settings and the like.&lt;&#x2F;p&gt;
-&lt;p&gt;Eventually I&#x27;ll need to replace this mac. All post-2015 macbooks have been a dumpster fire so I&#x27;ll probably go with a dell xps, a lenovo x1 thinkpad, or &lt;a href=&quot;https:&#x2F;&#x2F;www.notebookcheck.net&#x2F;Enthusiasts-bring-classic-ThinkPad-designs-to-the-modern-era.194630.0.html&quot;&gt;a custom x62 thinkpad from China, maybe..?&lt;&#x2F;a&gt; I just want a durable machine with an excellent battery that&#x27;ll work years later and won&#x27;t have me configuring things constantly.&lt;&#x2F;p&gt;
+&lt;p&gt;Eventually I&#x27;ll need to replace this mac. All post-2015 macbooks have been undesirable to me so I&#x27;ll probably go with a dell xps 13&amp;quot;, or maybe a System76 Galago. I just want a durable machine with an excellent battery that&#x27;ll work years later and won&#x27;t have me configuring things constantly. Is that too much to ask?&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;At home I do have an x201 and x220 thinkpad however. They&#x27;re great for testing different operating systems, etc. I just don&#x27;t like traveling with them. The x201 is quite small so hopefully it&#x27;ll become my main writing machine.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;configuring-osx-tools&quot;&gt;Configuring OSX &amp;amp; Tools&lt;&#x2F;h2&gt;
-&lt;p&gt;The first thing I always do is install xcode-tools, iTerm2, brew, and zsh. Then I clone the osx branch of my &lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;dotfiles&#x2F;tree&quot;&gt;dotfiles repo&lt;&#x2F;a&gt; and symlink the files where they need to be. I should automate this part with a script, but making that script would take me far more more time than just doing it manually. Not worth it.&lt;&#x2F;p&gt;
+&lt;p&gt;The first thing I always do is install xcode-tools, iTerm2, brew, and zsh. Then I clone the osx branch of my &lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;dotfiles&#x2F;tree&quot;&gt;dotfiles repo&lt;&#x2F;a&gt; and symlink the files where they need to be. I should automate this part with a script, but making that script would take me far more more time than just doing it manually. Not worth it, for now at least.&lt;&#x2F;p&gt;
 &lt;p&gt;You can use &lt;code&gt;brew leaves&lt;&#x2F;code&gt; to see installed items and &lt;code&gt;brew cask list&lt;&#x2F;code&gt; for cask items. I &lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;dotfiles&#x2F;tree&#x2F;osx&#x2F;brew-leaves&quot;&gt;stored&lt;&#x2F;a&gt; &lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;dotfiles&#x2F;tree&#x2F;osx&#x2F;cask-list&quot;&gt;mine&lt;&#x2F;a&gt; when I originally started abstracting out my dotfiles.&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;poor-man-s-window-tiling&quot;&gt;poor man&#x27;s window tiling&lt;&#x2F;h3&gt;
-&lt;p&gt;After using i3 I will never go back to non-tiling windows. I long for the day that i3 works natively on osx. Sigh.&lt;&#x2F;p&gt;
+&lt;p&gt;After using i3 I can&#x27;t go back to non-tiling window managers. I long for the day that i3 works natively on osx. Sigh.&lt;&#x2F;p&gt;
 &lt;p&gt;I&#x27;ve somewhat replicated it with &lt;a href=&quot;https:&#x2F;&#x2F;koekeishiya.github.io&#x2F;chunkwm&#x2F;&quot;&gt;chunkwm&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;koekeishiya&#x2F;skhd&quot;&gt;skhd&lt;&#x2F;a&gt;, and &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;tekezo&#x2F;Karabiner&quot;&gt;karabiner&lt;&#x2F;a&gt;. Chunkwm is a tiling window manager, but it doesn&#x27;t handle keyboard input. That&#x27;s where skhd comes in. I copy&#x2F;pasted to my &lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;dotfiles&#x2F;tree&#x2F;osx&#x2F;.khdrc&quot;&gt;khdrc&lt;&#x2F;a&gt; but to be honest I don&#x27;t use most of these hotkeys still.&lt;&#x2F;p&gt;
 &lt;p&gt;Then, I use karabiner to make my right command key into a hyper key– it presses shift, command, control, and option.&lt;&#x2F;p&gt;
 &lt;h4 id=&quot;cons&quot;&gt;cons&lt;&#x2F;h4&gt;
-&lt;p&gt;Some applications have minimum window sizes. So if I have a few windows tiling, they will just overlap. KakaoTalk is an example offender.&lt;&#x2F;p&gt;
+&lt;p&gt;Some applications have minimum window sizes. So if I have too many windows in one workspace, they will just overlap. Spotify and KakaoTalk are example offenders.&lt;&#x2F;p&gt;
 &lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;overlap.png&quot; data-lity data-lity-desc=&quot;An example image showing how Kakaotalk does not layout correctly when I have a terminal kakaotalk and two chat windows open&quot; alt=&quot;An example image showing how Kakaotalk does not layout correctly when I have a terminal kakaotalk and two chat windows open&quot;&gt;
 &lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;overlap.png&quot;&#x2F;&gt;
 &lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;p class=&quot;image-desc&quot;&gt; Notice bottom left and bottom middle. &lt;&#x2F;p&gt;
+&lt;p class=&quot;image-desc&quot;&gt; Notice the overlaps in bottom left and bottom middle. &lt;&#x2F;p&gt;
 &lt;h3 id=&quot;poor-man-s-workspaces&quot;&gt;poor man&#x27;s workspaces&lt;&#x2F;h3&gt;
-&lt;p&gt;I use 10 Spaces. I added shortcuts to quickly focus them: hyper + 1-5, q-t.&lt;&#x2F;p&gt;
+&lt;p&gt;I use 10 Spaces. I added shortcuts to quickly focus them: hyper + 1-5, w-y.&lt;&#x2F;p&gt;
 &lt;p&gt;I disable &amp;quot;Automatically rearrange Spaces based on most recent use&amp;quot;, in Settings -&amp;gt; Mission Control. This has got to be one of the worst defaults ever made.&lt;&#x2F;p&gt;
-&lt;p&gt;My workspaces follow this order:&lt;&#x2F;p&gt;
+&lt;p&gt;My workspaces generally follow this order:&lt;&#x2F;p&gt;
 &lt;ol&gt;
 &lt;li&gt;terminal (currently iterm2)&lt;&#x2F;li&gt;
 &lt;li&gt;browser (firefox)&lt;&#x2F;li&gt;
-&lt;li&gt;misc &#x2F; Rider&lt;&#x2F;li&gt;
+&lt;li&gt;misc &#x2F; Rider &#x2F; Safari&lt;&#x2F;li&gt;
 &lt;li&gt;misc&lt;&#x2F;li&gt;
 &lt;li&gt;misc&lt;&#x2F;li&gt;
-&lt;li&gt;[q] misc &#x2F; desktop &#x2F; vlc &#x2F; signal&lt;&#x2F;li&gt;
-&lt;li&gt;[w] misc &#x2F; discord&lt;&#x2F;li&gt;
-&lt;li&gt;[e] kakaotalk, messages app&lt;&#x2F;li&gt;
-&lt;li&gt;[r] anki&lt;&#x2F;li&gt;
-&lt;li&gt;[t] thunderbird&lt;&#x2F;li&gt;
+&lt;li&gt;[w] misc &#x2F; desktop &#x2F; vlc &#x2F; signal&lt;&#x2F;li&gt;
+&lt;li&gt;[e] misc &#x2F; discord&lt;&#x2F;li&gt;
+&lt;li&gt;[r] kakaotalk, messages app&lt;&#x2F;li&gt;
+&lt;li&gt;[t] anki&lt;&#x2F;li&gt;
+&lt;li&gt;[y] thunderbird&lt;&#x2F;li&gt;
 &lt;&#x2F;ol&gt;
+&lt;p&gt;Something about the Catalina update broke &lt;code&gt;hyper + q&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;apps&quot;&gt;apps&lt;&#x2F;h3&gt;
-&lt;p&gt;I always have iterm2, firefox, kakaotalk, anki, and thunderbird running.&lt;&#x2F;p&gt;
+&lt;p&gt;I almost always have iterm2, firefox, kakaotalk, anki, and thunderbird running.&lt;&#x2F;p&gt;
 &lt;p&gt;Misc tools I generally use:&lt;&#x2F;p&gt;
 &lt;ul&gt;
 &lt;li&gt;DB Browser for SQLite&lt;&#x2F;li&gt;
@@ -78,8 +78,9 @@
 &lt;p&gt;Task bar apps:&lt;&#x2F;p&gt;
 &lt;ul&gt;
 &lt;li&gt;Harvest (time tracking)&lt;&#x2F;li&gt;
-&lt;li&gt;Duet (use my ipad as an extra display)&lt;&#x2F;li&gt;
+&lt;li&gt;Duet (use my ipad as an extra display)*&lt;&#x2F;li&gt;
 &lt;li&gt;Caffeine (prevent my computer from sleeping)&lt;&#x2F;li&gt;
+&lt;li&gt;SnapScan client (for my &lt;a href=&quot;https:&#x2F;&#x2F;www.fujitsu.com&#x2F;global&#x2F;products&#x2F;computing&#x2F;peripheral&#x2F;scanners&#x2F;scansnap&#x2F;ix500&#x2F;&quot;&gt;Fujitsu ix500 scanner&lt;&#x2F;a&gt;)&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;p&gt;And non programming-related ones:&lt;&#x2F;p&gt;
 &lt;ul&gt;
@@ -90,9 +91,9 @@
 &lt;li&gt;Anki (flash card study)&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;h3 id=&quot;code-editor&quot;&gt;code editor&lt;&#x2F;h3&gt;
-&lt;p&gt;For non-C# code, I use neovim, vim, or vi, in that order. I don&#x27;t care what you use. I like (neo)vim, so I use that. I just become disappointed when people reflexively dismiss it because has any learning curve, like at all. There&#x27;s a &lt;em&gt;reason&lt;&#x2F;em&gt; why it has one, and it&#x27;s not because Bram Moolenaar is masochistic. In particular, modal editing and buffers&lt;a id=&quot;refer-0&quot; href=&quot;#reference-0&quot;&gt;(0)&lt;&#x2F;a&gt; test.&lt;&#x2F;p&gt;
+&lt;p&gt;For non-C# code, I use neovim, vim, or vi, in that order. I don&#x27;t really care what you use. I like (neo)vim, so I use that. I just become disappointed when people reflexively dismiss it (or Emacs) because they have any learning curve, like at all. There&#x27;s a &lt;em&gt;reason&lt;&#x2F;em&gt; why vim has one, and it&#x27;s not because Bram Moolenaar is particularly masochistic. In particular, modal editing and buffers&lt;a id=&quot;refer-0&quot; href=&quot;#reference-0&quot;&gt;(0)&lt;&#x2F;a&gt; are why I enjoy vim.&lt;&#x2F;p&gt;
 &lt;p&gt;Even if you don&#x27;t use vim, I urge you to read the manuals of the software that you do use. Small tidbits of knowledge add up over time, especially with common repetitive actions.&lt;&#x2F;p&gt;
-&lt;p&gt;It&#x27;s also good to know a little &lt;code&gt;vi&lt;&#x2F;code&gt; when you mess up your FreeBSD installation and have to dip into an emergency shell. &lt;code&gt;nano&lt;&#x2F;code&gt; won&#x27;t be accessible then.&lt;&#x2F;p&gt;
+&lt;p&gt;It&#x27;s also good to know a little &lt;code&gt;vi&lt;&#x2F;code&gt; when you mess up your FreeBSD installation and have to dip into an emergency shell. Will &lt;code&gt;nano&lt;&#x2F;code&gt; be accessible then?&lt;&#x2F;p&gt;
 &lt;p&gt;&lt;em&gt;Modern Vim&lt;&#x2F;em&gt; by Drew Neil is a fantastic read. I read parts of it here and there to glean ways I can improve my vim usage. Every vim user should read &lt;em&gt;Oil and vinegar - split windows and the project drawer&lt;&#x2F;em&gt; &lt;a href=&quot;http:&#x2F;&#x2F;vimcasts.org&#x2F;blog&#x2F;2013&#x2F;01&#x2F;oil-and-vinegar-split-windows-and-project-drawer&#x2F;&quot;&gt;from vimcasts&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 &lt;hr &#x2F;&gt;
 &lt;p&gt;You can see my &lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;dotfiles&#x2F;tree&#x2F;osx&#x2F;config&#x2F;nvim&#x2F;init.vim&quot;&gt;neovim configuration here&lt;&#x2F;a&gt; here, although I need to prune it a bit. The biggest changes I&#x27;ve made are:&lt;&#x2F;p&gt;
@@ -108,14 +109,13 @@
 &lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;nvim.png&quot;&#x2F;&gt;
 &lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
 &lt;p class=&quot;image-desc&quot;&gt; neovim with four *buffers* open – and monaco font &lt;&#x2F;p&gt;
-&lt;p&gt;You know, I don&#x27;t get why people go overboard with stuff like &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;powerline&#x2F;powerline&quot;&gt;powerline&lt;&#x2F;a&gt; and patched fonts. It&#x27;s mostly superfluous information at best, and distracting at worst. But, you do you.&lt;&#x2F;p&gt;
 &lt;h4 id=&quot;cons-1&quot;&gt;cons&lt;&#x2F;h4&gt;
 &lt;p&gt;Vim&#x27;s autocompletion... exists I guess. A while ago I looked into it but it seemed not worth the hassle to set up. Anyway, ctrl-p in &lt;code&gt;insert&lt;&#x2F;code&gt; mode brings up suggestions from open buffers. Good thing &lt;code&gt;p&lt;&#x2F;code&gt; is right next to &lt;code&gt;[&lt;&#x2F;code&gt;, which takes you out of &lt;code&gt;insert&lt;&#x2F;code&gt; mode. &#x2F;s&lt;&#x2F;p&gt;
 &lt;p&gt;As an aside, did you know that &lt;code&gt;vim&lt;&#x2F;code&gt; displays &lt;code&gt;Type :quit&amp;lt;Enter&amp;gt; to exit Vim&lt;&#x2F;code&gt; if you hit ctrl-c, and that it&#x27;s done so for a long time? Is your joke very outdated and unoriginal? Yes, yes it is.&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;code-editor-for-c&quot;&gt;code editor (for C#)&lt;&#x2F;h3&gt;
-&lt;p&gt;I use &lt;a href=&quot;https:&#x2F;&#x2F;www.jetbrains.com&#x2F;rider&#x2F;&quot;&gt;IntelliJ Rider&lt;&#x2F;a&gt; on both osx and arch. I think the value is worth it. It&#x27;s definitely nowhere near as snappy as vim but the autocompletions are excellent. The build profiles and test runners are pretty nice. Modifying environment variables and profile configurations is tedious.&lt;&#x2F;p&gt;
+&lt;p&gt;I use &lt;a href=&quot;https:&#x2F;&#x2F;www.jetbrains.com&#x2F;rider&#x2F;&quot;&gt;IntelliJ Rider&lt;&#x2F;a&gt; on both osx and arch. I think the value is worth it. It&#x27;s definitely nowhere near as snappy as vim but doing C# without autocompletions would eb... rough. The build profiles and test runners are pretty nice. Modifying environment variables and profile configurations is tedious.&lt;&#x2F;p&gt;
 &lt;p&gt;The Intellij plugin ecosystem is great- you can easily install plugins in any of their editors, to my knowledge. There&#x27;s even an official &lt;a href=&quot;https:&#x2F;&#x2F;intellij-rust.github.io&#x2F;&quot;&gt;rust plugin&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
-&lt;p&gt;However, cmd-4 is the shortcut to close windows..?!&lt;&#x2F;p&gt;
+&lt;p&gt;However, cmd-4 is the shortcut to close tabs..?! The default controls are interesting, to put it one way.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;workflow&quot;&gt;Workflow&lt;&#x2F;h2&gt;
 &lt;h3 id=&quot;tasks&quot;&gt;tasks&lt;&#x2F;h3&gt;
 &lt;p&gt;Everything starts and ends with meetings and slack. I work on different projects for clients and my team has a daily 5-30min call at 9am (10pm in Korea).&lt;&#x2F;p&gt;
@@ -123,7 +123,7 @@
 &lt;ol&gt;
 &lt;li&gt;make a list (or queue, if you prefer it that way) of things&lt;&#x2F;li&gt;
 &lt;li&gt;roughly ballpark estimates, with the understanding that estimating things is notoriously difficult&lt;&#x2F;li&gt;
-&lt;li&gt;accurate prioritize those things (not everything is #1 urgency)&lt;&#x2F;li&gt;
+&lt;li&gt;accurately prioritize those things (if everything is #1&#x2F;urgent, nothing is)&lt;&#x2F;li&gt;
 &lt;li&gt;work on those things&lt;&#x2F;li&gt;
 &lt;li&gt;discuss progress and blockers in daily call and&#x2F;or slack&lt;&#x2F;li&gt;
 &lt;li&gt;repeat&lt;&#x2F;li&gt;
@@ -131,7 +131,7 @@
 &lt;p&gt;That&#x27;s it.&lt;&#x2F;p&gt;
 &lt;p&gt;On top of this, issues in github&#x2F;gitlab&#x2F;etc are also pretty good if you come up with good labels. Right now I&#x27;m experimenting with Github&#x27;s Projects and semi-automated issues on our newest project.&lt;&#x2F;p&gt;
 &lt;hr &#x2F;&gt;
-&lt;p&gt;Since I&#x27;m 13 hours ahead, this occasionally poses small issues with working with other team members, but I solved this by going to sleep a bit later (about 1am or so). I&#x27;m 23 so I stay up until ~1&#x2F;2 am anyways ¯\_(ツ)_&#x2F;¯. Having different things to work on is also important– if I&#x27;m ever blocked on something, such as waiting for a teammate to wake up and answer a question, I can just work on something else in the meantime.&lt;&#x2F;p&gt;
+&lt;p&gt;Being 13 hours ahead does pose issues occasionally, but I solved this by going to sleep a bit later (about 1am or so). Having different things to work on is also important– if I&#x27;m ever blocked on something, such as waiting for a teammate to wake up and answer a question, I can just work on something else in the meantime. This async style of work won&#x27;t work if you always need rapid communication with your team.&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;logging-my-thoughts&quot;&gt;logging my thoughts&lt;&#x2F;h3&gt;
 &lt;p&gt;The &lt;a href=&quot;http:&#x2F;&#x2F;notational.net&#x2F;&quot;&gt;Notational Velocity&lt;&#x2F;a&gt; application changed my life. At its core, the idea is deceivingly simple.&lt;&#x2F;p&gt;
 &lt;blockquote&gt;
@@ -176,7 +176,7 @@ korean&#x2F;colloquial-or-slang.md
 korean&#x2F;color-names.md
 korean&#x2F;clothes-verbs.md
 &lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h2&gt;
-&lt;p&gt;This is my personal setup. It is by no means prescriptive–I merely wanted to share what works for me. I enjoy looking at other people&#x27;s workflows to see how they handle things. Usually I can take away a thing or two and improve my own workflow. I&#x27;m open to improving it!&lt;&#x2F;p&gt;
+&lt;p&gt;This is my personal setup. I find it fascinaing to look at other people&#x27;s workflows and see how they handle things. Usually I can take away a thing or two and improve my own workflow. Feel free to make suggestions.&lt;&#x2F;p&gt;
 </description>
             </item>
         
