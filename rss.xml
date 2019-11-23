@@ -7,17 +7,122 @@
         <generator>Zola</generator>
         <language>en</language>
         <atom:link href="andrewzah.com/rss.xml" rel="self" type="application/rss+xml"/>
-        <lastBuildDate>Sat, 19 Oct 2019 00:00:00 +0000</lastBuildDate>
+        <lastBuildDate>Fri, 22 Nov 2019 00:00:00 +0000</lastBuildDate>
+        
+            <item>
+                <title>Projects</title>
+                <pubDate>Fri, 22 Nov 2019 00:00:00 +0000</pubDate>
+                <link>andrewzah.com/projects/</link>
+                <guid>andrewzah.com/projects/</guid>
+                <description>&lt;p&gt;These are various projects I&#x27;ve worked on over the years. I hope they may be of some use to you. If you&#x27;d like to contribute to any, feel free! I generally use the GPLv3 license, or MIT otherwise.&lt;&#x2F;p&gt;
+&lt;p&gt;As of late the bulk of my development has been on private repos for work, unfortunately.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;git-repo-stores&quot;&gt;Git Repo Stores&lt;&#x2F;h2&gt;
+&lt;p&gt;In preferred order. I use github when I have no other option and for mirrors.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&quot;&gt;git.sr.ht&#x2F;~andrewzah&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;azah&quot;&gt;github.com&#x2F;azah&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.andrewzah.com&#x2F;andrei&quot;&gt;git.andrewzah.com&#x2F;andrei&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;in-progress&quot;&gt;In Progress&lt;&#x2F;h2&gt;
+&lt;p&gt;These are things I&#x27;m actively working on and&#x2F;or messing around with.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h4 id=&quot;apps-andrei-kr-rust-wasm-react&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;apps.andrei.kr&quot;&gt;apps.andrei.kr&lt;&#x2F;a&gt; – rust&#x2F;wasm&#x2F;react&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Frontend for &lt;code&gt;korean_numbers&lt;&#x2F;code&gt; and other learning tools.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;rooibos-python3-flask&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;rooibos&quot;&gt;rooibos&lt;&#x2F;a&gt; – python3&#x2F;flask&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;File uploading done right.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;actively-maintained&quot;&gt;Actively Maintained&lt;&#x2F;h2&gt;
+&lt;hr &#x2F;&gt;
+&lt;h4 id=&quot;korean-numbers-rust&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;korean_numbers&quot;&gt;korean_numbers&lt;&#x2F;a&gt; – rust&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Converts integers and floats to Hangeul. Supports both number systems.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;danmuji-golang&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;danmuji&quot;&gt;danmuji&lt;&#x2F;a&gt; – golang&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Discord bot written using Golang.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;personal-site-zola&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;personal-site&quot;&gt;personal_site&lt;&#x2F;a&gt; – zola&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;This website. Statically generated using zola and tera templating.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;personal-docker-shell-docker&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;andrewzah.com&quot;&gt;personal_docker&lt;&#x2F;a&gt; – shell&#x2F;docker&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Docker setup for fast deployments on VPSs.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;inactive&quot;&gt;Inactive&lt;&#x2F;h2&gt;
+&lt;hr &#x2F;&gt;
+&lt;h3 id=&quot;rust&quot;&gt;Rust&lt;&#x2F;h3&gt;
+&lt;h4 id=&quot;naveraudio-rust&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;naver_audio&quot;&gt;naveraudio&lt;&#x2F;a&gt; – rust&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Downloads sound files for Korean words via NAVER&#x27;s (undocumented) api.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;crystal&quot;&gt;Crystal&lt;&#x2F;h3&gt;
+&lt;h4 id=&quot;amaranth-cr&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;azah&#x2F;amaranth&quot;&gt;amaranth-cr&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Discord bot based on &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;meewo&#x2F;discordcr&quot;&gt;discordcr&lt;&#x2F;a&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;Wrote a lexer&#x2F;parser to allow custom, recursive commands.&lt;&#x2F;li&gt;
+&lt;li&gt;Wrote a command and plugin framework to allow custom functionality.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;dotacr&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.andrewzah.com&#x2F;andrei&#x2F;dotacr&quot;&gt;dotacr&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Wrote a wrapper for Valve&#x27;s &lt;a href=&quot;https:&#x2F;&#x2F;dev.dota2.com&#x2F;showthread.php?t=58317&quot;&gt;DotA 2 api&lt;&#x2F;a&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;cowapi&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;azah&#x2F;cowapi&quot;&gt;cOWAPI&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Wrote a Crystal&#x2F;Kemal version of &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;SunDwarf&#x2F;OWAPI&quot;&gt;OWAPI&lt;&#x2F;a&gt;, that scrapes and parses Overwatch gameplay stats from Blizzard.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;minifluxcr&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;azah&#x2F;miniflux-cr&quot;&gt;Minifluxcr&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Wrote a wrapper for Miniflux&#x27;s api.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;tree-problem&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;azah&#x2F;tree-problem&quot;&gt;tree-problem&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Solved an interview problem for CancerIQ. They wasted my time, so I made my solution public.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;elm&quot;&gt;Elm&lt;&#x2F;h3&gt;
+&lt;h4 id=&quot;amaranth-frontend&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;azah&#x2F;amaranth-frontend&quot;&gt;amaranth-frontend&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Elm frontend for amaranth-bot that dynamically lists commands and info.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;python-3&quot;&gt;Python 3&lt;&#x2F;h3&gt;
+&lt;h4 id=&quot;owapi&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Fuyukai&#x2F;OWAPI&quot;&gt;OWAPI&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Contributed to v2 and v3 of Laura&#x27;s overwatch stats api.&lt;&#x2F;li&gt;
+&lt;li&gt;Learned about xml scraping and parsing, and API design.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;not-programming-related&quot;&gt;Not Programming Related&lt;&#x2F;h2&gt;
+&lt;hr &#x2F;&gt;
+&lt;h4 id=&quot;dotfiles&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.andrewzah.com&#x2F;andrei&#x2F;dotfiles&quot;&gt;dotfiles&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;a dotfile a day keeps productivity at bay.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;az-quotes&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.andrewzah.com&#x2F;andrei&#x2F;quotes&quot;&gt;az-quotes&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;A json file of quotes that I like, as seen on my &lt;a href=&quot;&#x2F;quotes&quot;&gt;quotes page&lt;&#x2F;a&gt;. Source for the random quote at the end of my posts.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;tf2config&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.andrewzah.com&#x2F;andrei&#x2F;tf2-config&quot;&gt;tf2config&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;tf2 config based on master comfig.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;korean-articles-pandoc&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.andrewzah.com&#x2F;andrei&#x2F;korean-articles&quot;&gt;korean_articles&lt;&#x2F;a&gt; – pandoc&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Created a makefile to easily copy&#x2F;paste Korean articles and render them as PDFs for printing.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</description>
+            </item>
         
             <item>
                 <title>My setup for remote programming on OSX in 2019</title>
                 <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
                 <link>andrewzah.com/posts/my-setup-remote-programming-osx-2019/</link>
                 <guid>andrewzah.com/posts/my-setup-remote-programming-osx-2019/</guid>
-                <description>&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;wework-gangnam.jpg&quot; data-lity data-lity-desc=&quot;Working remotely at WeWork in Gangnam Seoul&quot; alt=&quot;Working remotely at WeWork in Gangnam Seoul&quot;&gt;
-&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;wework-gangnam.jpg&quot;&#x2F;&gt;
-&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;p class=&quot;image-desc&quot;&gt; Working remotely at WeWork, 강남, 서울 (Gangnam, Seoul) &lt;&#x2F;p&gt;
+                <description>&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;wework-gangnam.jpg&quot; data-lity data-lity-desc=&quot;Working remotely at WeWork in Gangnam Seoul&quot; alt=&quot;Working remotely at WeWork in Gangnam Seoul&quot;&gt;
+  &lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;wework-gangnam.jpg&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;
+  &lt;p class=&quot;image-desc&quot;&gt; Working remotely at WeWork, 강남, 서울 (Gangnam, Seoul) &lt;&#x2F;p&gt;
 &lt;p&gt;Hi! My name is Andrew, and I work remotely as a software developer. I&#x27;ve worked while traveling across America with spotty or no internet connection. I&#x27;ve worked in countries like South Korea and Japan. I like traveling, and this is how I stay productive.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;development-machine&quot;&gt;Development Machine&lt;&#x2F;h2&gt;
 &lt;p&gt;Before we begin, why apple and osx?&lt;&#x2F;p&gt;
@@ -45,10 +150,10 @@
 &lt;p&gt;Then, I use karabiner to make my right command key into a hyper key– it presses shift, command, control, and option.&lt;&#x2F;p&gt;
 &lt;h4 id=&quot;cons&quot;&gt;cons&lt;&#x2F;h4&gt;
 &lt;p&gt;Some applications have minimum window sizes. So if I have too many windows in one workspace, they will just overlap. Spotify and KakaoTalk are example offenders.&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;overlap.png&quot; data-lity data-lity-desc=&quot;An example image showing how Kakaotalk does not layout correctly when I have a terminal kakaotalk and two chat windows open&quot; alt=&quot;An example image showing how Kakaotalk does not layout correctly when I have a terminal kakaotalk and two chat windows open&quot;&gt;
-&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;overlap.png&quot;&#x2F;&gt;
-&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;p class=&quot;image-desc&quot;&gt; Notice the overlaps in bottom left and bottom middle. &lt;&#x2F;p&gt;
+&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;overlap.png&quot; data-lity data-lity-desc=&quot;An example image showing how Kakaotalk does not layout correctly when I have a terminal kakaotalk and two chat windows open&quot; alt=&quot;An example image showing how Kakaotalk does not layout correctly when I have a terminal kakaotalk and two chat windows open&quot;&gt;
+  &lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;overlap.png&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;
+  &lt;p class=&quot;image-desc&quot;&gt; Notice the overlaps in bottom left and bottom middle. &lt;&#x2F;p&gt;
 &lt;h3 id=&quot;poor-man-s-workspaces&quot;&gt;poor man&#x27;s workspaces&lt;&#x2F;h3&gt;
 &lt;p&gt;I use 10 Spaces. I added shortcuts to quickly focus them: hyper + 1-5, w-y.&lt;&#x2F;p&gt;
 &lt;p&gt;I disable &amp;quot;Automatically rearrange Spaces based on most recent use&amp;quot;, in Settings -&amp;gt; Mission Control. This has got to be one of the worst defaults ever made.&lt;&#x2F;p&gt;
@@ -105,10 +210,10 @@
 &lt;li&gt;disabling vim&#x27;s annoying swapfile system.&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;p&gt;Oh, and &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;morhetz&#x2F;gruvbox&quot;&gt;gruvbox&lt;&#x2F;a&gt;, possibly one of the best color schemes ever made. Every once in a while I experiment with a different scheme but I inevitably get drawn back to the king. If someone made &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;arcticicestudio&#x2F;nord&quot;&gt;Nord&lt;&#x2F;a&gt; but with green as the main color instead of blue, I might use that.&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;nvim.png&quot; data-lity data-lity-desc=&quot;Screenshot of neovim with four buffers open and using monaco font&quot; alt=&quot;Screenshot of neovim with four buffers open and using monaco font&quot;&gt;
-&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;nvim.png&quot;&#x2F;&gt;
-&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;p class=&quot;image-desc&quot;&gt; neovim with four *buffers* open – and monaco font &lt;&#x2F;p&gt;
+&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;nvim.png&quot; data-lity data-lity-desc=&quot;Screenshot of neovim with four buffers open and using monaco font&quot; alt=&quot;Screenshot of neovim with four buffers open and using monaco font&quot;&gt;
+  &lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;nvim.png&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;
+  &lt;p class=&quot;image-desc&quot;&gt; neovim with four *buffers* open – and monaco font &lt;&#x2F;p&gt;
 &lt;h4 id=&quot;cons-1&quot;&gt;cons&lt;&#x2F;h4&gt;
 &lt;p&gt;Vim&#x27;s autocompletion... exists I guess. A while ago I looked into it but it seemed not worth the hassle to set up. Anyway, ctrl-p in &lt;code&gt;insert&lt;&#x2F;code&gt; mode brings up suggestions from open buffers. Good thing &lt;code&gt;p&lt;&#x2F;code&gt; is right next to &lt;code&gt;[&lt;&#x2F;code&gt;, which takes you out of &lt;code&gt;insert&lt;&#x2F;code&gt; mode. &#x2F;s&lt;&#x2F;p&gt;
 &lt;p&gt;As an aside, did you know that &lt;code&gt;vim&lt;&#x2F;code&gt; displays &lt;code&gt;Type :quit&amp;lt;Enter&amp;gt; to exit Vim&lt;&#x2F;code&gt; if you hit ctrl-c, and that it&#x27;s done so for a long time? Is your joke very outdated and unoriginal? Yes, yes it is.&lt;&#x2F;p&gt;
@@ -150,10 +255,10 @@
 &lt;p&gt;It was glorious. Except... it was, and still is, mac only. At home I use *nix systems or windows, so using it became tedious and I eventually stopped.&lt;&#x2F;p&gt;
 &lt;p&gt;As I was writing this article, I discovered &lt;a href=&quot;https:&#x2F;&#x2F;brettterpstra.com&#x2F;projects&#x2F;nvalt&#x2F;&quot;&gt;nVALT&lt;&#x2F;a&gt;–Brett Terpstra&#x27;s fork. It has more functionality like markdown support and a better interface. No vim keybindings though, which made it unpleasant for me to use. Terpstra is working on &lt;a href=&quot;https:&#x2F;&#x2F;brettterpstra.com&#x2F;2019&#x2F;04&#x2F;10&#x2F;codename-nvultra&#x2F;&quot;&gt;nvUltra&lt;&#x2F;a&gt; currently which may fix this.&lt;&#x2F;p&gt;
 &lt;hr &#x2F;&gt;
-&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;raw.githubusercontent.com&amp;#x2F;alok&amp;#x2F;notational-fzf-vim&amp;#x2F;master&amp;#x2F;screenshots&amp;#x2F;usage.gif&quot; data-lity data-lity-desc=&quot;A gif showcasing how notational fzf vim works.&quot; alt=&quot;A gif showcasing how notational fzf vim works.&quot;&gt;
-&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;raw.githubusercontent.com&amp;#x2F;alok&amp;#x2F;notational-fzf-vim&amp;#x2F;master&amp;#x2F;screenshots&amp;#x2F;usage.gif&quot;&#x2F;&gt;
-&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;p class=&quot;image-desc&quot;&gt; Taken from https:&amp;#x2F;&amp;#x2F;github.com&amp;#x2F;Alok&amp;#x2F;notational-fzf-vim &lt;&#x2F;p&gt;
+&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;raw.githubusercontent.com&amp;#x2F;alok&amp;#x2F;notational-fzf-vim&amp;#x2F;master&amp;#x2F;screenshots&amp;#x2F;usage.gif&quot; data-lity data-lity-desc=&quot;A gif showcasing how notational fzf vim works.&quot; alt=&quot;A gif showcasing how notational fzf vim works.&quot;&gt;
+  &lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;raw.githubusercontent.com&amp;#x2F;alok&amp;#x2F;notational-fzf-vim&amp;#x2F;master&amp;#x2F;screenshots&amp;#x2F;usage.gif&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;
+  &lt;p class=&quot;image-desc&quot;&gt; Taken from https:&amp;#x2F;&amp;#x2F;github.com&amp;#x2F;Alok&amp;#x2F;notational-fzf-vim &lt;&#x2F;p&gt;
 &lt;p&gt;After I started writing this article, Alex Singh released &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;alok&#x2F;notational-fzf-vim&quot;&gt;notational-fzf-vim&lt;&#x2F;a&gt;, which is basically notational velocity but in vim! As the name implies, fulltext searching is powered by &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;junegunn&#x2F;fzf.vim&quot;&gt;fzf&lt;&#x2F;a&gt;, which in turn uses &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;BurntSushi&#x2F;ripgrep&quot;&gt;ripgrep&lt;&#x2F;a&gt; by default. Both are excellent tools I use daily.&lt;&#x2F;p&gt;
 &lt;p&gt;The preview window is amazing..!&lt;&#x2F;p&gt;
 &lt;p&gt;In order to use it, you need to specify at least one directory for the plugin to search. This will be the primary directory where new notes will be saved, but you can search multiple directories.&lt;&#x2F;p&gt;
@@ -187,10 +292,10 @@ korean&#x2F;clothes-verbs.md
                 <guid>andrewzah.com/posts/living-out-of-two-backpacks-a-six-month-retrospective/</guid>
                 <description>&lt;p&gt;In January of this year, I set out for semi-permanent traveling with only two* backpacks: A Goruck GR1 26L, and a Goruck GR2 40L. Prior to setting out I had done a -lot- of research, and made a &lt;a href=&quot;https:&#x2F;&#x2F;docs.google.com&#x2F;spreadsheets&#x2F;d&#x2F;1G2LZ8zVWrJF9apgV1cRvr1qAxD33_mO1xKaOoz2uyW4&#x2F;edit?usp=sharing&quot;&gt;detailed spreadsheet&lt;&#x2F;a&gt; (down to the gram) of what I&#x27;d be taking. It&#x27;s not too bad I think, although the gorucks are more weighty than I&#x27;d like.&lt;&#x2F;p&gt;
 &lt;p&gt;* Including a daily bag. See EDC below.&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;retrospective&amp;#x2F;three-bags.jpg&quot; data-lity data-lity-desc=&quot;My travel bags. OpposeThis Invisible Rolltop, Goruck GR1 26L, Goruck GR2 40L&quot; alt=&quot;My travel bags. OpposeThis Invisible Rolltop, Goruck GR1 26L, Goruck GR2 40L&quot;&gt;
-&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;retrospective&amp;#x2F;three-bags.jpg&quot;&#x2F;&gt;
-&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;p class=&quot;image-desc&quot;&gt; My travel bags. OpposeThis Invisible Rolltop, Goruck GR1 26L, Goruck GR2 40L &lt;&#x2F;p&gt;
+&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;retrospective&amp;#x2F;three-bags.jpg&quot; data-lity data-lity-desc=&quot;My travel bags. OpposeThis Invisible Rolltop, Goruck GR1 26L, Goruck GR2 40L&quot; alt=&quot;My travel bags. OpposeThis Invisible Rolltop, Goruck GR1 26L, Goruck GR2 40L&quot;&gt;
+  &lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;retrospective&amp;#x2F;three-bags.jpg&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;
+  &lt;p class=&quot;image-desc&quot;&gt; My travel bags. OpposeThis Invisible Rolltop, Goruck GR1 26L, Goruck GR2 40L &lt;&#x2F;p&gt;
 &lt;h2 id=&quot;my-philosophy&quot;&gt;My Philosophy&lt;&#x2F;h2&gt;
 &lt;p&gt;I hate checking in luggage and dealing with carousels or lost luggage, and traveling with heavy roller luggage is not an experience that I want to have ever again. So I want to travel light. However, I also want to maintain a respectable fashion level at the same time. Some people can live with one outfit or very few items- I cannot. So bear that in mind.&lt;&#x2F;p&gt;
 &lt;p&gt;I travel to countries at any time of the year for extended periods of time, so I need to pack for freezing winter as well as hot and humid summer.&lt;&#x2F;p&gt;
@@ -227,16 +332,16 @@ korean&#x2F;clothes-verbs.md
 &lt;p&gt;Compared to Korean, Japan&#x27;s railway lines are much more convoluted. Companies own different lines so your train may change colors while you&#x27;re still riding in a car. A card that works in Tokyo (like Suica) may not work in Osaka–at least it didn&#x27;t for me as of March 2019. Korean lines have a color and number. Green line (2 line) is much easier to remember and to refer to than Japan&#x27;s Ginza line, Marunouchi line, etc.&lt;&#x2F;p&gt;
 &lt;p&gt;In Korea you can take any bus or subway line with a T-Money card, available at nearly every convenience store. Each station generally serves 1-2 lines and has markings on how to easily exit or transfer. However I was able to put my Suica card in my iphone&#x27;s Wallet app and tap my phone at the turnstiles in Japan. I&#x27;m not sure if T-Money cards support this yet.&lt;&#x2F;p&gt;
 &lt;p&gt;Most, if not all, Korean stations have public restrooms that are cleaned regularly. A lot of places that I stayed in Korea at had older toilets and plumbing, so these restooms are gifts from God; resplendent beacons of hope.&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;retrospective&amp;#x2F;seoulsubwaymap.gif&quot; data-lity data-lity-desc=&quot;A romanized version of the Seoul subway map&quot; alt=&quot;A romanized version of the Seoul subway map&quot;&gt;
-&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;retrospective&amp;#x2F;seoulsubwaymap.gif&quot;&#x2F;&gt;
-&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;p class=&quot;image-desc&quot;&gt; A romanized version of the Seoul subway map &lt;&#x2F;p&gt;
+&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;retrospective&amp;#x2F;seoulsubwaymap.gif&quot; data-lity data-lity-desc=&quot;A romanized version of the Seoul subway map&quot; alt=&quot;A romanized version of the Seoul subway map&quot;&gt;
+  &lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;retrospective&amp;#x2F;seoulsubwaymap.gif&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;
+  &lt;p class=&quot;image-desc&quot;&gt; A romanized version of the Seoul subway map &lt;&#x2F;p&gt;
 &lt;p&gt;Korea&#x27;s green line gets very crowded at 6pm due to employees and students returning home. Traveling home from 여의도 was the only time in Korea that I got shoved on the train as part of people packing in. 8am on the Marunouchi line in Japan was similar except there were people pushing quite aggressively. I always travel now with a mask on the subway in case the train becomes that crowded.&lt;&#x2F;p&gt;
 &lt;p&gt;This is where the Goruck bags aren&#x27;t that great. They&#x27;re huge, especially the GR2! I would never use either as daily bags with commuting on trains or busses. I specifically packed a day bag for this reason. Of course if you drive everywhere in the US like I do in South Carolina, the GR2 works just great in your passenger seat.&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;retrospective&amp;#x2F;DM0H95.jpg&quot; data-lity data-lity-desc=&quot;Stock image of 중각역&quot; alt=&quot;Stock image of 중각역&quot;&gt;
-&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;retrospective&amp;#x2F;DM0H95.jpg&quot;&#x2F;&gt;
-&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;p class=&quot;image-desc&quot;&gt; One of the ubiquituous underground malls connected to Korean subway stations &lt;&#x2F;p&gt;
+&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;retrospective&amp;#x2F;DM0H95.jpg&quot; data-lity data-lity-desc=&quot;Stock image of 중각역&quot; alt=&quot;Stock image of 중각역&quot;&gt;
+  &lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;retrospective&amp;#x2F;DM0H95.jpg&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;
+  &lt;p class=&quot;image-desc&quot;&gt; One of the ubiquituous underground malls connected to Korean subway stations &lt;&#x2F;p&gt;
 &lt;p&gt;A lot of subway stations in Korea are connected to underground malls. Some of them are enormous! Vendors hawk wares like food, clothes, cosmetics, power adapters, and more.&lt;&#x2F;p&gt;
 &lt;h4 id=&quot;long-distance&quot;&gt;Long Distance&lt;&#x2F;h4&gt;
 &lt;p&gt;Compared to Korea&#x27;s KTX, Japan&#x27;s Shinkansen lines are &lt;em&gt;insanely&lt;&#x2F;em&gt; expensive. I don&#x27;t know how KTX is so cheap but you can get from 서울 [Seoul] -&amp;gt; 부산 [Busan] in ~2.5 hours for ~$55. The 무궁화 line is even cheaper, although much slower at ~4 hours. Each KTX train car has room at the end to store some luggage, and overhead racks.&lt;&#x2F;p&gt;
@@ -262,10 +367,10 @@ korean&#x2F;clothes-verbs.md
 &lt;p&gt;These bags feel virtually indestructible. The way it sits on my back feels great, even with added weight. A big selling point for me was the clamshell style opening–it makes packing a million times better for me. The tradeoff is if you pack a lot of clothes, etc, you&#x27;ll need packing cubes to keep everything nice and tidy. I use Eagle Creek &lt;a href=&quot;https:&#x2F;&#x2F;smile.amazon.com&#x2F;Eagle-Creek-Specter-White-Strobe&#x2F;dp&#x2F;B007NZVY32&quot;&gt;regular&lt;&#x2F;a&gt; and &lt;a href=&quot;https:&#x2F;&#x2F;smile.amazon.com&#x2F;Eagle-Creek-Specter-Compression-Strobe&#x2F;dp&#x2F;B00BYFC4Z4&#x2F;&quot;&gt;compression&lt;&#x2F;a&gt; packing cubes, but just about any brand should do.&lt;&#x2F;p&gt;
 &lt;p&gt;The thing with gorucks is that I somehow always manage to reorganize and fit more stuff in–which is great if you pick up stuff while traveling. It also makes it easy to pack way too much stuff. C&#x27;est la vie.&lt;&#x2F;p&gt;
 &lt;p&gt;I really wish I could recommend these bags but the prices are too steep. There are other good quality bags that aren&#x27;t so prohibitively expensive.&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;retrospective&amp;#x2F;rolltop.jpg&quot; data-lity data-lity-desc=&quot;My OPPOSETHIS Invisible Rolltop backpack, with various handsewn patches.&quot; alt=&quot;My OPPOSETHIS Invisible Rolltop backpack, with various handsewn patches.&quot;&gt;
-&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;retrospective&amp;#x2F;rolltop.jpg&quot;&#x2F;&gt;
-&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;p class=&quot;image-desc&quot;&gt; I saw this backpack as a blank canvas to sew on tons of patches. &lt;&#x2F;p&gt;
+&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;retrospective&amp;#x2F;rolltop.jpg&quot; data-lity data-lity-desc=&quot;My OPPOSETHIS Invisible Rolltop backpack, with various handsewn patches.&quot; alt=&quot;My OPPOSETHIS Invisible Rolltop backpack, with various handsewn patches.&quot;&gt;
+  &lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;retrospective&amp;#x2F;rolltop.jpg&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;
+  &lt;p class=&quot;image-desc&quot;&gt; I saw this backpack as a blank canvas to sew on tons of patches. &lt;&#x2F;p&gt;
 &lt;h3 id=&quot;opposethis-invisible-rolltop&quot;&gt;OPPOSETHIS Invisible Rolltop&lt;&#x2F;h3&gt;
 &lt;p&gt;This is a great day bag, but for more weight or longer durations I would always choose a goruck. I use this as a daily bag with my laptop, tech gear, and journals.&lt;&#x2F;p&gt;
 &lt;p&gt;Organization is convenient with all the various pockets available. The rolltop makes finding stuff easy, and I can toss in some longer groceries.&lt;&#x2F;p&gt;
@@ -838,7 +943,7 @@ CMD [&amp;quot;--conf&amp;quot;, &amp;quot;&#x2F;etc&#x2F;Caddyfile&amp;quot;, &
   &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;\begin&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;{wideitemize}
     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;\item&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; WASM is &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;\alert&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;{stack-based}, not register-based
     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;\item&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;lt;2-&amp;gt; WASM 1.0 only has 4 primitives
-    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;\item&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;lt;3-&amp;gt; &#96;i32&#96;, &#96;i64&#96;, &#96;f32&#96;, &#96;f64&#96; 
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;\item&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;lt;3-&amp;gt; `i32`, `i64`, `f32`, `f64` 
     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;\item&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;lt;4-&amp;gt; No arrays
     &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;\item&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&amp;lt;5-&amp;gt; no &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;\alert&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;{jmp} instruction
   &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;\end&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;{wideitemize}
@@ -1189,7 +1294,7 @@ const res = random_korean_int(0, 10, &amp;quot;sino&amp;quot;);
   &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;\frametitle&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;{&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#795da3;&quot;&gt;non-trivial optimizations&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;}
   &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;\begin&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;{columns}
     &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;\begin&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;{column}{0.45&lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;\textwidth&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;}
-      &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;\begin&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;{block}{ls -lah | rg wasm | awk &#96;{print &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;\$&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;5, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;\$&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;9}&amp;#39; | sort}
+      &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;\begin&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;{block}{ls -lah | rg wasm | awk `{print &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;\$&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;5, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;\$&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;9}&amp;#39; | sort}
         &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;\begin&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;{lstlisting}
 282K wasm-opt-Oz-flag.wasm
 283K wasm-opt-Os-flag.wasm
@@ -1322,9 +1427,9 @@ Shallow Bytes │ Shallow &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:ital
 &lt;p&gt;You can modify a card&#x27;s fields by going to Add or Edit, then clicking on &lt;code&gt;Fields...&lt;&#x2F;code&gt;. You can add a new card type by going to Add or Edit, then click on the type, and then click &lt;code&gt;Manage&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;better-styling-with-html-and-css&quot;&gt;Better styling with html and css&lt;&#x2F;h3&gt;
 &lt;p&gt;Default anki&#x27;s styling is very plain. I recommend modifying it to show different fields in different colors. For example, my &lt;code&gt;grammarType&lt;&#x2F;code&gt; field is rendered in green while &lt;code&gt;hanja&lt;&#x2F;code&gt; is rendered in purple. I render my color card&#x27;s hex value dynamically. Here&#x27;s what my cards look like; the horizontal line denotes the front and back:&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;017&amp;#x2F;templates.jpg&quot; data-lity data-lity-desc=&quot;How my templates look for sample cards&quot; alt=&quot;How my templates look for sample cards&quot;&gt;
-&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;017&amp;#x2F;templates.jpg&quot;&#x2F;&gt;
-&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;017&amp;#x2F;templates.jpg&quot; data-lity data-lity-desc=&quot;How my templates look for sample cards&quot; alt=&quot;How my templates look for sample cards&quot;&gt;
+  &lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;017&amp;#x2F;templates.jpg&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;
 &lt;p&gt;You can go to Browse, Add, or Edit and click on &lt;code&gt;Cards...&lt;&#x2F;code&gt; to get to the style dialogue. Some premade decks include nice styling for you, or default to a night mode. For more in-depth info, you can visit &lt;a href=&quot;https:&#x2F;&#x2F;apps.ankiweb.net&#x2F;docs&#x2F;manual.html#card-styling&quot;&gt;styling in the anki manual&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;why-behavior-changing-plugins-are-needed&quot;&gt;Why behavior-changing plugins are needed&lt;&#x2F;h2&gt;
 &lt;p&gt;Essentially, the way Anki treats cards is not intuitive, and actually hampers your memorization progress. Let&#x27;s say you&#x27;re reviewing a card–you have four options. &lt;code&gt;Again&lt;&#x2F;code&gt;, if you forget, and &lt;code&gt;Hard&lt;&#x2F;code&gt;, &lt;code&gt;Good&lt;&#x2F;code&gt;, or &lt;code&gt;Easy&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
@@ -1346,10 +1451,10 @@ Where:
 &lt;p&gt;In one study (Rohrer, Taylor, Pashler, Wixted, &amp;amp; Cepeda, 2005), college students learned novel vocabulary (e.g., cicatrix–scar), cycling through a list of word–definition pairs either 5 or 10 times. &lt;strong&gt;The extra 5 cycles yielded a substantial benefit after 1 week, but the gain was no longer apparent after 4 weeks&lt;&#x2F;strong&gt; ... From a long-term perspective, overlearning appears to be inefficient almost to the point of wasting time.[0]&lt;&#x2F;p&gt;
 &lt;&#x2F;blockquote&gt;
 &lt;p&gt;Now take a look at what happens in Anki if you lower the ease too much:&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;017&amp;#x2F;ease-example.jpg&quot; data-lity data-lity-desc=&quot;An image showing how a cards ease affects its intervals&quot; alt=&quot;An image showing how a cards ease affects its intervals&quot;&gt;
-&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;017&amp;#x2F;ease-example.jpg&quot;&#x2F;&gt;
-&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;p class=&quot;image-desc&quot;&gt; Image taken from Guide to Anki Intervals and Learning Steps[1] &lt;&#x2F;p&gt;
+&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;017&amp;#x2F;ease-example.jpg&quot; data-lity data-lity-desc=&quot;An image showing how a cards ease affects its intervals&quot; alt=&quot;An image showing how a cards ease affects its intervals&quot;&gt;
+  &lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;017&amp;#x2F;ease-example.jpg&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;
+  &lt;p class=&quot;image-desc&quot;&gt; Image taken from Guide to Anki Intervals and Learning Steps[1] &lt;&#x2F;p&gt;
 &lt;p&gt;So even if you know a card enough to hit &lt;code&gt;Good&lt;&#x2F;code&gt;, if you had hit &lt;code&gt;Hard&lt;&#x2F;code&gt; 3-4 times prior, the interval growth rate is permanently stunted due to how Anki works. You would have to hit &lt;code&gt;Easy&lt;&#x2F;code&gt; to balance it which is counterintuitive.&lt;&#x2F;p&gt;
 &lt;p&gt;Research also suggests that larger spacing is better in the long term.&lt;&#x2F;p&gt;
 &lt;blockquote&gt;
@@ -1362,9 +1467,9 @@ Where:
 &lt;h2 id=&quot;utilizing-subdecks&quot;&gt;Utilizing subdecks&lt;&#x2F;h2&gt;
 &lt;p&gt;If you review from multiple decks daily, you can use a parent deck with subdecks to mix reviews. This is my own personal opinion, but I think it&#x27;s better for recall if you change contexts. This is more like recall in real life.&lt;&#x2F;p&gt;
 &lt;p&gt;Making subdecks in anki is really easy–just make a parent deck, and drag decks onto it. Or you can manually rename the deck in this format: &lt;code&gt;Parent Deck Name::Subdeck Name&lt;&#x2F;code&gt;. If done right, it should appear like this:&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;017&amp;#x2F;subdecks.png&quot; data-lity data-lity-desc=&quot;A picture of anki open displaying how the interface shows subdecks&quot; alt=&quot;A picture of anki open displaying how the interface shows subdecks&quot;&gt;
-&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;017&amp;#x2F;subdecks.png&quot;&#x2F;&gt;
-&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;017&amp;#x2F;subdecks.png&quot; data-lity data-lity-desc=&quot;A picture of anki open displaying how the interface shows subdecks&quot; alt=&quot;A picture of anki open displaying how the interface shows subdecks&quot;&gt;
+  &lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;017&amp;#x2F;subdecks.png&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;
 &lt;p&gt;The only issue is Anki will still do reviews one deck at a time. I tried using the experimental V2 scheduler, but it didn&#x27;t work for me. So now we have to turn to a plugin: &lt;a href=&quot;https:&#x2F;&#x2F;ankiweb.net&#x2F;shared&#x2F;info&#x2F;1460733408&quot;&gt;HoochieMama: Randomize Rev Queue&lt;&#x2F;a&gt;. After you install this, open Anki&#x27;s preferences, and in the Muffins tab enable &lt;code&gt;Hoochie Mama! RandRevQ w&#x2F; subdeck limit&lt;&#x2F;code&gt;. &lt;strong&gt;Note&lt;&#x2F;strong&gt;: back up your anki before adding behavior modification plugins like this.&lt;&#x2F;p&gt;
 &lt;p&gt;That&#x27;s it! Now you can review from multiple subdecks, and new cards are still deck by deck. If you want to mix new cards as well, there&#x27;s &lt;a href=&quot;https:&#x2F;&#x2F;ankiweb.net&#x2F;shared&#x2F;info&#x2F;1173108619&quot;&gt;Hoochie Papa&lt;&#x2F;a&gt;. I personally don&#x27;t think that is as useful.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;utilizing-filter-decks&quot;&gt;Utilizing filter decks&lt;&#x2F;h2&gt;
@@ -1376,9 +1481,9 @@ Where:
 &lt;p&gt;&amp;quot;This addon shows extra information of the due cards and returns the expected time to finalize (Due+New).&amp;quot;&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;enhance-main-window&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;ankiweb.net&#x2F;shared&#x2F;info&#x2F;877182321&quot;&gt;Enhance main window&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
 &lt;p&gt;This adds more stats to the main window via columns. As you can see in that link, the default config adds quite a lot, so I &lt;a href=&quot;https:&#x2F;&#x2F;gist.github.com&#x2F;azah&#x2F;0391ce0fc3e90f3defea75ef518fd195&quot;&gt;modified my config&lt;&#x2F;a&gt; to pare it down, which looks like this:&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;017&amp;#x2F;enhanced.png&quot; data-lity data-lity-desc=&quot;A picture displaying how the anki main window looks different with this plugin enabled&quot; alt=&quot;A picture displaying how the anki main window looks different with this plugin enabled&quot;&gt;
-&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;017&amp;#x2F;enhanced.png&quot;&#x2F;&gt;
-&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;017&amp;#x2F;enhanced.png&quot; data-lity data-lity-desc=&quot;A picture displaying how the anki main window looks different with this plugin enabled&quot; alt=&quot;A picture displaying how the anki main window looks different with this plugin enabled&quot;&gt;
+  &lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;017&amp;#x2F;enhanced.png&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;
 &lt;p&gt;Note that the stats at the bottom are from the &lt;code&gt;More decks stats and time left&lt;&#x2F;code&gt; plugin.&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;progress-graphs-and-stats-for-mature-and-learned-cards&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;ankiweb.net&#x2F;shared&#x2F;info&#x2F;266436365&quot;&gt;Progress graphs and stats for mature and learned cards&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
 &lt;p&gt;Adds two new graphs to the stats window.&lt;&#x2F;p&gt;
@@ -1386,9 +1491,9 @@ Where:
 &lt;p&gt;Simply colorizes Again to be red, Good to be green, etc. It&#x27;s a small but nice thing to have when reviewing. There&#x27;s also &lt;a href=&quot;https:&#x2F;&#x2F;ankiweb.net&#x2F;shared&#x2F;info&#x2F;1829090218&quot;&gt;Large and Colorful Buttons&lt;&#x2F;a&gt; if you wanted even more colorful buttons.&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;kanji-grid&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;ankiweb.net&#x2F;shared&#x2F;info&#x2F;909972618&quot;&gt;Kanji Grid&lt;&#x2F;a&gt;&lt;&#x2F;h3&gt;
 &lt;p&gt;This is an awesome plugin that visually shows your kanji learning progress. Simply select a deck that has a &lt;code&gt;kanji&lt;&#x2F;code&gt; field, and run Tools &amp;gt; &lt;code&gt;Generate Kanji Grid&lt;&#x2F;code&gt;. It looks like this:&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;017&amp;#x2F;kanji-grid.png&quot; data-lity data-lity-desc=&quot;A grid showing kanji characters with a color background based on how long the current interval is&quot; alt=&quot;A grid showing kanji characters with a color background based on how long the current interval is&quot;&gt;
-&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;017&amp;#x2F;kanji-grid.png&quot;&#x2F;&gt;
-&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;017&amp;#x2F;kanji-grid.png&quot; data-lity data-lity-desc=&quot;A grid showing kanji characters with a color background based on how long the current interval is&quot; alt=&quot;A grid showing kanji characters with a color background based on how long the current interval is&quot;&gt;
+  &lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;017&amp;#x2F;kanji-grid.png&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;
 &lt;p&gt;This was generated from my deck with the default settings.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;behavior-plugins&quot;&gt;Behavior Plugins&lt;&#x2F;h2&gt;
 &lt;p&gt;This is where things get fun. These plugins change the core functionality of Anki, so please, read about them and make sure you understand what they do before adding them.&lt;&#x2F;p&gt;
@@ -1740,110 +1845,6 @@ end
             </item>
         
             <item>
-                <title>Projects</title>
-                <pubDate>Mon, 25 Mar 2019 00:00:00 +0000</pubDate>
-                <link>andrewzah.com/projects/</link>
-                <guid>andrewzah.com/projects/</guid>
-                <description>&lt;p&gt;These are various projects I&#x27;ve worked on over the years. I hope they may be of some use to you. If you&#x27;d like to contribute to any, feel free! I generally use the GPLv3 license, or MIT otherwise.&lt;&#x2F;p&gt;
-&lt;p&gt;As of late the bulk of my development has been on private repos for work, unfortunately.&lt;&#x2F;p&gt;
-&lt;h2 id=&quot;git-repo-stores&quot;&gt;Git Repo Stores&lt;&#x2F;h2&gt;
-&lt;p&gt;In preferred order. I use github when I have no other option and for mirrors.&lt;&#x2F;p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&quot;&gt;git.sr.ht&#x2F;~andrewzah&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.andrewzah.com&#x2F;andrei&quot;&gt;git.andrewzah.com&#x2F;andrei&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;gitlab.com&#x2F;andrewzah&quot;&gt;gitlab.com&#x2F;andrewzah&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;azah&quot;&gt;github.com&#x2F;azah&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;hr &#x2F;&gt;
-&lt;h2 id=&quot;in-progress&quot;&gt;In Progress&lt;&#x2F;h2&gt;
-&lt;p&gt;These are things I&#x27;m actively working on and&#x2F;or messing around with.&lt;&#x2F;p&gt;
-&lt;h4 id=&quot;apps-andrei-kr-rust-wasm-react&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;apps.andrei.kr&quot;&gt;apps.andrei.kr&lt;&#x2F;a&gt; – rust&#x2F;wasm&#x2F;react&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Frontend for &lt;code&gt;korean_numbers&lt;&#x2F;code&gt; and other learning tools.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h4 id=&quot;unifiedsearch-rust-wasm-mithril&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;unifiedsearch&quot;&gt;unifiedsearch&lt;&#x2F;a&gt; – rust&#x2F;wasm&#x2F;mithril&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;This website. Statically generated using zola and tera templating.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h4 id=&quot;danmuji-golang&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;danmuji&quot;&gt;danmuji&lt;&#x2F;a&gt; – golang&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Discord bot written using Golang.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h4 id=&quot;naveraudio-rust&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;naver_audio&quot;&gt;naveraudio&lt;&#x2F;a&gt; – rust&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Downloads sound files for Korean words via NAVER&#x27;s (undocumented) api.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;hr &#x2F;&gt;
-&lt;h2 id=&quot;actively-maintained&quot;&gt;Actively Maintained&lt;&#x2F;h2&gt;
-&lt;h4 id=&quot;korean-numbers-rust&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;korean_numbers&quot;&gt;korean_numbers&lt;&#x2F;a&gt; – rust&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Converts integers and floats to Hangeul. Supports both number systems.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h4 id=&quot;personal-site-zola&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;personal-site&quot;&gt;personal_site&lt;&#x2F;a&gt; – zola&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;This website. Statically generated using zola and tera templating.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h4 id=&quot;personal-docker-shell-docker&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;andrewzah.com&quot;&gt;personal_docker&lt;&#x2F;a&gt; – shell&#x2F;docker&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Docker setup for fast deployments on VPSs.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;hr &#x2F;&gt;
-&lt;h2 id=&quot;inactive&quot;&gt;Inactive&lt;&#x2F;h2&gt;
-&lt;h3 id=&quot;crystal&quot;&gt;Crystal&lt;&#x2F;h3&gt;
-&lt;h4 id=&quot;amaranth-cr&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;azah&#x2F;amaranth&quot;&gt;amaranth-cr&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Discord bot based on &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;meewo&#x2F;discordcr&quot;&gt;discordcr&lt;&#x2F;a&gt;.&lt;&#x2F;li&gt;
-&lt;li&gt;Wrote a lexer&#x2F;parser to allow custom, recursive commands.&lt;&#x2F;li&gt;
-&lt;li&gt;Wrote a command and plugin framework to allow custom functionality.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h4 id=&quot;dotacr&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.andrewzah.com&#x2F;andrei&#x2F;dotacr&quot;&gt;dotacr&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Wrote a wrapper for Valve&#x27;s &lt;a href=&quot;https:&#x2F;&#x2F;dev.dota2.com&#x2F;showthread.php?t=58317&quot;&gt;DotA 2 api&lt;&#x2F;a&gt;.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h4 id=&quot;cowapi&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;azah&#x2F;cowapi&quot;&gt;cOWAPI&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Wrote a Crystal&#x2F;Kemal version of &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;SunDwarf&#x2F;OWAPI&quot;&gt;OWAPI&lt;&#x2F;a&gt;, that scrapes and parses Overwatch gameplay stats from Blizzard.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h4 id=&quot;minifluxcr&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;azah&#x2F;miniflux-cr&quot;&gt;Minifluxcr&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Wrote a wrapper for Miniflux&#x27;s api.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h4 id=&quot;tree-problem&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;azah&#x2F;tree-problem&quot;&gt;tree-problem&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Solved an interview problem for CancerIQ. They wasted my time, so I made my solution public.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h3 id=&quot;elm&quot;&gt;Elm&lt;&#x2F;h3&gt;
-&lt;h4 id=&quot;amaranth-frontend&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;azah&#x2F;amaranth-frontend&quot;&gt;amaranth-frontend&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Elm frontend for amaranth-bot that dynamically lists commands and info.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h3 id=&quot;python-3&quot;&gt;Python 3&lt;&#x2F;h3&gt;
-&lt;h4 id=&quot;owapi&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Fuyukai&#x2F;OWAPI&quot;&gt;OWAPI&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Contributed to v2 and v3 of Laura&#x27;s overwatch stats api.&lt;&#x2F;li&gt;
-&lt;li&gt;Learned about xml scraping and parsing, and API design.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h2 id=&quot;not-programming-related&quot;&gt;Not Programming Related&lt;&#x2F;h2&gt;
-&lt;h4 id=&quot;dotfiles&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.andrewzah.com&#x2F;andrei&#x2F;dotfiles&quot;&gt;dotfiles&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;a dotfile a day keeps productivity at bay.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h4 id=&quot;az-quotes&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.andrewzah.com&#x2F;andrei&#x2F;quotes&quot;&gt;az-quotes&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;A json file of quotes that I like, as seen on my &lt;a href=&quot;&#x2F;quotes&quot;&gt;quotes page&lt;&#x2F;a&gt;. Source for the random quote at the end of my posts.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h4 id=&quot;tf2config&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.andrewzah.com&#x2F;andrei&#x2F;tf2-config&quot;&gt;tf2config&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;tf2 config based on master comfig.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h4 id=&quot;korean-articles-pandoc&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.andrewzah.com&#x2F;andrei&#x2F;korean-articles&quot;&gt;korean_articles&lt;&#x2F;a&gt; – pandoc&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Created a makefile to easily copy&#x2F;paste Korean articles and render them as PDFs for printing.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-</description>
-            </item>
-        
-            <item>
                 <title>Ultimate List of Resources for Learning Korean in 2019</title>
                 <pubDate>Mon, 04 Mar 2019 00:00:00 +0000</pubDate>
                 <link>andrewzah.com/posts/ultimate-list-of-resources-for-learning-korean-in-2019/</link>
@@ -2031,9 +2032,9 @@ Billy is probably the best Korean teacher that I have seen. He teaches well to a
 &lt;p&gt;Spongemind sporadically uploads short 1-2 minute &amp;quot;inspiration videos&amp;quot;. You can watch these to learn some new vocabulary words, and then repeat 10-20 times to practice saying the sentences. They also upload longer conversations &#x2F; interviews with English and Korean subtitles.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;apps&quot;&gt;Apps&lt;&#x2F;h2&gt;
 &lt;h4 id=&quot;sejjon-munbbeo-coggeu&quot;&gt;세종 문법 초급&lt;&#x2F;h4&gt;
-&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;011&amp;#x2F;sejongapp.jpg&quot; data-lity data-lity-desc=&quot;Sejong Beginner Gramar app interface pictures.&quot; alt=&quot;Sejong Beginner Gramar app interface pictures.&quot;&gt;
-&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;011&amp;#x2F;sejongapp.jpg&quot;&#x2F;&gt;
-&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;011&amp;#x2F;sejongapp.jpg&quot; data-lity data-lity-desc=&quot;Sejong Beginner Gramar app interface pictures.&quot; alt=&quot;Sejong Beginner Gramar app interface pictures.&quot;&gt;
+  &lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;011&amp;#x2F;sejongapp.jpg&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;
 &lt;span class=&quot;hl hl-left hl-green&quot;&gt;
   *B*
 &lt;&#x2F;span&gt;+: Apple&#x2F;Android App Store
@@ -2055,9 +2056,9 @@ Billy is probably the best Korean teacher that I have seen. He teaches well to a
 &lt;p&gt;One final warning: If you add 20 words a day, you will burn out eventually. I recommend limiting it to 10 new words per day, and 100 reviews per day, or less. Unless you can commit to doing Anki 45-60 minutes a day, every day, it will be very hard with the default settings. &lt;&#x2F;p&gt;
 &lt;p&gt;I use Anki so much that I&#x27;m planning on doing a writeup on it and its intricacies.&lt;&#x2F;p&gt;
 &lt;h4 id=&quot;naver-english-dictionary-1&quot;&gt;Naver English Dictionary&lt;&#x2F;h4&gt;
-&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;011&amp;#x2F;naverdicapp.jpg&quot; data-lity data-lity-desc=&quot;naver endic app interface pictures&quot; alt=&quot;naver endic app interface pictures&quot;&gt;
-&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;011&amp;#x2F;naverdicapp.jpg&quot;&#x2F;&gt;
-&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;011&amp;#x2F;naverdicapp.jpg&quot; data-lity data-lity-desc=&quot;naver endic app interface pictures&quot; alt=&quot;naver endic app interface pictures&quot;&gt;
+  &lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;011&amp;#x2F;naverdicapp.jpg&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;
 &lt;span class=&quot;hl hl-left hl-green&quot;&gt;
   *B*
 &lt;&#x2F;span&gt;+: Apple&#x2F;Android App Store

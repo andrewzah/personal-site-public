@@ -14,10 +14,10 @@
                 <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
                 <link>andrewzah.com/posts/my-setup-remote-programming-osx-2019/</link>
                 <guid>andrewzah.com/posts/my-setup-remote-programming-osx-2019/</guid>
-                <description>&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;wework-gangnam.jpg&quot; data-lity data-lity-desc=&quot;Working remotely at WeWork in Gangnam Seoul&quot; alt=&quot;Working remotely at WeWork in Gangnam Seoul&quot;&gt;
-&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;wework-gangnam.jpg&quot;&#x2F;&gt;
-&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;p class=&quot;image-desc&quot;&gt; Working remotely at WeWork, 강남, 서울 (Gangnam, Seoul) &lt;&#x2F;p&gt;
+                <description>&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;wework-gangnam.jpg&quot; data-lity data-lity-desc=&quot;Working remotely at WeWork in Gangnam Seoul&quot; alt=&quot;Working remotely at WeWork in Gangnam Seoul&quot;&gt;
+  &lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;wework-gangnam.jpg&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;
+  &lt;p class=&quot;image-desc&quot;&gt; Working remotely at WeWork, 강남, 서울 (Gangnam, Seoul) &lt;&#x2F;p&gt;
 &lt;p&gt;Hi! My name is Andrew, and I work remotely as a software developer. I&#x27;ve worked while traveling across America with spotty or no internet connection. I&#x27;ve worked in countries like South Korea and Japan. I like traveling, and this is how I stay productive.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;development-machine&quot;&gt;Development Machine&lt;&#x2F;h2&gt;
 &lt;p&gt;Before we begin, why apple and osx?&lt;&#x2F;p&gt;
@@ -45,10 +45,10 @@
 &lt;p&gt;Then, I use karabiner to make my right command key into a hyper key– it presses shift, command, control, and option.&lt;&#x2F;p&gt;
 &lt;h4 id=&quot;cons&quot;&gt;cons&lt;&#x2F;h4&gt;
 &lt;p&gt;Some applications have minimum window sizes. So if I have too many windows in one workspace, they will just overlap. Spotify and KakaoTalk are example offenders.&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;overlap.png&quot; data-lity data-lity-desc=&quot;An example image showing how Kakaotalk does not layout correctly when I have a terminal kakaotalk and two chat windows open&quot; alt=&quot;An example image showing how Kakaotalk does not layout correctly when I have a terminal kakaotalk and two chat windows open&quot;&gt;
-&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;overlap.png&quot;&#x2F;&gt;
-&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;p class=&quot;image-desc&quot;&gt; Notice the overlaps in bottom left and bottom middle. &lt;&#x2F;p&gt;
+&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;overlap.png&quot; data-lity data-lity-desc=&quot;An example image showing how Kakaotalk does not layout correctly when I have a terminal kakaotalk and two chat windows open&quot; alt=&quot;An example image showing how Kakaotalk does not layout correctly when I have a terminal kakaotalk and two chat windows open&quot;&gt;
+  &lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;overlap.png&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;
+  &lt;p class=&quot;image-desc&quot;&gt; Notice the overlaps in bottom left and bottom middle. &lt;&#x2F;p&gt;
 &lt;h3 id=&quot;poor-man-s-workspaces&quot;&gt;poor man&#x27;s workspaces&lt;&#x2F;h3&gt;
 &lt;p&gt;I use 10 Spaces. I added shortcuts to quickly focus them: hyper + 1-5, w-y.&lt;&#x2F;p&gt;
 &lt;p&gt;I disable &amp;quot;Automatically rearrange Spaces based on most recent use&amp;quot;, in Settings -&amp;gt; Mission Control. This has got to be one of the worst defaults ever made.&lt;&#x2F;p&gt;
@@ -105,10 +105,10 @@
 &lt;li&gt;disabling vim&#x27;s annoying swapfile system.&lt;&#x2F;li&gt;
 &lt;&#x2F;ul&gt;
 &lt;p&gt;Oh, and &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;morhetz&#x2F;gruvbox&quot;&gt;gruvbox&lt;&#x2F;a&gt;, possibly one of the best color schemes ever made. Every once in a while I experiment with a different scheme but I inevitably get drawn back to the king. If someone made &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;arcticicestudio&#x2F;nord&quot;&gt;Nord&lt;&#x2F;a&gt; but with green as the main color instead of blue, I might use that.&lt;&#x2F;p&gt;
-&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;nvim.png&quot; data-lity data-lity-desc=&quot;Screenshot of neovim with four buffers open and using monaco font&quot; alt=&quot;Screenshot of neovim with four buffers open and using monaco font&quot;&gt;
-&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;nvim.png&quot;&#x2F;&gt;
-&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;p class=&quot;image-desc&quot;&gt; neovim with four *buffers* open – and monaco font &lt;&#x2F;p&gt;
+&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;nvim.png&quot; data-lity data-lity-desc=&quot;Screenshot of neovim with four buffers open and using monaco font&quot; alt=&quot;Screenshot of neovim with four buffers open and using monaco font&quot;&gt;
+  &lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;015&amp;#x2F;nvim.png&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;
+  &lt;p class=&quot;image-desc&quot;&gt; neovim with four *buffers* open – and monaco font &lt;&#x2F;p&gt;
 &lt;h4 id=&quot;cons-1&quot;&gt;cons&lt;&#x2F;h4&gt;
 &lt;p&gt;Vim&#x27;s autocompletion... exists I guess. A while ago I looked into it but it seemed not worth the hassle to set up. Anyway, ctrl-p in &lt;code&gt;insert&lt;&#x2F;code&gt; mode brings up suggestions from open buffers. Good thing &lt;code&gt;p&lt;&#x2F;code&gt; is right next to &lt;code&gt;[&lt;&#x2F;code&gt;, which takes you out of &lt;code&gt;insert&lt;&#x2F;code&gt; mode. &#x2F;s&lt;&#x2F;p&gt;
 &lt;p&gt;As an aside, did you know that &lt;code&gt;vim&lt;&#x2F;code&gt; displays &lt;code&gt;Type :quit&amp;lt;Enter&amp;gt; to exit Vim&lt;&#x2F;code&gt; if you hit ctrl-c, and that it&#x27;s done so for a long time? Is your joke very outdated and unoriginal? Yes, yes it is.&lt;&#x2F;p&gt;
@@ -150,10 +150,10 @@
 &lt;p&gt;It was glorious. Except... it was, and still is, mac only. At home I use *nix systems or windows, so using it became tedious and I eventually stopped.&lt;&#x2F;p&gt;
 &lt;p&gt;As I was writing this article, I discovered &lt;a href=&quot;https:&#x2F;&#x2F;brettterpstra.com&#x2F;projects&#x2F;nvalt&#x2F;&quot;&gt;nVALT&lt;&#x2F;a&gt;–Brett Terpstra&#x27;s fork. It has more functionality like markdown support and a better interface. No vim keybindings though, which made it unpleasant for me to use. Terpstra is working on &lt;a href=&quot;https:&#x2F;&#x2F;brettterpstra.com&#x2F;2019&#x2F;04&#x2F;10&#x2F;codename-nvultra&#x2F;&quot;&gt;nvUltra&lt;&#x2F;a&gt; currently which may fix this.&lt;&#x2F;p&gt;
 &lt;hr &#x2F;&gt;
-&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;raw.githubusercontent.com&amp;#x2F;alok&amp;#x2F;notational-fzf-vim&amp;#x2F;master&amp;#x2F;screenshots&amp;#x2F;usage.gif&quot; data-lity data-lity-desc=&quot;A gif showcasing how notational fzf vim works.&quot; alt=&quot;A gif showcasing how notational fzf vim works.&quot;&gt;
-&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;raw.githubusercontent.com&amp;#x2F;alok&amp;#x2F;notational-fzf-vim&amp;#x2F;master&amp;#x2F;screenshots&amp;#x2F;usage.gif&quot;&#x2F;&gt;
-&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
-&lt;p class=&quot;image-desc&quot;&gt; Taken from https:&amp;#x2F;&amp;#x2F;github.com&amp;#x2F;Alok&amp;#x2F;notational-fzf-vim &lt;&#x2F;p&gt;
+&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;raw.githubusercontent.com&amp;#x2F;alok&amp;#x2F;notational-fzf-vim&amp;#x2F;master&amp;#x2F;screenshots&amp;#x2F;usage.gif&quot; data-lity data-lity-desc=&quot;A gif showcasing how notational fzf vim works.&quot; alt=&quot;A gif showcasing how notational fzf vim works.&quot;&gt;
+  &lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;raw.githubusercontent.com&amp;#x2F;alok&amp;#x2F;notational-fzf-vim&amp;#x2F;master&amp;#x2F;screenshots&amp;#x2F;usage.gif&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;
+  &lt;p class=&quot;image-desc&quot;&gt; Taken from https:&amp;#x2F;&amp;#x2F;github.com&amp;#x2F;Alok&amp;#x2F;notational-fzf-vim &lt;&#x2F;p&gt;
 &lt;p&gt;After I started writing this article, Alex Singh released &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;alok&#x2F;notational-fzf-vim&quot;&gt;notational-fzf-vim&lt;&#x2F;a&gt;, which is basically notational velocity but in vim! As the name implies, fulltext searching is powered by &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;junegunn&#x2F;fzf.vim&quot;&gt;fzf&lt;&#x2F;a&gt;, which in turn uses &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;BurntSushi&#x2F;ripgrep&quot;&gt;ripgrep&lt;&#x2F;a&gt; by default. Both are excellent tools I use daily.&lt;&#x2F;p&gt;
 &lt;p&gt;The preview window is amazing..!&lt;&#x2F;p&gt;
 &lt;p&gt;In order to use it, you need to specify at least one directory for the plugin to search. This will be the primary directory where new notes will be saved, but you can search multiple directories.&lt;&#x2F;p&gt;
