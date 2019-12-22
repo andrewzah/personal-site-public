@@ -7,7 +7,152 @@
         <generator>Zola</generator>
         <language>en</language>
         <atom:link href="andrewzah.com/categories/self/rss.xml" rel="self" type="application/rss+xml"/>
-        <lastBuildDate>Sat, 19 Oct 2019 00:00:00 +0000</lastBuildDate>
+        <lastBuildDate>Sat, 21 Dec 2019 00:00:00 +0000</lastBuildDate>
+        
+            <item>
+                <title>Building a Home Server with FreeNAS</title>
+                <pubDate>Sat, 21 Dec 2019 00:00:00 +0000</pubDate>
+                <link>andrewzah.com/posts/building-home-server-freenas/</link>
+                <guid>andrewzah.com/posts/building-home-server-freenas/</guid>
+                <description>&lt;p&gt;A few months ago I got gripped with server fever. I&#x27;d had a raspberry pi for a while, but I could never find a meaningful use for it. I&#x27;d tried running plex, etc, but the pi3 would choke after a bit and sputter out.&lt;&#x2F;p&gt;
+&lt;p&gt;One day I decided enough was enough: it was time to build a more beefy server. (and I found a compelling use for the pi!)&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;serverbuild-freenas&amp;#x2F;freenas-info.png&quot; data-lity data-lity-desc=&quot;FreeNAS server information&quot; alt=&quot;FreeNAS server information&quot;&gt;
+&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;serverbuild-freenas&amp;#x2F;freenas-info.png&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p class=&quot;image-desc&quot;&gt; Current FreeNAS server information &lt;&#x2F;p&gt;
+&lt;h3 id=&quot;my-goals&quot;&gt;My Goals&lt;&#x2F;h3&gt;
+&lt;p&gt;I had a few goals I wanted to achieve:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;be relatively future-proof&lt;&#x2F;li&gt;
+&lt;li&gt;host a plex server&lt;&#x2F;li&gt;
+&lt;li&gt;be able to spin up multiple VMs for various reasons like testing ansible scripts&lt;&#x2F;li&gt;
+&lt;li&gt;potentially host games for me and my brother&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;If all you want to do is host Plex&#x2F;jellyfish, a raspberry pi should suffice. As long as your media isn&#x27;t hvec x265. Before I built this server I had two 2tb drives plugged into my raspberry pi, and other content was fine for the most part.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;the-requirements&quot;&gt;The Requirements&lt;&#x2F;h3&gt;
+&lt;p&gt;I don&#x27;t have space in my home for a rack for a server, due to both the size and noise. That immediately eliminated a lot of build paths that I saw.&lt;&#x2F;p&gt;
+&lt;p&gt;The ideal spot for the server was my living room, so I needed a relatively low profile server- and a &lt;em&gt;quiet&lt;&#x2F;em&gt; one.&lt;&#x2F;p&gt;
+&lt;p&gt;The remaining requirements were:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;at least 8 hard drive bays&lt;&#x2F;li&gt;
+&lt;li&gt;a relatively modern&#x2F;beefy cpu&lt;&#x2F;li&gt;
+&lt;li&gt;low(er) power consumption&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;I felt like 8 drives (+1 or 2 ssds) was enough for future expansion, even with RAID-10 taken into account.
+I went with a mirrored structure so I could replace drives without heavy rebuild times, and so I could easily expand the pool if necessary.
+I started with 6 drives, so I have a zpool with 3 vdevs of 2 drives each.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;part-list&quot;&gt;Part List&lt;&#x2F;h3&gt;
+&lt;p&gt;What I thought was going to be a relatively simple task turned into a huge amount of research...
+I spent most of my time on &lt;a href=&quot;https:&#x2F;&#x2F;www.ixsystems.com&#x2F;community&#x2F;&quot;&gt;iXsystems&#x27; community forum&lt;&#x2F;a&gt;
+and &lt;a href=&quot;https:&#x2F;&#x2F;www.reddit.com&#x2F;r&#x2F;homelab&#x2F;&quot;&gt;&#x2F;r&#x2F;homelab&lt;&#x2F;a&gt; on reddit. The people on iXsystems&#x27; forum were very helpful and detailed. However, most of the information for iXsystems is based around used intel boards. Much less material is available if you&#x27;re like me and are interested in newer AMD cpus.&lt;&#x2F;p&gt;
+&lt;p&gt;So how did I narrow it down? I did what I always do: make a spreadsheet. There are simply way too many options presented to figure what cpu&#x2F;mobo to choose without spreadsheet analysis. Without further ado:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;case: &lt;a href=&quot;https:&#x2F;&#x2F;docs.google.com&#x2F;spreadsheets&#x2F;d&#x2F;1pThQQLHIcB_LO6-PmypGOSeaErY_ip6FY2lmbkS0DYc&#x2F;Fractal%20Design%20Node%20804%20Black%20Window%20Aluminum&#x2F;Steel%20MATX&quot;&gt;Fractal Node 804 Micro Atx Case&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;boot ssd (nvme): &lt;a href=&quot;https:&#x2F;&#x2F;www.newegg.com&#x2F;western-digital-black-nvme-250gb&#x2F;p&#x2F;N82E16820250097&quot;&gt;WD Black NVMe M.2 2280 250Gb PCI-Express 3.0 x4 SSD WDS250G2X0C&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;ssd: &lt;a href=&quot;https:&#x2F;&#x2F;www.newegg.com&#x2F;apc-bx1500m-5-x-nema-5-15r-5-x-nema-5-15r&#x2F;p&#x2F;N82E16842301561?Description=APC%20BX1500M%20Back-UPS%20Pro%201500VA%2f900W&amp;amp;cm_re=APC_BX1500M_Back-UPS_Pro_1500VA%2f900W-_-42-301-561-_-Product&quot;&gt;SAMSUNG 860 EVO Series 2.5&amp;quot; 500GB MZ-76E500B&#x2F;AM&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;intake fans x4: &lt;a href=&quot;https:&#x2F;&#x2F;smile.amazon.com&#x2F;dp&#x2F;B00650P2ZC&#x2F;?tag=ozlp-20&quot;&gt;Noctua NF-F12 WPM 120mm&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;exhaust fans x2: &lt;a href=&quot;https:&#x2F;&#x2F;smile.amazon.com&#x2F;dp&#x2F;B00CP6QLY6&#x2F;?tag=ozlp-20&quot;&gt;Noctua NF-A14 PWM 140mm&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;cpu cooler: &lt;a href=&quot;https:&#x2F;&#x2F;smile.amazon.com&#x2F;Noctua-NH-L12S-Low-Profile-Cooler-Quiet&#x2F;dp&#x2F;B075SF5QQ8&#x2F;ref=sr_1_2?keywords=NH-L12S&amp;amp;qid=1565553407&amp;amp;s=gateway&amp;amp;sr=8-2&quot;&gt;Noctua NH-L12S 70mm Low-Profile CPU Cooler&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;ups&#x2F;apc: &lt;a href=&quot;andrewzah.com&#x2F;posts&#x2F;building-home-server-freenas&#x2F;&quot;&gt;https:&#x2F;&#x2F;www.newegg.com&#x2F;apc-bx1500m-5-x-nema-5-15r-5-x-nema-5-15r&#x2F;p&#x2F;N82E16842301561?Description=APC%20BX1500M%20Back-UPS%20Pro%201500VA%2f900W&amp;amp;cm_re=APC_BX1500M_Back-UPS_Pro_1500VA%2f900W-&lt;em&gt;-42-301-561-&lt;&#x2F;em&gt;-Product&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;psu: &lt;a href=&quot;https:&#x2F;&#x2F;www.newegg.com&#x2F;seasonic-focus-plus-650-gold-ssr-650fx-650w&#x2F;p&#x2F;N82E16817151186&quot;&gt;Seasonic FOCUS Plus Series SSR-650FX 650W&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The total comes out to around $632. I don&#x27;t know why anyone would build a server without getting some sort of UPS&#x2F;APC as well.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;ul&gt;
+&lt;li&gt;cpu: &lt;a href=&quot;https:&#x2F;&#x2F;www.newegg.com&#x2F;amd-ryzen-5-3600&#x2F;p&#x2F;N82E16819113569?Description=5%203600%20amd&amp;amp;cm_re=5_3600_amd-_-19-113-569-_-Product&quot;&gt;AMD Ryzen 5 3600 - 3.6Ghz&#x2F;4.2Ghz 6-core&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;mobo: &lt;a href=&quot;https:&#x2F;&#x2F;www.newegg.com&#x2F;p&#x2F;N82E16813157887?Description=asrock%20x570m%20&amp;amp;cm_re=asrock_x570m-_-13-157-887-_-Product&quot;&gt;ASRock X570M Pro4 AM4 MicroAtx&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;ram x3: &lt;a href=&quot;https:&#x2F;&#x2F;smile.amazon.com&#x2F;Crucial-DDR4-21300-Server-Memory-CT16G4WFD8266&#x2F;dp&#x2F;B078N7HC6L&quot;&gt;Crucial 16GB DDR4-2666 ECC UDIMM CT16G4WFD8266&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The total was $676 for these parts, with $291 for the memory alone. DDR4 ram with ecc isn&#x27;t cheap. For comparison, a Xeon E5-2650 V2 goes for around $70 on ebay, with significantly cheaper DDR3 ram.&lt;&#x2F;p&gt;
+&lt;div class=&quot;note note-Note&quot;&gt;
+  &lt;h4&gt;Note&lt;&#x2F;h4&gt;
+  &lt;span&gt;I&amp;#x27;ve used the ryzen setup for 3+ months now with no issues.&lt;&#x2F;span&gt;
+&lt;&#x2F;div&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;So I was already at $1,300, &lt;em&gt;before&lt;&#x2F;em&gt; purchasing hard drives. I bought 6 Western Digital Red 4TB drives initially, @ $100. Later on I got 2 more drives, and another stick of ram.&lt;&#x2F;p&gt;
+&lt;p&gt;Altogether, it was $1300 for the parts + $800 for the drives, or ~$2100 in total.&lt;&#x2F;p&gt;
+&lt;p&gt;I didn&#x27;t go with a used intel board because of the higher power usage and less powerful specs. This made my build much more expensive, but also more future proof.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;usage&quot;&gt;Usage&lt;&#x2F;h3&gt;
+&lt;p&gt;I adapted my jail setup and structure from &lt;a href=&quot;https:&#x2F;&#x2F;gist.github.com&#x2F;mow4cash&#x2F;e2fd4991bd2b787ca407a355d134b0ff&quot;&gt;this gist&lt;&#x2F;a&gt;, and installed rancheros via &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;redshift-s&#x2F;rancheros-docker-media&quot;&gt;this guide&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;I currently have 20 &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;FreeBSD_jail&quot;&gt;jails&lt;&#x2F;a&gt; running, and 5 docker containers running in &lt;a href=&quot;https:&#x2F;&#x2F;rancher.com&#x2F;rancher-os&#x2F;&quot;&gt;RancherOS&lt;&#x2F;a&gt; (which &lt;a href=&quot;https:&#x2F;&#x2F;www.ixsystems.com&#x2F;documentation&#x2F;freenas&#x2F;11.2-U7&#x2F;virtualmachines.html&quot;&gt;runs in a VM&lt;&#x2F;a&gt; with 2 cpus and 4GB memory).&lt;&#x2F;p&gt;
+&lt;p&gt;Why jails over docker? Convenience, I guess. It&#x27;s far easier for me to muck around in iocage jails than it is to inspect and debug docker containers. Unfortunately this does mean if I lose my server, I&#x27;d have to recreate all those jails... but setting them up in the first place was pretty easy once I learned how &lt;a href=&quot;https:&#x2F;&#x2F;www.freebsd.org&#x2F;cgi&#x2F;man.cgi?query=rc.d&amp;amp;sektion=8&amp;amp;n=1&quot;&gt;rc.d&lt;&#x2F;a&gt; worked.&lt;&#x2F;p&gt;
+&lt;p&gt;Services that I run:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;backblaze
+  -&amp;gt; data backup
+bazarr
+  -&amp;gt; grabs subtitles in multiple languages, hooks into radarr&#x2F;sonarr
+caddy
+  -&amp;gt; reverse proxy to some of these services
+calendar
+  -&amp;gt; radicale
+kitana
+  -&amp;gt; ui for plex plugins
+mailbackup
+  -&amp;gt; offlineimap + cron
+node_exporter
+  -&amp;gt; feeds into prometheus on the raspberry pi
+paperless
+  -&amp;gt; digital document store
+plex
+  -&amp;gt; media catalogue + streaming
+radarr
+  -&amp;gt; monitors local shows for for bazarr subtitle grabbing
+sonarr
+  -&amp;gt; monitors local movies for for bazarr subtitle grabbing
+syncthing
+  -&amp;gt; seamlessly sync files between computers
+thelounge
+  -&amp;gt; modern irc client. I used to use znc+weechat, but I got
+     tired of weechat&amp;#39;s ux. thelounge is simple and pretty.
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;postgres
+mysql
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Several services use databases, so I elected to set aside jails for them.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;mc_main
+mc_creative
+mc_survival
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I also run 3 instances of minecraft via &lt;a href=&quot;https:&#x2F;&#x2F;papermc.io&#x2F;&quot;&gt;PaperMC&lt;&#x2F;a&gt;, a high performance fork of &lt;a href=&quot;https:&#x2F;&#x2F;www.spigotmc.org&#x2F;&quot;&gt;Spigot&lt;&#x2F;a&gt;. The main jail runs &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;PaperMC&#x2F;Waterfall&quot;&gt;Waterfall&lt;&#x2F;a&gt;
+(a fork of &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;SpigotMC&#x2F;BungeeCord&quot;&gt;bungeecord&lt;&#x2F;a&gt;) along with a hub instance.
+Waterfall acts as a proxy and lets one access multiple servers within a network.&lt;&#x2F;p&gt;
+&lt;p&gt;My docker services:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;andrewzah&#x2F;gollum
+  -&amp;gt; a wiki with changes automatically git pushed
+  -&amp;gt; a fork of gollum with user logins
+insekticid&#x2F;docker-piwiki (matomo)
+  -&amp;gt; self-hosted analytics (tracking andrewzah.com)
+  -&amp;gt; respects requests to not track user
+radhifadlillah&#x2F;shiori
+  -&amp;gt; self-hosted website backup, similar to archive.web
+huginn&#x2F;huginn
+  -&amp;gt; self-hosted, more powerful version of IFTTT
+cwspear&#x2F;docker-local-persist-volume-plugin
+  -&amp;gt; allows local volume mounts in portainer&#x2F;rancheros
+portainer&#x2F;portainer
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;serverbuild-freenas&amp;#x2F;freenas-memory.png&quot; data-lity data-lity-desc=&quot;FreeNAS memory graph&quot; alt=&quot;FreeNAS memory graph&quot;&gt;
+&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;serverbuild-freenas&amp;#x2F;freenas-memory.png&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p class=&quot;image-desc&quot;&gt; Current FreeNAS memory graph &lt;&#x2F;p&gt;
+&lt;h3 id=&quot;a-use-for-the-raspberry-pi&quot;&gt;A Use for the Raspberry Pi&lt;&#x2F;h3&gt;
+&lt;p&gt;Once I built the server, I had no use for my raspberry pi3 and 4. Until I learned about &lt;a href=&quot;https:&#x2F;&#x2F;prometheus.io&#x2F;&quot;&gt;prometheus&lt;&#x2F;a&gt; and &lt;a href=&quot;https:&#x2F;&#x2F;grafana.com&#x2F;&quot;&gt;grafana&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Having metrics and a dashboard is awesome, but if my server crashes, I no longer have access to the metrics... So they have to be run somewhere else! This is where the raspberry pi comes in- it just sits on my local network ingesting traffic.&lt;&#x2F;p&gt;
+&lt;p&gt;Unfortunately, node_exporter doesn&#x27;t seem to export hdd temperature values, which is pretty important. I&#x27;ll probably have to write a simple script to pull those values and host another metrics target for prometheus.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;serverbuild-freenas&amp;#x2F;grafana-node-exporter.png&quot; data-lity data-lity-desc=&quot;Grafana with node_exporter metrics from FreeNAS&quot; alt=&quot;Grafana with node_exporter metrics from FreeNAS&quot;&gt;
+&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;serverbuild-freenas&amp;#x2F;grafana-node-exporter.png&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p class=&quot;image-desc&quot;&gt; Grafana with node_exporter metrics from FreeNAS &lt;&#x2F;p&gt;
+&lt;h4 id=&quot;why-freenas&quot;&gt;Why FreeNAS?&lt;&#x2F;h4&gt;
+&lt;p&gt;FreeNAS has extensive documentation. and *BSDs are nice. ZFS and RAID are nice. Free Software is nice. &lt;&#x2F;p&gt;
+&lt;p&gt;If I didn&#x27;t use docker so heavily I would likely use FreeBSD or OpenBSD for my personal computers as well instead of Debian.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;Overall the process of building a server was pretty fun, but I&#x27;m glad I&#x27;m done with that for the foreseeable future. I didn&#x27;t self-host that much when I began, but once I started adding services I started thinking about everything I could self host.&lt;&#x2F;p&gt;
+</description>
+            </item>
         
             <item>
                 <title>My setup for remote programming on OSX in 2019</title>

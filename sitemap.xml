@@ -106,6 +106,13 @@
     </url>
   
     <url>
+      <loc>https://andrewzah.com/posts/building-home-server-freenas/</loc>
+      
+        <lastmod>2019-12-21</lastmod>
+      
+    </url>
+  
+    <url>
       <loc>https://andrewzah.com/posts/korean-cooking-eating-vocabulary-reference/</loc>
       
         <lastmod>2018-12-28</lastmod>
@@ -192,7 +199,7 @@
     <url>
       <loc>https://andrewzah.com/projects/</loc>
       
-        <lastmod>2019-03-25</lastmod>
+        <lastmod>2019-11-22</lastmod>
       
     </url>
   
@@ -308,6 +315,11 @@
   
     <url>
       <loc>https://andrewzah.com/tags/selfhosting/</loc>
+      
+    </url>
+  
+    <url>
+      <loc>https://andrewzah.com/tags/servers/</loc>
       
     </url>
   

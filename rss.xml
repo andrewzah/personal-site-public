@@ -7,7 +7,257 @@
         <generator>Zola</generator>
         <language>en</language>
         <atom:link href="andrewzah.com/rss.xml" rel="self" type="application/rss+xml"/>
-        <lastBuildDate>Sat, 19 Oct 2019 00:00:00 +0000</lastBuildDate>
+        <lastBuildDate>Sat, 21 Dec 2019 00:00:00 +0000</lastBuildDate>
+        
+            <item>
+                <title>Building a Home Server with FreeNAS</title>
+                <pubDate>Sat, 21 Dec 2019 00:00:00 +0000</pubDate>
+                <link>andrewzah.com/posts/building-home-server-freenas/</link>
+                <guid>andrewzah.com/posts/building-home-server-freenas/</guid>
+                <description>&lt;p&gt;A few months ago I got gripped with server fever. I&#x27;d had a raspberry pi for a while, but I could never find a meaningful use for it. I&#x27;d tried running plex, etc, but the pi3 would choke after a bit and sputter out.&lt;&#x2F;p&gt;
+&lt;p&gt;One day I decided enough was enough: it was time to build a more beefy server. (and I found a compelling use for the pi!)&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;serverbuild-freenas&amp;#x2F;freenas-info.png&quot; data-lity data-lity-desc=&quot;FreeNAS server information&quot; alt=&quot;FreeNAS server information&quot;&gt;
+&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;serverbuild-freenas&amp;#x2F;freenas-info.png&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p class=&quot;image-desc&quot;&gt; Current FreeNAS server information &lt;&#x2F;p&gt;
+&lt;h3 id=&quot;my-goals&quot;&gt;My Goals&lt;&#x2F;h3&gt;
+&lt;p&gt;I had a few goals I wanted to achieve:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;be relatively future-proof&lt;&#x2F;li&gt;
+&lt;li&gt;host a plex server&lt;&#x2F;li&gt;
+&lt;li&gt;be able to spin up multiple VMs for various reasons like testing ansible scripts&lt;&#x2F;li&gt;
+&lt;li&gt;potentially host games for me and my brother&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;If all you want to do is host Plex&#x2F;jellyfish, a raspberry pi should suffice. As long as your media isn&#x27;t hvec x265. Before I built this server I had two 2tb drives plugged into my raspberry pi, and other content was fine for the most part.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;the-requirements&quot;&gt;The Requirements&lt;&#x2F;h3&gt;
+&lt;p&gt;I don&#x27;t have space in my home for a rack for a server, due to both the size and noise. That immediately eliminated a lot of build paths that I saw.&lt;&#x2F;p&gt;
+&lt;p&gt;The ideal spot for the server was my living room, so I needed a relatively low profile server- and a &lt;em&gt;quiet&lt;&#x2F;em&gt; one.&lt;&#x2F;p&gt;
+&lt;p&gt;The remaining requirements were:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;at least 8 hard drive bays&lt;&#x2F;li&gt;
+&lt;li&gt;a relatively modern&#x2F;beefy cpu&lt;&#x2F;li&gt;
+&lt;li&gt;low(er) power consumption&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;I felt like 8 drives (+1 or 2 ssds) was enough for future expansion, even with RAID-10 taken into account.
+I went with a mirrored structure so I could replace drives without heavy rebuild times, and so I could easily expand the pool if necessary.
+I started with 6 drives, so I have a zpool with 3 vdevs of 2 drives each.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;part-list&quot;&gt;Part List&lt;&#x2F;h3&gt;
+&lt;p&gt;What I thought was going to be a relatively simple task turned into a huge amount of research...
+I spent most of my time on &lt;a href=&quot;https:&#x2F;&#x2F;www.ixsystems.com&#x2F;community&#x2F;&quot;&gt;iXsystems&#x27; community forum&lt;&#x2F;a&gt;
+and &lt;a href=&quot;https:&#x2F;&#x2F;www.reddit.com&#x2F;r&#x2F;homelab&#x2F;&quot;&gt;&#x2F;r&#x2F;homelab&lt;&#x2F;a&gt; on reddit. The people on iXsystems&#x27; forum were very helpful and detailed. However, most of the information for iXsystems is based around used intel boards. Much less material is available if you&#x27;re like me and are interested in newer AMD cpus.&lt;&#x2F;p&gt;
+&lt;p&gt;So how did I narrow it down? I did what I always do: make a spreadsheet. There are simply way too many options presented to figure what cpu&#x2F;mobo to choose without spreadsheet analysis. Without further ado:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;case: &lt;a href=&quot;https:&#x2F;&#x2F;docs.google.com&#x2F;spreadsheets&#x2F;d&#x2F;1pThQQLHIcB_LO6-PmypGOSeaErY_ip6FY2lmbkS0DYc&#x2F;Fractal%20Design%20Node%20804%20Black%20Window%20Aluminum&#x2F;Steel%20MATX&quot;&gt;Fractal Node 804 Micro Atx Case&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;boot ssd (nvme): &lt;a href=&quot;https:&#x2F;&#x2F;www.newegg.com&#x2F;western-digital-black-nvme-250gb&#x2F;p&#x2F;N82E16820250097&quot;&gt;WD Black NVMe M.2 2280 250Gb PCI-Express 3.0 x4 SSD WDS250G2X0C&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;ssd: &lt;a href=&quot;https:&#x2F;&#x2F;www.newegg.com&#x2F;apc-bx1500m-5-x-nema-5-15r-5-x-nema-5-15r&#x2F;p&#x2F;N82E16842301561?Description=APC%20BX1500M%20Back-UPS%20Pro%201500VA%2f900W&amp;amp;cm_re=APC_BX1500M_Back-UPS_Pro_1500VA%2f900W-_-42-301-561-_-Product&quot;&gt;SAMSUNG 860 EVO Series 2.5&amp;quot; 500GB MZ-76E500B&#x2F;AM&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;intake fans x4: &lt;a href=&quot;https:&#x2F;&#x2F;smile.amazon.com&#x2F;dp&#x2F;B00650P2ZC&#x2F;?tag=ozlp-20&quot;&gt;Noctua NF-F12 WPM 120mm&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;exhaust fans x2: &lt;a href=&quot;https:&#x2F;&#x2F;smile.amazon.com&#x2F;dp&#x2F;B00CP6QLY6&#x2F;?tag=ozlp-20&quot;&gt;Noctua NF-A14 PWM 140mm&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;cpu cooler: &lt;a href=&quot;https:&#x2F;&#x2F;smile.amazon.com&#x2F;Noctua-NH-L12S-Low-Profile-Cooler-Quiet&#x2F;dp&#x2F;B075SF5QQ8&#x2F;ref=sr_1_2?keywords=NH-L12S&amp;amp;qid=1565553407&amp;amp;s=gateway&amp;amp;sr=8-2&quot;&gt;Noctua NH-L12S 70mm Low-Profile CPU Cooler&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;ups&#x2F;apc: &lt;a href=&quot;andrewzah.com&#x2F;posts&#x2F;building-home-server-freenas&#x2F;&quot;&gt;https:&#x2F;&#x2F;www.newegg.com&#x2F;apc-bx1500m-5-x-nema-5-15r-5-x-nema-5-15r&#x2F;p&#x2F;N82E16842301561?Description=APC%20BX1500M%20Back-UPS%20Pro%201500VA%2f900W&amp;amp;cm_re=APC_BX1500M_Back-UPS_Pro_1500VA%2f900W-&lt;em&gt;-42-301-561-&lt;&#x2F;em&gt;-Product&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;psu: &lt;a href=&quot;https:&#x2F;&#x2F;www.newegg.com&#x2F;seasonic-focus-plus-650-gold-ssr-650fx-650w&#x2F;p&#x2F;N82E16817151186&quot;&gt;Seasonic FOCUS Plus Series SSR-650FX 650W&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The total comes out to around $632. I don&#x27;t know why anyone would build a server without getting some sort of UPS&#x2F;APC as well.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;ul&gt;
+&lt;li&gt;cpu: &lt;a href=&quot;https:&#x2F;&#x2F;www.newegg.com&#x2F;amd-ryzen-5-3600&#x2F;p&#x2F;N82E16819113569?Description=5%203600%20amd&amp;amp;cm_re=5_3600_amd-_-19-113-569-_-Product&quot;&gt;AMD Ryzen 5 3600 - 3.6Ghz&#x2F;4.2Ghz 6-core&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;mobo: &lt;a href=&quot;https:&#x2F;&#x2F;www.newegg.com&#x2F;p&#x2F;N82E16813157887?Description=asrock%20x570m%20&amp;amp;cm_re=asrock_x570m-_-13-157-887-_-Product&quot;&gt;ASRock X570M Pro4 AM4 MicroAtx&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;ram x3: &lt;a href=&quot;https:&#x2F;&#x2F;smile.amazon.com&#x2F;Crucial-DDR4-21300-Server-Memory-CT16G4WFD8266&#x2F;dp&#x2F;B078N7HC6L&quot;&gt;Crucial 16GB DDR4-2666 ECC UDIMM CT16G4WFD8266&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The total was $676 for these parts, with $291 for the memory alone. DDR4 ram with ecc isn&#x27;t cheap. For comparison, a Xeon E5-2650 V2 goes for around $70 on ebay, with significantly cheaper DDR3 ram.&lt;&#x2F;p&gt;
+&lt;div class=&quot;note note-Note&quot;&gt;
+  &lt;h4&gt;Note&lt;&#x2F;h4&gt;
+  &lt;span&gt;I&amp;#x27;ve used the ryzen setup for 3+ months now with no issues.&lt;&#x2F;span&gt;
+&lt;&#x2F;div&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;So I was already at $1,300, &lt;em&gt;before&lt;&#x2F;em&gt; purchasing hard drives. I bought 6 Western Digital Red 4TB drives initially, @ $100. Later on I got 2 more drives, and another stick of ram.&lt;&#x2F;p&gt;
+&lt;p&gt;Altogether, it was $1300 for the parts + $800 for the drives, or ~$2100 in total.&lt;&#x2F;p&gt;
+&lt;p&gt;I didn&#x27;t go with a used intel board because of the higher power usage and less powerful specs. This made my build much more expensive, but also more future proof.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;usage&quot;&gt;Usage&lt;&#x2F;h3&gt;
+&lt;p&gt;I adapted my jail setup and structure from &lt;a href=&quot;https:&#x2F;&#x2F;gist.github.com&#x2F;mow4cash&#x2F;e2fd4991bd2b787ca407a355d134b0ff&quot;&gt;this gist&lt;&#x2F;a&gt;, and installed rancheros via &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;redshift-s&#x2F;rancheros-docker-media&quot;&gt;this guide&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;I currently have 20 &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;FreeBSD_jail&quot;&gt;jails&lt;&#x2F;a&gt; running, and 5 docker containers running in &lt;a href=&quot;https:&#x2F;&#x2F;rancher.com&#x2F;rancher-os&#x2F;&quot;&gt;RancherOS&lt;&#x2F;a&gt; (which &lt;a href=&quot;https:&#x2F;&#x2F;www.ixsystems.com&#x2F;documentation&#x2F;freenas&#x2F;11.2-U7&#x2F;virtualmachines.html&quot;&gt;runs in a VM&lt;&#x2F;a&gt; with 2 cpus and 4GB memory).&lt;&#x2F;p&gt;
+&lt;p&gt;Why jails over docker? Convenience, I guess. It&#x27;s far easier for me to muck around in iocage jails than it is to inspect and debug docker containers. Unfortunately this does mean if I lose my server, I&#x27;d have to recreate all those jails... but setting them up in the first place was pretty easy once I learned how &lt;a href=&quot;https:&#x2F;&#x2F;www.freebsd.org&#x2F;cgi&#x2F;man.cgi?query=rc.d&amp;amp;sektion=8&amp;amp;n=1&quot;&gt;rc.d&lt;&#x2F;a&gt; worked.&lt;&#x2F;p&gt;
+&lt;p&gt;Services that I run:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;backblaze
+  -&amp;gt; data backup
+bazarr
+  -&amp;gt; grabs subtitles in multiple languages, hooks into radarr&#x2F;sonarr
+caddy
+  -&amp;gt; reverse proxy to some of these services
+calendar
+  -&amp;gt; radicale
+kitana
+  -&amp;gt; ui for plex plugins
+mailbackup
+  -&amp;gt; offlineimap + cron
+node_exporter
+  -&amp;gt; feeds into prometheus on the raspberry pi
+paperless
+  -&amp;gt; digital document store
+plex
+  -&amp;gt; media catalogue + streaming
+radarr
+  -&amp;gt; monitors local shows for for bazarr subtitle grabbing
+sonarr
+  -&amp;gt; monitors local movies for for bazarr subtitle grabbing
+syncthing
+  -&amp;gt; seamlessly sync files between computers
+thelounge
+  -&amp;gt; modern irc client. I used to use znc+weechat, but I got
+     tired of weechat&amp;#39;s ux. thelounge is simple and pretty.
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;postgres
+mysql
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Several services use databases, so I elected to set aside jails for them.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;mc_main
+mc_creative
+mc_survival
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I also run 3 instances of minecraft via &lt;a href=&quot;https:&#x2F;&#x2F;papermc.io&#x2F;&quot;&gt;PaperMC&lt;&#x2F;a&gt;, a high performance fork of &lt;a href=&quot;https:&#x2F;&#x2F;www.spigotmc.org&#x2F;&quot;&gt;Spigot&lt;&#x2F;a&gt;. The main jail runs &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;PaperMC&#x2F;Waterfall&quot;&gt;Waterfall&lt;&#x2F;a&gt;
+(a fork of &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;SpigotMC&#x2F;BungeeCord&quot;&gt;bungeecord&lt;&#x2F;a&gt;) along with a hub instance.
+Waterfall acts as a proxy and lets one access multiple servers within a network.&lt;&#x2F;p&gt;
+&lt;p&gt;My docker services:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;andrewzah&#x2F;gollum
+  -&amp;gt; a wiki with changes automatically git pushed
+  -&amp;gt; a fork of gollum with user logins
+insekticid&#x2F;docker-piwiki (matomo)
+  -&amp;gt; self-hosted analytics (tracking andrewzah.com)
+  -&amp;gt; respects requests to not track user
+radhifadlillah&#x2F;shiori
+  -&amp;gt; self-hosted website backup, similar to archive.web
+huginn&#x2F;huginn
+  -&amp;gt; self-hosted, more powerful version of IFTTT
+cwspear&#x2F;docker-local-persist-volume-plugin
+  -&amp;gt; allows local volume mounts in portainer&#x2F;rancheros
+portainer&#x2F;portainer
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;serverbuild-freenas&amp;#x2F;freenas-memory.png&quot; data-lity data-lity-desc=&quot;FreeNAS memory graph&quot; alt=&quot;FreeNAS memory graph&quot;&gt;
+&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;serverbuild-freenas&amp;#x2F;freenas-memory.png&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p class=&quot;image-desc&quot;&gt; Current FreeNAS memory graph &lt;&#x2F;p&gt;
+&lt;h3 id=&quot;a-use-for-the-raspberry-pi&quot;&gt;A Use for the Raspberry Pi&lt;&#x2F;h3&gt;
+&lt;p&gt;Once I built the server, I had no use for my raspberry pi3 and 4. Until I learned about &lt;a href=&quot;https:&#x2F;&#x2F;prometheus.io&#x2F;&quot;&gt;prometheus&lt;&#x2F;a&gt; and &lt;a href=&quot;https:&#x2F;&#x2F;grafana.com&#x2F;&quot;&gt;grafana&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Having metrics and a dashboard is awesome, but if my server crashes, I no longer have access to the metrics... So they have to be run somewhere else! This is where the raspberry pi comes in- it just sits on my local network ingesting traffic.&lt;&#x2F;p&gt;
+&lt;p&gt;Unfortunately, node_exporter doesn&#x27;t seem to export hdd temperature values, which is pretty important. I&#x27;ll probably have to write a simple script to pull those values and host another metrics target for prometheus.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;serverbuild-freenas&amp;#x2F;grafana-node-exporter.png&quot; data-lity data-lity-desc=&quot;Grafana with node_exporter metrics from FreeNAS&quot; alt=&quot;Grafana with node_exporter metrics from FreeNAS&quot;&gt;
+&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;serverbuild-freenas&amp;#x2F;grafana-node-exporter.png&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p class=&quot;image-desc&quot;&gt; Grafana with node_exporter metrics from FreeNAS &lt;&#x2F;p&gt;
+&lt;h4 id=&quot;why-freenas&quot;&gt;Why FreeNAS?&lt;&#x2F;h4&gt;
+&lt;p&gt;FreeNAS has extensive documentation. and *BSDs are nice. ZFS and RAID are nice. Free Software is nice. &lt;&#x2F;p&gt;
+&lt;p&gt;If I didn&#x27;t use docker so heavily I would likely use FreeBSD or OpenBSD for my personal computers as well instead of Debian.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;Overall the process of building a server was pretty fun, but I&#x27;m glad I&#x27;m done with that for the foreseeable future. I didn&#x27;t self-host that much when I began, but once I started adding services I started thinking about everything I could self host.&lt;&#x2F;p&gt;
+</description>
+            </item>
+        
+            <item>
+                <title>Projects</title>
+                <pubDate>Fri, 22 Nov 2019 00:00:00 +0000</pubDate>
+                <link>andrewzah.com/projects/</link>
+                <guid>andrewzah.com/projects/</guid>
+                <description>&lt;p&gt;These are various projects I&#x27;ve worked on over the years. I hope they may be of some use to you. If you&#x27;d like to contribute to any, feel free! I generally use the GPLv3 license, or MIT otherwise.&lt;&#x2F;p&gt;
+&lt;p&gt;As of late the bulk of my development has been on private repos for work, unfortunately.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;git-repo-stores&quot;&gt;Git Repo Stores&lt;&#x2F;h2&gt;
+&lt;p&gt;In preferred order. I use github when I have no other option and for mirrors.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&quot;&gt;git.sr.ht&#x2F;~andrewzah&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;azah&quot;&gt;github.com&#x2F;azah&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.andrewzah.com&#x2F;andrei&quot;&gt;git.andrewzah.com&#x2F;andrei&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;in-progress&quot;&gt;In Progress&lt;&#x2F;h2&gt;
+&lt;p&gt;These are things I&#x27;m actively working on and&#x2F;or messing around with.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h4 id=&quot;apps-andrei-kr-rust-wasm-react&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;apps.andrei.kr&quot;&gt;apps.andrei.kr&lt;&#x2F;a&gt; – rust&#x2F;wasm&#x2F;react&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Frontend for &lt;code&gt;korean_numbers&lt;&#x2F;code&gt; and other learning tools.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;rooibos-python3-flask&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;rooibos&quot;&gt;rooibos&lt;&#x2F;a&gt; – python3&#x2F;flask&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;File uploading done right.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;actively-maintained&quot;&gt;Actively Maintained&lt;&#x2F;h2&gt;
+&lt;hr &#x2F;&gt;
+&lt;h4 id=&quot;korean-numbers-rust&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;korean_numbers&quot;&gt;korean_numbers&lt;&#x2F;a&gt; – rust&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Converts integers and floats to Hangeul. Supports both number systems.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;danmuji-golang&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;danmuji&quot;&gt;danmuji&lt;&#x2F;a&gt; – golang&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Discord bot written using Golang.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;personal-site-zola&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;personal-site&quot;&gt;personal_site&lt;&#x2F;a&gt; – zola&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;This website. Statically generated using zola and tera templating.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;personal-docker-shell-docker&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;andrewzah.com&quot;&gt;personal_docker&lt;&#x2F;a&gt; – shell&#x2F;docker&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Docker setup for fast deployments on VPSs.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;inactive&quot;&gt;Inactive&lt;&#x2F;h2&gt;
+&lt;hr &#x2F;&gt;
+&lt;h3 id=&quot;rust&quot;&gt;Rust&lt;&#x2F;h3&gt;
+&lt;h4 id=&quot;naveraudio-rust&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;naver_audio&quot;&gt;naveraudio&lt;&#x2F;a&gt; – rust&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Downloads sound files for Korean words via NAVER&#x27;s (undocumented) api.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;crystal&quot;&gt;Crystal&lt;&#x2F;h3&gt;
+&lt;h4 id=&quot;amaranth-cr&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;azah&#x2F;amaranth&quot;&gt;amaranth-cr&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Discord bot based on &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;meewo&#x2F;discordcr&quot;&gt;discordcr&lt;&#x2F;a&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;Wrote a lexer&#x2F;parser to allow custom, recursive commands.&lt;&#x2F;li&gt;
+&lt;li&gt;Wrote a command and plugin framework to allow custom functionality.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;dotacr&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.andrewzah.com&#x2F;andrei&#x2F;dotacr&quot;&gt;dotacr&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Wrote a wrapper for Valve&#x27;s &lt;a href=&quot;https:&#x2F;&#x2F;dev.dota2.com&#x2F;showthread.php?t=58317&quot;&gt;DotA 2 api&lt;&#x2F;a&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;cowapi&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;azah&#x2F;cowapi&quot;&gt;cOWAPI&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Wrote a Crystal&#x2F;Kemal version of &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;SunDwarf&#x2F;OWAPI&quot;&gt;OWAPI&lt;&#x2F;a&gt;, that scrapes and parses Overwatch gameplay stats from Blizzard.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;minifluxcr&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;azah&#x2F;miniflux-cr&quot;&gt;Minifluxcr&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Wrote a wrapper for Miniflux&#x27;s api.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;tree-problem&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;azah&#x2F;tree-problem&quot;&gt;tree-problem&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Solved an interview problem for CancerIQ. They wasted my time, so I made my solution public.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;elm&quot;&gt;Elm&lt;&#x2F;h3&gt;
+&lt;h4 id=&quot;amaranth-frontend&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;azah&#x2F;amaranth-frontend&quot;&gt;amaranth-frontend&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Elm frontend for amaranth-bot that dynamically lists commands and info.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;python-3&quot;&gt;Python 3&lt;&#x2F;h3&gt;
+&lt;h4 id=&quot;owapi&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Fuyukai&#x2F;OWAPI&quot;&gt;OWAPI&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Contributed to v2 and v3 of Laura&#x27;s overwatch stats api.&lt;&#x2F;li&gt;
+&lt;li&gt;Learned about xml scraping and parsing, and API design.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;not-programming-related&quot;&gt;Not Programming Related&lt;&#x2F;h2&gt;
+&lt;hr &#x2F;&gt;
+&lt;h4 id=&quot;dotfiles&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.andrewzah.com&#x2F;andrei&#x2F;dotfiles&quot;&gt;dotfiles&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;a dotfile a day keeps productivity at bay.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;az-quotes&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.andrewzah.com&#x2F;andrei&#x2F;quotes&quot;&gt;az-quotes&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;A json file of quotes that I like, as seen on my &lt;a href=&quot;&#x2F;quotes&quot;&gt;quotes page&lt;&#x2F;a&gt;. Source for the random quote at the end of my posts.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;tf2config&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.andrewzah.com&#x2F;andrei&#x2F;tf2-config&quot;&gt;tf2config&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;tf2 config based on master comfig.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;korean-articles-pandoc&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.andrewzah.com&#x2F;andrei&#x2F;korean-articles&quot;&gt;korean_articles&lt;&#x2F;a&gt; – pandoc&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Created a makefile to easily copy&#x2F;paste Korean articles and render them as PDFs for printing.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</description>
+            </item>
         
             <item>
                 <title>My setup for remote programming on OSX in 2019</title>
@@ -1736,110 +1986,6 @@ end
       =&amp;lt; t.meanings
 &lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;&lt;h3 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h3&gt;
 &lt;p&gt;I hope this short guide helped you. You should now be able to create a model and a nested object at the same time!&lt;&#x2F;p&gt;
-</description>
-            </item>
-        
-            <item>
-                <title>Projects</title>
-                <pubDate>Mon, 25 Mar 2019 00:00:00 +0000</pubDate>
-                <link>andrewzah.com/projects/</link>
-                <guid>andrewzah.com/projects/</guid>
-                <description>&lt;p&gt;These are various projects I&#x27;ve worked on over the years. I hope they may be of some use to you. If you&#x27;d like to contribute to any, feel free! I generally use the GPLv3 license, or MIT otherwise.&lt;&#x2F;p&gt;
-&lt;p&gt;As of late the bulk of my development has been on private repos for work, unfortunately.&lt;&#x2F;p&gt;
-&lt;h2 id=&quot;git-repo-stores&quot;&gt;Git Repo Stores&lt;&#x2F;h2&gt;
-&lt;p&gt;In preferred order. I use github when I have no other option and for mirrors.&lt;&#x2F;p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&quot;&gt;git.sr.ht&#x2F;~andrewzah&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.andrewzah.com&#x2F;andrei&quot;&gt;git.andrewzah.com&#x2F;andrei&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;gitlab.com&#x2F;andrewzah&quot;&gt;gitlab.com&#x2F;andrewzah&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;azah&quot;&gt;github.com&#x2F;azah&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;hr &#x2F;&gt;
-&lt;h2 id=&quot;in-progress&quot;&gt;In Progress&lt;&#x2F;h2&gt;
-&lt;p&gt;These are things I&#x27;m actively working on and&#x2F;or messing around with.&lt;&#x2F;p&gt;
-&lt;h4 id=&quot;apps-andrei-kr-rust-wasm-react&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;apps.andrei.kr&quot;&gt;apps.andrei.kr&lt;&#x2F;a&gt; – rust&#x2F;wasm&#x2F;react&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Frontend for &lt;code&gt;korean_numbers&lt;&#x2F;code&gt; and other learning tools.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h4 id=&quot;unifiedsearch-rust-wasm-mithril&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;unifiedsearch&quot;&gt;unifiedsearch&lt;&#x2F;a&gt; – rust&#x2F;wasm&#x2F;mithril&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;This website. Statically generated using zola and tera templating.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h4 id=&quot;danmuji-golang&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;danmuji&quot;&gt;danmuji&lt;&#x2F;a&gt; – golang&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Discord bot written using Golang.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h4 id=&quot;naveraudio-rust&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;naver_audio&quot;&gt;naveraudio&lt;&#x2F;a&gt; – rust&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Downloads sound files for Korean words via NAVER&#x27;s (undocumented) api.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;hr &#x2F;&gt;
-&lt;h2 id=&quot;actively-maintained&quot;&gt;Actively Maintained&lt;&#x2F;h2&gt;
-&lt;h4 id=&quot;korean-numbers-rust&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;korean_numbers&quot;&gt;korean_numbers&lt;&#x2F;a&gt; – rust&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Converts integers and floats to Hangeul. Supports both number systems.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h4 id=&quot;personal-site-zola&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;personal-site&quot;&gt;personal_site&lt;&#x2F;a&gt; – zola&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;This website. Statically generated using zola and tera templating.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h4 id=&quot;personal-docker-shell-docker&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.sr.ht&#x2F;%7Eandrewzah&#x2F;andrewzah.com&quot;&gt;personal_docker&lt;&#x2F;a&gt; – shell&#x2F;docker&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Docker setup for fast deployments on VPSs.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;hr &#x2F;&gt;
-&lt;h2 id=&quot;inactive&quot;&gt;Inactive&lt;&#x2F;h2&gt;
-&lt;h3 id=&quot;crystal&quot;&gt;Crystal&lt;&#x2F;h3&gt;
-&lt;h4 id=&quot;amaranth-cr&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;azah&#x2F;amaranth&quot;&gt;amaranth-cr&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Discord bot based on &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;meewo&#x2F;discordcr&quot;&gt;discordcr&lt;&#x2F;a&gt;.&lt;&#x2F;li&gt;
-&lt;li&gt;Wrote a lexer&#x2F;parser to allow custom, recursive commands.&lt;&#x2F;li&gt;
-&lt;li&gt;Wrote a command and plugin framework to allow custom functionality.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h4 id=&quot;dotacr&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.andrewzah.com&#x2F;andrei&#x2F;dotacr&quot;&gt;dotacr&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Wrote a wrapper for Valve&#x27;s &lt;a href=&quot;https:&#x2F;&#x2F;dev.dota2.com&#x2F;showthread.php?t=58317&quot;&gt;DotA 2 api&lt;&#x2F;a&gt;.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h4 id=&quot;cowapi&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;azah&#x2F;cowapi&quot;&gt;cOWAPI&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Wrote a Crystal&#x2F;Kemal version of &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;SunDwarf&#x2F;OWAPI&quot;&gt;OWAPI&lt;&#x2F;a&gt;, that scrapes and parses Overwatch gameplay stats from Blizzard.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h4 id=&quot;minifluxcr&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;azah&#x2F;miniflux-cr&quot;&gt;Minifluxcr&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Wrote a wrapper for Miniflux&#x27;s api.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h4 id=&quot;tree-problem&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;azah&#x2F;tree-problem&quot;&gt;tree-problem&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Solved an interview problem for CancerIQ. They wasted my time, so I made my solution public.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h3 id=&quot;elm&quot;&gt;Elm&lt;&#x2F;h3&gt;
-&lt;h4 id=&quot;amaranth-frontend&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;azah&#x2F;amaranth-frontend&quot;&gt;amaranth-frontend&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Elm frontend for amaranth-bot that dynamically lists commands and info.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h3 id=&quot;python-3&quot;&gt;Python 3&lt;&#x2F;h3&gt;
-&lt;h4 id=&quot;owapi&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Fuyukai&#x2F;OWAPI&quot;&gt;OWAPI&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Contributed to v2 and v3 of Laura&#x27;s overwatch stats api.&lt;&#x2F;li&gt;
-&lt;li&gt;Learned about xml scraping and parsing, and API design.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h2 id=&quot;not-programming-related&quot;&gt;Not Programming Related&lt;&#x2F;h2&gt;
-&lt;h4 id=&quot;dotfiles&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.andrewzah.com&#x2F;andrei&#x2F;dotfiles&quot;&gt;dotfiles&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;a dotfile a day keeps productivity at bay.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h4 id=&quot;az-quotes&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.andrewzah.com&#x2F;andrei&#x2F;quotes&quot;&gt;az-quotes&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;A json file of quotes that I like, as seen on my &lt;a href=&quot;&#x2F;quotes&quot;&gt;quotes page&lt;&#x2F;a&gt;. Source for the random quote at the end of my posts.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h4 id=&quot;tf2config&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.andrewzah.com&#x2F;andrei&#x2F;tf2-config&quot;&gt;tf2config&lt;&#x2F;a&gt;&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;tf2 config based on master comfig.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
-&lt;h4 id=&quot;korean-articles-pandoc&quot;&gt;&lt;a href=&quot;https:&#x2F;&#x2F;git.andrewzah.com&#x2F;andrei&#x2F;korean-articles&quot;&gt;korean_articles&lt;&#x2F;a&gt; – pandoc&lt;&#x2F;h4&gt;
-&lt;ul&gt;
-&lt;li&gt;Created a makefile to easily copy&#x2F;paste Korean articles and render them as PDFs for printing.&lt;&#x2F;li&gt;
-&lt;&#x2F;ul&gt;
 </description>
             </item>
         
