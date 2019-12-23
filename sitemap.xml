@@ -26,17 +26,7 @@
     </url>
   
     <url>
-      <loc>https://andrewzah.com/categories/korean-progress/</loc>
-      
-    </url>
-  
-    <url>
       <loc>https://andrewzah.com/categories/learning/</loc>
-      
-    </url>
-  
-    <url>
-      <loc>https://andrewzah.com/categories/life/</loc>
       
     </url>
   
@@ -47,6 +37,11 @@
   
     <url>
       <loc>https://andrewzah.com/categories/self/</loc>
+      
+    </url>
+  
+    <url>
+      <loc>https://andrewzah.com/categories/selfhosting/</loc>
       
     </url>
   
@@ -99,16 +94,16 @@
     </url>
   
     <url>
-      <loc>https://andrewzah.com/posts/books-for-2018/</loc>
+      <loc>https://andrewzah.com/posts/building-home-server-freenas/</loc>
       
-        <lastmod>2018-02-24</lastmod>
+        <lastmod>2019-12-21</lastmod>
       
     </url>
   
     <url>
-      <loc>https://andrewzah.com/posts/building-home-server-freenas/</loc>
+      <loc>https://andrewzah.com/posts/hosting-minecraft-servers-bungeecord-freenas/</loc>
       
-        <lastmod>2019-12-21</lastmod>
+        <lastmod>2019-12-22</lastmod>
       
     </url>
   
@@ -123,20 +118,6 @@
       <loc>https://andrewzah.com/posts/korean-for-programmers/</loc>
       
         <lastmod>2019-02-16</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://andrewzah.com/posts/korean-progress-1/</loc>
-      
-        <lastmod>2019-02-24</lastmod>
-      
-    </url>
-  
-    <url>
-      <loc>https://andrewzah.com/posts/korean-progress-2/</loc>
-      
-        <lastmod>2019-03-03</lastmod>
       
     </url>
   
@@ -224,11 +205,6 @@
     </url>
   
     <url>
-      <loc>https://andrewzah.com/tags/books/</loc>
-      
-    </url>
-  
-    <url>
       <loc>https://andrewzah.com/tags/caddy/</loc>
       
     </url>
@@ -264,6 +240,11 @@
     </url>
   
     <url>
+      <loc>https://andrewzah.com/tags/freebsd/</loc>
+      
+    </url>
+  
+    <url>
       <loc>https://andrewzah.com/tags/gitea/</loc>
       
     </url>
@@ -289,12 +270,12 @@
     </url>
   
     <url>
-      <loc>https://andrewzah.com/tags/padrino/</loc>
+      <loc>https://andrewzah.com/tags/minecraft/</loc>
       
     </url>
   
     <url>
-      <loc>https://andrewzah.com/tags/philosophy/</loc>
+      <loc>https://andrewzah.com/tags/padrino/</loc>
       
     </url>
   

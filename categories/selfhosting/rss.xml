@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>AZ</title>
+        <link>andrewzah.com</link>
+        <description>Sometimes relevant thoughts by Andrew</description>
+        <generator>Zola</generator>
+        <language>en</language>
+        <atom:link href="andrewzah.com/categories/selfhosting/rss.xml" rel="self" type="application/rss+xml"/>
+        <lastBuildDate>Sun, 22 Dec 2019 00:00:00 +0000</lastBuildDate>
+        
+            <item>
+                <title>Hosting Minecraft Servers + BungeeCord with FreeNAS</title>
+                <pubDate>Sun, 22 Dec 2019 00:00:00 +0000</pubDate>
+                <link>andrewzah.com/posts/hosting-minecraft-servers-bungeecord-freenas/</link>
+                <guid>andrewzah.com/posts/hosting-minecraft-servers-bungeecord-freenas/</guid>
+                <description>&lt;p&gt;Learn how to set up multiple minecraft servers in FreeNAS with a bungeecord&#x2F;waterfall proxy.&lt;&#x2F;p&gt;
+&lt;p&gt;This guide assumes you&#x27;re running a FreeNAS server on a local network. If not, you&#x27;ll have to update your ip address and default gateway settings accordingly.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;freenas_minecraft_guide&amp;#x2F;dynmap.png&quot; data-lity data-lity-desc=&quot;Dynmap rendering of our FreeNAS minecaft server&quot; alt=&quot;Dynmap rendering of our FreeNAS minecaft server&quot;&gt;
+&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;freenas_minecraft_guide&amp;#x2F;dynmap.png&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p class=&quot;image-desc&quot;&gt; Dynmap rendering of our FreeNAS minecaft server &lt;&#x2F;p&gt;
+&lt;h2 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Console access to a server running FreeNAS&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;(Don&#x27;t download these yet, read on)&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Your server jarfile: &lt;a href=&quot;https:&#x2F;&#x2F;www.spigotmc.org&#x2F;wiki&#x2F;bungeecord&#x2F;&quot;&gt;spigot.jar&lt;&#x2F;a&gt;, or &lt;a href=&quot;https:&#x2F;&#x2F;papermc.io&#x2F;downloads#Paper-1.15&quot;&gt;paper.jar&lt;&#x2F;a&gt;, etc.&lt;&#x2F;li&gt;
+&lt;li&gt;Your proxy jarfile: &lt;a href=&quot;https:&#x2F;&#x2F;www.spigotmc.org&#x2F;wiki&#x2F;bungeecord&#x2F;&quot;&gt;bungeecord.jar&lt;&#x2F;a&gt;, or &lt;a href=&quot;https:&#x2F;&#x2F;papermc.io&#x2F;downloads#Waterfall&quot;&gt;waterfall.jar&lt;&#x2F;a&gt;, etc.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;This guide will be using &lt;code&gt;Paper&lt;&#x2F;code&gt; and &lt;code&gt;Waterfall&lt;&#x2F;code&gt; as they are more
+performant versions of spigot and bungeecord, respectively. They also fully support spigot&#x2F;bungee plugins.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;preparing-the-jails&quot;&gt;Preparing the Jails&lt;&#x2F;h2&gt;
+&lt;p&gt;The first thing we&#x27;ll need to do is create the main jail (the one running bungeecord or waterfall).
+Alter the version for the current one your server is running.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;echo &amp;#39;{&amp;quot;pkgs&amp;quot;:[&amp;quot;openjdk12&amp;quot;, &amp;quot;curl&amp;quot;]}&amp;#39; &amp;gt; &#x2F;tmp&#x2F;minecraft.json
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;When a jail is created, &lt;code&gt;pkg&lt;&#x2F;code&gt; isn&#x27;t installed by default. Using this saves us some commands in the next step.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;iocage create \
+  --name &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;\
+  --pkglist &#x2F;tmp&#x2F;minecraft.json
+  --release 11.2-RELEASE \
+  ip4_addr=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;vnet0|192.168.1.xxx&#x2F;24&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;\
+  defaultrouter=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;192.168.1.1&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;\
+  vnet=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;on&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;\
+  allow_raw_sockets=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;1&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;\
+  boot=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;on&amp;quot; 
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;code&gt;ip4_addr&lt;&#x2F;code&gt; and &lt;code&gt;defaultrouter&lt;&#x2F;code&gt; configure the network for our jail. If you&#x27;re running the server on your local network, then it&#x27;s likely the address of your router. (Typically x.x.x.1 or x.x.x.255, consult your router&#x27;s manual). &lt;code&gt;ip4_addr&lt;&#x2F;code&gt; is the address you want to assign to the jail.&lt;&#x2F;p&gt;
+&lt;p&gt;For &lt;code&gt;name&lt;&#x2F;code&gt;: If you&#x27;re just creating a single server, the name &lt;code&gt;minecraft&lt;&#x2F;code&gt; would suffice, but I recommend a structure like:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;mc_main
+mc_survival
+mc_creative
+...etc
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Next, let&#x27;s create directories in the jails and mount them in the root system:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# Creates the directories in the root system
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;mkdir -p &#x2F;xxx&#x2F;data&#x2F;minecraft&#x2F;mc_main
+mkdir -p &#x2F;xxx&#x2F;data&#x2F;minecraft&#x2F;waterfall
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# Creates the directories in the jail
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;iocage exec mc_main mkdir &#x2F;root&#x2F;minecraft
+iocage exec mc_main mkdir &#x2F;root&#x2F;waterfall
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# Mounts the directories in the root system
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;iocage fstab -a mc_main \
+  &#x2F;xxx&#x2F;data&#x2F;minecraft&#x2F;mc_main &#x2F;root&#x2F;minecraft nullfs rw 0 0
+iocage fstab -a mc_main \
+  &#x2F;xxx&#x2F;data&#x2F;minecraft&#x2F;waterfall &#x2F;root&#x2F;waterfall nullfs rw 0 0
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Change &lt;code&gt;&#x2F;xxx&#x2F;data&#x2F;&lt;&#x2F;code&gt; to a relevant filepath for your setup. My main ZFS pool is named &lt;code&gt;lily&lt;&#x2F;code&gt;, so I put my minecraft folders under &lt;code&gt;&#x2F;mnt&#x2F;lily&#x2F;data&#x2F;&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;setting-up-minecraft&quot;&gt;Setting up Minecraft&lt;&#x2F;h2&gt;
+&lt;p&gt;We can access our jails with:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;iocage console mc_main
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now we can cd to the minecraft directory and download our server jarfile:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#62a35c;&quot;&gt;cd&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; &#x2F;root&#x2F;minecraft
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# paper
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;curl -L &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;https:&#x2F;&#x2F;papermc.io&#x2F;api&#x2F;v1&#x2F;paper&#x2F;1.15.1&#x2F;27&#x2F;download&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; -o paper-1.15.1_27.jar
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Run your server jarfile with:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;java -jar &#x2F;root&#x2F;minecraft&#x2F;paper-1.15.1_27.jar
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The process should end shortly, printing text about a &lt;code&gt;eula.txt&lt;&#x2F;code&gt;. Edit the file with:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;sed -i .bak &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;s&#x2F;eula=false&#x2F;eula=true&#x2F;g&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; &#x2F;root&#x2F;minecraft&#x2F;eula.txt
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We also need to edit the &lt;code&gt;server.properties&lt;&#x2F;code&gt; file. Open it and change the server port to &lt;code&gt;25566&lt;&#x2F;code&gt;. We&#x27;re changing this value because our proxy server (bungeecord&#x2F;waterfall) will listen to the default port later.&lt;&#x2F;p&gt;
+&lt;p&gt;Now we can run the server!&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;java -Xms1024M -Xmx1024M -jar &#x2F;root&#x2F;minecraft&#x2F;&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;.jar
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Observe the text output for any errors, and then go ahead and connect to it! (Go to the &lt;code&gt;Multiplayer&lt;&#x2F;code&gt; tab, click &lt;code&gt;Add Server&lt;&#x2F;code&gt;, and type in the ip address of your server, e.g. &lt;code&gt;192.168.1.xx:25566&lt;&#x2F;code&gt;) Once you join, text should get printed to the screen.&lt;&#x2F;p&gt;
+&lt;p&gt;However, we have an issue. The server is currently running in an interactive session (i.e. we ran it manually). We need it to run by itself, in a noninteractive session. Some guides will recommend using &lt;code&gt;screen&lt;&#x2F;code&gt; or &lt;code&gt;tmux&lt;&#x2F;code&gt;, but I strongly recommend not using them. If your server ever restarts, you will have to go in manually and restart screen&#x2F;tmux, and then your minecraft server.&lt;&#x2F;p&gt;
+&lt;p&gt;It&#x27;s far better to let &lt;a href=&quot;https:&#x2F;&#x2F;www.freebsd.org&#x2F;cgi&#x2F;man.cgi?query=rc.d&amp;amp;sektion=8&amp;amp;n=1&quot;&gt;rc.d&lt;&#x2F;a&gt; manage it for us. Add this script to &lt;code&gt;&#x2F;usr&#x2F;local&#x2F;etc&#x2F;minecraftd&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;#!&#x2F;bin&#x2F;sh
+#
+# PROVIDE: minecraftd
+# REQUIRE: LOGIN DAEMON NETWORKING mountcritlocal
+# KEYWORD: shutdown
+#
+# Use the following variables to configure the minecraft server. For example, to
+# configure the ON&#x2F;OFF knob variable:
+# sysrc minecraftd_enable=&amp;quot;YES&amp;quot;
+#
+# minecraftd_enable=&amp;quot;YES&amp;quot;
+# minecraftd_user_dir=&amp;quot;&#x2F;root&#x2F;minecraft&amp;quot;
+# minecraftd_jar_path=&amp;quot;&#x2F;root&#x2F;minecraft&#x2F;server.jar&amp;quot;
+# minecraftd_java_opts=&amp;quot;-Xms1024M -Xmx1024M&amp;quot;
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; &#x2F;etc&#x2F;rc.subr
+
+name&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;minecraftd
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;rcvar&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&#96;set_rcvar&#96;
+pidfile&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&#x2F;var&#x2F;run&#x2F;minecraftd.pid
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;load_rc_config $name
+
+start_cmd&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;${&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;}_start&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;stop_cmd&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;${&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;}_stop&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;status_cmd&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;${&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;}_status&amp;quot;
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;${minecraftd_enable&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;NO&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;${minecraftd_user_dir&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;&#x2F;root&#x2F;minecraft&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;${minecraftd_jar_path&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;&#x2F;root&#x2F;minecraft&#x2F;server.jar&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;${minecraftd_java_opts&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;-Xms1024M -Xmx1024M&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;}
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#795da3;&quot;&gt;minecraftd_start&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;() {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;[ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;-e $pidfile &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;]&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;; then
+        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;echo &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;$&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt; already running.&amp;quot;
+    &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;else
+        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;echo &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;Starting $&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;...&amp;quot;
+        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&#x2F;usr&#x2F;sbin&#x2F;daemon -f -p $pidfile \
+            &#x2F;usr&#x2F;local&#x2F;bin&#x2F;java -Duser.dir=$minecraftd_user_dir \
+            $minecraftd_java_opts \
+            -jar $minecraftd_jar_path nogui
+        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;echo &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;$&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt; started.&amp;quot;
+    &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;fi
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;}
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#795da3;&quot;&gt;minecraftd_stop&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;() {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;[ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;-e $pidfile &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;]&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;; then
+        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;echo &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;Stopping $&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;...&amp;quot;
+        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;cat $pidfile &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;| &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;xargs kill
+        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;echo &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;Stopped.&amp;quot;
+    &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;else
+        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;echo &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;$&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt; is not running.&amp;quot;
+    &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;fi
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;}
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#795da3;&quot;&gt;minecraftd_status&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;() {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;[ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;-e $pidfile &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;]&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;; then
+        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;echo &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;$&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt; is running.&amp;quot;
+    &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;else
+        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;echo &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;$&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt; is not running.&amp;quot;
+    &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;fi
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;}
+
+run_rc_command $1
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We have to make the service file executable, so run:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;chmod +x &#x2F;usr&#x2F;local&#x2F;etc&#x2F;rc.d&#x2F;minecraftd
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Essentially, this script lets us not have to manage the server process manually. However we also need to update some settings:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;sysrc minecraftd_enable=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;YES&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;sysrc minecraftd_jar_path=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;&#x2F;root&#x2F;minecraft&#x2F;server.jar&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;sysrc minecraftd_java_opts=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;-Xms1G -Xmx1G&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Make sure to change the &lt;code&gt;minecraftd_jar_path&lt;&#x2F;code&gt; to reflect your downloaded jarfile, and &lt;code&gt;minecraftd_java_opts&lt;&#x2F;code&gt; for how much memory you want to give it.&lt;&#x2F;p&gt;
+&lt;p&gt;Now you should be able to the following:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;service minecraftd start
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Confirm it with:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;ps aux &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;| &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;grep openjdk
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;You should see something like:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;root  72816  1.2  2.5 3156872 1273052  -  IJ   Fri19   99:04.12 &#x2F;usr&#x2F;local&#x2F;openjdk12&#x2F;bin&#x2F;java -Duser.dir=&#x2F;root&#x2F;minecraft -Xms1G -Xmx1G -jar &#x2F;root&#x2F;minecraft&#x2F;paper-1.15.1_27.jar
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;If not, double check your settings in &lt;code&gt;&#x2F;etc&#x2F;rc.conf&lt;&#x2F;code&gt;, and make sure they point to the right files. Manually run the command to make sure it&#x27;s not a minecraft configuration issue (i.e. no warnings&#x2F;errors show up in the console).&lt;&#x2F;p&gt;
+&lt;p&gt;Connect to the server again to make sure it works, then stop the server with:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;service minecraftd stop
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In order for bungee&#x2F;waterfall to work, we need to edit the &lt;code&gt;server.properties&lt;&#x2F;code&gt; file again. Change &lt;code&gt;online-mode&lt;&#x2F;code&gt; to &lt;code&gt;false&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;In &lt;code&gt;spigot.yml&lt;&#x2F;code&gt;, update &lt;code&gt;bungeecord&lt;&#x2F;code&gt; to &lt;code&gt;true&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;In &lt;code&gt;paper.yml&lt;&#x2F;code&gt;, update &lt;code&gt;bungee-online-mode&lt;&#x2F;code&gt; to &lt;code&gt;true&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;In &lt;code&gt;bukkit.yml&lt;&#x2F;code&gt;, update &lt;code&gt;connection-throttle&lt;&#x2F;code&gt; to &lt;code&gt;-1&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;That&#x27;s it! Now we just need to set up our proxy to get access to the server again.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;setting-up-waterfall-bungeecord&quot;&gt;Setting up Waterfall&#x2F;Bungeecord&lt;&#x2F;h2&gt;
+&lt;p&gt;If you&#x27;re not in the &lt;code&gt;mc_main&lt;&#x2F;code&gt; jail already, access it with:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;iocage console mc_main
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now can cd to the waterfall directory and download &lt;code&gt;waterfall.jar&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#62a35c;&quot;&gt;cd&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; &#x2F;root&#x2F;waterfall
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The process for the jarfile is the same as before, except we&#x27;re going to the &lt;code&gt;waterfall&lt;&#x2F;code&gt; directory now.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#62a35c;&quot;&gt;cd&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; &#x2F;root&#x2F;waterfall
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# waterfall
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;curl -L &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;https:&#x2F;&#x2F;papermc.io&#x2F;api&#x2F;v1&#x2F;waterfall&#x2F;1.15&#x2F;309&#x2F;download&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; -o waterfall-1.15_309.jar
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Run the proxy jarfile with:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;java -jar &#x2F;root&#x2F;waterfall&#x2F;waterfall-1.15_309.jar
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;If necessary, edit &lt;code&gt;eula.txt&lt;&#x2F;code&gt; again:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;sed -i .bak &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;s&#x2F;eula=false&#x2F;eula=true&#x2F;g&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; &#x2F;root&#x2F;waterfall&#x2F;eula.txt
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now we need to edit &lt;code&gt;config.yml&lt;&#x2F;code&gt;. Look for the &lt;code&gt;servers&lt;&#x2F;code&gt; section, and change it to the following:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#63a35c;&quot;&gt;servers&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;:
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;hub&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;:
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;motd&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;&amp;amp;1My amazing hub server&amp;#39;
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;address&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;localhost:25566
+    restricted&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;false
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Under &lt;code&gt;listeners&lt;&#x2F;code&gt;, change &lt;code&gt;priorities&lt;&#x2F;code&gt; to:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#63a35c;&quot;&gt;priorities&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;:
+  - &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;hub
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Change &lt;code&gt;host&lt;&#x2F;code&gt; to:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;host&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;0.0.0.0:25565
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Finally, set &lt;code&gt;ip_forward: true&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;In order to run &lt;code&gt;waterfall&lt;&#x2F;code&gt; noninteractively, we&#x27;ll use a similar &lt;code&gt;rc.d&lt;&#x2F;code&gt; script like before:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;#!&#x2F;bin&#x2F;sh
+#
+# PROVIDE: waterfall
+# REQUIRE: LOGIN DAEMON NETWORKING mountcritlocal
+# KEYWORD: shutdown
+#
+# Use the following variables to configure the minecraft server. For example, to
+# configure the ON&#x2F;OFF knob variable:
+# sysrc waterfall_enable=&amp;quot;YES&amp;quot;
+#
+# waterfall_enable=&amp;quot;YES&amp;quot;
+# waterfall_user_dir=&amp;quot;&#x2F;root&#x2F;waterfall&amp;quot;
+# waterfall_jar_path=&amp;quot;&#x2F;root&#x2F;waterfall&#x2F;waterfall.jar&amp;quot;
+# waterfall_java_opts=&amp;quot;-Xms512M -Xmx1024M&amp;quot;
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; &#x2F;etc&#x2F;rc.subr
+
+name&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;waterfall
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;rcvar&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;&#96;set_rcvar&#96;
+pidfile&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&#x2F;var&#x2F;run&#x2F;waterfall.pid
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;load_rc_config $name
+
+start_cmd&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;${&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;}_start&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;stop_cmd&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;${&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;}_stop&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;status_cmd&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;${&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;}_status&amp;quot;
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;${waterfall_enable&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;NO&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;${waterfall_user_dir&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;&#x2F;root&#x2F;waterfall&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;${waterfall_jar_path&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;&#x2F;root&#x2F;waterfall&#x2F;waterfall.jar&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;}
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;${waterfall_java_opts&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;-Xms512M -Xmx1024M&amp;quot;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;}
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#795da3;&quot;&gt;waterfall_start&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;() {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;[ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;-e $pidfile &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;]&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;; then
+        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;echo &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;$&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt; already running.&amp;quot;
+    &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;else
+        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;echo &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;Starting $&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;...&amp;quot;
+        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;cd &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;$waterfall_user_dir
+        &#x2F;usr&#x2F;sbin&#x2F;daemon -f -p $pidfile \
+            &#x2F;usr&#x2F;local&#x2F;bin&#x2F;java -Duser.dir=$waterfall_user_dir \
+            $waterfall_java_opts \
+            -jar $waterfall_jar_path  nogui
+        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;echo &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;$&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt; started.&amp;quot;
+    &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;fi
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;}
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#795da3;&quot;&gt;waterfall_stop&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;() {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;[ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;-e $pidfile &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;]&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;; then
+        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;echo &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;Stopping $&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;...&amp;quot;
+        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;cat $pidfile &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;| &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;xargs kill
+        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;echo &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;Stopped.&amp;quot;
+    &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;else
+        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;echo &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;$&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt; is not running.&amp;quot;
+    &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;fi
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;}
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#795da3;&quot;&gt;waterfall_status&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;() {
+    &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;[ &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;-e $pidfile &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;]&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;; then
+        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;echo &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;$&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt; is running.&amp;quot;
+    &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;else
+        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#62a35c;&quot;&gt;echo &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;$&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;name&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt; is not running.&amp;quot;
+    &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;fi
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;}
+
+run_rc_command $1
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We have to make the service file executable again, so run:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;chmod +x &#x2F;usr&#x2F;local&#x2F;etc&#x2F;rc.d&#x2F;waterfall
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Like before, we&#x27;ll need to edit some settings:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;sysrc waterfall_enable=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;YES&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;sysrc waterfall_jar_path=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;&#x2F;root&#x2F;waterfall&#x2F;waterfall-1.15_309.jar&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now run the following and connect to your server!&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;service waterfall start
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;Congrats, you&#x27;ve set up a minecraft server and a proxy server in FreeNAS!&lt;&#x2F;p&gt;
+&lt;p&gt;For more servers, create more jails with the instructions from earlier, and follow the same server javafile setup. In &lt;code&gt;server.properties&lt;&#x2F;code&gt;, change &lt;code&gt;ip-address&lt;&#x2F;code&gt; to the address of the jail, and update waterfall&#x27;s config to something like below:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#63a35c;&quot;&gt;servers&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;:
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;hub&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;:
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;motd&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;My hub server&amp;#39;
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;address&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;localhost:25566
+    restricted&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;false
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;creative&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;:
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;motd&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;My creative server&amp;#39;
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;address&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;192.168.1.21:25566
+    restricted&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;false
+  &lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;survival&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;:
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;motd&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;My survival server&amp;#39;
+    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;address&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#63a35c;&quot;&gt;192.168.1.22:25566
+    restricted&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span style=&quot;color:#0086b3;&quot;&gt;false
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;&lt;h2 id=&quot;databases-for-plugins&quot;&gt;Databases for Plugins&lt;&#x2F;h2&gt;
+&lt;p&gt;Many minecraft plugins can use mysql or postgres for storage. I highly recommend setting up mysql in a jail and connecting your plugins to it. Here&#x27;s how you can do it:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#62a35c;&quot;&gt;echo &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;{&amp;quot;pkgs&amp;quot;:[&amp;quot;mysql80-server&amp;quot;]}&amp;#39; &lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; &#x2F;tmp&#x2F;mysql.json
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;iocage create \
+  --name mysql \
+  --pkglist &#x2F;tmp&#x2F;minecraft.json
+  --release 11.2-RELEASE
+  ip4_addr&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;vnet0|192.168.1.xxx&#x2F;24&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;\
+  defaultrouter&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;192.168.1.1&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;\
+  vnet&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;on&amp;quot; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;\
+  boot&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;on&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# Creates the directories in the root system
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;mkdir -p &#x2F;xxx&#x2F;configs&#x2F;mysql
+mkdir -p &#x2F;xxx&#x2F;data&#x2F;mysql
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# Creates the directories in the jail
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;iocage exec mysql mkdir &#x2F;config
+iocage exec mysql mkdir &#x2F;data
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#969896;&quot;&gt;# Mounts the directories in the root system
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;iocage fstab -a mysql \
+  &#x2F;xxx&#x2F;configs&#x2F;mysql &#x2F;config nullfs rw 0 0
+iocage fstab -a mysql \
+  &#x2F;xxx&#x2F;data&#x2F;mysql &#x2F;data nullfs rw 0 0
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;iocage console mysql
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;sysrc mysql_enable=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;YES&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;sysrc mysql_dbdir=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;&#x2F;data&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;sysrc mysql_confdir=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;&#x2F;config&amp;quot;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;sysrc mysql_optfile=&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;quot;&#x2F;config&#x2F;my.cnf&amp;quot;
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;cp &#x2F;usr&#x2F;local&#x2F;etc&#x2F;mysql&#x2F;my.cnf &#x2F;config&#x2F;my.cnf
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now edit &lt;code&gt;&#x2F;config&#x2F;my.cnf&lt;&#x2F;code&gt; and change &lt;code&gt;bind-address&lt;&#x2F;code&gt; to &lt;code&gt;0.0.0.0&lt;&#x2F;code&gt;. This lets us connect remotely, except for &lt;code&gt;root&lt;&#x2F;code&gt;. We don&#x27;t want to run things as root, anyway.&lt;&#x2F;p&gt;
+&lt;p&gt;Connect to the local mysql database after creating the root user and password:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;service mysql-server start
+mysql_secure_installation
+mysql -uroot -p
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Once connected, create the database and user that the plugin will be using. For example, if we were making a database for &lt;code&gt;coreprotect&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;create database coreprotect_hub&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;;
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;CREATE USER &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;coreprotect&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;192.168.1.0&#x2F;255.255.255.0&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; IDENTIFIED WITH mysql_native_password BY &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;password&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;;
+
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;grant all privileges on coreprotect_hub.&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;*&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt; to &lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;coreprotect&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;color:#323232;&quot;&gt;@&lt;&#x2F;span&gt;&lt;span style=&quot;color:#183691;&quot;&gt;&amp;#39;192.168.1.0&#x2F;255.255.255.0&amp;#39;&lt;&#x2F;span&gt;&lt;span style=&quot;font-weight:bold;color:#a71d5d;&quot;&gt;;
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The reason we&#x27;re using &lt;code&gt;@&#x27;192.168.1.0&#x2F;255.255.255.0&#x27;&lt;&#x2F;code&gt; is to allow remote connections, but only within the local network.&lt;&#x2F;p&gt;
+&lt;p&gt;Now update your plugin&#x27;s &lt;code&gt;config.yml&lt;&#x2F;code&gt;, where &lt;code&gt;host&lt;&#x2F;code&gt; is the ip address of the mysql jail, and &lt;code&gt;port&lt;&#x2F;code&gt; is &lt;code&gt;3306&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;It&#x27;s a good idea to create a separate database and user for each plugin and server. For example, I have the databases &lt;code&gt;coreprotect_survival&lt;&#x2F;code&gt;, and &lt;code&gt;coreprotect_creative&lt;&#x2F;code&gt;, both of which have different users.&lt;&#x2F;p&gt;
+</description>
+            </item>
+        
+            <item>
+                <title>Building a Home Server with FreeNAS</title>
+                <pubDate>Sat, 21 Dec 2019 00:00:00 +0000</pubDate>
+                <link>andrewzah.com/posts/building-home-server-freenas/</link>
+                <guid>andrewzah.com/posts/building-home-server-freenas/</guid>
+                <description>&lt;p&gt;A few months ago I got gripped with server fever. I&#x27;d had a raspberry pi for a while, but I could never find a meaningful use for it. I&#x27;d tried running plex, etc, but the pi3 would choke after a bit and sputter out.&lt;&#x2F;p&gt;
+&lt;p&gt;One day I decided enough was enough: it was time to build a more beefy server. (and I found a compelling use for the pi!)&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;serverbuild-freenas&amp;#x2F;freenas-info.png&quot; data-lity data-lity-desc=&quot;FreeNAS server information&quot; alt=&quot;FreeNAS server information&quot;&gt;
+&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;serverbuild-freenas&amp;#x2F;freenas-info.png&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p class=&quot;image-desc&quot;&gt; Current FreeNAS server information &lt;&#x2F;p&gt;
+&lt;h3 id=&quot;my-goals&quot;&gt;My Goals&lt;&#x2F;h3&gt;
+&lt;p&gt;I had a few goals I wanted to achieve:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;be relatively future-proof&lt;&#x2F;li&gt;
+&lt;li&gt;host a plex server&lt;&#x2F;li&gt;
+&lt;li&gt;be able to spin up multiple VMs for various reasons like testing ansible scripts&lt;&#x2F;li&gt;
+&lt;li&gt;potentially host games for me and my brother&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;If all you want to do is host Plex&#x2F;jellyfish, a raspberry pi should suffice. As long as your media isn&#x27;t hvec x265. Before I built this server I had two 2tb drives plugged into my raspberry pi, and other content was fine for the most part.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;the-requirements&quot;&gt;The Requirements&lt;&#x2F;h3&gt;
+&lt;p&gt;I don&#x27;t have space in my home for a rack for a server, due to both the size and noise. That immediately eliminated a lot of build paths that I saw.&lt;&#x2F;p&gt;
+&lt;p&gt;The ideal spot for the server was my living room, so I needed a relatively low profile server- and a &lt;em&gt;quiet&lt;&#x2F;em&gt; one.&lt;&#x2F;p&gt;
+&lt;p&gt;The remaining requirements were:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;at least 8 hard drive bays&lt;&#x2F;li&gt;
+&lt;li&gt;a relatively modern&#x2F;beefy cpu&lt;&#x2F;li&gt;
+&lt;li&gt;low(er) power consumption&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;I felt like 8 drives (+1 or 2 ssds) was enough for future expansion, even with RAID-10 taken into account.
+I went with a mirrored structure so I could replace drives without heavy rebuild times, and so I could easily expand the pool if necessary.
+I started with 6 drives, so I have a zpool with 3 vdevs of 2 drives each.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;part-list&quot;&gt;Part List&lt;&#x2F;h3&gt;
+&lt;p&gt;What I thought was going to be a relatively simple task turned into a huge amount of research...
+I spent most of my time on &lt;a href=&quot;https:&#x2F;&#x2F;www.ixsystems.com&#x2F;community&#x2F;&quot;&gt;iXsystems&#x27; community forum&lt;&#x2F;a&gt;
+and &lt;a href=&quot;https:&#x2F;&#x2F;www.reddit.com&#x2F;r&#x2F;homelab&#x2F;&quot;&gt;&#x2F;r&#x2F;homelab&lt;&#x2F;a&gt; on reddit. The people on iXsystems&#x27; forum were very helpful and detailed. However, most of the information for iXsystems is based around used intel boards. Much less material is available if you&#x27;re like me and are interested in newer AMD cpus.&lt;&#x2F;p&gt;
+&lt;p&gt;So how did I narrow it down? I did what I always do: make a spreadsheet. There are simply way too many options presented to figure what cpu&#x2F;mobo to choose without spreadsheet analysis. Without further ado:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;case: &lt;a href=&quot;https:&#x2F;&#x2F;docs.google.com&#x2F;spreadsheets&#x2F;d&#x2F;1pThQQLHIcB_LO6-PmypGOSeaErY_ip6FY2lmbkS0DYc&#x2F;Fractal%20Design%20Node%20804%20Black%20Window%20Aluminum&#x2F;Steel%20MATX&quot;&gt;Fractal Node 804 Micro Atx Case&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;boot ssd (nvme): &lt;a href=&quot;https:&#x2F;&#x2F;www.newegg.com&#x2F;western-digital-black-nvme-250gb&#x2F;p&#x2F;N82E16820250097&quot;&gt;WD Black NVMe M.2 2280 250Gb PCI-Express 3.0 x4 SSD WDS250G2X0C&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;ssd: &lt;a href=&quot;https:&#x2F;&#x2F;www.newegg.com&#x2F;apc-bx1500m-5-x-nema-5-15r-5-x-nema-5-15r&#x2F;p&#x2F;N82E16842301561?Description=APC%20BX1500M%20Back-UPS%20Pro%201500VA%2f900W&amp;amp;cm_re=APC_BX1500M_Back-UPS_Pro_1500VA%2f900W-_-42-301-561-_-Product&quot;&gt;SAMSUNG 860 EVO Series 2.5&amp;quot; 500GB MZ-76E500B&#x2F;AM&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;intake fans x4: &lt;a href=&quot;https:&#x2F;&#x2F;smile.amazon.com&#x2F;dp&#x2F;B00650P2ZC&#x2F;?tag=ozlp-20&quot;&gt;Noctua NF-F12 WPM 120mm&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;exhaust fans x2: &lt;a href=&quot;https:&#x2F;&#x2F;smile.amazon.com&#x2F;dp&#x2F;B00CP6QLY6&#x2F;?tag=ozlp-20&quot;&gt;Noctua NF-A14 PWM 140mm&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;cpu cooler: &lt;a href=&quot;https:&#x2F;&#x2F;smile.amazon.com&#x2F;Noctua-NH-L12S-Low-Profile-Cooler-Quiet&#x2F;dp&#x2F;B075SF5QQ8&#x2F;ref=sr_1_2?keywords=NH-L12S&amp;amp;qid=1565553407&amp;amp;s=gateway&amp;amp;sr=8-2&quot;&gt;Noctua NH-L12S 70mm Low-Profile CPU Cooler&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;ups&#x2F;apc: &lt;a href=&quot;andrewzah.com&#x2F;posts&#x2F;building-home-server-freenas&#x2F;&quot;&gt;https:&#x2F;&#x2F;www.newegg.com&#x2F;apc-bx1500m-5-x-nema-5-15r-5-x-nema-5-15r&#x2F;p&#x2F;N82E16842301561?Description=APC%20BX1500M%20Back-UPS%20Pro%201500VA%2f900W&amp;amp;cm_re=APC_BX1500M_Back-UPS_Pro_1500VA%2f900W-&lt;em&gt;-42-301-561-&lt;&#x2F;em&gt;-Product&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;psu: &lt;a href=&quot;https:&#x2F;&#x2F;www.newegg.com&#x2F;seasonic-focus-plus-650-gold-ssr-650fx-650w&#x2F;p&#x2F;N82E16817151186&quot;&gt;Seasonic FOCUS Plus Series SSR-650FX 650W&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The total comes out to around $632. I don&#x27;t know why anyone would build a server without getting some sort of UPS&#x2F;APC as well.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;ul&gt;
+&lt;li&gt;cpu: &lt;a href=&quot;https:&#x2F;&#x2F;www.newegg.com&#x2F;amd-ryzen-5-3600&#x2F;p&#x2F;N82E16819113569?Description=5%203600%20amd&amp;amp;cm_re=5_3600_amd-_-19-113-569-_-Product&quot;&gt;AMD Ryzen 5 3600 - 3.6Ghz&#x2F;4.2Ghz 6-core&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;mobo: &lt;a href=&quot;https:&#x2F;&#x2F;www.newegg.com&#x2F;p&#x2F;N82E16813157887?Description=asrock%20x570m%20&amp;amp;cm_re=asrock_x570m-_-13-157-887-_-Product&quot;&gt;ASRock X570M Pro4 AM4 MicroAtx&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;ram x3: &lt;a href=&quot;https:&#x2F;&#x2F;smile.amazon.com&#x2F;Crucial-DDR4-21300-Server-Memory-CT16G4WFD8266&#x2F;dp&#x2F;B078N7HC6L&quot;&gt;Crucial 16GB DDR4-2666 ECC UDIMM CT16G4WFD8266&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The total was $676 for these parts, with $291 for the memory alone. DDR4 ram with ecc isn&#x27;t cheap. For comparison, a Xeon E5-2650 V2 goes for around $70 on ebay, with significantly cheaper DDR3 ram.&lt;&#x2F;p&gt;
+&lt;div class=&quot;note note-Note&quot;&gt;
+  &lt;h4&gt;Note&lt;&#x2F;h4&gt;
+  &lt;span&gt;I&amp;#x27;ve used the ryzen setup for 3+ months now with no issues.&lt;&#x2F;span&gt;
+&lt;&#x2F;div&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;So I was already at $1,300, &lt;em&gt;before&lt;&#x2F;em&gt; purchasing hard drives. I bought 6 Western Digital Red 4TB drives initially, @ $100. Later on I got 2 more drives, and another stick of ram.&lt;&#x2F;p&gt;
+&lt;p&gt;Altogether, it was $1300 for the parts + $800 for the drives, or ~$2100 in total.&lt;&#x2F;p&gt;
+&lt;p&gt;I didn&#x27;t go with a used intel board because of the higher power usage and less powerful specs. This made my build much more expensive, but also more future proof.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;usage&quot;&gt;Usage&lt;&#x2F;h3&gt;
+&lt;p&gt;I adapted my jail setup and structure from &lt;a href=&quot;https:&#x2F;&#x2F;gist.github.com&#x2F;mow4cash&#x2F;e2fd4991bd2b787ca407a355d134b0ff&quot;&gt;this gist&lt;&#x2F;a&gt;, and installed rancheros via &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;redshift-s&#x2F;rancheros-docker-media&quot;&gt;this guide&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;I currently have 20 &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;FreeBSD_jail&quot;&gt;jails&lt;&#x2F;a&gt; running, and 5 docker containers running in &lt;a href=&quot;https:&#x2F;&#x2F;rancher.com&#x2F;rancher-os&#x2F;&quot;&gt;RancherOS&lt;&#x2F;a&gt; (which &lt;a href=&quot;https:&#x2F;&#x2F;www.ixsystems.com&#x2F;documentation&#x2F;freenas&#x2F;11.2-U7&#x2F;virtualmachines.html&quot;&gt;runs in a VM&lt;&#x2F;a&gt; with 2 cpus and 4GB memory).&lt;&#x2F;p&gt;
+&lt;p&gt;Why jails over docker? Convenience, I guess. It&#x27;s far easier for me to muck around in iocage jails than it is to inspect and debug docker containers. Unfortunately this does mean if I lose my server, I&#x27;d have to recreate all those jails... but setting them up in the first place was pretty easy once I learned how &lt;a href=&quot;https:&#x2F;&#x2F;www.freebsd.org&#x2F;cgi&#x2F;man.cgi?query=rc.d&amp;amp;sektion=8&amp;amp;n=1&quot;&gt;rc.d&lt;&#x2F;a&gt; worked.&lt;&#x2F;p&gt;
+&lt;p&gt;Services that I run:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;backblaze
+  -&amp;gt; data backup
+bazarr
+  -&amp;gt; grabs subtitles in multiple languages, hooks into radarr&#x2F;sonarr
+caddy
+  -&amp;gt; reverse proxy to some of these services
+calendar
+  -&amp;gt; radicale
+kitana
+  -&amp;gt; ui for plex plugins
+mailbackup
+  -&amp;gt; offlineimap + cron
+node_exporter
+  -&amp;gt; feeds into prometheus on the raspberry pi
+paperless
+  -&amp;gt; digital document store
+plex
+  -&amp;gt; media catalogue + streaming
+radarr
+  -&amp;gt; monitors local shows for for bazarr subtitle grabbing
+sonarr
+  -&amp;gt; monitors local movies for for bazarr subtitle grabbing
+syncthing
+  -&amp;gt; seamlessly sync files between computers
+thelounge
+  -&amp;gt; modern irc client. I used to use znc+weechat, but I got
+     tired of weechat&amp;#39;s ux. thelounge is simple and pretty.
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;postgres
+mysql
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Several services use databases, so I elected to set aside jails for them.&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;mc_main
+mc_creative
+mc_survival
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I also run 3 instances of minecraft via &lt;a href=&quot;https:&#x2F;&#x2F;papermc.io&#x2F;&quot;&gt;PaperMC&lt;&#x2F;a&gt;, a high performance fork of &lt;a href=&quot;https:&#x2F;&#x2F;www.spigotmc.org&#x2F;&quot;&gt;Spigot&lt;&#x2F;a&gt;. The main jail runs &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;PaperMC&#x2F;Waterfall&quot;&gt;Waterfall&lt;&#x2F;a&gt;
+(a fork of &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;SpigotMC&#x2F;BungeeCord&quot;&gt;bungeecord&lt;&#x2F;a&gt;) along with a hub instance.
+Waterfall acts as a proxy and lets one access multiple servers within a network.&lt;&#x2F;p&gt;
+&lt;p&gt;My docker services:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#ffffff;&quot;&gt;
+&lt;span style=&quot;color:#323232;&quot;&gt;andrewzah&#x2F;gollum
+  -&amp;gt; a wiki with changes automatically git pushed
+  -&amp;gt; a fork of gollum with user logins
+insekticid&#x2F;docker-piwiki (matomo)
+  -&amp;gt; self-hosted analytics (tracking andrewzah.com)
+  -&amp;gt; respects requests to not track user
+radhifadlillah&#x2F;shiori
+  -&amp;gt; self-hosted website backup, similar to archive.web
+huginn&#x2F;huginn
+  -&amp;gt; self-hosted, more powerful version of IFTTT
+cwspear&#x2F;docker-local-persist-volume-plugin
+  -&amp;gt; allows local volume mounts in portainer&#x2F;rancheros
+portainer&#x2F;portainer
+&lt;&#x2F;span&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;serverbuild-freenas&amp;#x2F;freenas-memory.png&quot; data-lity data-lity-desc=&quot;FreeNAS memory graph&quot; alt=&quot;FreeNAS memory graph&quot;&gt;
+&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;serverbuild-freenas&amp;#x2F;freenas-memory.png&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p class=&quot;image-desc&quot;&gt; Current FreeNAS memory graph &lt;&#x2F;p&gt;
+&lt;h3 id=&quot;a-use-for-the-raspberry-pi&quot;&gt;A Use for the Raspberry Pi&lt;&#x2F;h3&gt;
+&lt;p&gt;Once I built the server, I had no use for my raspberry pi3 and 4. Until I learned about &lt;a href=&quot;https:&#x2F;&#x2F;prometheus.io&#x2F;&quot;&gt;prometheus&lt;&#x2F;a&gt; and &lt;a href=&quot;https:&#x2F;&#x2F;grafana.com&#x2F;&quot;&gt;grafana&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Having metrics and a dashboard is awesome, but if my server crashes, I no longer have access to the metrics... So they have to be run somewhere else! This is where the raspberry pi comes in- it just sits on my local network ingesting traffic.&lt;&#x2F;p&gt;
+&lt;p&gt;Unfortunately, node_exporter doesn&#x27;t seem to export hdd temperature values, which is pretty important. I&#x27;ll probably have to write a simple script to pull those values and host another metrics target for prometheus.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;serverbuild-freenas&amp;#x2F;grafana-node-exporter.png&quot; data-lity data-lity-desc=&quot;Grafana with node_exporter metrics from FreeNAS&quot; alt=&quot;Grafana with node_exporter metrics from FreeNAS&quot;&gt;
+&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;serverbuild-freenas&amp;#x2F;grafana-node-exporter.png&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p class=&quot;image-desc&quot;&gt; Grafana with node_exporter metrics from FreeNAS &lt;&#x2F;p&gt;
+&lt;h4 id=&quot;why-freenas&quot;&gt;Why FreeNAS?&lt;&#x2F;h4&gt;
+&lt;p&gt;FreeNAS has extensive documentation. and *BSDs are nice. ZFS and RAID are nice. Free Software is nice. &lt;&#x2F;p&gt;
+&lt;p&gt;If I didn&#x27;t use docker so heavily I would likely use FreeBSD or OpenBSD for my personal computers as well instead of Debian.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;Overall the process of building a server was pretty fun, but I&#x27;m glad I&#x27;m done with that for the foreseeable future. I didn&#x27;t self-host that much when I began, but once I started adding services I started thinking about everything I could self host.&lt;&#x2F;p&gt;
+</description>
+            </item>
+        
+    </channel>
+</rss>
