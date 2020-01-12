@@ -35,12 +35,12 @@ And forget about receiving texts with Chinese or Japanese characters.&lt;&#x2F;p
 Even if the watch isn&#x27;t localized to those languages, surely it should be possible to download a relevant font file?&lt;&#x2F;p&gt;
 &lt;hr &#x2F;&gt;
 &lt;p&gt;While this isn&#x27;t the end of the world (I like the fenix a lot), is it really so hard to imagine a person that lives in one region but prefers using Chinese&#x2F;Japanese&#x2F;Thai&#x2F;Farsi&#x2F;Korean&#x2F;etc? The thing is that issues like these occur more often that not when using languages with different scripts.&lt;&#x2F;p&gt;
-&lt;p&gt;All too often, developers make assumptions about regions and language. If they do internationalization at all. This is understandable for open source projects with limited resources, less understandable fora large company. Which doesn&#x27;t even make sense, as language support surely would help a product sell more?&lt;&#x2F;p&gt;
+&lt;p&gt;All too often, developers make assumptions about regions and language, if they do internationalization at all. This is understandable for open source projects with limited resources, less understandable for a large company. Which doesn&#x27;t even make sense, as language support surely would help a product sell more?&lt;&#x2F;p&gt;
 &lt;p&gt;I can&#x27;t imagine that it would be very difficult for Garmin to implement font packs for various languages, or allow users to use their own fonts.
 If you&#x27;re not going to make an ultra-polished, tightly locked down product like the apple watch, why not give users a bit of control?&lt;&#x2F;p&gt;
 &lt;p&gt;This exact issue recently happened to me with a Nintendo 3DS.
-Since I bought a western&#x2F;North American version, it only supported 4 languages (not Korean or Japanese)... despite being sold in Japan and Korea. I ended up having to &lt;a href=&quot;https:&#x2F;&#x2F;3ds.hacks.guide&#x2F;&quot;&gt;jailbreak the 3ds&lt;&#x2F;a&gt; to change the region and allow Korean games to be played.&lt;&#x2F;p&gt;
-&lt;p&gt;Just give me a way to change the language!!&lt;&#x2F;p&gt;
+I bought a western&#x2F;North American version, so it only supported 4 languages (not Korean or Japanese)... despite being sold in Japan and Korea. I ended up having to &lt;a href=&quot;https:&#x2F;&#x2F;3ds.hacks.guide&#x2F;&quot;&gt;jailbreak the 3ds&lt;&#x2F;a&gt; to change the region and allow Korean games to be played.&lt;&#x2F;p&gt;
+&lt;p&gt;Please give me a way to change the language!&lt;&#x2F;p&gt;
 </description>
             </item>
         
