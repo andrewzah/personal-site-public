@@ -7,7 +7,42 @@
         <generator>Zola</generator>
         <language>en</language>
         <atom:link href="andrewzah.com/rss.xml" rel="self" type="application/rss+xml"/>
-        <lastBuildDate>Sun, 22 Dec 2019 00:00:00 +0000</lastBuildDate>
+        <lastBuildDate>Sat, 11 Jan 2020 00:00:00 +0000</lastBuildDate>
+        
+            <item>
+                <title>My $850 watch can&#x27;t render Korean text</title>
+                <pubDate>Sat, 11 Jan 2020 00:00:00 +0000</pubDate>
+                <link>andrewzah.com/posts/my-850-dollar-watch-cant-render-korean-text/</link>
+                <guid>andrewzah.com/posts/my-850-dollar-watch-cant-render-korean-text/</guid>
+                <description>&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;2020_01_11_garmin_fenix&amp;#x2F;garmin-notification.jpg&quot; data-lity data-lity-desc=&quot;An example notification from my phone, which is in Korean. The korean text is rendered as question marks in black boxes.&quot; alt=&quot;An example notification from my phone, which is in Korean. The korean text is rendered as question marks in black boxes.&quot;&gt;
+&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;2020_01_11_garmin_fenix&amp;#x2F;garmin-notification.jpg&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p class=&quot;image-desc&quot;&gt; An example notification from my phone, which is in Korean. &lt;&#x2F;p&gt;
+&lt;p&gt;I recently acquired a &lt;a href=&quot;https:&#x2F;&#x2F;buy.garmin.com&#x2F;en-US&#x2F;US&#x2F;p&#x2F;641435&#x2F;pn&#x2F;010-02157-10&quot;&gt;Garmin Fenix 6X&lt;&#x2F;a&gt;.
+The 6 and 6S start at $600, with the 6X starting at $750. This model retails for $850, so when I found it for $500 I hopped on that.&lt;&#x2F;p&gt;
+&lt;p&gt;While I did research beforehand, I forgot that my phone was in Korean, and thus the notifications would be in Korean... Silly me.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;2020_01_11_garmin_fenix&amp;#x2F;express-utilities.png&quot; data-lity data-lity-desc=&quot;A screenshot of the Utilities tab in the Tools &amp;amp; Content section of the Garmin Express application.&quot; alt=&quot;A screenshot of the Utilities tab in the Tools &amp;amp; Content section of the Garmin Express application.&quot;&gt;
+&lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;2020_01_11_garmin_fenix&amp;#x2F;express-utilities.png&quot;&#x2F;&gt;
+&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p class=&quot;image-desc&quot;&gt; Tools &amp;amp; Content &amp;gt; Utilities in the Garmin Express application. &lt;&#x2F;p&gt;
+&lt;p&gt;The Express application has a &amp;quot;Language Files&amp;quot; section, but it was empty. When I spoke to customer support, they told me Korean wasn&#x27;t supported at this time.
+I was directed to &lt;a href=&quot;https:&#x2F;&#x2F;support.garmin.com&#x2F;en-US&#x2F;?faq=bUNm3O11dH04aqGOFtBsz6&quot;&gt;a page on supported languages&lt;&#x2F;a&gt;, and a page &lt;a href=&quot;https:&#x2F;&#x2F;www.garmin.com&#x2F;en-US&#x2F;forms&#x2F;ideas&#x2F;&quot;&gt;to share ideas&lt;&#x2F;a&gt; but it errors on submission.&lt;&#x2F;p&gt;
+&lt;p&gt;I saw that Romanian (my mother tongue) was supported so I asked a friend who works at Garmin about that, and he mentioned that they have an office there.
+Cursory googling brings up a few &lt;a href=&quot;https:&#x2F;&#x2F;www.reddit.com&#x2F;r&#x2F;Garmin&#x2F;comments&#x2F;bua11v&#x2F;asian_language_support_for_fenix_5_plus_series&#x2F;&quot;&gt;reddit threads&lt;&#x2F;a&gt; which mention different models are made for different regions. So if I want Korean text, I have to find a Korean&#x2F;Asian version of the watch.
+And forget about receiving texts with Chinese or Japanese characters.&lt;&#x2F;p&gt;
+&lt;p&gt;So, is there no one at Garmin who uses their flagship watch, with their phone set to a CJK language?
+(or any other nonsupported language that uses a different script, for that matter)?
+Even if the watch isn&#x27;t localized to those languages, surely it should be possible to download a relevant font file?&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;While this isn&#x27;t the end of the world (I like the fenix a lot), is it really so hard to imagine a person that lives in one region but prefers using Chinese&#x2F;Japanese&#x2F;Thai&#x2F;Farsi&#x2F;Korean&#x2F;etc? The thing is that issues like these occur more often that not when using languages with different scripts.&lt;&#x2F;p&gt;
+&lt;p&gt;All too often, developers make assumptions about regions and language. If they do internationalization at all. This is understandable for open source projects with limited resources, less understandable fora large company. Which doesn&#x27;t even make sense, as language support surely would help a product sell more?&lt;&#x2F;p&gt;
+&lt;p&gt;I can&#x27;t imagine that it would be very difficult for Garmin to implement font packs for various languages, or allow users to use their own fonts.
+If you&#x27;re not going to make an ultra-polished, tightly locked down product like the apple watch, why not give users a bit of control?&lt;&#x2F;p&gt;
+&lt;p&gt;This exact issue recently happened to me with a Nintendo 3DS.
+Since I bought a western&#x2F;North American version, it only supported 4 languages (not Korean or Japanese)... despite being sold in Japan and Korea. I ended up having to &lt;a href=&quot;https:&#x2F;&#x2F;3ds.hacks.guide&#x2F;&quot;&gt;jailbreak the 3ds&lt;&#x2F;a&gt; to change the region and allow Korean games to be played.&lt;&#x2F;p&gt;
+&lt;p&gt;Just give me a way to change the language!!&lt;&#x2F;p&gt;
+</description>
+            </item>
         
             <item>
                 <title>Hosting Minecraft Servers + BungeeCord with FreeNAS</title>

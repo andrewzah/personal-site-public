@@ -71,39 +71,44 @@
       </span>
     </div>
     <hr>
-    <aside id="toc">
-        <h2>Table of Contents</h2>
-        <ol>
-            <li>
-                <a href="#zola">Zola</a>
-                <ol>
-                    <li>
-                        <a href="#getting-started">Getting started</a>
-                    </li><li>
-                        <a href="#my-setup">My setup</a>
-                    </li><li>
-                        <a href="#templating">Templating</a>
-                    </li><li>
-                        <a href="#macros">Macros</a>
-                    </li><li>
-                        <a href="#shortcodes">Shortcodes</a>
-                    </li>
-                </ol>
-            </li><li>
-                <a href="#static-assets-repo">Static Assets Repo</a>
-                
-            </li><li>
-                <a href="#caddy">Caddy</a>
-                
-            </li><li>
-                <a href="#docker">Docker</a>
-                
-            </li><li>
-                <a href="#conclusion">Conclusion</a>
-                
-            </li>
-        </ol>
-    </aside>
+    
+      
+    
+    
+      <aside id="toc">
+          <h2>Table of Contents</h2>
+          <ol>
+              <li>
+                  <a href="#zola">Zola</a>
+                  <ol>
+                      <li>
+                          <a href="#getting-started">Getting started</a>
+                      </li><li>
+                          <a href="#my-setup">My setup</a>
+                      </li><li>
+                          <a href="#templating">Templating</a>
+                      </li><li>
+                          <a href="#macros">Macros</a>
+                      </li><li>
+                          <a href="#shortcodes">Shortcodes</a>
+                      </li>
+                  </ol>
+              </li><li>
+                  <a href="#static-assets-repo">Static Assets Repo</a>
+                  
+              </li><li>
+                  <a href="#caddy">Caddy</a>
+                  
+              </li><li>
+                  <a href="#docker">Docker</a>
+                  
+              </li><li>
+                  <a href="#conclusion">Conclusion</a>
+                  
+              </li>
+          </ol>
+      </aside>
+    
     <article itemprop="articleBody">
       <p>Over the years, I've slowly and incrementally optimized my blog. Originally I used an entire rails setup with postgres, because that was the first thing I really learned how to program. Yet that's quite the overkill for a static blog... I don't even include comments anymore.</p>
 <p>This is where <a href="https://getzola.org">Zola</a> comes in, previously named <em>Gutenberg</em>. It's a static site generator written in Rust that uses <a href="https://tera.netlify.com/">Tera</a> for templating. It serves as a counterpart to <a href="https://gohugo.io/">Hugo</a>, written in Golang. Both have a similar featureset, so I chose Zola since I use Rust and can contribute if needed.</p>
@@ -312,6 +317,7 @@ CMD [&quot;--conf&quot;, &quot;/etc/Caddyfile&quot;, &quot;--log&quot;, &quot;st
 <p>If configured correctly, you should now be able to git push your static assets and automatically have the container pull them in!</p>
 <h2 id="conclusion">Conclusion</h2>
 
+      <hr>
       <div id="email-me">
         Have any observations, criticisms, or corrections? Feel free to <a href="mailto:blog@andrewzah.com">email me</a>. Have a nice day!
       </div>

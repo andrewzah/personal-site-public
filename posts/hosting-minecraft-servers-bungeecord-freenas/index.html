@@ -71,27 +71,32 @@
       </span>
     </div>
     <hr>
-    <aside id="toc">
-        <h2>Table of Contents</h2>
-        <ol>
-            <li>
-                <a href="#prerequisites">Prerequisites</a>
-                
-            </li><li>
-                <a href="#preparing-the-jails">Preparing the Jails</a>
-                
-            </li><li>
-                <a href="#setting-up-minecraft">Setting up Minecraft</a>
-                
-            </li><li>
-                <a href="#setting-up-waterfall-bungeecord">Setting up Waterfall/Bungeecord</a>
-                
-            </li><li>
-                <a href="#databases-for-plugins">Databases for Plugins</a>
-                
-            </li>
-        </ol>
-    </aside>
+    
+      
+    
+    
+      <aside id="toc">
+          <h2>Table of Contents</h2>
+          <ol>
+              <li>
+                  <a href="#prerequisites">Prerequisites</a>
+                  
+              </li><li>
+                  <a href="#preparing-the-jails">Preparing the Jails</a>
+                  
+              </li><li>
+                  <a href="#setting-up-minecraft">Setting up Minecraft</a>
+                  
+              </li><li>
+                  <a href="#setting-up-waterfall-bungeecord">Setting up Waterfall/Bungeecord</a>
+                  
+              </li><li>
+                  <a href="#databases-for-plugins">Databases for Plugins</a>
+                  
+              </li>
+          </ol>
+      </aside>
+    
     <article itemprop="articleBody">
       <p>Learn how to set up multiple minecraft servers in FreeNAS with a bungeecord/waterfall proxy.</p>
 <p>This guide assumes you're running a FreeNAS server on a local network. If not, you'll have to update your ip address and default gateway settings accordingly.</p>
@@ -476,6 +481,7 @@ mysql -uroot -p
 <p>Now update your plugin's <code>config.yml</code>, where <code>host</code> is the ip address of the mysql jail, and <code>port</code> is <code>3306</code>.</p>
 <p>It's a good idea to create a separate database and user for each plugin and server. For example, I have the databases <code>coreprotect_survival</code>, and <code>coreprotect_creative</code>, both of which have different users.</p>
 
+      <hr>
       <div id="email-me">
         Have any observations, criticisms, or corrections? Feel free to <a href="mailto:blog@andrewzah.com">email me</a>. Have a nice day!
       </div>
@@ -551,6 +557,12 @@ mysql -uroot -p
           </div>
         
 
+        
+          <div id="next_post">
+            Next: <i>
+              <a class="next" href="/posts/my-850-dollar-watch-cant-render-korean-text">My $850 watch can&#x27;t render Korean text</a>
+            </i>
+          </div>
         
 
         
