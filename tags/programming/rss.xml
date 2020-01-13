@@ -18,8 +18,8 @@
 &lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;2020_01_11_garmin_fenix&amp;#x2F;garmin-notification.jpg&quot;&#x2F;&gt;
 &lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
 &lt;p class=&quot;image-desc&quot;&gt; An example notification from my phone, which is in Korean. &lt;&#x2F;p&gt;
-&lt;p&gt;I recently acquired a &lt;a href=&quot;https:&#x2F;&#x2F;buy.garmin.com&#x2F;en-US&#x2F;US&#x2F;p&#x2F;641435&#x2F;pn&#x2F;010-02157-10&quot;&gt;Garmin Fenix 6X&lt;&#x2F;a&gt;.
-The 6 and 6S start at $600, with the 6X starting at $750. This model retails for $850, so when I found it for $500 I hopped on that.&lt;&#x2F;p&gt;
+&lt;p&gt;I recently acquired a &lt;a href=&quot;https:&#x2F;&#x2F;buy.garmin.com&#x2F;en-US&#x2F;US&#x2F;p&#x2F;641435&#x2F;pn&#x2F;010-02157-10&quot;&gt;Garmin Fenix 6X&lt;&#x2F;a&gt;, currently Garmin&#x27;s flagship model.
+The 6 and 6S start at $600, with the 6X starting at $750. The solar editions go for $1,000 and $1,150. This specific variant retails for $850, so when I found it for $500 I hopped on that.&lt;&#x2F;p&gt;
 &lt;p&gt;While I did research beforehand, I forgot that my phone was in Korean, and thus the notifications would be in Korean... Silly me.&lt;&#x2F;p&gt;
 &lt;p&gt;&lt;a href=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;2020_01_11_garmin_fenix&amp;#x2F;express-utilities.png&quot; data-lity data-lity-desc=&quot;A screenshot of the Utilities tab in the Tools &amp;amp; Content section of the Garmin Express application.&quot; alt=&quot;A screenshot of the Utilities tab in the Tools &amp;amp; Content section of the Garmin Express application.&quot;&gt;
 &lt;img class=&quot;full&quot; async-src=&quot;https:&amp;#x2F;&amp;#x2F;s3.amazonaws.com&amp;#x2F;andrewzah.com&amp;#x2F;posts&amp;#x2F;2020_01_11_garmin_fenix&amp;#x2F;express-utilities.png&quot;&#x2F;&gt;
@@ -31,13 +31,15 @@ I was directed to &lt;a href=&quot;https:&#x2F;&#x2F;support.garmin.com&#x2F;en-
 Cursory googling brings up a few &lt;a href=&quot;https:&#x2F;&#x2F;www.reddit.com&#x2F;r&#x2F;Garmin&#x2F;comments&#x2F;bua11v&#x2F;asian_language_support_for_fenix_5_plus_series&#x2F;&quot;&gt;reddit threads&lt;&#x2F;a&gt; which mention different models are made for different regions. So if I want Korean text, I have to find a Korean&#x2F;Asian version of the watch.
 And forget about receiving texts with Chinese or Japanese characters.&lt;&#x2F;p&gt;
 &lt;p&gt;So, is there no one at Garmin who uses their flagship watch, with their phone set to a CJK language?
-(or any other nonsupported language that uses a different script, for that matter)?
+(or any other nonsupported language that uses a different script, for that matter)? Is there no one who receives texts in Chinese, etc, from their friends?
 Even if the watch isn&#x27;t localized to those languages, surely it should be possible to download a relevant font file?&lt;&#x2F;p&gt;
 &lt;hr &#x2F;&gt;
-&lt;p&gt;While this isn&#x27;t the end of the world (I like the fenix a lot), is it really so hard to imagine a person that lives in one region but prefers using Chinese&#x2F;Japanese&#x2F;Thai&#x2F;Farsi&#x2F;Korean&#x2F;etc? The thing is that issues like these occur more often that not when using languages with different scripts.&lt;&#x2F;p&gt;
-&lt;p&gt;Example 1: On Netflix, there&#x27;s a show called &lt;em&gt;Hilda&lt;&#x2F;em&gt;. If you visit Netflix from the USA, the offered subtitle languages are: English, Spanish, French, and Simplified &amp;amp; Traditional Chinese. If I visit Netflix from Korea, I get an option for Korean subtitles (and audio!). C&#x27;mon netflix...&lt;&#x2F;p&gt;
-&lt;p&gt;Example 2: I bought a western&#x2F;North American region 3DS, and it only supported 4 languages (not Korean or Japanese)... despite also being sold in Japan and Korea. I ended up having to &lt;a href=&quot;https:&#x2F;&#x2F;3ds.hacks.guide&#x2F;&quot;&gt;jailbreak the 3ds&lt;&#x2F;a&gt; to change the language&#x2F;region and allow Korean games to be played.&lt;&#x2F;p&gt;
-&lt;p&gt;All too often, developers make assumptions about regions and language, if they do internationalization at all. This is understandable for open source projects with limited resources, less understandable for large companies. This issue doesn&#x27;t even make sense, as language support surely would help a product sell more?&lt;&#x2F;p&gt;
+&lt;p&gt;While this isn&#x27;t the end of the world (I like the fenix a lot), is it really so hard to imagine a person that lives in one region but prefers using a different language?&lt;&#x2F;p&gt;
+&lt;p&gt;The thing is that issues like these occur way more frequently than they should.&lt;&#x2F;p&gt;
+&lt;p&gt;Example 1: On Netflix, there&#x27;s a show called &lt;em&gt;Hilda&lt;&#x2F;em&gt;. If I visit Netflix from the USA, the offered subtitle languages are: English, Spanish, French, and Simplified &amp;amp; Traditional Chinese. If I visit Netflix from Korea, now Korean subtitles (and audio!) are available. C&#x27;mon netflix... I know there&#x27;s probably a technical reason for doing this, but as an end user, I simply don&#x27;t care.&lt;&#x2F;p&gt;
+&lt;p&gt;Example 2: I bought a western&#x2F;North American region 3DS, and it only supported 4 languages (not Korean or Japanese)... despite also being sold in Japan and Korea. I ended up having to &lt;a href=&quot;https:&#x2F;&#x2F;3ds.hacks.guide&#x2F;&quot;&gt;jailbreak the 3ds&lt;&#x2F;a&gt; to change the language&#x2F;region and allow the Korean version of games to be played.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;All too often, developers make assumptions about regions and language, if they do internationalization at all. This is understandable for open source projects with limited resources, and less understandable for large companies. This issue doesn&#x27;t even make sense to me, as language support surely would help a product sell more?&lt;&#x2F;p&gt;
 &lt;p&gt;Someone can correct me if I&#x27;m wrong here, but I can&#x27;t imagine that it would be very difficult for Garmin to implement font packs for various languages, or allow users to use their own fonts.&lt;&#x2F;p&gt;
 &lt;p&gt;Just give me a way to change the language!&lt;&#x2F;p&gt;
 </description>
