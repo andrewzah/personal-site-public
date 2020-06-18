@@ -101,12 +101,12 @@
     
     <article itemprop="articleBody">
       <p>I've migrated my website. Again.</p>
-<p id="zola-continue-reading"><a name="continue-reading"></a></p>
+<span id="continue-reading"></span>
 <p>This time, I decided to implement it using <a href="https://www.getgutenberg.io">Gutenberg</a>, a static website generator which is written in <a href="https://www.rust-lang.org/">Rust</a>. I decided it was finally time to stop saying &quot;I'll learn Rust&quot;, and just started.</p>
 <p>I also revisited Docker and containerized my website, with <a href="https://caddyserver.com/">Caddy</a> as the HTTP/2 server. After using Caddy, I simply don't want to go back to Apache2 or Nginx for personal projects ever again. Caddy's configs are minimal and it automatically handles HTTPS certificates using <a href="https://letsencrypt.org/">Let's Encrypt</a>.</p>
 <p>Here's what my Caddyfile for <code>andrewzah.com</code>, <code>andrei.blue</code>, and <code>znc.andrewzah.com</code> looks like:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">andrewzah.com, andrei.blue {
+<code><span style="color:#323232;">andrewzah.com, andrei.blue {
   tls your@email.com
 
   log / stdout {combined}
@@ -123,7 +123,7 @@ znc.andrewzah.com {
 
   proxy / http://znc:6697
 }
-</span></pre>
+</span></code></pre>
 <p>That's it. Then with Docker, I can use a Caddy proxy per service. </p>
 <h2 id="static-benefits">Static Benefits</h2>
 <p>As Gutenberg is a static website generator I have no need for a database. Indeed, I thought it was overkill to run an application and a Postgres instance just for a handful of posts. I much prefer storing my posts <a href="https://github.com/azah/personal-blog">through git</a>. The application's footprint is overall much smaller and I have less dependencies to manage. I want to focus on other programming projects, not so much my website. </p>
@@ -133,7 +133,7 @@ znc.andrewzah.com {
 <p>I can't really say much other than Docker is simply amazing. After I nuked my first VPS setup, I realized how tedious and truly time-consuming manually setting up a server is. It's ridiculous. Now it takes me about 20-25 minutes to set up a server, and that's only because I still do a bit manually (like a docker user, ssh keys, etc). In 2018 I plan on studying better provisioning and setup techniques so I can automate it completely.</p>
 <p>My <a href="https://github.com/azah/personal-blog">docker setup</a> utilizes a script to manage several services, such as this website and my personal ZNC server. Adding a docker service is as simple as getting a premade docker image and making a Caddy proxy:</p>
 <pre style="background-color:#ffffff;">
-<span style="font-style:italic;color:#969896;"># compose.yml
+<code><span style="font-style:italic;color:#969896;"># compose.yml
 </span><span style="color:#63a35c;">version</span><span style="color:#323232;">: </span><span style="color:#183691;">&quot;3.3&quot;
 
 </span><span style="color:#63a35c;">services</span><span style="color:#323232;">:
@@ -157,12 +157,12 @@ znc.andrewzah.com {
     </span><span style="color:#63a35c;">build</span><span style="color:#323232;">:
       </span><span style="color:#63a35c;">context</span><span style="color:#323232;">: </span><span style="color:#63a35c;">${COMPOSE_ROOT}/services/bitlbee
 dockerfile</span><span style="color:#323232;">: </span><span style="color:#183691;">Dockerfile-bitlbee
-</span></pre><pre style="background-color:#ffffff;">
-<span style="color:#323232;">proxy :6667 bitlbee:6667 {
+</span></code></pre><pre style="background-color:#ffffff;">
+<code><span style="color:#323232;">proxy :6667 bitlbee:6667 {
   host znc.andrewzah.com
   tls your@email.com
 }
-</span></pre>
+</span></code></pre>
 <p>So that uses my bitlbee Dockerfile and creates a Caddy proxy in the docker container. You can see all of my services <a href="https://github.com/azah/andrewzah.com/tree/master/services">here</a></p>
 <h3 id="clojure">Clojure</h3>
 <p>Studying Clojure — and forcing myself to stick with it — truly changed me as a programmer. Shifting from a pure Object Oriented mindset towards Functional Programming is easier said than done, but I cannot state how important it is to at least understand FP. <code>Map</code>, <code>Reduce</code>, and <code>Filter</code> are <em>powerful</em>. Languages like Ruby have implementations of these of course, but it's tough to force yourself to actually use them.</p>
@@ -283,21 +283,19 @@ dockerfile</span><span style="color:#323232;">: </span><span style="color:#18369
       </div>
     </div>
 
-    <!-- Matomo -->
-    <script type="text/javascript">
-      var _paq = window._paq || [];
-      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-      _paq.push(['trackPageView']);
-      _paq.push(['enableLinkTracking']);
-      (function() {
-        var u="//matomo.andrewzah.com/";
-        _paq.push(['setTrackerUrl', u+'matomo.php']);
-        _paq.push(['setSiteId', '2']);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-      })();
-    </script>
-    <!-- End Matomo Code -->
+  <!-- GoatCounter -->
+  <script>
+      // Only load in production
+      if (window.location.host !== 'andrewzah.com')
+          window.goatcounter = {no_onload: true}
+  </script>
+  <script data-goatcounter="https://stats.andrewzah.com/count"
+        async type="text/javascript" src="https://stats.andrewzah.com/count.js"></script>
+
+  <noscript>
+    <img src="https://stats.andrewzah.com/count?p=/test-img">
+  </noscript>
+  <!-- End GoatCounter -->
 
   </body>
 </html>

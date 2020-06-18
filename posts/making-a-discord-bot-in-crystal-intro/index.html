@@ -102,24 +102,23 @@
     
     <article itemprop="articleBody">
       <p>Our goal today is simple: Get a bot up and running via a JSON configuration file, in Crystal, that responds to a &quot;!ping&quot; command.</p>
-<p id="zola-continue-reading"><a name="continue-reading"></a></p>
-<h2 id="crystal-and-shards-installation">Crystal and Shards installation</h2>
+<span id="continue-reading"></span><h2 id="crystal-and-shards-installation">Crystal and Shards installation</h2>
 <p>In order to install Crystal, you can follow the <a href="https://crystal-lang.org/docs/installation/">docs</a> for your operating system.</p>
 <p>You can verify Crystal and Shards are installed by checking their versions:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">λ shards --version
+<code><span style="color:#323232;">λ shards --version
 Shards 0.7.2 (2018-01-27)
-</span></pre><pre style="background-color:#ffffff;">
-<span style="color:#323232;">λ crystal -v
+</span></code></pre><pre style="background-color:#ffffff;">
+<code><span style="color:#323232;">λ crystal -v
 Crystal 0.24.1 (2018-01-27)
 
 LLVM: 5.0.1
 Default target: x86_64-apple-macosx
-</span></pre><h2 id="creating-the-project-repo">Creating the project repo</h2>
+</span></code></pre><h2 id="creating-the-project-repo">Creating the project repo</h2>
 <p>Crystal provides an <code>init TYPE NAME [DIR]</code> command for us generate a basic file structure. You can pass <code>app</code> or <code>lib</code> for the type, and you can optionally have a different directory name than the project name.</p>
 <p>For now, let's go ahead and do <code>crystal init app mybot</code>. The generated structure looks like this:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">├── </span><span style="color:#0086b3;">LICENSE</span><span style="color:#323232;">
+<code><span style="color:#323232;">├── </span><span style="color:#0086b3;">LICENSE</span><span style="color:#323232;">
 ├── </span><span style="color:#0086b3;">README</span><span style="color:#323232;">.md
 ├── shard.yml
 ├── spec
@@ -130,7 +129,7 @@ Default target: x86_64-apple-macosx
     │   └── version.cr
     └── mybot.cr
 </span><span style="color:#0086b3;">3</span><span style="color:#323232;"> directories, </span><span style="color:#0086b3;">7</span><span style="color:#323232;"> files
-</span></pre>
+</span></code></pre>
 <p><code>LICENSE</code> (MIT by default) and <code>README.md</code> are self explanatory. <code>spec</code> stores our tests, which can be run with <code>crystal spec</code>.</p>
 <p><code>shard.yml</code> is the YAML configuration file for shards. Running this will generate a <code>shards.lock</code> with a snapshot of the dependencies.</p>
 <p><code>src</code> is where our code lives. By default, <code>mybot.cr</code> will include files in <code>src/mybot</code>, and <code>version.cr</code> is used to track our project using <a href="https://semver.org/">Semantic Versioning</a>, starting at <code>0.1.0</code>.</p>
@@ -142,7 +141,7 @@ On your bot's application page, click <code>Generate OAuth2 url</code>. This wil
 <h2 id="reading-and-writing-json">Reading and Writing JSON</h2>
 <p>Let's create a <code>config.cr</code> file to manage our configuration file.</p>
 <pre style="background-color:#ffffff;">
-<span style="font-style:italic;color:#969896;"># src/mybot/config.cr
+<code><span style="font-style:italic;color:#969896;"># src/mybot/config.cr
 
 </span><span style="font-weight:bold;color:#a71d5d;">module </span><span style="color:#323232;">MyBot
   </span><span style="font-weight:bold;color:#a71d5d;">class </span><span style="color:#323232;">Config
@@ -152,23 +151,23 @@ On your bot's application page, click <code>Generate OAuth2 url</code>. This wil
     </span><span style="color:#323232;">)
   </span><span style="font-weight:bold;color:#a71d5d;">end
 end
-</span></pre>
+</span></code></pre>
 <p>Let's break that down. First, we create a <code>Config</code> class, and then <a href="https://crystal-lang.org/api/0.23.1/JSON.html#mapping-macro">JSON.mapping</a> handily lets us describe how our class gets mapped to and from JSON. We must define the type, and token is a <code>String</code>. <code>client_id</code> is an unsigned 64bit integer.</p>
 <p>So now we need to create the file! Let's put it under <code>conf/bot.json</code>.</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">{
-  </span><span style="font-weight:bold;color:#183691;">&quot;token&quot;</span><span style="color:#323232;">: &quot;Bot xxxxxxxxx&quot;,
-  </span><span style="font-weight:bold;color:#183691;">&quot;client_id&quot;</span><span style="color:#323232;">: </span><span style="background-color:#f5f5f5;font-weight:bold;color:#b52a1d;">yyyyyyyyyyyy</span><span style="color:#323232;">
+<code><span style="color:#323232;">{
+  </span><span style="color:#183691;">&quot;token&quot;</span><span style="color:#323232;">: </span><span style="color:#183691;">&quot;Bot xxxxxxxxx&quot;</span><span style="color:#323232;">,
+  </span><span style="color:#183691;">&quot;client_id&quot;</span><span style="color:#323232;">: </span><span style="background-color:#f5f5f5;font-weight:bold;color:#b52a1d;">yyyyyyyyyyyy</span><span style="color:#323232;">
 }
-</span></pre>
+</span></code></pre>
 <p>Note: We have to prefix our token with &quot;Bot &quot;.</p>
 <p>Now we don't want to share that token with the world… Make sure to modify your <code>.gitignore</code> file:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">λ echo </span><span style="color:#183691;">&quot;/conf&quot; </span><span style="font-weight:bold;color:#a71d5d;">&gt;&gt;</span><span style="color:#323232;"> .gitignore
-</span></pre>
+<code><span style="color:#323232;">λ echo </span><span style="color:#183691;">&quot;/conf&quot; </span><span style="font-weight:bold;color:#a71d5d;">&gt;&gt;</span><span style="color:#323232;"> .gitignore
+</span></code></pre>
 <p>Almost there. Now in <code>src/mybot.cr</code>, we can load up our dependencies and config file.</p>
 <pre style="background-color:#ffffff;">
-<span style="font-style:italic;color:#969896;"># src/mybot.cr
+<code><span style="font-style:italic;color:#969896;"># src/mybot.cr
 </span><span style="font-weight:bold;color:#a71d5d;">require </span><span style="color:#183691;">&quot;json&quot;
 </span><span style="font-weight:bold;color:#a71d5d;">require </span><span style="color:#183691;">&quot;./mybot/*&quot; </span><span style="font-style:italic;color:#969896;"># Crystal supports wildcard matching
 
@@ -177,20 +176,20 @@ end
   config </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#0086b3;">Config</span><span style="color:#323232;">.from_json(file) 
   puts config.token
 </span><span style="font-weight:bold;color:#a71d5d;">end
-</span></pre>
+</span></code></pre>
 <p>First, we need to load <code>json</code> from the standard library, and our new config file. <code>File.join</code> lets us join files and directories in a system-agnostic manner (&quot;\&quot; versus &quot;/&quot;). Once we read the file, we can use <code>Config.from_json</code>, which is provided automatically when we use <code>JSON.mapping</code>.</p>
 <p>If everything was done correctly, the output of <code>crystal run src/mybot.cr</code> should be your token!</p>
 <h2 id="starting-up-discord-client">Starting up Discord::Client</h2>
 <p>The <a href="https://github.com/meew0/discordcr/">discordcr</a> library wraps Discord's API for us and provides basic functionality. To install it, add this to your <code>shard.yml</code> file under <code>dependencies</code>:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#63a35c;">dependencies</span><span style="color:#323232;">:
+<code><span style="color:#63a35c;">dependencies</span><span style="color:#323232;">:
   </span><span style="color:#63a35c;">discordcr</span><span style="color:#323232;">:
     </span><span style="color:#63a35c;">github</span><span style="color:#323232;">: </span><span style="color:#183691;">meew0/discordcr
-</span></pre>
+</span></code></pre>
 <p>Then run <code>shards install</code>. This will grab the library for us and create a <code>shard.lock</code> file.</p>
 <p>Now we can edit <code>src/mybot.cr</code> again:</p>
 <pre style="background-color:#ffffff;">
-<span style="font-weight:bold;color:#a71d5d;">require </span><span style="color:#183691;">&quot;json&quot;
+<code><span style="font-weight:bold;color:#a71d5d;">require </span><span style="color:#183691;">&quot;json&quot;
 </span><span style="font-weight:bold;color:#a71d5d;">require </span><span style="color:#183691;">&quot;discordcr&quot;
 </span><span style="font-weight:bold;color:#a71d5d;">require </span><span style="color:#183691;">&quot;./mybot/config&quot;
 
@@ -203,12 +202,12 @@ end
     </span><span style="color:#0086b3;">client_id:</span><span style="color:#323232;"> config.client_id
   )
 </span><span style="font-weight:bold;color:#a71d5d;">end
-</span></pre>
+</span></code></pre>
 <p>If everything was done correctly, <code>crystal run src/mybot.cr</code> should produce nothing.</p>
 <h2 id="listening-to-input">Listening to input</h2>
 <p><code>Discord::Client</code> comes with <a href="https://meew0.github.io/discordcr/doc/master/Discord/Client.html">many instance methods</a>. We're going to be using <code>#on_message_create</code> which gives us a payload of type <a href="https://meew0.github.io/discordcr/doc/master/Discord/Message.html">Discord::Message</a>. </p>
 <pre style="background-color:#ffffff;">
-<span style="font-style:italic;color:#969896;"># src/mybot.cr
+<code><span style="font-style:italic;color:#969896;"># src/mybot.cr
 # ...
 </span><span style="color:#323232;">client.on_message_create </span><span style="font-weight:bold;color:#a71d5d;">do </span><span style="color:#323232;">|payload|
   </span><span style="font-weight:bold;color:#a71d5d;">if</span><span style="color:#323232;"> payload.content.starts_with? </span><span style="color:#183691;">&quot;!ping&quot;</span><span style="color:#323232;">
@@ -217,13 +216,13 @@ end
 end</span><span style="color:#323232;">
 
 client.run
-</span></pre>
+</span></code></pre>
 <p><code>#on_message_create</code> takes a block which lets us do what we want. If the payload starts with <code>!ping</code>, we create a message in the same channel as the payload with the text <code>Pong!</code>.</p>
 <p><code>client.run</code>, well, runs the bot. This will block so anything after this point will not run. We'll explore asynchronous execution through fibers later.</p>
 <p>Let's check to see if our bot works.</p>
-<p><a href="https:&#x2F;&#x2F;i.imgur.com&#x2F;zbR6HrC.png" data-lity data-lity-desc="Ping Test in Discord" alt="Ping Test in Discord">
-<img class="full" async-src="https:&#x2F;&#x2F;i.imgur.com&#x2F;zbR6HrC.png"/>
-</a></p>
+<a href="https:&#x2F;&#x2F;i.imgur.com&#x2F;zbR6HrC.png" data-lity data-lity-desc="Ping Test in Discord" alt="Ping Test in Discord">
+  <img class="full" async-src="https:&#x2F;&#x2F;i.imgur.com&#x2F;zbR6HrC.png"/>
+</a>
 <p>Hooray! Now that you have a bot running, check out <a href="https://meew0.github.io/discordcr/doc/master/Discord/Client.html">Discord::Client's documentation</a> and explore to see what you can do!</p>
 
       <hr>
@@ -332,21 +331,19 @@ client.run
       </div>
     </div>
 
-    <!-- Matomo -->
-    <script type="text/javascript">
-      var _paq = window._paq || [];
-      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-      _paq.push(['trackPageView']);
-      _paq.push(['enableLinkTracking']);
-      (function() {
-        var u="//matomo.andrewzah.com/";
-        _paq.push(['setTrackerUrl', u+'matomo.php']);
-        _paq.push(['setSiteId', '2']);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-      })();
-    </script>
-    <!-- End Matomo Code -->
+  <!-- GoatCounter -->
+  <script>
+      // Only load in production
+      if (window.location.host !== 'andrewzah.com')
+          window.goatcounter = {no_onload: true}
+  </script>
+  <script data-goatcounter="https://stats.andrewzah.com/count"
+        async type="text/javascript" src="https://stats.andrewzah.com/count.js"></script>
+
+  <noscript>
+    <img src="https://stats.andrewzah.com/count?p=/test-img">
+  </noscript>
+  <!-- End GoatCounter -->
 
   </body>
 </html>

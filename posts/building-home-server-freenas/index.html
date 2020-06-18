@@ -67,7 +67,7 @@
           
       </time>
       <span id="word-count">
-        —  1479 words
+        —  1481 words
       </span>
     </div>
     <hr>
@@ -104,10 +104,10 @@
     <article itemprop="articleBody">
       <p>A few months ago I got gripped with server fever. I'd had a raspberry pi for a while, but I could never find a meaningful use for it. I'd tried running plex, etc, but the pi3 would choke after a bit and sputter out.</p>
 <p>One day I decided enough was enough: it was time to build a more beefy server. (and I found a compelling use for the pi!)</p>
-<p><a href="https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;andrewzah.com&#x2F;posts&#x2F;serverbuild-freenas&#x2F;freenas-info.png" data-lity data-lity-desc="FreeNAS server information" alt="FreeNAS server information">
-<img class="full" async-src="https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;andrewzah.com&#x2F;posts&#x2F;serverbuild-freenas&#x2F;freenas-info.png"/>
-</a></p>
-<p class="image-desc"> Current FreeNAS server information </p>
+<a href="https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;andrewzah.com&#x2F;posts&#x2F;serverbuild-freenas&#x2F;freenas-info.png" data-lity data-lity-desc="FreeNAS server information" alt="FreeNAS server information">
+  <img class="full" async-src="https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;andrewzah.com&#x2F;posts&#x2F;serverbuild-freenas&#x2F;freenas-info.png"/>
+</a>
+  <p class="image-desc"> Current FreeNAS server information </p>
 <h3 id="my-goals">My Goals</h3>
 <p>I had a few goals I wanted to achieve:</p>
 <ol>
@@ -141,7 +141,7 @@ and <a href="https://www.reddit.com/r/homelab/">/r/homelab</a> on reddit. The pe
 <li>intake fans x4: <a href="https://smile.amazon.com/dp/B00650P2ZC/?tag=ozlp-20">Noctua NF-F12 WPM 120mm</a></li>
 <li>exhaust fans x2: <a href="https://smile.amazon.com/dp/B00CP6QLY6/?tag=ozlp-20">Noctua NF-A14 PWM 140mm</a></li>
 <li>cpu cooler: <a href="https://smile.amazon.com/Noctua-NH-L12S-Low-Profile-Cooler-Quiet/dp/B075SF5QQ8/ref=sr_1_2?keywords=NH-L12S&amp;qid=1565553407&amp;s=gateway&amp;sr=8-2">Noctua NH-L12S 70mm Low-Profile CPU Cooler</a></li>
-<li>ups/apc: <a href="andrewzah.com/posts/building-home-server-freenas/">https://www.newegg.com/apc-bx1500m-5-x-nema-5-15r-5-x-nema-5-15r/p/N82E16842301561?Description=APC%20BX1500M%20Back-UPS%20Pro%201500VA%2f900W&amp;cm_re=APC_BX1500M_Back-UPS_Pro_1500VA%2f900W-<em>-42-301-561-</em>-Product</a></li>
+<li>ups/apc: <a href="https://www.newegg.com/apc-bx1500m-5-x-nema-5-15r-5-x-nema-5-15r/p/N82E16842301561?Description=APC%20BX1500M%20Back-UPS%20Pro%201500VA%2f900W&amp;cm_re=APC_BX1500M_Back-UPS_Pro_1500VA%2f900W-_-42-301-561-_-Product">APC BX1500M</a></li>
 <li>psu: <a href="https://www.newegg.com/seasonic-focus-plus-650-gold-ssr-650fx-650w/p/N82E16817151186">Seasonic FOCUS Plus Series SSR-650FX 650W</a></li>
 </ul>
 <p>The total comes out to around $632. I don't know why anyone would build a server without getting some sort of UPS/APC as well.</p>
@@ -166,7 +166,7 @@ and <a href="https://www.reddit.com/r/homelab/">/r/homelab</a> on reddit. The pe
 <p>Why jails over docker? Convenience, I guess. It's far easier for me to muck around in iocage jails than it is to inspect and debug docker containers. Unfortunately this does mean if I lose my server, I'd have to recreate all those jails... but setting them up in the first place was pretty easy once I learned how <a href="https://www.freebsd.org/cgi/man.cgi?query=rc.d&amp;sektion=8&amp;n=1">rc.d</a> worked.</p>
 <p>Services that I run:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">backblaze
+<code><span style="color:#323232;">backblaze
   -&gt; data backup
 bazarr
   -&gt; grabs subtitles in multiple languages, hooks into radarr/sonarr
@@ -193,22 +193,22 @@ syncthing
 thelounge
   -&gt; modern irc client. I used to use znc+weechat, but I got
      tired of weechat&#39;s ux. thelounge is simple and pretty.
-</span></pre><pre style="background-color:#ffffff;">
-<span style="color:#323232;">postgres
+</span></code></pre><pre style="background-color:#ffffff;">
+<code><span style="color:#323232;">postgres
 mysql
-</span></pre>
+</span></code></pre>
 <p>Several services use databases, so I elected to set aside jails for them.</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">mc_main
+<code><span style="color:#323232;">mc_main
 mc_creative
 mc_survival
-</span></pre>
+</span></code></pre>
 <p>I also run 3 instances of minecraft via <a href="https://papermc.io/">PaperMC</a>, a high performance fork of <a href="https://www.spigotmc.org/">Spigot</a>. The main jail runs <a href="https://github.com/PaperMC/Waterfall">Waterfall</a>
 (a fork of <a href="https://github.com/SpigotMC/BungeeCord">bungeecord</a>) along with a hub instance.
 Waterfall acts as a proxy and lets one access multiple servers within a network.</p>
 <p>My docker services:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">andrewzah/gollum
+<code><span style="color:#323232;">andrewzah/gollum
   -&gt; a wiki with changes automatically git pushed
   -&gt; a fork of gollum with user logins
 insekticid/docker-piwiki (matomo)
@@ -221,19 +221,18 @@ huginn/huginn
 cwspear/docker-local-persist-volume-plugin
   -&gt; allows local volume mounts in portainer/rancheros
 portainer/portainer
-</span></pre>
-<p><a href="https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;andrewzah.com&#x2F;posts&#x2F;serverbuild-freenas&#x2F;freenas-memory.png" data-lity data-lity-desc="FreeNAS memory graph" alt="FreeNAS memory graph">
-<img class="full" async-src="https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;andrewzah.com&#x2F;posts&#x2F;serverbuild-freenas&#x2F;freenas-memory.png"/>
-</a></p>
-<p class="image-desc"> Current FreeNAS memory graph </p>
+</span></code></pre><a href="https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;andrewzah.com&#x2F;posts&#x2F;serverbuild-freenas&#x2F;freenas-memory.png" data-lity data-lity-desc="FreeNAS memory graph" alt="FreeNAS memory graph">
+  <img class="full" async-src="https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;andrewzah.com&#x2F;posts&#x2F;serverbuild-freenas&#x2F;freenas-memory.png"/>
+</a>
+  <p class="image-desc"> Current FreeNAS memory graph </p>
 <h3 id="a-use-for-the-raspberry-pi">A Use for the Raspberry Pi</h3>
 <p>Once I built the server, I had no use for my raspberry pi3 and 4. Until I learned about <a href="https://prometheus.io/">prometheus</a> and <a href="https://grafana.com/">grafana</a>.</p>
 <p>Having metrics and a dashboard is awesome, but if my server crashes, I no longer have access to the metrics... So they have to be run somewhere else! This is where the raspberry pi comes in- it just sits on my local network ingesting traffic.</p>
 <p>Unfortunately, node_exporter doesn't seem to export hdd temperature values, which is pretty important. I'll probably have to write a simple script to pull those values and host another metrics target for prometheus.</p>
-<p><a href="https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;andrewzah.com&#x2F;posts&#x2F;serverbuild-freenas&#x2F;grafana-node-exporter.png" data-lity data-lity-desc="Grafana with node_exporter metrics from FreeNAS" alt="Grafana with node_exporter metrics from FreeNAS">
-<img class="full" async-src="https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;andrewzah.com&#x2F;posts&#x2F;serverbuild-freenas&#x2F;grafana-node-exporter.png"/>
-</a></p>
-<p class="image-desc"> Grafana with node_exporter metrics from FreeNAS </p>
+<a href="https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;andrewzah.com&#x2F;posts&#x2F;serverbuild-freenas&#x2F;grafana-node-exporter.png" data-lity data-lity-desc="Grafana with node_exporter metrics from FreeNAS" alt="Grafana with node_exporter metrics from FreeNAS">
+  <img class="full" async-src="https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;andrewzah.com&#x2F;posts&#x2F;serverbuild-freenas&#x2F;grafana-node-exporter.png"/>
+</a>
+  <p class="image-desc"> Grafana with node_exporter metrics from FreeNAS </p>
 <h4 id="why-freenas">Why FreeNAS?</h4>
 <p>FreeNAS has extensive documentation. and *BSDs are nice. ZFS and RAID are nice. Free Software is nice. </p>
 <p>If I didn't use docker so heavily I would likely use FreeBSD or OpenBSD for my personal computers as well instead of Debian.</p>
@@ -411,21 +410,19 @@ portainer/portainer
       </div>
     </div>
 
-    <!-- Matomo -->
-    <script type="text/javascript">
-      var _paq = window._paq || [];
-      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-      _paq.push(['trackPageView']);
-      _paq.push(['enableLinkTracking']);
-      (function() {
-        var u="//matomo.andrewzah.com/";
-        _paq.push(['setTrackerUrl', u+'matomo.php']);
-        _paq.push(['setSiteId', '2']);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-      })();
-    </script>
-    <!-- End Matomo Code -->
+  <!-- GoatCounter -->
+  <script>
+      // Only load in production
+      if (window.location.host !== 'andrewzah.com')
+          window.goatcounter = {no_onload: true}
+  </script>
+  <script data-goatcounter="https://stats.andrewzah.com/count"
+        async type="text/javascript" src="https://stats.andrewzah.com/count.js"></script>
+
+  <noscript>
+    <img src="https://stats.andrewzah.com/count?p=/test-img">
+  </noscript>
+  <!-- End GoatCounter -->
 
   </body>
 </html>

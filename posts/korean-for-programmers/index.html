@@ -114,15 +114,14 @@
     
     <article itemprop="articleBody">
       <p>I was inspired to write this after reading <em>German for Programmers</em>.<a id="refer-0" href="#reference-0">[0]</a> It's quite likely that I'm just biased to see things a certain way because I work with programming languages for a living, but I often find myself drawing comparisons among Korean and programming.</p>
-<p id="zola-continue-reading"><a name="continue-reading"></a></p>
-<h2 id="hangeul-basics">Hangeul Basics</h2>
+<span id="continue-reading"></span><h2 id="hangeul-basics">Hangeul Basics</h2>
 <p>Before we can get into grammar, some explanation about Hangeul–the Korean alphabet–is needed. Korean is actually like English in that letters are put together, so you can read any Korean once you learn Hangeul. However, Korean letters join together in syllable blocks.</p>
 <p>You may have seen the infamous &quot;Learn how to read Hangeul in 10 minutes&quot; graphic. While Hangeul is indeed very easy to learn, it does have exceptions–quite a few actually. So maybe you can read 독립 (independence), but the actual pronunciation is different from what's written due to ㄹ following ㄱ. These are called 받침<a id="refer-1" href="#reference-1">[1]</a> rules and one just has to memorize 'em.</p>
 <h3 id="grid-system">Grid System</h3>
 <p>Unlike Chinese or Japanese, Korean syllable blocks take the Hangeul letters and make them into grids in a particular order.</p>
-<p><a href="https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;andrewzah.com&#x2F;posts&#x2F;008&#x2F;hangeul.png" data-lity data-lity-desc="Hangul Grid Order" alt="Hangul Grid Order">
-<img class="full" async-src="https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;andrewzah.com&#x2F;posts&#x2F;008&#x2F;hangeul.png"/>
-</a></p>
+<a href="https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;andrewzah.com&#x2F;posts&#x2F;008&#x2F;hangeul.png" data-lity data-lity-desc="Hangul Grid Order" alt="Hangul Grid Order">
+  <img class="full" async-src="https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;andrewzah.com&#x2F;posts&#x2F;008&#x2F;hangeul.png"/>
+</a>
 <p>Each block contains a vowel and it's always the second character. The block are constructed depending on whether the vowel is vertical (ㅣ ㅏ ㅓ) or horizontal (ㅡㅜㅗ). If you want to say &quot;ah&quot;, ㅇ is used as a silent character in the first slot–which makes 아: <code>ㅇ</code> + <code>ㅏ</code>.</p>
 <p>Some vowels can also be combined: <code>ㅚ</code> is <code>ㅜ</code> + <code>ㅣ</code>, <code>ㅙ</code> is <code>ㅗ</code> + <code>ㅐ</code>.</p>
 <p>For Korean fonts, all finished blocks (e.g. 쀍: ㅃㅜㅔㄹㄱ) have to be included because it's possible to construct them via grid rules, but a fair amount are just gibberish. Hangeul is represented by 5 unicode blocks in total and I recommend reading about how they get composed together.<a id="refer-2" href="#reference-2">[2]</a></p>
@@ -191,7 +190,7 @@
 <p>Korean has a number of postpositional particles that imbue meaning, some of which vary if the last character is a vowel or not.
 We can easily use a pure function to model this:</p>
 <pre style="background-color:#ffffff;">
-<span style="font-weight:bold;color:#a71d5d;">fn </span><span style="font-weight:bold;color:#795da3;">topic_marker</span><span style="color:#323232;">(word: </span><span style="font-weight:bold;color:#a71d5d;">&amp;str</span><span style="color:#323232;">) -&gt; </span><span style="font-weight:bold;color:#a71d5d;">&amp;str </span><span style="color:#323232;">{
+<code><span style="font-weight:bold;color:#a71d5d;">fn </span><span style="font-weight:bold;color:#795da3;">topic_marker</span><span style="color:#323232;">(word: </span><span style="font-weight:bold;color:#a71d5d;">&amp;str</span><span style="color:#323232;">) -&gt; </span><span style="font-weight:bold;color:#a71d5d;">&amp;str </span><span style="color:#323232;">{
   </span><span style="font-weight:bold;color:#a71d5d;">match</span><span style="color:#323232;"> word.</span><span style="color:#62a35c;">last_character_type</span><span style="color:#323232;">() {
     Vowel </span><span style="font-weight:bold;color:#a71d5d;">=&gt; </span><span style="color:#183691;">&quot;는&quot;</span><span style="color:#323232;">,
     Consonant </span><span style="font-weight:bold;color:#a71d5d;">=&gt; </span><span style="color:#183691;">&quot;은&quot;
@@ -201,7 +200,7 @@ We can easily use a pure function to model this:</p>
 </span><span style="font-weight:bold;color:#a71d5d;">fn </span><span style="font-weight:bold;color:#795da3;">plural_marker</span><span style="color:#323232;">() -&gt; </span><span style="font-weight:bold;color:#a71d5d;">&amp;str </span><span style="color:#323232;">{
   </span><span style="color:#183691;">&quot;들&quot;
 </span><span style="color:#323232;">}
-</span></pre>
+</span></code></pre>
 <p>Here are a few other markers (with simplified definitions). The text inside the parentheses is used if the last character is a consonant:</p>
 <ul>
 <li>~에서 =&gt; from</li>
@@ -263,9 +262,9 @@ The next two sentences here are &quot;I closed the door&quot; (informal impolite
 <p>Finally, we need to think about our relationship to the audience and append or merge a politeness/speech level. See politeness below for more details.</p>
 <p>We can model this as a basic pipeline à la Clojure:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">(</span><span style="font-weight:bold;color:#a71d5d;">defn </span><span style="font-weight:bold;color:#795da3;">conjugate-verb
+<code><span style="color:#323232;">(</span><span style="font-weight:bold;color:#a71d5d;">defn </span><span style="font-weight:bold;color:#795da3;">conjugate-verb
   </span><span style="color:#323232;">[subject verb speaker audience]
-  (</span><span style="font-weight:bold;color:#a71d5d;">-&gt;&gt; </span><span style="color:#323232;">verb
+  (-&gt;&gt; verb
     (remove-stem)
     (maybe-append-honorific subject)
     (append-or-merge-vowel)
@@ -273,7 +272,7 @@ The next two sentences here are &quot;I closed the door&quot; (informal impolite
     (append-or-merge-politeness-level speaker audience)
   )
 )
-</span></pre>
+</span></code></pre>
 <p>Note that there are even more transformations that we can apply depending on the grammar point and the nuance of what one is trying to say. Fun, isn't it? At least it's relatively consistent unlike English–even irregular verb rules are fairly regular.</p>
 <h3 id="adding-to-the-stack">Adding to the Stack</h3>
 <blockquote>
@@ -282,9 +281,9 @@ The term refers, for instance, to the process of producing a noun from another p
 </blockquote>
 <p>In Korean, one can nominalize entire clauses and use them in other constructs! Korean lets you do this with the <code>~는 것</code> principle. 것 means thing, but any noun can be used in place of <code>것</code>. Based on the tense, verb type, and whether the verb ends in a vowel, <code>는</code> has variations like <code>~ㄴ</code>, and <code>은</code>. It can also combine with other grammar forms, like <code>던</code>, which is <code>더~ + ~ㄴ/은</code>. Digging into these would be beyond the scope of this post.</p>
 <p>To give you a small example, one way to say &quot;exit&quot; in Korean is literally &quot;going out place&quot;, or &quot;a place that one goes out&quot;.</p>
-<p><a href="https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;andrewzah.com&#x2F;posts&#x2F;008&#x2F;exit.jpg" data-lity data-lity-desc="A Korean subway exit sign." alt="A Korean subway exit sign.">
-<img class="full" async-src="https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;andrewzah.com&#x2F;posts&#x2F;008&#x2F;exit.jpg"/>
-</a></p>
+<a href="https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;andrewzah.com&#x2F;posts&#x2F;008&#x2F;exit.jpg" data-lity data-lity-desc="A Korean subway exit sign." alt="A Korean subway exit sign.">
+  <img class="full" async-src="https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;andrewzah.com&#x2F;posts&#x2F;008&#x2F;exit.jpg"/>
+</a>
 <h6 id="source-wikipedia-naganeun-ggo">Source: Wikipedia 나가는 곳</h6>
 <p>
   <span class="hl hl-word hl-purple">
@@ -455,7 +454,7 @@ live (in)
 <p>The Korean language conjugates differently based on the status of speaker and intended audience. For example, one of the simplest ways to conjugate any verb is to add <code>~어/아/여</code> to it. This is based on the last <em>vowel</em>, not the last character.</p>
 <p>For example, you may have seen 감사합니다 before (&quot;thank you&quot;, formal polite). This is 감사하다, merged with <code>~ㅂ니다</code> because <code>하</code> ends in a vowel. 고마워요 is another way to say thank you(informal polite): 고맙다 + apply <code>irregular ㅂ</code> consonant ending filter +  <code>~아/어/여요</code>.</p>
 <pre style="background-color:#ffffff;">
-<span style="font-weight:bold;color:#a71d5d;">fn </span><span style="font-weight:bold;color:#795da3;">get_vowel_for_verb</span><span style="color:#323232;">(verb: </span><span style="font-weight:bold;color:#a71d5d;">&amp;str</span><span style="color:#323232;">, formality: Formality) -&gt; {
+<code><span style="font-weight:bold;color:#a71d5d;">fn </span><span style="font-weight:bold;color:#795da3;">get_vowel_for_verb</span><span style="color:#323232;">(verb: </span><span style="font-weight:bold;color:#a71d5d;">&amp;str</span><span style="color:#323232;">, formality: Formality) -&gt; {
   </span><span style="font-style:italic;color:#969896;">// ha = 하
   </span><span style="font-weight:bold;color:#a71d5d;">if</span><span style="color:#323232;"> verb.</span><span style="color:#62a35c;">stem_ends_with_ha</span><span style="color:#323232;">() {
     </span><span style="color:#183691;">&quot;여&quot;
@@ -471,7 +470,7 @@ live (in)
     </span><span style="color:#323232;">}
   }
 }
-</span></pre>
+</span></code></pre>
 <p>Korean has seven speech levels <a id="refer-4" href="#reference-4">[4]</a>. When learning Korean, the <code>아/어/여요</code> and <code>~ㅂ/습니다</code> levels are commonly used, in that order. Using <code>아/어/여</code> (no <code>요</code>) to anyone other than close friends (who have agreed to use lowered speech) or young kids is rude. Foreigners get a pass at first but it's still impolite.</p>
 <p>Plain (sometimes known as diary) form is also used, such as in diaries and books/novels.</p>
 <p>English lacks this concept, as we use the same conjugation for everyone – &quot;the prisoner ate&quot;, &quot;the king ate&quot;, and &quot;a God ate&quot;. What English does have is different registers<a id="refer-5" href="#reference-5">[5]</a>, such as when you text versus when you write an academic paper or a business email. This includes overly polite language like &quot;Might you be interested in eating, sir?&quot;, but nevertheless the verb remains the same.</p>
@@ -525,7 +524,7 @@ For example, you may see this in beginner resources:</p>
             >
               (0) &#x21A9;</a>
               –
-              Note that &#96;갔&#96; changed to &#96;간&#96;. &#96;갔&#96; is 가다 (to go) + &#96;~ㅆ&#96; (past tense). But the past tense nominalization form uses &#96;~ㄴ (것)&#96;. Instead of 것 (thing) we swapped it for another noun 여자 (woman).
+              Note that `갔` changed to `간`. `갔` is 가다 (to go) + `~ㅆ` (past tense). But the past tense nominalization form uses `~ㄴ (것)`. Instead of 것 (thing) we swapped it for another noun 여자 (woman).
           </span>
         </li>
       
@@ -730,21 +729,19 @@ For example, you may see this in beginner resources:</p>
       </div>
     </div>
 
-    <!-- Matomo -->
-    <script type="text/javascript">
-      var _paq = window._paq || [];
-      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-      _paq.push(['trackPageView']);
-      _paq.push(['enableLinkTracking']);
-      (function() {
-        var u="//matomo.andrewzah.com/";
-        _paq.push(['setTrackerUrl', u+'matomo.php']);
-        _paq.push(['setSiteId', '2']);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-      })();
-    </script>
-    <!-- End Matomo Code -->
+  <!-- GoatCounter -->
+  <script>
+      // Only load in production
+      if (window.location.host !== 'andrewzah.com')
+          window.goatcounter = {no_onload: true}
+  </script>
+  <script data-goatcounter="https://stats.andrewzah.com/count"
+        async type="text/javascript" src="https://stats.andrewzah.com/count.js"></script>
+
+  <noscript>
+    <img src="https://stats.andrewzah.com/count?p=/test-img">
+  </noscript>
+  <!-- End GoatCounter -->
 
   </body>
 </html>

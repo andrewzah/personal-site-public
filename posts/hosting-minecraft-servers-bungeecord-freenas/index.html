@@ -100,10 +100,10 @@
     <article itemprop="articleBody">
       <p>Learn how to set up multiple minecraft servers in FreeNAS with a bungeecord/waterfall proxy.</p>
 <p>This guide assumes you're running a FreeNAS server on a local network. If not, you'll have to update your ip address and default gateway settings accordingly.</p>
-<p><a href="https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;andrewzah.com&#x2F;posts&#x2F;freenas_minecraft_guide&#x2F;dynmap.png" data-lity data-lity-desc="Dynmap rendering of our FreeNAS minecaft server" alt="Dynmap rendering of our FreeNAS minecaft server">
-<img class="full" async-src="https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;andrewzah.com&#x2F;posts&#x2F;freenas_minecraft_guide&#x2F;dynmap.png"/>
-</a></p>
-<p class="image-desc"> Dynmap rendering of our FreeNAS minecaft server </p>
+<a href="https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;andrewzah.com&#x2F;posts&#x2F;freenas_minecraft_guide&#x2F;dynmap.png" data-lity data-lity-desc="Dynmap rendering of our FreeNAS minecaft server" alt="Dynmap rendering of our FreeNAS minecaft server">
+  <img class="full" async-src="https:&#x2F;&#x2F;s3.amazonaws.com&#x2F;andrewzah.com&#x2F;posts&#x2F;freenas_minecraft_guide&#x2F;dynmap.png"/>
+</a>
+  <p class="image-desc"> Dynmap rendering of our FreeNAS minecaft server </p>
 <h2 id="prerequisites">Prerequisites</h2>
 <ul>
 <li>Console access to a server running FreeNAS</li>
@@ -119,11 +119,11 @@ performant versions of spigot and bungeecord, respectively. They also fully supp
 <p>The first thing we'll need to do is create the main jail (the one running bungeecord or waterfall).
 Alter the version for the current one your server is running.</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">echo &#39;{&quot;pkgs&quot;:[&quot;openjdk12&quot;, &quot;curl&quot;]}&#39; &gt; /tmp/minecraft.json
-</span></pre>
+<code><span style="color:#323232;">echo &#39;{&quot;pkgs&quot;:[&quot;openjdk12&quot;, &quot;curl&quot;]}&#39; &gt; /tmp/minecraft.json
+</span></code></pre>
 <p>When a jail is created, <code>pkg</code> isn't installed by default. Using this saves us some commands in the next step.</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">iocage create \
+<code><span style="color:#323232;">iocage create \
   --name </span><span style="font-weight:bold;color:#a71d5d;">&lt;</span><span style="color:#323232;">name</span><span style="font-weight:bold;color:#a71d5d;">&gt; </span><span style="color:#323232;">\
   --pkglist /tmp/minecraft.json
   --release 11.2-RELEASE \
@@ -132,18 +132,18 @@ Alter the version for the current one your server is running.</p>
   vnet=</span><span style="color:#183691;">&quot;on&quot; </span><span style="color:#323232;">\
   allow_raw_sockets=</span><span style="color:#183691;">&quot;1&quot; </span><span style="color:#323232;">\
   boot=</span><span style="color:#183691;">&quot;on&quot; 
-</span></pre>
+</span></code></pre>
 <p><code>ip4_addr</code> and <code>defaultrouter</code> configure the network for our jail. If you're running the server on your local network, then it's likely the address of your router. (Typically x.x.x.1 or x.x.x.255, consult your router's manual). <code>ip4_addr</code> is the address you want to assign to the jail.</p>
 <p>For <code>name</code>: If you're just creating a single server, the name <code>minecraft</code> would suffice, but I recommend a structure like:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">mc_main
+<code><span style="color:#323232;">mc_main
 mc_survival
 mc_creative
 ...etc
-</span></pre>
+</span></code></pre>
 <p>Next, let's create directories in the jails and mount them in the root system:</p>
 <pre style="background-color:#ffffff;">
-<span style="font-style:italic;color:#969896;"># Creates the directories in the root system
+<code><span style="font-style:italic;color:#969896;"># Creates the directories in the root system
 </span><span style="color:#323232;">mkdir -p /xxx/data/minecraft/mc_main
 mkdir -p /xxx/data/minecraft/waterfall
 
@@ -156,38 +156,38 @@ iocage exec mc_main mkdir /root/waterfall
   /xxx/data/minecraft/mc_main /root/minecraft nullfs rw 0 0
 iocage fstab -a mc_main \
   /xxx/data/minecraft/waterfall /root/waterfall nullfs rw 0 0
-</span></pre>
+</span></code></pre>
 <p>Change <code>/xxx/data/</code> to a relevant filepath for your setup. My main ZFS pool is named <code>lily</code>, so I put my minecraft folders under <code>/mnt/lily/data/</code>.</p>
 <h2 id="setting-up-minecraft">Setting up Minecraft</h2>
 <p>We can access our jails with:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">iocage console mc_main
-</span></pre>
+<code><span style="color:#323232;">iocage console mc_main
+</span></code></pre>
 <p>Now we can cd to the minecraft directory and download our server jarfile:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#62a35c;">cd</span><span style="color:#323232;"> /root/minecraft
+<code><span style="color:#62a35c;">cd</span><span style="color:#323232;"> /root/minecraft
 
 </span><span style="font-style:italic;color:#969896;"># paper
 </span><span style="color:#323232;">curl -L </span><span style="color:#183691;">&#39;https://papermc.io/api/v1/paper/1.15.1/27/download&#39;</span><span style="color:#323232;"> -o paper-1.15.1_27.jar
-</span></pre>
+</span></code></pre>
 <p>Run your server jarfile with:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">java -jar /root/minecraft/paper-1.15.1_27.jar
-</span></pre>
+<code><span style="color:#323232;">java -jar /root/minecraft/paper-1.15.1_27.jar
+</span></code></pre>
 <p>The process should end shortly, printing text about a <code>eula.txt</code>. Edit the file with:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">sed -i .bak </span><span style="color:#183691;">&#39;s/eula=false/eula=true/g&#39;</span><span style="color:#323232;"> /root/minecraft/eula.txt
-</span></pre>
+<code><span style="color:#323232;">sed -i .bak </span><span style="color:#183691;">&#39;s/eula=false/eula=true/g&#39;</span><span style="color:#323232;"> /root/minecraft/eula.txt
+</span></code></pre>
 <p>We also need to edit the <code>server.properties</code> file. Open it and change the server port to <code>25566</code>. We're changing this value because our proxy server (bungeecord/waterfall) will listen to the default port later.</p>
 <p>Now we can run the server!</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">java -Xms1024M -Xmx1024M -jar /root/minecraft/</span><span style="font-weight:bold;color:#a71d5d;">&lt;</span><span style="color:#323232;">name</span><span style="font-weight:bold;color:#a71d5d;">&gt;</span><span style="color:#323232;">.jar
-</span></pre>
+<code><span style="color:#323232;">java -Xms1024M -Xmx1024M -jar /root/minecraft/</span><span style="font-weight:bold;color:#a71d5d;">&lt;</span><span style="color:#323232;">name</span><span style="font-weight:bold;color:#a71d5d;">&gt;</span><span style="color:#323232;">.jar
+</span></code></pre>
 <p>Observe the text output for any errors, and then go ahead and connect to it! (Go to the <code>Multiplayer</code> tab, click <code>Add Server</code>, and type in the ip address of your server, e.g. <code>192.168.1.xx:25566</code>) Once you join, text should get printed to the screen.</p>
 <p>However, we have an issue. The server is currently running in an interactive session (i.e. we ran it manually). We need it to run by itself, in a noninteractive session. Some guides will recommend using <code>screen</code> or <code>tmux</code>, but I strongly recommend not using them. If your server ever restarts, you will have to go in manually and restart screen/tmux, and then your minecraft server.</p>
 <p>It's far better to let <a href="https://www.freebsd.org/cgi/man.cgi?query=rc.d&amp;sektion=8&amp;n=1">rc.d</a> manage it for us. Add this script to <code>/usr/local/etc/minecraftd</code>:</p>
 <pre style="background-color:#ffffff;">
-<span style="font-style:italic;color:#969896;">#!/bin/sh
+<code><span style="font-style:italic;color:#969896;">#!/bin/sh
 #
 # PROVIDE: minecraftd
 # REQUIRE: LOGIN DAEMON NETWORKING mountcritlocal
@@ -251,35 +251,35 @@ start_cmd</span><span style="font-weight:bold;color:#a71d5d;">=</span><span styl
 </span><span style="color:#323232;">}
 
 run_rc_command $1
-</span></pre>
+</span></code></pre>
 <p>We have to make the service file executable, so run:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">chmod +x /usr/local/etc/rc.d/minecraftd
-</span></pre>
+<code><span style="color:#323232;">chmod +x /usr/local/etc/rc.d/minecraftd
+</span></code></pre>
 <p>Essentially, this script lets us not have to manage the server process manually. However we also need to update some settings:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">sysrc minecraftd_enable=</span><span style="color:#183691;">&quot;YES&quot;
+<code><span style="color:#323232;">sysrc minecraftd_enable=</span><span style="color:#183691;">&quot;YES&quot;
 </span><span style="color:#323232;">sysrc minecraftd_jar_path=</span><span style="color:#183691;">&quot;/root/minecraft/server.jar&quot;
 </span><span style="color:#323232;">sysrc minecraftd_java_opts=</span><span style="color:#183691;">&quot;-Xms1G -Xmx1G&quot;
-</span></pre>
+</span></code></pre>
 <p>Make sure to change the <code>minecraftd_jar_path</code> to reflect your downloaded jarfile, and <code>minecraftd_java_opts</code> for how much memory you want to give it.</p>
 <p>Now you should be able to the following:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">service minecraftd start
-</span></pre>
+<code><span style="color:#323232;">service minecraftd start
+</span></code></pre>
 <p>Confirm it with:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">ps aux </span><span style="font-weight:bold;color:#a71d5d;">| </span><span style="color:#323232;">grep openjdk
-</span></pre>
+<code><span style="color:#323232;">ps aux </span><span style="font-weight:bold;color:#a71d5d;">| </span><span style="color:#323232;">grep openjdk
+</span></code></pre>
 <p>You should see something like:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">root  72816  1.2  2.5 3156872 1273052  -  IJ   Fri19   99:04.12 /usr/local/openjdk12/bin/java -Duser.dir=/root/minecraft -Xms1G -Xmx1G -jar /root/minecraft/paper-1.15.1_27.jar
-</span></pre>
+<code><span style="color:#323232;">root  72816  1.2  2.5 3156872 1273052  -  IJ   Fri19   99:04.12 /usr/local/openjdk12/bin/java -Duser.dir=/root/minecraft -Xms1G -Xmx1G -jar /root/minecraft/paper-1.15.1_27.jar
+</span></code></pre>
 <p>If not, double check your settings in <code>/etc/rc.conf</code>, and make sure they point to the right files. Manually run the command to make sure it's not a minecraft configuration issue (i.e. no warnings/errors show up in the console).</p>
 <p>Connect to the server again to make sure it works, then stop the server with:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">service minecraftd stop
-</span></pre>
+<code><span style="color:#323232;">service minecraftd stop
+</span></code></pre>
 <p>In order for bungee/waterfall to work, we need to edit the <code>server.properties</code> file again. Change <code>online-mode</code> to <code>false</code>.</p>
 <p>In <code>spigot.yml</code>, update <code>bungeecord</code> to <code>true</code>.</p>
 <p>In <code>paper.yml</code>, update <code>bungee-online-mode</code> to <code>true</code>.</p>
@@ -288,48 +288,48 @@ run_rc_command $1
 <h2 id="setting-up-waterfall-bungeecord">Setting up Waterfall/Bungeecord</h2>
 <p>If you're not in the <code>mc_main</code> jail already, access it with:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">iocage console mc_main
-</span></pre>
+<code><span style="color:#323232;">iocage console mc_main
+</span></code></pre>
 <p>Now can cd to the waterfall directory and download <code>waterfall.jar</code>.</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#62a35c;">cd</span><span style="color:#323232;"> /root/waterfall
-</span></pre>
+<code><span style="color:#62a35c;">cd</span><span style="color:#323232;"> /root/waterfall
+</span></code></pre>
 <p>The process for the jarfile is the same as before, except we're going to the <code>waterfall</code> directory now.</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#62a35c;">cd</span><span style="color:#323232;"> /root/waterfall
+<code><span style="color:#62a35c;">cd</span><span style="color:#323232;"> /root/waterfall
 
 </span><span style="font-style:italic;color:#969896;"># waterfall
 </span><span style="color:#323232;">curl -L </span><span style="color:#183691;">&#39;https://papermc.io/api/v1/waterfall/1.15/309/download&#39;</span><span style="color:#323232;"> -o waterfall-1.15_309.jar
-</span></pre>
+</span></code></pre>
 <p>Run the proxy jarfile with:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">java -jar /root/waterfall/waterfall-1.15_309.jar
-</span></pre>
+<code><span style="color:#323232;">java -jar /root/waterfall/waterfall-1.15_309.jar
+</span></code></pre>
 <p>If necessary, edit <code>eula.txt</code> again:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">sed -i .bak </span><span style="color:#183691;">&#39;s/eula=false/eula=true/g&#39;</span><span style="color:#323232;"> /root/waterfall/eula.txt
-</span></pre>
+<code><span style="color:#323232;">sed -i .bak </span><span style="color:#183691;">&#39;s/eula=false/eula=true/g&#39;</span><span style="color:#323232;"> /root/waterfall/eula.txt
+</span></code></pre>
 <p>Now we need to edit <code>config.yml</code>. Look for the <code>servers</code> section, and change it to the following:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#63a35c;">servers</span><span style="color:#323232;">:
+<code><span style="color:#63a35c;">servers</span><span style="color:#323232;">:
   </span><span style="color:#63a35c;">hub</span><span style="color:#323232;">:
     </span><span style="color:#63a35c;">motd</span><span style="color:#323232;">: </span><span style="color:#183691;">&#39;&amp;1My amazing hub server&#39;
     </span><span style="color:#63a35c;">address</span><span style="color:#323232;">: </span><span style="color:#63a35c;">localhost:25566
     restricted</span><span style="color:#323232;">: </span><span style="color:#0086b3;">false
-</span></pre>
+</span></code></pre>
 <p>Under <code>listeners</code>, change <code>priorities</code> to:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#63a35c;">priorities</span><span style="color:#323232;">:
+<code><span style="color:#63a35c;">priorities</span><span style="color:#323232;">:
   - </span><span style="color:#183691;">hub
-</span></pre>
+</span></code></pre>
 <p>Change <code>host</code> to:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">  </span><span style="color:#63a35c;">host</span><span style="color:#323232;">: </span><span style="color:#183691;">0.0.0.0:25565
-</span></pre>
+<code><span style="color:#323232;">  </span><span style="color:#63a35c;">host</span><span style="color:#323232;">: </span><span style="color:#183691;">0.0.0.0:25565
+</span></code></pre>
 <p>Finally, set <code>ip_forward: true</code>.</p>
 <p>In order to run <code>waterfall</code> noninteractively, we'll use a similar <code>rc.d</code> script like before:</p>
 <pre style="background-color:#ffffff;">
-<span style="font-style:italic;color:#969896;">#!/bin/sh
+<code><span style="font-style:italic;color:#969896;">#!/bin/sh
 #
 # PROVIDE: waterfall
 # REQUIRE: LOGIN DAEMON NETWORKING mountcritlocal
@@ -394,25 +394,25 @@ start_cmd</span><span style="font-weight:bold;color:#a71d5d;">=</span><span styl
 </span><span style="color:#323232;">}
 
 run_rc_command $1
-</span></pre>
+</span></code></pre>
 <p>We have to make the service file executable again, so run:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">chmod +x /usr/local/etc/rc.d/waterfall
-</span></pre>
+<code><span style="color:#323232;">chmod +x /usr/local/etc/rc.d/waterfall
+</span></code></pre>
 <p>Like before, we'll need to edit some settings:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">sysrc waterfall_enable=</span><span style="color:#183691;">&quot;YES&quot;
+<code><span style="color:#323232;">sysrc waterfall_enable=</span><span style="color:#183691;">&quot;YES&quot;
 </span><span style="color:#323232;">sysrc waterfall_jar_path=</span><span style="color:#183691;">&quot;/root/waterfall/waterfall-1.15_309.jar&quot;
-</span></pre>
+</span></code></pre>
 <p>Now run the following and connect to your server!</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">service waterfall start
-</span></pre>
+<code><span style="color:#323232;">service waterfall start
+</span></code></pre>
 <hr />
 <p>Congrats, you've set up a minecraft server and a proxy server in FreeNAS!</p>
 <p>For more servers, create more jails with the instructions from earlier, and follow the same server javafile setup. In <code>server.properties</code>, change <code>ip-address</code> to the address of the jail, and update waterfall's config to something like below:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#63a35c;">servers</span><span style="color:#323232;">:
+<code><span style="color:#63a35c;">servers</span><span style="color:#323232;">:
   </span><span style="color:#63a35c;">hub</span><span style="color:#323232;">:
     </span><span style="color:#63a35c;">motd</span><span style="color:#323232;">: </span><span style="color:#183691;">&#39;My hub server&#39;
     </span><span style="color:#63a35c;">address</span><span style="color:#323232;">: </span><span style="color:#63a35c;">localhost:25566
@@ -425,12 +425,12 @@ run_rc_command $1
     </span><span style="color:#63a35c;">motd</span><span style="color:#323232;">: </span><span style="color:#183691;">&#39;My survival server&#39;
     </span><span style="color:#63a35c;">address</span><span style="color:#323232;">: </span><span style="color:#63a35c;">192.168.1.22:25566
     restricted</span><span style="color:#323232;">: </span><span style="color:#0086b3;">false
-</span></pre><h2 id="databases-for-plugins">Databases for Plugins</h2>
+</span></code></pre><h2 id="databases-for-plugins">Databases for Plugins</h2>
 <p>Many minecraft plugins can use mysql or postgres for storage. I highly recommend setting up mysql in a jail and connecting your plugins to it. Here's how you can do it:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#62a35c;">echo </span><span style="color:#183691;">&#39;{&quot;pkgs&quot;:[&quot;mysql80-server&quot;]}&#39; </span><span style="font-weight:bold;color:#a71d5d;">&gt;</span><span style="color:#323232;"> /tmp/mysql.json
-</span></pre><pre style="background-color:#ffffff;">
-<span style="color:#323232;">iocage create \
+<code><span style="color:#62a35c;">echo </span><span style="color:#183691;">&#39;{&quot;pkgs&quot;:[&quot;mysql80-server&quot;]}&#39; </span><span style="font-weight:bold;color:#a71d5d;">&gt;</span><span style="color:#323232;"> /tmp/mysql.json
+</span></code></pre><pre style="background-color:#ffffff;">
+<code><span style="color:#323232;">iocage create \
   --name mysql \
   --pkglist /tmp/minecraft.json
   --release 11.2-RELEASE
@@ -438,8 +438,8 @@ run_rc_command $1
   defaultrouter</span><span style="font-weight:bold;color:#a71d5d;">=</span><span style="color:#183691;">&quot;192.168.1.1&quot; </span><span style="color:#323232;">\
   vnet</span><span style="font-weight:bold;color:#a71d5d;">=</span><span style="color:#183691;">&quot;on&quot; </span><span style="color:#323232;">\
   boot</span><span style="font-weight:bold;color:#a71d5d;">=</span><span style="color:#183691;">&quot;on&quot;
-</span></pre><pre style="background-color:#ffffff;">
-<span style="font-style:italic;color:#969896;"># Creates the directories in the root system
+</span></code></pre><pre style="background-color:#ffffff;">
+<code><span style="font-style:italic;color:#969896;"># Creates the directories in the root system
 </span><span style="color:#323232;">mkdir -p /xxx/configs/mysql
 mkdir -p /xxx/data/mysql
 
@@ -452,31 +452,31 @@ iocage exec mysql mkdir /data
   /xxx/configs/mysql /config nullfs rw 0 0
 iocage fstab -a mysql \
   /xxx/data/mysql /data nullfs rw 0 0
-</span></pre><pre style="background-color:#ffffff;">
-<span style="color:#323232;">iocage console mysql
-</span></pre><pre style="background-color:#ffffff;">
-<span style="color:#323232;">sysrc mysql_enable=</span><span style="color:#183691;">&quot;YES&quot;
+</span></code></pre><pre style="background-color:#ffffff;">
+<code><span style="color:#323232;">iocage console mysql
+</span></code></pre><pre style="background-color:#ffffff;">
+<code><span style="color:#323232;">sysrc mysql_enable=</span><span style="color:#183691;">&quot;YES&quot;
 </span><span style="color:#323232;">sysrc mysql_dbdir=</span><span style="color:#183691;">&quot;/data&quot;
 </span><span style="color:#323232;">sysrc mysql_confdir=</span><span style="color:#183691;">&quot;/config&quot;
 </span><span style="color:#323232;">sysrc mysql_optfile=</span><span style="color:#183691;">&quot;/config/my.cnf&quot;
-</span></pre><pre style="background-color:#ffffff;">
-<span style="color:#323232;">cp /usr/local/etc/mysql/my.cnf /config/my.cnf
-</span></pre>
+</span></code></pre><pre style="background-color:#ffffff;">
+<code><span style="color:#323232;">cp /usr/local/etc/mysql/my.cnf /config/my.cnf
+</span></code></pre>
 <p>Now edit <code>/config/my.cnf</code> and change <code>bind-address</code> to <code>0.0.0.0</code>. This lets us connect remotely, except for <code>root</code>. We don't want to run things as root, anyway.</p>
 <p>Connect to the local mysql database after creating the root user and password:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">service mysql-server start
+<code><span style="color:#323232;">service mysql-server start
 mysql_secure_installation
 mysql -uroot -p
-</span></pre>
+</span></code></pre>
 <p>Once connected, create the database and user that the plugin will be using. For example, if we were making a database for <code>coreprotect</code>:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">create database coreprotect_hub</span><span style="font-weight:bold;color:#a71d5d;">;
+<code><span style="color:#323232;">create database coreprotect_hub</span><span style="font-weight:bold;color:#a71d5d;">;
 
 </span><span style="color:#323232;">CREATE USER </span><span style="color:#183691;">&#39;coreprotect&#39;</span><span style="color:#323232;">@</span><span style="color:#183691;">&#39;192.168.1.0/255.255.255.0&#39;</span><span style="color:#323232;"> IDENTIFIED WITH mysql_native_password BY </span><span style="color:#183691;">&#39;password&#39;</span><span style="font-weight:bold;color:#a71d5d;">;
 
 </span><span style="color:#323232;">grant all privileges on coreprotect_hub.</span><span style="font-weight:bold;color:#a71d5d;">*</span><span style="color:#323232;"> to </span><span style="color:#183691;">&#39;coreprotect&#39;</span><span style="color:#323232;">@</span><span style="color:#183691;">&#39;192.168.1.0/255.255.255.0&#39;</span><span style="font-weight:bold;color:#a71d5d;">;
-</span></pre>
+</span></code></pre>
 <p>The reason we're using <code>@'192.168.1.0/255.255.255.0'</code> is to allow remote connections, but only within the local network.</p>
 <p>Now update your plugin's <code>config.yml</code>, where <code>host</code> is the ip address of the mysql jail, and <code>port</code> is <code>3306</code>.</p>
 <p>It's a good idea to create a separate database and user for each plugin and server. For example, I have the databases <code>coreprotect_survival</code>, and <code>coreprotect_creative</code>, both of which have different users.</p>
@@ -628,21 +628,19 @@ mysql -uroot -p
       </div>
     </div>
 
-    <!-- Matomo -->
-    <script type="text/javascript">
-      var _paq = window._paq || [];
-      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-      _paq.push(['trackPageView']);
-      _paq.push(['enableLinkTracking']);
-      (function() {
-        var u="//matomo.andrewzah.com/";
-        _paq.push(['setTrackerUrl', u+'matomo.php']);
-        _paq.push(['setSiteId', '2']);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-      })();
-    </script>
-    <!-- End Matomo Code -->
+  <!-- GoatCounter -->
+  <script>
+      // Only load in production
+      if (window.location.host !== 'andrewzah.com')
+          window.goatcounter = {no_onload: true}
+  </script>
+  <script data-goatcounter="https://stats.andrewzah.com/count"
+        async type="text/javascript" src="https://stats.andrewzah.com/count.js"></script>
+
+  <noscript>
+    <img src="https://stats.andrewzah.com/count?p=/test-img">
+  </noscript>
+  <!-- End GoatCounter -->
 
   </body>
 </html>

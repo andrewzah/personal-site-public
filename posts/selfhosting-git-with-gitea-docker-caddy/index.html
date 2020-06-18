@@ -108,7 +108,7 @@
     
     <article itemprop="articleBody">
       <p>Something I've been doing recently is starting to self-host as much as I can. I don't like relying on businesses, since they can change their services on a whim. I host an <a href="https://en.wikipedia.org/wiki/ZNC">IRC network bouncer</a>, a <a href="https://github.com/miniflux/miniflux">feed reader</a>, and so on. But why not a git frontend?</p>
-<p id="zola-continue-reading"><a name="continue-reading"></a></p>
+<span id="continue-reading"></span>
 <p>It also doesn't make sense to me that <em>Git</em>hub isn't open-source, despite being a company built on <em>git</em>—libre software that powers the programming industry. Gitlab is commendable for actually being open source[[1]], but it's fairly heavy in resource usage and it has a lot of features I don't really need.</p>
 <p>So in comes <a href="https://gitea.io/en-US/">Gitea</a>, a community fork of <a href="https://gogs.io/">Gogs</a>, which is written in go-lang and is quite lightweight. More importantly, it can mirror with both Github and Gitlab, giving us data redundancy. Let's get into it!</p>
 <h2 id="prerequisites">Prerequisites</h2>
@@ -117,7 +117,7 @@
 <p>In this case, both Gogs and Gitea provide premade docker images for us. Handy! Thankfully they're mindful about docker image size, with <a href="https://hub.docker.com/r/gitea/gitea/tags/">Gitea 1.4</a> clocking in at a mere <code>34MB</code>. </p>
 <p>This means all we have to do is create a <code>docker-compose</code> file:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#63a35c;">version</span><span style="color:#323232;">: </span><span style="color:#183691;">&quot;3.3&quot;
+<code><span style="color:#63a35c;">version</span><span style="color:#323232;">: </span><span style="color:#183691;">&quot;3.3&quot;
 
 </span><span style="color:#63a35c;">services</span><span style="color:#323232;">:
   </span><span style="color:#63a35c;">git</span><span style="color:#323232;">:
@@ -129,14 +129,14 @@
         source</span><span style="color:#323232;">: </span><span style="color:#63a35c;">./data/git
         target</span><span style="color:#323232;">: </span><span style="color:#63a35c;">/data
     restart</span><span style="color:#323232;">: </span><span style="color:#183691;">always
-</span></pre>
+</span></code></pre>
 <p>This file defines <code>git</code> as a service, using the mentioned gitea image. You can use <code>latest</code> or keep it at a specific version, it's up to you.</p>
 <p>Next, Gitea runs on port <code>3000</code> by default, so we need to expose the docker container's port likewise. Note that we are <em>not</em> doing <code>3000:3000</code>, which would have the port exposed externally. Instead, we have a tool that'll handle the routing for us.</p>
 <h2 id="caddy">Caddy</h2>
 <p><a href="https://caddyserver.com/">Caddy</a> is an <code>HTTP/2</code> webserver. Its killer feature is automatically handling <a href="https://caddyserver.com/">HTTPS with Let's Encrypt</a>. Seriously, I cannot recommend it enough for personal projects. Gone are the days of manually handling certificates and using <a href="https://www.nginx.com/">nginx</a>. <a href="andrewzah.com/posts/selfhosting-git-with-gitea-docker-caddy/#Footnoes">[2]</a></p>
 <p>Caddy's <code>Caddyfile</code> syntax is fairly simple:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">git.andrewzah.com {
+<code><span style="color:#323232;">git.andrewzah.com {
   tls your@email.com
 
   log / stdout {combined}
@@ -144,14 +144,14 @@
 
   proxy / http://git:3000
 }
-</span></pre>
+</span></code></pre>
 <p>Here, we're giving instructions for the domain <code>git.andrewzah.com</code>. The <code>TLS</code> directive configures HTTPS connections, and providing an email means Caddy won't prompt us.</p>
 <p>The <code>log</code> and <code>errors</code> directives are self explanatory.</p>
 <p><code>proxy</code> is what we're really interested in. It lets us pass the connection to the local gitea container we just created, on port <code>3000</code>.</p>
 <h2 id="docker-compose-part-2">Docker-Compose: Part 2</h2>
 <p>In order to run Caddy, we need to add it as a service:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#63a35c;">services</span><span style="color:#323232;">:
+<code><span style="color:#63a35c;">services</span><span style="color:#323232;">:
   </span><span style="color:#63a35c;">http</span><span style="color:#323232;">:
     </span><span style="color:#63a35c;">build</span><span style="color:#323232;">:
       </span><span style="color:#63a35c;">context</span><span style="color:#323232;">: </span><span style="color:#63a35c;">github.com/abiosoft/caddy-docker.git
@@ -174,7 +174,7 @@
       - </span><span style="color:#183691;">&quot;xxx.xxx.xxx.xxx:443:443&quot;
       </span><span style="color:#323232;">- </span><span style="color:#183691;">&quot;xxx.xxx.xxx.xxx:80:80&quot;
     </span><span style="color:#63a35c;">restart</span><span style="color:#323232;">: </span><span style="color:#183691;">always
-</span></pre>
+</span></code></pre>
 <p>Again, a docker image is provided for us thanks to <code>abiosoft</code>. We can specify which caddy version and any caddy plugins if desired. Since we're not running a dns or net server, we don't have to worry about much configuration.</p>
 <p><code>data/sites/</code> and <code>/data/caddypath</code> store information related to Caddy and the automatically generated Let's Encrypt files. <code>/etc/Caddyfile</code> is where Caddy looks, so we bind our caddyfile there.</p>
 <p><code>env_file: ./secret.env</code> is only needed if a caddy plugin requires sensitive data, such as the <code>tls.dns.gandiv5</code> plugin.</p>
@@ -182,7 +182,7 @@
 <h2 id="docker-compose-part-3">Docker-Compose: Part 3</h2>
 <p>You may have noticed by now that we're missing one big thing... a database. This one is simple, because Gitea is smart and runs on Postgres:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#63a35c;">services</span><span style="color:#323232;">:
+<code><span style="color:#63a35c;">services</span><span style="color:#323232;">:
   </span><span style="color:#63a35c;">git_db</span><span style="color:#323232;">:
     </span><span style="color:#63a35c;">image</span><span style="color:#323232;">: </span><span style="color:#63a35c;">postgres:9.6.7-alpine
     env_file</span><span style="color:#323232;">:
@@ -192,44 +192,44 @@
       - </span><span style="color:#63a35c;">type</span><span style="color:#323232;">: </span><span style="color:#63a35c;">bind
         source</span><span style="color:#323232;">: </span><span style="color:#63a35c;">./data/postgres/
         target</span><span style="color:#323232;">: </span><span style="color:#183691;">/var/lib/postgresql/data/
-</span></pre>
+</span></code></pre>
 <p>In <code>secret.env</code>, you'll need to set the following:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">POSTGRES_USER=xxxx
+<code><span style="color:#323232;">POSTGRES_USER=xxxx
 POSTGRES_PASSWORD=yyyyyy
 POSTGRES_DB=git
-</span></pre>
+</span></code></pre>
 <p>Now that we have a database service, we can add this to the <code>gitea</code> service:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#63a35c;">services</span><span style="color:#323232;">:
+<code><span style="color:#63a35c;">services</span><span style="color:#323232;">:
   </span><span style="color:#63a35c;">git</span><span style="color:#323232;">:
     </span><span style="color:#63a35c;">depends_on</span><span style="color:#323232;">:
       - </span><span style="color:#183691;">git_db
-</span></pre><h2 id="editing-sshd">Editing SSHD</h2>
+</span></code></pre><h2 id="editing-sshd">Editing SSHD</h2>
 <p>There's one problem now, which is that if you actually try to run this configuration, you'll be refused. We never actually exposed ssh's default port <code>22</code>, nor did we start listening to it!</p>
 <p>So let's listen to <code>22</code> for git, and <code>2223</code> for regular ssh. Edit, with sudo permissions, <code>/etc/ssh/sshd_config</code>:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;"># What ports, IPs and protocols we listen for
+<code><span style="color:#323232;"># What ports, IPs and protocols we listen for
 Port 2223
 Port 22
-</span></pre>
+</span></code></pre>
 <p>At this time, I would also recommend disabling password login, as one can never have enough security. Just make sure you add your <a href="https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/">ssh key</a> output to <code>~/.ssh/authorized_keys</code>! You'll be locked out otherwise.</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">PermitRootLogin without-password
+<code><span style="color:#323232;">PermitRootLogin without-password
 PasswordAuthentication no
-</span></pre><h2 id="docker-compose-final">Docker-Compose: Final</h2>
+</span></code></pre><h2 id="docker-compose-final">Docker-Compose: Final</h2>
 <p>Lastly, now that we're listening on port <code>22</code>, add this to the <code>docker-compose.yml</code>:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#63a35c;">services</span><span style="color:#323232;">:
+<code><span style="color:#63a35c;">services</span><span style="color:#323232;">:
   </span><span style="color:#63a35c;">git</span><span style="color:#323232;">:
     </span><span style="color:#63a35c;">image</span><span style="color:#323232;">: </span><span style="color:#63a35c;">gitea/gitea:latest
     ports</span><span style="color:#323232;">:
       - </span><span style="color:#183691;">&quot;22:22&quot;
-</span></pre>
+</span></code></pre>
 <p>Now when we do <code>git push origin master</code>, with <code>origin</code> set to <code>https://git.andrewzah.com/...</code>, it'll reach the gitea container!</p>
 <p>In total, it should look like this:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#63a35c;">version</span><span style="color:#323232;">: </span><span style="color:#183691;">&quot;3.3&quot;
+<code><span style="color:#63a35c;">version</span><span style="color:#323232;">: </span><span style="color:#183691;">&quot;3.3&quot;
 
 </span><span style="color:#63a35c;">services</span><span style="color:#323232;">:
   </span><span style="color:#63a35c;">git</span><span style="color:#323232;">:
@@ -275,7 +275,7 @@ PasswordAuthentication no
       - </span><span style="color:#183691;">&quot;xxx.xxx.xxx.xxx:443:443&quot;
       </span><span style="color:#323232;">- </span><span style="color:#183691;">&quot;xxx.xxx.xxx.xxx:80:80&quot;
     </span><span style="color:#63a35c;">restart</span><span style="color:#323232;">: </span><span style="color:#183691;">always
-</span></pre><h2 id="conclusion">Conclusion</h2>
+</span></code></pre><h2 id="conclusion">Conclusion</h2>
 <p>If everything was done correctly, you should now have a self-hosted git frontend. Nice!</p>
 <p>I recommend checking out <a href="https://github.com/Kickball/awesome-selfhosted">awesome-selfhosted</a> to see a huge list of other software you can host. <a href="https://www.reddit.com/r/selfhosted/">reddit.com/r/selfhosted</a> is also a good resource. The possibilities are endless... You could host a <a href="https://github.com/wekan/wekan">Kanban board</a> or a <a href="https://cockatrice.github.io/">Magic: The Gathering Cockatrice server</a>!</p>
 <p>If you start hosting multiple services, it makes more sense to break them out into separate folders, with <code>http</code> being its own central service. You can check out my <a href="https://git.andrewzah.com/andrei/andrewzah.com">services repository</a> to get an idea.</p>
@@ -427,21 +427,19 @@ PasswordAuthentication no
       </div>
     </div>
 
-    <!-- Matomo -->
-    <script type="text/javascript">
-      var _paq = window._paq || [];
-      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-      _paq.push(['trackPageView']);
-      _paq.push(['enableLinkTracking']);
-      (function() {
-        var u="//matomo.andrewzah.com/";
-        _paq.push(['setTrackerUrl', u+'matomo.php']);
-        _paq.push(['setSiteId', '2']);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-      })();
-    </script>
-    <!-- End Matomo Code -->
+  <!-- GoatCounter -->
+  <script>
+      // Only load in production
+      if (window.location.host !== 'andrewzah.com')
+          window.goatcounter = {no_onload: true}
+  </script>
+  <script data-goatcounter="https://stats.andrewzah.com/count"
+        async type="text/javascript" src="https://stats.andrewzah.com/count.js"></script>
+
+  <noscript>
+    <img src="https://stats.andrewzah.com/count?p=/test-img">
+  </noscript>
+  <!-- End GoatCounter -->
 
   </body>
 </html>

@@ -121,7 +121,7 @@
 <h4 id="my-setup">My setup</h4>
 <p>This is what my site's directory looks like:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">.
+<code><span style="color:#323232;">.
 ├── binary-data/
 ├── Caddyfile
 ├── config.toml
@@ -136,7 +136,7 @@
 ├── syntaxes/
 ├── templates/
 └── themes/
-</span></pre>
+</span></code></pre>
 <p><code>binary-data</code> is where I store all the screenshots, pdfs, and other binary data I refer to my posts. For the actual posts I upload these to an amazon S3 bucket, but I keep these as a backup, <em>outside</em> of git.<a id="footnote-cite-1" href="#footnote-1">(1)</a></p>
 <p><code>sass/</code> and <code>static/</code> are pretty easy: the former gets compiled to css, the latter gets copied directly to the <code>public/</code> directory during generation.</p>
 <p>For code, <code>themes</code> contains the syntax highlighting theme, and <code>syntaxes</code> contains sublime syntax files I added because Zola doesn't support <a href="http://slim-lang.com/">slim</a> syntax highlighting yet.</p>
@@ -146,7 +146,7 @@
 <p>At a minimum, you probably want a <a href="https://git.sr.ht/%7Eandrewzah/personal-site/tree/master/templates/base.html">base.html</a> to deal with the oh-so-fun SEO stuff, and a <code>macros.html</code> for &quot;dynamically&quot; rendering things. I use it for the navigation bar, footnotes, references, citations, and rendering links.</p>
 <p>With child templates, you can use blocks to inject content back to the parent:</p>
 <pre style="background-color:#ffffff;">
-<span style="font-style:italic;color:#969896;">&lt;!-- base.html --&gt;
+<code><span style="font-style:italic;color:#969896;">&lt;!-- base.html --&gt;
 </span><span style="color:#323232;">&lt;</span><span style="color:#63a35c;">head</span><span style="color:#323232;">&gt;
   </span><span style="font-style:italic;color:#969896;">&lt;!-- constants in base.html header --&gt;
   </span><span style="color:#323232;">&lt;</span><span style="color:#63a35c;">meta </span><span style="color:#795da3;">charset</span><span style="color:#323232;">=</span><span style="color:#183691;">&quot;UTF-8&quot;</span><span style="color:#323232;">&gt;
@@ -155,18 +155,18 @@
   </span><span style="color:#323232;">&lt;</span><span style="color:#63a35c;">title</span><span style="color:#323232;">&gt;{% block title %}{% endblock title %}&lt;/</span><span style="color:#63a35c;">title</span><span style="color:#323232;">&gt;
   {% block head %}{% endblock head %}
 &lt;/</span><span style="color:#63a35c;">head</span><span style="color:#323232;">&gt;
-</span></pre>
+</span></code></pre>
 <p>then in the child you define the block:</p>
 <pre style="background-color:#ffffff;">
-<span style="font-style:italic;color:#969896;">&lt;!-- zola provides objects like page/section/config, see the docs --&gt;</span><span style="color:#323232;">
+<code><span style="font-style:italic;color:#969896;">&lt;!-- zola provides objects like page/section/config, see the docs --&gt;</span><span style="color:#323232;">
 {% block title %}{{ page.title }} | {{ config.title }}{% endblock title %}
-</span></pre>
+</span></code></pre>
 <p>Thrilling stuff.</p>
 <p>If you look at my source it can appear a tad complex now, but I just slowly added things as they came up– like the page title, then custom SEO attributes, etc.</p>
 <h4 id="macros">Macros</h4>
 <p>Tera's macro system is really useful. One of my use cases was to show the tags and categories below a post:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">{% macro render_tags(tags) %}
+<code><span style="color:#323232;">{% macro render_tags(tags) %}
   &lt;</span><span style="color:#63a35c;">div </span><span style="color:#795da3;">class</span><span style="color:#323232;">=</span><span style="color:#183691;">&quot;tags&quot;</span><span style="color:#323232;">&gt;
     Tags: 
     {% for tag in tags %}
@@ -178,7 +178,7 @@
     {% endfor %}
   &lt;/</span><span style="color:#63a35c;">div</span><span style="color:#323232;">&gt;
 {% endmacro render_tags %}
-</span></pre>
+</span></code></pre>
 <p>Yes, I should probably clean them up a bit. They work good enough for now.</p>
 <h4 id="shortcodes">Shortcodes</h4>
 <p>Shortcodes are awesome. Two main things I use them for:</p>
@@ -187,27 +187,27 @@
 <li>generating boilerplate for lity.js (a lightbox lib)</li>
 </ul>
 <pre style="background-color:#ffffff;">
-<span style="font-style:italic;color:#969896;">&lt;!-- img.html --&gt;
+<code><span style="font-style:italic;color:#969896;">&lt;!-- img.html --&gt;
 </span><span style="color:#323232;">&lt;</span><span style="color:#63a35c;">a </span><span style="color:#795da3;">href</span><span style="color:#323232;">=</span><span style="color:#183691;">&quot;{{url}}&quot; </span><span style="color:#795da3;">data-lity data-lity-desc</span><span style="color:#323232;">=</span><span style="color:#183691;">&quot;{{desc}}&quot; </span><span style="color:#795da3;">alt</span><span style="color:#323232;">=</span><span style="color:#183691;">&quot;{{desc}}&quot;</span><span style="color:#323232;">&gt;
   &lt;</span><span style="color:#63a35c;">img </span><span style="color:#795da3;">class</span><span style="color:#323232;">=</span><span style="color:#183691;">&quot;full&quot; </span><span style="color:#795da3;">async-src</span><span style="color:#323232;">=</span><span style="color:#183691;">&quot;{{url}}&quot;</span><span style="color:#323232;">/&gt;
 &lt;/</span><span style="color:#63a35c;">a</span><span style="color:#323232;">&gt;
 {% if t %}
   &lt;</span><span style="color:#63a35c;">p </span><span style="color:#795da3;">class</span><span style="color:#323232;">=</span><span style="color:#183691;">&quot;image-desc&quot;</span><span style="color:#323232;">&gt; {{t}} &lt;/</span><span style="color:#63a35c;">p</span><span style="color:#323232;">&gt;
 {% endif %}
-</span></pre><pre style="background-color:#ffffff;">
-<span style="font-style:italic;color:#969896;">&lt;!-- fn.html --&gt;
+</span></code></pre><pre style="background-color:#ffffff;">
+<code><span style="font-style:italic;color:#969896;">&lt;!-- fn.html --&gt;
 </span><span style="color:#323232;">&lt;</span><span style="color:#63a35c;">a </span><span style="color:#795da3;">id</span><span style="color:#323232;">=</span><span style="color:#183691;">&quot;footnote-cite-{{num}}&quot; </span><span style="color:#795da3;">href</span><span style="color:#323232;">=</span><span style="color:#183691;">&quot;#footnote-{{num}}&quot;</span><span style="color:#323232;">&gt;({{num}})&lt;/</span><span style="color:#63a35c;">a</span><span style="color:#323232;">&gt;
-</span></pre>
+</span></code></pre>
 <p>My <a href="../korean-for-programmers/#finally-a-sentence">Korean for Programmers</a> post uses ~5 shortcodes to <span class="hl hl-red">
 highlight
 </span> words in different colors:</p>
 <pre style="background-color:#ffffff;">
-<span style="font-style:italic;color:#969896;">&lt;!-- hlm.html --&gt;
+<code><span style="font-style:italic;color:#969896;">&lt;!-- hlm.html --&gt;
 &lt;!-- where t=text,c=css color class name--&gt;
 </span><span style="color:#323232;">&lt;</span><span style="color:#63a35c;">span </span><span style="color:#795da3;">class</span><span style="color:#323232;">=</span><span style="color:#183691;">&quot;hl hl-middle hl-{{c}}&quot;</span><span style="color:#323232;">&gt;
   {{t}}
 &lt;/</span><span style="color:#63a35c;">span</span><span style="color:#323232;">&gt;
-</span></pre>
+</span></code></pre>
 <p>Okay, okay.. Time for the real stuff.</p>
 <h2 id="static-assets-repo">Static Assets Repo</h2>
 <p>Now that you have your static files, commit them to a new git repo. With Zola, I use <code>rsync</code> to move the output from <code>public/</code> to another directory–since <code>zola build</code> nukes it each time.</p>
@@ -219,7 +219,7 @@ highlight
 <p>{{note(c=&quot;Warning&quot;, t=&quot;Use a port (like :2015) for local testing instead of the actual domain! If you run Caddy with this caddyfile locally without the -disable-acme-auth, caddy will repeatedly try to authorize, quickly ratelimiting you from Let's Encrypt! You can also use &quot;tls off&quot; to skip it entirely.&quot;)
 }}</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;"># Caddyfile
+<code><span style="color:#323232;"># Caddyfile
 yoursite.com, www.yoursite.com {
   gzip
   tls your@email.gtld
@@ -240,13 +240,13 @@ yoursite.com, www.yoursite.com {
 
   root /www/public
 }
-</span></pre>
+</span></code></pre>
 <p>The <code>SITE_WEBHOOK</code> environment variable is set in <code>.env</code>.</p>
 <p>Note that a webhook is optional. In fact, <a href="https://caddyserver.com/docs/http.git">all of the git directives here are optional</a> besides the repo path itself. By default the plugin clones to the root path, <code>/www/public</code> in this case.</p>
 <p>I've set it to pull once per day as well as listen for requests on <code>/webhook</code>. Right now I use github webhooks as <code>sourcehut</code> doesn't seem to support webhooks yet.</p>
 <p>If you're running multiple containerized services you can use caddy as a proxy as well. You can see the <a href="https://git.sr.ht/%7Eandrewzah/andrewzah.com/tree">source for andrewzah.com's docker script</a> as an example. I have an <code>http</code> docker service that proxies to my <code>website</code> service, which looks like the following:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;"># services/http/Caddyfile
+<code><span style="color:#323232;"># services/http/Caddyfile
 www.andrewzah.com, andrewzah.com, andrei.blue {
   gzip
   tls zah@andrewzah.com
@@ -262,10 +262,10 @@ www.andrewzah.com, andrewzah.com, andrei.blue {
 }
 
 ...
-</span></pre><h2 id="docker">Docker</h2>
+</span></code></pre><h2 id="docker">Docker</h2>
 <p>Lastly, we'll run all of this inside a docker container, so we need a <code>Dockerfile</code>:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">FROM alpine:edge
+<code><span style="color:#323232;">FROM alpine:edge
 LABEL caddy_version = &quot;1.0.0&quot; architecture=&quot;amd64&quot;
 
 # Caddy
@@ -292,10 +292,10 @@ COPY Caddyfile /etc/Caddyfile
 USER caddy
 ENTRYPOINT [&quot;/usr/bin/caddy&quot;]
 CMD [&quot;--conf&quot;, &quot;/etc/Caddyfile&quot;, &quot;--log&quot;, &quot;stdout&quot;, &quot;-agree&quot;]
-</span></pre>
+</span></code></pre>
 <p>and a corresponding <code>docker-compose</code> file:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#63a35c;">version</span><span style="color:#323232;">: </span><span style="color:#183691;">&#39;3.7&#39;
+<code><span style="color:#63a35c;">version</span><span style="color:#323232;">: </span><span style="color:#183691;">&#39;3.7&#39;
 
 </span><span style="color:#63a35c;">services</span><span style="color:#323232;">:
   </span><span style="color:#63a35c;">web</span><span style="color:#323232;">:
@@ -307,7 +307,7 @@ CMD [&quot;--conf&quot;, &quot;/etc/Caddyfile&quot;, &quot;--log&quot;, &quot;st
       - </span><span style="color:#183691;">&quot;1111&quot;
     </span><span style="color:#63a35c;">env_file</span><span style="color:#323232;">:
       - </span><span style="color:#183691;">&quot;.env&quot;
-</span></pre>
+</span></code></pre>
 <p>I try to use alpine docker whenever possible. This image fetches a predefined Caddy version, v1.0.0, with the <code>cache</code> and <code>git</code> plugins.</p>
 <p>We need to pass the <code>-agree</code> flag to agree to Let's Encrypt's Subscriber Agreement. Caddy will not run otherwise unless you use <code>-disable-http-challenge</code> (or specify http/a port), but we want HTTPS, no?</p>
 <p>Deploying the image is just <code>docker push</code> once you've signed in via the docker cli. </p>
@@ -360,7 +360,7 @@ CMD [&quot;--conf&quot;, &quot;/etc/Caddyfile&quot;, &quot;--log&quot;, &quot;st
             >
               (2) &#x21A9;</a>
               –
-              I made this mistake when I ran the the Docker image for the first time. Hitting &#96;ctrl-c&#96; wouldn&#x27;t kill it, I had to run &#96;docker-compose down&#96;... but I ran it too late. I had to wait 24 hours to deploy HTTPS for my site after that.
+              I made this mistake when I ran the the Docker image for the first time. Hitting `ctrl-c` wouldn&#x27;t kill it, I had to run `docker-compose down`... but I ran it too late. I had to wait 24 hours to deploy HTTPS for my site after that.
           </span>
         </li>
       
@@ -472,21 +472,19 @@ CMD [&quot;--conf&quot;, &quot;/etc/Caddyfile&quot;, &quot;--log&quot;, &quot;st
       </div>
     </div>
 
-    <!-- Matomo -->
-    <script type="text/javascript">
-      var _paq = window._paq || [];
-      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-      _paq.push(['trackPageView']);
-      _paq.push(['enableLinkTracking']);
-      (function() {
-        var u="//matomo.andrewzah.com/";
-        _paq.push(['setTrackerUrl', u+'matomo.php']);
-        _paq.push(['setSiteId', '2']);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-      })();
-    </script>
-    <!-- End Matomo Code -->
+  <!-- GoatCounter -->
+  <script>
+      // Only load in production
+      if (window.location.host !== 'andrewzah.com')
+          window.goatcounter = {no_onload: true}
+  </script>
+  <script data-goatcounter="https://stats.andrewzah.com/count"
+        async type="text/javascript" src="https://stats.andrewzah.com/count.js"></script>
+
+  <noscript>
+    <img src="https://stats.andrewzah.com/count?p=/test-img">
+  </noscript>
+  <!-- End GoatCounter -->
 
   </body>
 </html>

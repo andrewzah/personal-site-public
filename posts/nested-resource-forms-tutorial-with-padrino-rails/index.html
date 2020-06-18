@@ -112,7 +112,7 @@
 <h3 id="schema">Schema</h3>
 <p>This is what the migration schema looks like:</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#0086b3;">Sequel</span><span style="color:#323232;">.migration </span><span style="font-weight:bold;color:#a71d5d;">do</span><span style="color:#323232;">
+<code><span style="color:#0086b3;">Sequel</span><span style="color:#323232;">.migration </span><span style="font-weight:bold;color:#a71d5d;">do</span><span style="color:#323232;">
   up </span><span style="font-weight:bold;color:#a71d5d;">do</span><span style="color:#323232;">
     create_table </span><span style="color:#0086b3;">:grammars </span><span style="font-weight:bold;color:#a71d5d;">do</span><span style="color:#323232;">
       primary_key </span><span style="color:#0086b3;">:id
@@ -138,21 +138,21 @@
   </span><span style="font-weight:bold;color:#a71d5d;">end
 end
 
-</span></pre>
+</span></code></pre>
 <p>You'll want to run</p>
 <pre style="background-color:#ffffff;">
-<span style="color:#323232;">padrino generate app </span><span style="font-weight:bold;color:#a71d5d;">&lt;</span><span style="color:#323232;">app_name</span><span style="font-weight:bold;color:#a71d5d;">&gt; </span><span style="font-style:italic;color:#969896;"># etc
+<code><span style="color:#323232;">padrino generate app </span><span style="font-weight:bold;color:#a71d5d;">&lt;</span><span style="color:#323232;">app_name</span><span style="font-weight:bold;color:#a71d5d;">&gt; </span><span style="font-style:italic;color:#969896;"># etc
 </span><span style="color:#323232;">padrino generate migration AddGrammarsAndTranslations
 </span><span style="font-style:italic;color:#969896;"># you might have to initialize the table manually if this doesn&#39;t work
 </span><span style="color:#323232;">rake sq:create 
 rake sq:migrate
-</span></pre><h3 id="models">Models</h3>
+</span></code></pre><h3 id="models">Models</h3>
 <p>The main model <code>Grammar</code> needs a tag, which differs by which ORM you're using. If it's Sequel, use the <code>nested_attributes</code> tag.<a id="refer-0" href="#reference-0">[0]</a> For ActiveRecord users, instead use <code>accepts_nested_attributes_for</code>.<a id="refer-1" href="#reference-1">[1]</a> Both accept the <code>allow_destroy: true</code> option. Padrino also needs the plugin to explicitly be enabled.</p>
 <pre style="background-color:#ffffff;">
-<span style="font-style:italic;color:#969896;"># models/grammar.rb
+<code><span style="font-style:italic;color:#969896;"># models/grammar.rb
 
 </span><span style="font-weight:bold;color:#a71d5d;">class </span><span style="color:#0086b3;">Grammar </span><span style="color:#323232;">&lt; </span><span style="font-weight:bold;color:#795da3;">Sequel::Model</span><span style="color:#323232;">
-  one_to_many </span><span style="color:#0086b3;">:translations</span><span style="color:#323232;">, </span><span style="font-weight:bold;color:#a71d5d;">class: </span><span style="color:#0086b3;">:GrammarTranslation</span><span style="color:#323232;">
+  one_to_many </span><span style="color:#0086b3;">:translations</span><span style="color:#323232;">, </span><span style="color:#0086b3;">class: :GrammarTranslation</span><span style="color:#323232;">
 
   plugin </span><span style="color:#0086b3;">:nested_attributes</span><span style="color:#323232;">
   nested_attributes </span><span style="color:#0086b3;">:translations</span><span style="color:#323232;">, </span><span style="color:#0086b3;">destroy: true
@@ -163,8 +163,8 @@ rake sq:migrate
     </span><span style="color:#ed6a43;">self</span><span style="color:#323232;">[id] </span><span style="font-weight:bold;color:#a71d5d;">rescue </span><span style="color:#0086b3;">nil
   </span><span style="font-weight:bold;color:#a71d5d;">end
 end
-</span></pre><pre style="background-color:#ffffff;">
-<span style="font-style:italic;color:#969896;"># models/grammar_translation.rb
+</span></code></pre><pre style="background-color:#ffffff;">
+<code><span style="font-style:italic;color:#969896;"># models/grammar_translation.rb
 
 </span><span style="font-weight:bold;color:#a71d5d;">class </span><span style="color:#0086b3;">GrammarTranslation </span><span style="color:#323232;">&lt; </span><span style="font-weight:bold;color:#795da3;">Sequel::Model</span><span style="color:#323232;">
   many_to_one </span><span style="color:#0086b3;">:grammar
@@ -174,31 +174,31 @@ end
     </span><span style="color:#ed6a43;">self</span><span style="color:#323232;">[id] </span><span style="font-weight:bold;color:#a71d5d;">rescue </span><span style="color:#0086b3;">nil
   </span><span style="font-weight:bold;color:#a71d5d;">end
 end
-</span></pre><h3 id="form-views">Form Views</h3>
+</span></code></pre><h3 id="form-views">Form Views</h3>
 <p>We use the <code>new</code> and <code>edit</code> templates to initialize the form and pass it as a variable, <code>f</code>.</p>
 <pre style="background-color:#ffffff;">
-<span style="font-style:italic;color:#969896;">// app/views/grammar/new.slim
+<code><span style="font-style:italic;color:#969896;">// app/views/grammar/new.slim
 
 </span><span style="color:#63a35c;">h2
   New</span><span style="color:#323232;"> Grammar
 
 = form_for @grammar, &#39;/grammar/create&#39; do |f|
   = partial &#39;grammar/form&#39;, :locals =&gt; { :f =&gt; f }
-</span></pre><pre style="background-color:#ffffff;">
-<span style="font-style:italic;color:#969896;">// app/views/grammar/edit.slim
+</span></code></pre><pre style="background-color:#ffffff;">
+<code><span style="font-style:italic;color:#969896;">// app/views/grammar/edit.slim
 
 </span><span style="color:#63a35c;">h2
   Update</span><span style="color:#323232;"> Grammar
 
 = form_for :grammar, url(:grammar, :update, id: @grammar.id), method: :put do |f|
   = partial &#39;grammar/form&#39;, :locals =&gt; { :f =&gt; f }
-</span></pre>
+</span></code></pre>
 <p>Since we won't always add a new translation, always marking the fields as required won't work. Instead we can mark fields as required only for existing translations, not new ones.</p>
 <p>We can iterate over nested resources with the <code>fields_for :model</code> tag now available to us.</p>
 <p><strong>Note1</strong>: Don't forget to setup the <code>id</code> hidden field! Otherwise the orm won't realize it's an existing nested resource.</p>
 <p><strong>Note2</strong>: For the destroy checkbox, you must pass <code>:_delete</code>, Not <code>:_destroy</code>. The padrino docs are incorrect here! I had to do a bit of sleuthing to figure out the correct method to send.</p>
 <pre style="background-color:#ffffff;">
-<span style="font-style:italic;color:#969896;">// app/views/grammar/_form.slim
+<code><span style="font-style:italic;color:#969896;">// app/views/grammar/_form.slim
 
 </span><span style="color:#323232;">= f.label &#39;Grammar&#39;
 = f.text_field :grammar, required: true
@@ -240,19 +240,19 @@ end
 </span><span style="color:#323232;">= submit_tag pat(:save)
 = submit_tag pat(:save_and_continue), :name =&gt; &#39;save_and_continue&#39;
 = link_to pat(:cancel), url(:grammar, :index)
-</span></pre><h3 id="controller-and-routes">Controller and Routes</h3>
+</span></code></pre><h3 id="controller-and-routes">Controller and Routes</h3>
 <p>Lastly we need some basic controller and routing code. <code>index</code> is still simple:</p>
 <pre style="background-color:#ffffff;">
-<span style="font-style:italic;color:#969896;"># app/controllers/grammar.rb
+<code><span style="font-style:italic;color:#969896;"># app/controllers/grammar.rb
 </span><span style="color:#323232;">
 get </span><span style="color:#0086b3;">:index </span><span style="font-weight:bold;color:#a71d5d;">do
   </span><span style="color:#323232;">@grammars </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#0086b3;">Grammar</span><span style="color:#323232;">.all
   render </span><span style="color:#183691;">&#39;grammar/index&#39;
 </span><span style="font-weight:bold;color:#a71d5d;">end
-</span></pre>
+</span></code></pre>
 <p>When it comes to new/create, an empty <code>GrammarTranslation</code>s object needs to be initialized. In Padrino this is accomplished by initializing the <code>&lt;model&gt;_attributes</code> field, which comes from the <code>nested_attributes</code> tag.</p>
 <pre style="background-color:#ffffff;">
-<span style="font-style:italic;color:#969896;"># app/controllers/grammar.rb
+<code><span style="font-style:italic;color:#969896;"># app/controllers/grammar.rb
 </span><span style="color:#323232;">
 get </span><span style="color:#0086b3;">:new </span><span style="font-weight:bold;color:#a71d5d;">do
   </span><span style="color:#323232;">@grammar </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#0086b3;">Grammar</span><span style="color:#323232;">.</span><span style="font-weight:bold;color:#a71d5d;">new</span><span style="color:#323232;">(</span><span style="color:#0086b3;">translations_attributes: </span><span style="color:#323232;">[{}])
@@ -276,10 +276,10 @@ post </span><span style="color:#0086b3;">:create </span><span style="font-weight
     render </span><span style="color:#183691;">&#39;new&#39;
   </span><span style="font-weight:bold;color:#a71d5d;">end
 end
-</span></pre>
+</span></code></pre>
 <p>For the <code>edit</code> route, a new <code>GrammarTranslation</code> is appended because we want to be able to create new <code>GrammarTranslation</code>s from a <code>Grammar</code>'s edit page.</p>
 <pre style="background-color:#ffffff;">
-<span style="font-style:italic;color:#969896;"># app/controllers/grammar.rb
+<code><span style="font-style:italic;color:#969896;"># app/controllers/grammar.rb
 </span><span style="color:#323232;">
 get </span><span style="color:#0086b3;">:edit</span><span style="color:#323232;">, </span><span style="color:#0086b3;">with: :id </span><span style="font-weight:bold;color:#a71d5d;">do
   </span><span style="color:#323232;">@grammar </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#0086b3;">Grammar</span><span style="color:#323232;">[params[</span><span style="color:#0086b3;">:id</span><span style="color:#323232;">]]
@@ -296,10 +296,10 @@ get </span><span style="color:#0086b3;">:edit</span><span style="color:#323232;"
     halt </span><span style="color:#0086b3;">404
   </span><span style="font-weight:bold;color:#a71d5d;">end
 end
-</span></pre>
+</span></code></pre>
 <p>For <code>update</code>, since we added a blank <code>GrammarTranslation</code>, it's necessary to filter it out if none of the fields were filled out in the form. Otherwise, every single time you upated a <code>Grammar</code>, a new <code>GrammarTranslation</code> would be created.</p>
 <pre style="background-color:#ffffff;">
-<span style="font-style:italic;color:#969896;"># app/controllers/grammar.rb
+<code><span style="font-style:italic;color:#969896;"># app/controllers/grammar.rb
 </span><span style="color:#323232;">
 put </span><span style="color:#0086b3;">:update</span><span style="color:#323232;">, </span><span style="color:#0086b3;">with: :id </span><span style="font-weight:bold;color:#a71d5d;">do
   </span><span style="color:#323232;">@grammar </span><span style="font-weight:bold;color:#a71d5d;">= </span><span style="color:#0086b3;">Grammar</span><span style="color:#323232;">[params[</span><span style="color:#0086b3;">:id</span><span style="color:#323232;">]]
@@ -320,16 +320,16 @@ put </span><span style="color:#0086b3;">:update</span><span style="color:#323232
     render </span><span style="color:#183691;">&#39;accounts/edit&#39;
   </span><span style="font-weight:bold;color:#a71d5d;">end
 end
-</span></pre><h3 id="object-views">Object Views</h3>
+</span></code></pre><h3 id="object-views">Object Views</h3>
 <p>Nothing complicated here. The nested resource is available under the main object, so we can use <code>@grammar.translations</code>.</p>
 <pre style="background-color:#ffffff;">
-<span style="font-style:italic;color:#969896;">// app/views/grammar/index.slim
+<code><span style="font-style:italic;color:#969896;">// app/views/grammar/index.slim
 
 </span><span style="color:#323232;">- @grammars.each do |g|
   = link_to g.grammar, &quot;/grammar/</span><span style="font-style:italic;color:#969896;">#{g.id}&quot;
   </span><span style="color:#63a35c;">br
-</span></pre><pre style="background-color:#ffffff;">
-<span style="font-style:italic;color:#969896;">// app/views/grammar/show.slim
+</span></code></pre><pre style="background-color:#ffffff;">
+<code><span style="font-style:italic;color:#969896;">// app/views/grammar/show.slim
 
 </span><span style="color:#63a35c;">h2
   </span><span style="color:#323232;">= @grammar.grammar
@@ -345,7 +345,7 @@ end
     </span><span style="color:#63a35c;">p</span><span style="color:#323232;">
       | Meaning:
       =&lt; t.meanings
-</span></pre><h3 id="conclusion">Conclusion</h3>
+</span></code></pre><h3 id="conclusion">Conclusion</h3>
 <p>I hope this short guide helped you. You should now be able to create a model and a nested object at the same time!</p>
 
       <hr>
@@ -491,21 +491,19 @@ end
       </div>
     </div>
 
-    <!-- Matomo -->
-    <script type="text/javascript">
-      var _paq = window._paq || [];
-      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-      _paq.push(['trackPageView']);
-      _paq.push(['enableLinkTracking']);
-      (function() {
-        var u="//matomo.andrewzah.com/";
-        _paq.push(['setTrackerUrl', u+'matomo.php']);
-        _paq.push(['setSiteId', '2']);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-      })();
-    </script>
-    <!-- End Matomo Code -->
+  <!-- GoatCounter -->
+  <script>
+      // Only load in production
+      if (window.location.host !== 'andrewzah.com')
+          window.goatcounter = {no_onload: true}
+  </script>
+  <script data-goatcounter="https://stats.andrewzah.com/count"
+        async type="text/javascript" src="https://stats.andrewzah.com/count.js"></script>
+
+  <noscript>
+    <img src="https://stats.andrewzah.com/count?p=/test-img">
+  </noscript>
+  <!-- End GoatCounter -->
 
   </body>
 </html>
