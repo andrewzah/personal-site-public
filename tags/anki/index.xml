@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>anki on Andrew Zah</title>
+    <link>https://andrewzah.com/tags/anki/</link>
+    <description>Recent content in anki on Andrew Zah</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>zah@andrewzah.com (Andrew Zah)</managingEditor>
+    <webMaster>zah@andrewzah.com (Andrew Zah)</webMaster>
+    <lastBuildDate>Sat, 11 Jan 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://andrewzah.com/tags/anki/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>My $850 smartwatch can’t render Korean text</title>
+      <link>https://andrewzah.com/posts/2020/my-850-dollar-watch-cant-render-korean-text/</link>
+      <pubDate>Sat, 11 Jan 2020 00:00:00 +0000</pubDate>
+      <author>zah@andrewzah.com (Andrew Zah)</author>
+      <guid>https://andrewzah.com/posts/2020/my-850-dollar-watch-cant-render-korean-text/</guid>
+      <description>I recently acquired a Garmin Fenix 6X, currently Garmin’s flagship model. While I did research beforehand, I forgot that my phone was in Korean, and thus the notifications would be in Korean… Silly me.</description>
+    </item>
+    
+    <item>
+      <title>Better Anki Usage Guide [2019]</title>
+      <link>https://andrewzah.com/posts/2019/better-anki-usage-guide-2019/</link>
+      <pubDate>Sun, 19 May 2019 00:00:00 +0000</pubDate>
+      <author>zah@andrewzah.com (Andrew Zah)</author>
+      <guid>https://andrewzah.com/posts/2019/better-anki-usage-guide-2019/</guid>
+      <description>references = [ [Guide to Anki Intervals and Learning Steps&#39;&#39;, https://www.youtube.com/watch?v=1XaJjbCSXT0&#39;&#39;], [Enhancing learning and retarding forgetting: Choices and consequences, Pashler, Rohrer, Cepeda, &amp;amp; Carpenter (2007)&#39;&#39;, https://s3.</description>
+    </item>
+    
+    <item>
+      <title>Things to avoid with Anki</title>
+      <link>https://andrewzah.com/posts/2019/05-18_things_to_avoid_in_anki/</link>
+      <pubDate>Sat, 18 May 2019 00:00:00 -0400</pubDate>
+      <author>zah@andrewzah.com (Andrew Zah)</author>
+      <guid>https://andrewzah.com/posts/2019/05-18_things_to_avoid_in_anki/</guid>
+      <description>There are some common mistakes people make when getting into flash cards and spaced repetition for the first time.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+      
+        Selfhosting git with Gitea, Docker, Caddy | Andrew Zah
+      
+    </title>
+  
+
+  <meta name="author" content="Andrew Zah">
+  <meta name="application-name" content="Andrew Zah"><link rel="stylesheet" href="https://andrewzah.com/scss/main.min.css">
+
+
+  </head>
+<body>
+    <div id="wrapper">
+      
+
+      <div id="content" class="container page">
+
+<a href="https://andrewzah.com/">Home</a>
+
+<article id="post" class="page">
+  <section id="post-header">
+    <h2 class="post-title">
+      
+      Selfhosting git with Gitea, Docker, Caddy
+    </h2>
+    
+<div id="post-meta">
+  <time datetime="May 05, 2018">
+    May 5, 2018
+  </time> &mdash;
+  980 words
+
+  
+</div>
+
+<p class="divider">&#x203b;</p>
+
+
+  </section>
+
+  <section id="post-body">
+    <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Something I’ve been doing recently is starting to self-host as much as I
+can. I don’t like relying on businesses, since they can change their
+services on a whim. I host an <a href="https://en.wikipedia.org/wiki/ZNC">IRC
+network bouncer</a>, a <a href="https://github.com/miniflux/miniflux">feed reader</a>,
+and so on. But why not a git frontend?</p>
+</div>
+<div class="paragraph">
+<p>It also doesn’t make sense to me that <em>Git</em>hub isn’t open-source,
+despite being a company built on <em>git</em>—libre software that powers the
+programming industry. Gitlab is commendable for actually being open
+source[[1]], but it’s fairly heavy in resource usage and it has a lot of
+features I don’t really need.</p>
+</div>
+<div class="paragraph">
+<p>So in comes <a href="https://gitea.io/en-US/">Gitea</a>, a community fork of
+<a href="https://gogs.io/">Gogs</a>, which is written in go-lang and is quite
+lightweight. More importantly, it can mirror with both Github and
+Gitlab, giving us data redundancy. Let’s get into it!</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites">Prerequisites</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>docker</code> and <code>docker-compose</code> need to be installed on your system. In
+this case, I’m running it with a bunch of other services on a
+<a href="https://www.hetzner.de/">hetzner.de</a> Cloud VPS for €5/month. You could
+probably run it on their €2.50/month plan. (2GB vs 4GB of RAM)</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_docker_compose_part_1">Docker-Compose: Part 1</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this case, both Gogs and Gitea provide premade docker images for us.
+Handy! Thankfully they’re mindful about docker image size, with
+<a href="https://hub.docker.com/r/gitea/gitea/tags/">Gitea 1.4</a> clocking in at a
+mere <code>34MB</code>.</p>
+</div>
+<div class="paragraph">
+<p>This means all we have to do is create a <code>docker-compose</code> file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">version: "3.3"
+
+services:
+  git:
+    image: gitea/gitea:latest
+    ports:
+      - "3000"
+    volumes:
+      - type: bind
+        source: ./data/git
+        target: /data
+    restart: always</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This file defines <code>git</code> as a service, using the mentioned gitea image.
+You can use <code>latest</code> or keep it at a specific version, it’s up to you.</p>
+</div>
+<div class="paragraph">
+<p>Next, Gitea runs on port <code>3000</code> by default, so we need to expose the
+docker container’s port likewise. Note that we are <em>not</em> doing
+<code>3000:3000</code>, which would have the port exposed externally. Instead, we
+have a tool that’ll handle the routing for us.</p>
+</div>
+<div class="sect2">
+<h3 id="_caddy">Caddy</h3>
+<div class="paragraph">
+<p><a href="https://caddyserver.com/">Caddy</a> is an <code>HTTP/2</code> webserver. Its killer
+feature is automatically handling <a href="https://caddyserver.com/">HTTPS with
+Let’s Encrypt</a>. Seriously, I cannot recommend it enough for personal
+projects. Gone are the days of manually handling certificates and using
+<a href="https://www.nginx.com/">nginx</a>. <a href="#Footnoes">[2</a>]</p>
+</div>
+<div class="paragraph">
+<p>Caddy’s <code>Caddyfile</code> syntax is fairly simple:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-caddyfile" data-lang="caddyfile">git.andrewzah.com {
+  tls your@email.com
+
+  log / stdout {combined}
+  errors stderr
+
+  proxy / http://git:3000
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here, we’re giving instructions for the domain <code>git.andrewzah.com</code>. The
+<code>TLS</code> directive configures HTTPS connections, and providing an email
+means Caddy won’t prompt us.</p>
+</div>
+<div class="paragraph">
+<p>The <code>log</code> and <code>errors</code> directives are self explanatory.</p>
+</div>
+<div class="paragraph">
+<p><code>proxy</code> is what we’re really interested in. It lets us pass the
+connection to the local gitea container we just created, on port <code>3000</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_docker_compose_part_2">Docker-Compose: Part 2</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order to run Caddy, we need to add it as a service:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">services:
+  http:
+    build:
+      context: github.com/abiosoft/caddy-docker.git
+      args:
+        version: 0.10.11
+    volumes:
+      - type: bind
+        source: ./data/sites/
+        target: /var/www/sites/
+      - type: bind
+        source: ./data/caddypath/
+        target: /var/caddy/
+      - type: bind
+        source: ./Caddyfile
+        target: /etc/Caddyfile
+    environment:
+      CADDYPATH: "/var/caddy"
+    env_file: ./secret.env
+    ports:
+      - "xxx.xxx.xxx.xxx:443:443"
+      - "xxx.xxx.xxx.xxx:80:80"
+    restart: always</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Again, a docker image is provided for us thanks to <code>abiosoft</code>. We can
+specify which caddy version and any caddy plugins if desired. Since
+we’re not running a dns or net server, we don’t have to worry about much
+configuration.</p>
+</div>
+<div class="paragraph">
+<p><code>data/sites/</code> and <code>/data/caddypath</code> store information related to Caddy
+and the automatically generated Let’s Encrypt files. <code>/etc/Caddyfile</code> is
+where Caddy looks, so we bind our caddyfile there.</p>
+</div>
+<div class="paragraph">
+<p><code>env_file: ./secret.env</code> is only needed if a caddy plugin requires
+sensitive data, such as the <code>tls.dns.gandiv5</code> plugin.</p>
+</div>
+<div class="paragraph">
+<p>Replace the port IP with your server’s IP. The reason we use that is
+because by default, <code>yyy:zzz</code> will listen on <em>all</em> interfaces.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_docker_compose_part_3">Docker-Compose: Part 3</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You may have noticed by now that we’re missing one big thing… a
+database. This one is simple, because Gitea is smart and runs on
+Postgres:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">services:
+  git_db:
+    image: postgres:9.6.7-alpine
+    env_file:
+      - ./secret.env
+    restart: always
+    volumes:
+      - type: bind
+        source: ./data/postgres/
+        target: /var/lib/postgresql/data/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In <code>secret.env</code>, you’ll need to set the following:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>POSTGRES_USER=xxxx
+POSTGRES_PASSWORD=yyyyyy
+POSTGRES_DB=git</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now that we have a database service, we can add this to the <code>gitea</code>
+service:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">services:
+  git:
+    depends_on:
+      - git_db</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_editing_sshd">Editing SSHD</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There’s one problem now, which is that if you actually try to run this
+configuration, you’ll be refused. We never actually exposed ssh’s
+default port <code>22</code>, nor did we start listening to it!</p>
+</div>
+<div class="paragraph">
+<p>So let’s listen to <code>22</code> for git, and <code>2223</code> for regular ssh. Edit, with
+sudo permissions, <code>/etc/ssh/sshd_config</code>:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre># What ports, IPs and protocols we listen for
+Port 2223
+Port 22</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>At this time, I would also recommend disabling password login, as one
+can never have enough security. Just make sure you add your
+<a href="https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/">ssh
+key</a> output to <code>~/.ssh/authorized_keys</code>! You’ll be locked out otherwise.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>PermitRootLogin without-password
+PasswordAuthentication no</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_docker_compose_final">Docker-Compose: Final</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Lastly, now that we’re listening on port <code>22</code>, add this to the
+<code>docker-compose.yml</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">services:
+  git:
+    image: gitea/gitea:latest
+    ports:
+      - "22:22"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now when we do <code>git push origin master</code>, with <code>origin</code> set to
+<code><a href="https://git.andrewzah.com/&#8230;&#8203" class="bare">https://git.andrewzah.com/&#8230;&#8203</a>;</code>, it’ll reach the gitea container!</p>
+</div>
+<div class="paragraph">
+<p>In total, it should look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">version: "3.3"
+
+services:
+  git:
+    image: gitea/gitea:latest
+    ports:
+      - "3000"
+      - "22:22"
+    volumes:
+      - type: bind
+        source: ./data/git
+        target: /data
+    restart: always
+
+  git_db:
+    image: postgres:9.6.7-alpine
+    env_file:
+      - ./secret.env"
+    restart: always
+    volumes:
+      - type: bind
+        source: ./data/postgres/
+        target: /var/lib/postgresql/data/
+
+  http:
+    build:
+      context: github.com/abiosoft/caddy-docker.git
+      args:
+        version: 0.10.12
+    volumes:
+      - type: bind
+        source: ./data/sites/
+        target: /var/www/sites/
+      - type: bind
+        source: ./data/caddypath/
+        target: /var/caddy/
+      - type: bind
+        source: ./Caddyfile
+        target: /etc/Caddyfile
+    environment:
+      CADDYPATH: "/var/caddy"
+    env_file: ./secret.env
+    ports:
+      - "xxx.xxx.xxx.xxx:443:443"
+      - "xxx.xxx.xxx.xxx:80:80"
+    restart: always</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion">Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If everything was done correctly, you should now have a self-hosted git
+frontend. Nice!</p>
+</div>
+<div class="paragraph">
+<p>I recommend checking out
+<a href="https://github.com/Kickball/awesome-selfhosted">awesome-selfhosted</a> to
+see a huge list of other software you can host.
+<a href="https://www.reddit.com/r/selfhosted/">reddit.com/r/selfhosted</a> is also a
+good resource. The possibilities are endless… You could host a
+<a href="https://github.com/wekan/wekan">Kanban board</a> or a
+<a href="https://cockatrice.github.io/">Magic: The Gathering Cockatrice server</a>!</p>
+</div>
+<div class="paragraph">
+<p>If you start hosting multiple services, it makes more sense to break
+them out into separate folders, with <code>http</code> being its own central
+service. You can check out my
+<a href="https://git.andrewzah.com/andrei/andrewzah.com">services repository</a> to
+get an idea.</p>
+</div>
+</div>
+</div>
+
+  </section>
+</article>
+
+<p class="divider">&#x203b;</p>
+
+
+<section id="after-post" class="page">
+  
+
+  
+    
+      <strong>other <span class="underline">docker</span> posts</strong>
+      
+        
+          <div class="post-link">
+  <span class="post-date">
+    <a href="https://andrewzah.com/posts/2020/my-850-dollar-watch-cant-render-korean-text/">
+      01/11
+    </a>
+  </span>
+
+  <span class="post-title">
+    <a href="https://andrewzah.com/posts/2020/my-850-dollar-watch-cant-render-korean-text/">
+      My $850 smartwatch can’t render Korean text
+    </a>
+  </span>
+</div>
+
+        
+      
+        
+          <div class="post-link">
+  <span class="post-date">
+    <a href="https://andrewzah.com/posts/2019/06-02_zola_caddy_git_automatic_deploy/">
+      06/02
+    </a>
+  </span>
+
+  <span class="post-title">
+    <a href="https://andrewzah.com/posts/2019/06-02_zola_caddy_git_automatic_deploy/">
+      Automatically deploy your blog via Git with Caddy and Docker
+    </a>
+  </span>
+</div>
+
+        
+      
+        
+      
+    
+  
+    
+      <strong>other <span class="underline">caddy</span> posts</strong>
+      
+        
+          <div class="post-link">
+  <span class="post-date">
+    <a href="https://andrewzah.com/posts/2019/06-02_zola_caddy_git_automatic_deploy/">
+      06/02
+    </a>
+  </span>
+
+  <span class="post-title">
+    <a href="https://andrewzah.com/posts/2019/06-02_zola_caddy_git_automatic_deploy/">
+      Automatically deploy your blog via Git with Caddy and Docker
+    </a>
+  </span>
+</div>
+
+        
+      
+        
+      
+    
+  
+    
+  
+</section>
+      </div><div id="footer" class="container">
+  <p> Copyright Andrew Zah (2016&ndash;2020) unless stated otherwise.</p>
+</div>
+</div>
+  </body>
+</html>

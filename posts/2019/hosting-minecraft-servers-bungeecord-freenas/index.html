@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+      
+        Hosting Minecraft Servers &#43; BungeeCord with FreeNAS | Andrew Zah
+      
+    </title>
+  
+
+  <meta name="author" content="Andrew Zah">
+  <meta name="application-name" content="Andrew Zah"><link rel="stylesheet" href="https://andrewzah.com/scss/main.min.css">
+
+
+  </head>
+<body>
+    <div id="wrapper">
+      
+
+      <div id="content" class="container page">
+
+<a href="https://andrewzah.com/">Home</a>
+
+<article id="post" class="page">
+  <section id="post-header">
+    <h2 class="post-title">
+      
+      Hosting Minecraft Servers &#43; BungeeCord with FreeNAS
+    </h2>
+    
+<div id="post-meta">
+  <time datetime="Dec 12, 2019">
+    December 12, 2019
+  </time> &mdash;
+  1620 words
+
+  
+</div>
+
+<p class="divider">&#x203b;</p>
+
+
+  </section>
+
+  <section id="post-body">
+    <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>How I set up multiple minecraft servers in FreeNAS with a
+bungeecord/waterfall proxy.</p>
+</div>
+<div class="paragraph">
+<p>This guide assumes you’re running a FreeNAS server on a local network.
+If not, you’ll have to update your ip address and default gateway
+settings accordingly.</p>
+</div>
+<div class="imageblock full-width">
+<div class="content">
+<img src="https://s3.amazonaws.com/andrewzah.com/posts/freenas_minecraft_guide/dynmap.png" alt="Dynmap rendering of our FreeNAS minecaft server">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites">Prerequisites</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Console access to a server running FreeNAS</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>(Don’t download these yet, read on)</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Your server jarfile: <a href="https://www.spigotmc.org/wiki/bungeecord/">spigot.jar</a>, or <a href="https://papermc.io/downloads#Paper-1.15">paper.jar</a>, etc.</p>
+</li>
+<li>
+<p>Your proxy jarfile: <a href="https://www.spigotmc.org/wiki/bungeecord/">bungeecord.jar</a>, or <a href="https://papermc.io/downloads#Waterfall">waterfall.jar</a>, etc.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This guide will be using <code>Paper</code> and <code>Waterfall</code> as they are more
+performant versions of spigot and bungeecord, respectively. They also
+fully support spigot/bungee plugins.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_preparing_the_jails">Preparing the Jails</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The first thing we’ll need to do is create the main jail (the one
+running bungeecord or waterfall). Alter the version for the current one
+your server is running.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash"><span style="color: #0086B3">echo</span> <span style="color: #d14">'{"pkgs":["openjdk12", "curl"]}'</span> <span style="color: #000000;font-weight: bold">&gt;</span> /tmp/minecraft.json</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When a jail is created, <code>pkg</code> isn’t installed by default. Using this
+saves us some commands in the next step.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash">iocage create <span style="color: #d14">\</span>
+  <span style="color: #000080">--name</span> &lt;name&gt; <span style="color: #d14">\</span>
+  <span style="color: #000080">--pkglist</span> /tmp/minecraft.json
+  <span style="color: #000080">--release</span> 11.2-RELEASE <span style="color: #d14">\</span>
+  <span style="color: #008080">ip4_addr</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"vnet0|192.168.1.xxx/24"</span> <span style="color: #d14">\</span>
+  <span style="color: #008080">defaultrouter</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"192.168.1.1"</span> <span style="color: #d14">\</span>
+  <span style="color: #008080">vnet</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"on"</span> <span style="color: #d14">\</span>
+  <span style="color: #008080">allow_raw_sockets</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"1"</span> <span style="color: #d14">\</span>
+  <span style="color: #008080">boot</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"on"</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>ip4_addr</code> and <code>defaultrouter</code> configure the network for our jail. If
+you’re running the server on your local network, then it’s likely the
+address of your router. (Typically x.x.x.1 or x.x.x.255, consult your
+router’s manual). <code>ip4_addr</code> is the address you want to assign to the
+jail.</p>
+</div>
+<div class="paragraph">
+<p>For <code>name</code>: If you’re just creating a single server, the name
+<code>minecraft</code> would suffice, but I recommend a structure like:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>mc_main
+mc_survival
+mc_creative
+...etc</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Next, let’s create directories in the jails and mount them in the root
+system:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash"><span style="color: #999988;font-style: italic"># Creates the directories in the root system</span>
+<span style="color: #0086B3">mkdir</span> <span style="color: #000080">-p</span> /xxx/data/minecraft/mc_main
+<span style="color: #0086B3">mkdir</span> <span style="color: #000080">-p</span> /xxx/data/minecraft/waterfall
+
+<span style="color: #999988;font-style: italic"># Creates the directories in the jail</span>
+iocage <span style="color: #0086B3">exec </span>mc_main <span style="color: #0086B3">mkdir</span> /root/minecraft
+iocage <span style="color: #0086B3">exec </span>mc_main <span style="color: #0086B3">mkdir</span> /root/waterfall
+
+<span style="color: #999988;font-style: italic"># Mounts the directories in the root system</span>
+iocage fstab <span style="color: #000080">-a</span> mc_main <span style="color: #d14">\</span>
+  /xxx/data/minecraft/mc_main /root/minecraft nullfs rw 0 0
+iocage fstab <span style="color: #000080">-a</span> mc_main <span style="color: #d14">\</span>
+  /xxx/data/minecraft/waterfall /root/waterfall nullfs rw 0 0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Change <code>/xxx/data/</code> to a relevant filepath for your setup. My main ZFS
+pool is named <code>lily</code>, so I put my minecraft folders under
+<code>/mnt/lily/data/</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_setting_up_minecraft">Setting up Minecraft</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We can access our jails with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash">iocage console mc_main</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now we can cd to the minecraft directory and download our server
+jarfile:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash"><span style="color: #0086B3">cd</span> /root/minecraft
+
+<span style="color: #999988;font-style: italic"># paper</span>
+curl <span style="color: #000080">-L</span> <span style="color: #d14">'https://papermc.io/api/v1/paper/1.15.1/27/download'</span> <span style="color: #000080">-o</span> paper-1.15.1_27.jar</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Run your server jarfile with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash">java <span style="color: #000080">-jar</span> /root/minecraft/paper-1.15.1_27.jar</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The process should end shortly, printing text about a <code>eula.txt</code>. Edit
+the file with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash"><span style="color: #0086B3">sed</span> <span style="color: #000080">-i</span> .bak <span style="color: #d14">'s/eula=false/eula=true/g'</span> /root/minecraft/eula.txt</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We also need to edit the <code>server.properties</code> file. Open it and change
+the server port to <code>25566</code>. We’re changing this value because our proxy
+server (bungeecord/waterfall) will listen to the default port later.</p>
+</div>
+<div class="paragraph">
+<p>Now we can run the server!</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash">java <span style="color: #000080">-Xms1024M</span> <span style="color: #000080">-Xmx1024M</span> <span style="color: #000080">-jar</span> /root/minecraft/&lt;name&gt;.jar</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Observe the text output for any errors, and then go ahead and connect to
+it! (Go to the <code>Multiplayer</code> tab, click <code>Add Server</code>, and type in the ip
+address of your server, e.g. <code>192.168.1.xx:25566</code>) Once you join, text
+should get printed to the screen.</p>
+</div>
+<div class="paragraph">
+<p>However, we have an issue. The server is currently running in an
+interactive session (i.e. we ran it manually). We need it to run by
+itself, in a noninteractive session. Some guides will recommend using
+<code>screen</code> or <code>tmux</code>, but I strongly recommend not using them. If your
+server ever restarts, you will have to go in manually and restart
+screen/tmux, and then your minecraft server.</p>
+</div>
+<div class="paragraph">
+<p>It’s far better to let
+<a href="https://www.freebsd.org/cgi/man.cgi?query=rc.d&amp;sektion=8&amp;n=1">rc.d</a>
+manage it for us. Add this script to <code>/usr/local/etc/minecraftd</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>#!/bin/sh
+#
+# PROVIDE: minecraftd
+# REQUIRE: LOGIN DAEMON NETWORKING mountcritlocal
+# KEYWORD: shutdown
+#
+# Use the following variables to configure the minecraft server. For example, to
+# configure the ON/OFF knob variable:
+# sysrc minecraftd_enable="YES"
+#
+# minecraftd_enable="YES"
+# minecraftd_user_dir="/root/minecraft"
+# minecraftd_jar_path="/root/minecraft/server.jar"
+# minecraftd_java_opts="-Xms1024M -Xmx1024M"
+
+. /etc/rc.subr
+
+name=minecraftd
+rcvar=`set_rcvar`
+pidfile=/var/run/minecraftd.pid
+
+load_rc_config $name
+
+start_cmd="${name}_start"
+stop_cmd="${name}_stop"
+status_cmd="${name}_status"
+
+: ${minecraftd_enable="NO"}
+: ${minecraftd_user_dir="/root/minecraft"}
+: ${minecraftd_jar_path="/root/minecraft/server.jar"}
+: ${minecraftd_java_opts="-Xms1024M -Xmx1024M"}
+
+minecraftd_start() {
+    if [ -e $pidfile ]; then
+        echo "$name already running."
+    else
+        echo "Starting $name..."
+        /usr/sbin/daemon -f -p $pidfile \
+            /usr/local/bin/java -Duser.dir=$minecraftd_user_dir \
+            $minecraftd_java_opts \
+            -jar $minecraftd_jar_path nogui
+        echo "$name started."
+    fi
+}
+
+minecraftd_stop() {
+    if [ -e $pidfile ]; then
+        echo "Stopping $name..."
+        cat $pidfile | xargs kill
+        echo "Stopped."
+    else
+        echo "$name is not running."
+    fi
+}
+
+minecraftd_status() {
+    if [ -e $pidfile ]; then
+        echo "$name is running."
+    else
+        echo "$name is not running."
+    fi
+}
+
+run_rc_command $1</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We have to make the service file executable, so run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash"><span style="color: #0086B3">chmod</span> +x /usr/local/etc/rc.d/minecraftd</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Essentially, this script lets us not have to manage the server process
+manually. However we also need to update some settings:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash">sysrc <span style="color: #008080">minecraftd_enable</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"YES"</span>
+sysrc <span style="color: #008080">minecraftd_jar_path</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"/root/minecraft/server.jar"</span>
+sysrc <span style="color: #008080">minecraftd_java_opts</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"-Xms1G -Xmx1G"</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Make sure to change the <code>minecraftd_jar_path</code> to reflect your downloaded
+jarfile, and <code>minecraftd_java_opts</code> for how much memory you want to give
+it.</p>
+</div>
+<div class="paragraph">
+<p>Now you should be able to the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash">service minecraftd start</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Confirm it with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash">ps aux | <span style="color: #0086B3">grep </span>openjdk</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should see something like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash">root  72816  1.2  2.5 3156872 1273052  -  IJ   Fri19   99:04.12 /usr/local/openjdk12/bin/java <span style="color: #000080">-Duser</span>.dir<span style="color: #000000;font-weight: bold">=</span>/root/minecraft <span style="color: #000080">-Xms1G</span> <span style="color: #000080">-Xmx1G</span> <span style="color: #000080">-jar</span> /root/minecraft/paper-1.15.1_27.jar</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If not, double check your settings in <code>/etc/rc.conf</code>, and make sure they
+point to the right files. Manually run the command to make sure it’s not
+a minecraft configuration issue (i.e. no warnings/errors show up in the
+console).</p>
+</div>
+<div class="paragraph">
+<p>Connect to the server again to make sure it works, then stop the server
+with:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>service minecraftd stop</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In order for bungee/waterfall to work, we need to edit the
+<code>server.properties</code> file again. Change <code>online-mode</code> to <code>false</code>.</p>
+</div>
+<div class="paragraph">
+<p>In <code>spigot.yml</code>, update <code>bungeecord</code> to <code>true</code>.</p>
+</div>
+<div class="paragraph">
+<p>In <code>paper.yml</code>, update <code>bungee-online-mode</code> to <code>true</code>.</p>
+</div>
+<div class="paragraph">
+<p>In <code>bukkit.yml</code>, update <code>connection-throttle</code> to <code>-1</code>.</p>
+</div>
+<div class="paragraph">
+<p>That’s it! Now we just need to set up our proxy to get access to the
+server again.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_setting_up_waterfallbungeecord">Setting up Waterfall/Bungeecord</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you’re not in the <code>mc_main</code> jail already, access it with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash">iocage console mc_main</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now can cd to the waterfall directory and download <code>waterfall.jar</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash"><span style="color: #0086B3">cd</span> /root/waterfall</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The process for the jarfile is the same as before, except we’re going to
+the <code>waterfall</code> directory now.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash"><span style="color: #0086B3">cd</span> /root/waterfall
+
+<span style="color: #999988;font-style: italic"># waterfall</span>
+curl <span style="color: #000080">-L</span> <span style="color: #d14">'https://papermc.io/api/v1/waterfall/1.15/309/download'</span> <span style="color: #000080">-o</span> waterfall-1.15_309.jar</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Run the proxy jarfile with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash">java <span style="color: #000080">-jar</span> /root/waterfall/waterfall-1.15_309.jar</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If necessary, edit <code>eula.txt</code> again:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash"><span style="color: #0086B3">sed</span> <span style="color: #000080">-i</span> .bak <span style="color: #d14">'s/eula=false/eula=true/g'</span> /root/waterfall/eula.txt</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now we need to edit <code>config.yml</code>. Look for the <code>servers</code> section, and
+change it to the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="yaml"><span style="color: #008080">servers</span><span style="background-color: #f8f8f8">:</span>
+  <span style="color: #008080">hub</span><span style="background-color: #f8f8f8">:</span>
+    <span style="color: #008080">motd</span><span style="background-color: #f8f8f8">:</span> <span style="color: #d14">'</span><span style="color: #d14">&amp;1My</span><span style="color: #008080"> </span><span style="color: #d14">amazing</span><span style="color: #008080"> </span><span style="color: #d14">hub</span><span style="color: #008080"> </span><span style="color: #d14">server'</span>
+    <span style="color: #008080">address</span><span style="background-color: #f8f8f8">:</span> <span style="color: #d14">localhost:25566</span>
+    <span style="color: #008080">restricted</span><span style="background-color: #f8f8f8">:</span> <span style="color: #008080">false</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Under <code>listeners</code>, change <code>priorities</code> to:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="yaml"><span style="color: #008080">priorities</span><span style="background-color: #f8f8f8">:</span>
+  <span style="background-color: #f8f8f8">-</span> <span style="color: #d14">hub</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Change <code>host</code> to:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="yaml">  <span style="color: #008080">host</span><span style="background-color: #f8f8f8">:</span> <span style="color: #d14">0.0.0.0:25565</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, set <code>ip_forward: true</code>.</p>
+</div>
+<div class="paragraph">
+<p>In order to run <code>waterfall</code> noninteractively, we’ll use a similar <code>rc.d</code>
+script like before:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash"><span style="color: #999988;font-style: italic">#!/bin/sh</span>
+<span style="color: #999988;font-style: italic">#</span>
+<span style="color: #999988;font-style: italic"># PROVIDE: waterfall</span>
+<span style="color: #999988;font-style: italic"># REQUIRE: LOGIN DAEMON NETWORKING mountcritlocal</span>
+<span style="color: #999988;font-style: italic"># KEYWORD: shutdown</span>
+<span style="color: #999988;font-style: italic">#</span>
+<span style="color: #999988;font-style: italic"># Use the following variables to configure the minecraft server. For example, to</span>
+<span style="color: #999988;font-style: italic"># configure the ON/OFF knob variable:</span>
+<span style="color: #999988;font-style: italic"># sysrc waterfall_enable="YES"</span>
+<span style="color: #999988;font-style: italic">#</span>
+<span style="color: #999988;font-style: italic"># waterfall_enable="YES"</span>
+<span style="color: #999988;font-style: italic"># waterfall_user_dir="/root/waterfall"</span>
+<span style="color: #999988;font-style: italic"># waterfall_jar_path="/root/waterfall/waterfall.jar"</span>
+<span style="color: #999988;font-style: italic"># waterfall_java_opts="-Xms512M -Xmx1024M"</span>
+
+<span style="color: #0086B3">.</span> /etc/rc.subr
+
+<span style="color: #008080">name</span><span style="color: #000000;font-weight: bold">=</span>waterfall
+<span style="color: #008080">rcvar</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">`</span>set_rcvar<span style="color: #d14">`</span>
+<span style="color: #008080">pidfile</span><span style="color: #000000;font-weight: bold">=</span>/var/run/waterfall.pid
+
+load_rc_config <span style="color: #008080">$name</span>
+
+<span style="color: #008080">start_cmd</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"</span><span style="color: #000000;font-weight: bold">${</span><span style="color: #008080">name</span><span style="color: #000000;font-weight: bold">}</span><span style="color: #d14">_start"</span>
+<span style="color: #008080">stop_cmd</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"</span><span style="color: #000000;font-weight: bold">${</span><span style="color: #008080">name</span><span style="color: #000000;font-weight: bold">}</span><span style="color: #d14">_stop"</span>
+<span style="color: #008080">status_cmd</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"</span><span style="color: #000000;font-weight: bold">${</span><span style="color: #008080">name</span><span style="color: #000000;font-weight: bold">}</span><span style="color: #d14">_status"</span>
+
+: <span style="color: #000000;font-weight: bold">${</span><span style="color: #008080">waterfall_enable</span><span style="background-color: #f8f8f8">=</span><span style="color: #d14">"NO"</span><span style="color: #000000;font-weight: bold">}</span>
+: <span style="color: #000000;font-weight: bold">${</span><span style="color: #008080">waterfall_user_dir</span><span style="background-color: #f8f8f8">=</span><span style="color: #d14">"/root/waterfall"</span><span style="color: #000000;font-weight: bold">}</span>
+: <span style="color: #000000;font-weight: bold">${</span><span style="color: #008080">waterfall_jar_path</span><span style="background-color: #f8f8f8">=</span><span style="color: #d14">"/root/waterfall/waterfall.jar"</span><span style="color: #000000;font-weight: bold">}</span>
+: <span style="color: #000000;font-weight: bold">${</span><span style="color: #008080">waterfall_java_opts</span><span style="background-color: #f8f8f8">=</span><span style="color: #d14">"-Xms512M -Xmx1024M"</span><span style="color: #000000;font-weight: bold">}</span>
+
+waterfall_start<span style="color: #000000;font-weight: bold">()</span> <span style="color: #000000;font-weight: bold">{</span>
+    <span style="color: #000000;font-weight: bold">if</span> <span style="color: #000000;font-weight: bold">[</span> <span style="color: #000080">-e</span> <span style="color: #008080">$pidfile</span> <span style="color: #000000;font-weight: bold">]</span><span style="background-color: #f8f8f8">;</span> <span style="color: #000000;font-weight: bold">then
+        </span><span style="color: #0086B3">echo</span> <span style="color: #d14">"</span><span style="color: #008080">$name</span><span style="color: #d14"> already running."</span>
+    <span style="color: #000000;font-weight: bold">else
+        </span><span style="color: #0086B3">echo</span> <span style="color: #d14">"Starting </span><span style="color: #008080">$name</span><span style="color: #d14">..."</span>
+        <span style="color: #0086B3">cd</span> <span style="color: #008080">$waterfall_user_dir</span>
+        /usr/sbin/daemon <span style="color: #000080">-f</span> <span style="color: #000080">-p</span> <span style="color: #008080">$pidfile</span> <span style="color: #d14">\</span>
+            /usr/local/bin/java <span style="color: #000080">-Duser</span>.dir<span style="color: #000000;font-weight: bold">=</span><span style="color: #008080">$waterfall_user_dir</span> <span style="color: #d14">\</span>
+            <span style="color: #008080">$waterfall_java_opts</span> <span style="color: #d14">\</span>
+            <span style="color: #000080">-jar</span> <span style="color: #008080">$waterfall_jar_path</span>  nogui
+        <span style="color: #0086B3">echo</span> <span style="color: #d14">"</span><span style="color: #008080">$name</span><span style="color: #d14"> started."</span>
+    <span style="color: #000000;font-weight: bold">fi</span>
+<span style="color: #000000;font-weight: bold">}</span>
+
+waterfall_stop<span style="color: #000000;font-weight: bold">()</span> <span style="color: #000000;font-weight: bold">{</span>
+    <span style="color: #000000;font-weight: bold">if</span> <span style="color: #000000;font-weight: bold">[</span> <span style="color: #000080">-e</span> <span style="color: #008080">$pidfile</span> <span style="color: #000000;font-weight: bold">]</span><span style="background-color: #f8f8f8">;</span> <span style="color: #000000;font-weight: bold">then
+        </span><span style="color: #0086B3">echo</span> <span style="color: #d14">"Stopping </span><span style="color: #008080">$name</span><span style="color: #d14">..."</span>
+        <span style="color: #0086B3">cat</span> <span style="color: #008080">$pidfile</span> | xargs <span style="color: #0086B3">kill
+        echo</span> <span style="color: #d14">"Stopped."</span>
+    <span style="color: #000000;font-weight: bold">else
+        </span><span style="color: #0086B3">echo</span> <span style="color: #d14">"</span><span style="color: #008080">$name</span><span style="color: #d14"> is not running."</span>
+    <span style="color: #000000;font-weight: bold">fi</span>
+<span style="color: #000000;font-weight: bold">}</span>
+
+waterfall_status<span style="color: #000000;font-weight: bold">()</span> <span style="color: #000000;font-weight: bold">{</span>
+    <span style="color: #000000;font-weight: bold">if</span> <span style="color: #000000;font-weight: bold">[</span> <span style="color: #000080">-e</span> <span style="color: #008080">$pidfile</span> <span style="color: #000000;font-weight: bold">]</span><span style="background-color: #f8f8f8">;</span> <span style="color: #000000;font-weight: bold">then
+        </span><span style="color: #0086B3">echo</span> <span style="color: #d14">"</span><span style="color: #008080">$name</span><span style="color: #d14"> is running."</span>
+    <span style="color: #000000;font-weight: bold">else
+        </span><span style="color: #0086B3">echo</span> <span style="color: #d14">"</span><span style="color: #008080">$name</span><span style="color: #d14"> is not running."</span>
+    <span style="color: #000000;font-weight: bold">fi</span>
+<span style="color: #000000;font-weight: bold">}</span>
+
+run_rc_command <span style="color: #008080">$1</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We have to make the service file executable again, so run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash"><span style="color: #0086B3">chmod</span> +x /usr/local/etc/rc.d/waterfall</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Like before, we’ll need to edit some settings:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash">sysrc <span style="color: #008080">waterfall_enable</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"YES"</span>
+sysrc <span style="color: #008080">waterfall_jar_path</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"/root/waterfall/waterfall-1.15_309.jar"</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now run the following and connect to your server!</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash">service waterfall start</code></pre>
+</div>
+</div>
+<hr>
+<div class="paragraph">
+<p>Congrats, you’ve set up a minecraft server and a proxy server in
+FreeNAS!</p>
+</div>
+<div class="paragraph">
+<p>For more servers, create more jails with the instructions from earlier,
+and follow the same server javafile setup. In <code>server.properties</code>,
+change <code>ip-address</code> to the address of the jail, and update waterfall’s
+config to something like below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="yaml"><span style="color: #008080">servers</span><span style="background-color: #f8f8f8">:</span>
+  <span style="color: #008080">hub</span><span style="background-color: #f8f8f8">:</span>
+    <span style="color: #008080">motd</span><span style="background-color: #f8f8f8">:</span> <span style="color: #d14">'</span><span style="color: #d14">My</span><span style="color: #008080"> </span><span style="color: #d14">hub</span><span style="color: #008080"> </span><span style="color: #d14">server'</span>
+    <span style="color: #008080">address</span><span style="background-color: #f8f8f8">:</span> <span style="color: #d14">localhost:25566</span>
+    <span style="color: #008080">restricted</span><span style="background-color: #f8f8f8">:</span> <span style="color: #008080">false</span>
+  <span style="color: #008080">creative</span><span style="background-color: #f8f8f8">:</span>
+    <span style="color: #008080">motd</span><span style="background-color: #f8f8f8">:</span> <span style="color: #d14">'</span><span style="color: #d14">My</span><span style="color: #008080"> </span><span style="color: #d14">creative</span><span style="color: #008080"> </span><span style="color: #d14">server'</span>
+    <span style="color: #008080">address</span><span style="background-color: #f8f8f8">:</span> <span style="color: #d14">192.168.1.21:25566</span>
+    <span style="color: #008080">restricted</span><span style="background-color: #f8f8f8">:</span> <span style="color: #008080">false</span>
+  <span style="color: #008080">survival</span><span style="background-color: #f8f8f8">:</span>
+    <span style="color: #008080">motd</span><span style="background-color: #f8f8f8">:</span> <span style="color: #d14">'</span><span style="color: #d14">My</span><span style="color: #008080"> </span><span style="color: #d14">survival</span><span style="color: #008080"> </span><span style="color: #d14">server'</span>
+    <span style="color: #008080">address</span><span style="background-color: #f8f8f8">:</span> <span style="color: #d14">192.168.1.22:25566</span>
+    <span style="color: #008080">restricted</span><span style="background-color: #f8f8f8">:</span> <span style="color: #008080">false</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_databases_for_plugins">Databases for Plugins</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Many minecraft plugins can use mysql or postgres for storage. I highly
+recommend setting up mysql in a jail and connecting your plugins to it.
+Here’s how you can do it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash"><span style="color: #0086B3">echo</span> <span style="color: #d14">'{"pkgs":["mysql80-server"]}'</span> <span style="color: #000000;font-weight: bold">&gt;</span> /tmp/mysql.json</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash">iocage create <span style="color: #d14">\</span>
+  <span style="color: #000080">--name</span> mysql <span style="color: #d14">\</span>
+  <span style="color: #000080">--pkglist</span> /tmp/minecraft.json
+  <span style="color: #000080">--release</span> 11.2-RELEASE
+  <span style="color: #008080">ip4_addr</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"vnet0|192.168.1.xxx/24"</span> <span style="color: #d14">\</span>
+  <span style="color: #008080">defaultrouter</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"192.168.1.1"</span> <span style="color: #d14">\</span>
+  <span style="color: #008080">vnet</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"on"</span> <span style="color: #d14">\</span>
+  <span style="color: #008080">boot</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"on"</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash"><span style="color: #999988;font-style: italic"># Creates the directories in the root system</span>
+<span style="color: #0086B3">mkdir</span> <span style="color: #000080">-p</span> /xxx/configs/mysql
+<span style="color: #0086B3">mkdir</span> <span style="color: #000080">-p</span> /xxx/data/mysql
+
+<span style="color: #999988;font-style: italic"># Creates the directories in the jail</span>
+iocage <span style="color: #0086B3">exec </span>mysql <span style="color: #0086B3">mkdir</span> /config
+iocage <span style="color: #0086B3">exec </span>mysql <span style="color: #0086B3">mkdir</span> /data
+
+<span style="color: #999988;font-style: italic"># Mounts the directories in the root system</span>
+iocage fstab <span style="color: #000080">-a</span> mysql <span style="color: #d14">\</span>
+  /xxx/configs/mysql /config nullfs rw 0 0
+iocage fstab <span style="color: #000080">-a</span> mysql <span style="color: #d14">\</span>
+  /xxx/data/mysql /data nullfs rw 0 0</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash">iocage console mysql</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash">sysrc <span style="color: #008080">mysql_enable</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"YES"</span>
+sysrc <span style="color: #008080">mysql_dbdir</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"/data"</span>
+sysrc <span style="color: #008080">mysql_confdir</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"/config"</span>
+sysrc <span style="color: #008080">mysql_optfile</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"/config/my.cnf"</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash"><span style="color: #0086B3">cp</span> /usr/local/etc/mysql/my.cnf /config/my.cnf</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now edit <code>/config/my.cnf</code> and change <code>bind-address</code> to <code>0.0.0.0</code>. This
+lets us connect remotely, except for <code>root</code>. We don’t want to run things
+as root, anyway.</p>
+</div>
+<div class="paragraph">
+<p>Connect to the local mysql database after creating the root user and
+password:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash">service mysql-server start
+mysql_secure_installation
+mysql <span style="color: #000080">-uroot</span> <span style="color: #000080">-p</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once connected, create the database and user that the plugin will be
+using. For example, if we were making a database for <code>coreprotect</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash">create database coreprotect_hub<span style="background-color: #f8f8f8">;</span>
+
+CREATE USER <span style="color: #d14">'coreprotect'</span>@<span style="color: #d14">'192.168.1.0/255.255.255.0'</span> IDENTIFIED WITH mysql_native_password BY <span style="color: #d14">'password'</span><span style="background-color: #f8f8f8">;</span>
+
+grant all privileges on coreprotect_hub.<span style="color: #000000;font-weight: bold">*</span> to <span style="color: #d14">'coreprotect'</span>@<span style="color: #d14">'192.168.1.0/255.255.255.0'</span><span style="background-color: #f8f8f8">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The reason we’re using <code>@'192.168.1.0/255.255.255.0'</code> is to allow remote
+connections, but only within the local network.</p>
+</div>
+<div class="paragraph">
+<p>Now update your plugin’s <code>config.yml</code>, where <code>host</code> is the ip address of
+the mysql jail, and <code>port</code> is <code>3306</code>.</p>
+</div>
+<div class="paragraph">
+<p>It’s a good idea to create a separate database and user for each plugin
+and server. For example, I have the databases <code>coreprotect_survival</code>,
+and <code>coreprotect_creative</code>, both of which have different users.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_references">References</h2>
+<div class="sectionbody">
+<div class="ulist bibliography">
+<ul class="bibliography">
+<li>
+<p><a href="https://iocage.readthedocs.io/en/latest/">iocage - A FreeBSD Jail Manager</a></p>
+</li>
+<li>
+<p><a href="https://aikar.co/2018/07/02/tuning-the-jvm-g1gc-garbage-collector-flags-for-minecraft/">Tuning the JVM - G1GC Garbage Collector Flags for Minecraft</a></p>
+</li>
+<li>
+<p><a href="https://devpro.media/minecraft-server-freenas/">Installing a Minecraft server on FreeNAS</a></p>
+</li>
+<li>
+<p><a href="https://www.computerhope.com/jargon/n/netmask.htm">What is a Netmask?</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+  </section>
+</article>
+
+<p class="divider">&#x203b;</p>
+
+
+<section id="after-post" class="page">
+  
+
+  
+    
+  
+    
+  
+</section>
+      </div><div id="footer" class="container">
+  <p> Copyright Andrew Zah (2016&ndash;2020) unless stated otherwise.</p>
+</div>
+</div>
+  </body>
+</html>

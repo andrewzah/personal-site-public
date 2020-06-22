@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>korean on Andrew Zah</title>
+    <link>https://andrewzah.com/tags/korean/</link>
+    <description>Recent content in korean on Andrew Zah</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>zah@andrewzah.com (Andrew Zah)</managingEditor>
+    <webMaster>zah@andrewzah.com (Andrew Zah)</webMaster>
+    <lastBuildDate>Mon, 04 Mar 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://andrewzah.com/tags/korean/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ultimate List of Resources for Learning Korean in 2019</title>
+      <link>https://andrewzah.com/posts/2019/03-04_korean_learning_resources_2019/</link>
+      <pubDate>Mon, 04 Mar 2019 00:00:00 +0000</pubDate>
+      <author>zah@andrewzah.com (Andrew Zah)</author>
+      <guid>https://andrewzah.com/posts/2019/03-04_korean_learning_resources_2019/</guid>
+      <description>This content is being revamped into its own website! Please hang tight for now!
+ </description>
+    </item>
+    
+    <item>
+      <title>Korean for Programmers</title>
+      <link>https://andrewzah.com/posts/2019/02-16_programming_korean/</link>
+      <pubDate>Sat, 16 Feb 2019 00:00:00 +0000</pubDate>
+      <author>zah@andrewzah.com (Andrew Zah)</author>
+      <guid>https://andrewzah.com/posts/2019/02-16_programming_korean/</guid>
+      <description>I was inspired to write this after reading German for Programmers.\{\{cite(n=0)}} It’s quite likely that I’m just biased to see things a certain way because I work with programming languages for a living, but I often find myself drawing comparisons among Korean and programming.</description>
+    </item>
+    
+    <item>
+      <title>Korean Food &amp; Cooking Vocabulary Reference</title>
+      <link>https://andrewzah.com/posts/2018/korean-cooking-eating-vocabulary-reference/</link>
+      <pubDate>Fri, 28 Dec 2018 00:00:00 +0000</pubDate>
+      <author>zah@andrewzah.com (Andrew Zah)</author>
+      <guid>https://andrewzah.com/posts/2018/korean-cooking-eating-vocabulary-reference/</guid>
+      <description>Here is a compiled list of Korean words related to food, cooking, eating (out), going out, and nutrition.</description>
+    </item>
+    
+  </channel>
+</rss>

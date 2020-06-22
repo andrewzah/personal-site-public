@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>servers on Andrew Zah</title>
+    <link>https://andrewzah.com/tags/servers/</link>
+    <description>Recent content in servers on Andrew Zah</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>zah@andrewzah.com (Andrew Zah)</managingEditor>
+    <webMaster>zah@andrewzah.com (Andrew Zah)</webMaster>
+    <lastBuildDate>Sat, 21 Dec 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://andrewzah.com/tags/servers/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Building a Home Server with FreeNAS</title>
+      <link>https://andrewzah.com/posts/2019/building-home-server-freenas/</link>
+      <pubDate>Sat, 21 Dec 2019 00:00:00 +0000</pubDate>
+      <author>zah@andrewzah.com (Andrew Zah)</author>
+      <guid>https://andrewzah.com/posts/2019/building-home-server-freenas/</guid>
+      <description>Table of Contents My Goals The Requirements Part List Usage A Use for the Raspberry Pi   References   A few months ago I got gripped with server fever.</description>
+    </item>
+    
+  </channel>
+</rss>

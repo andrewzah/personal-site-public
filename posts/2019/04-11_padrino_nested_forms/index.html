@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+      
+        Nested Resource Forms Tutorial with Padrino or Rails | Andrew Zah
+      
+    </title>
+  
+
+  <meta name="author" content="Andrew Zah">
+  <meta name="application-name" content="Andrew Zah"><link rel="stylesheet" href="https://andrewzah.com/scss/main.min.css">
+
+
+  </head>
+<body>
+    <div id="wrapper">
+      
+
+      <div id="content" class="container page">
+
+<a href="https://andrewzah.com/">Home</a>
+
+<article id="post" class="page">
+  <section id="post-header">
+    <h2 class="post-title">
+      
+      Nested Resource Forms Tutorial with Padrino or Rails
+    </h2>
+    
+<div id="post-meta">
+  <time datetime="Apr 04, 2019">
+    April 4, 2019
+  </time> &mdash;
+  927 words
+
+  
+</div>
+
+<p class="divider">&#x203b;</p>
+
+
+  </section>
+
+  <section id="post-body">
+    <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This guide was written with Padrino and Sequel in mind, but should more
+or less work for Rails with minimal adaptations. Let’s get into it!</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_goal">The Goal</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I have two models: <code>Grammar</code> and <code>GrammarTranslation</code>. A <code>Grammar</code> has
+many <code>GrammarTranslations</code>.</p>
+</div>
+<div class="paragraph">
+<p>I want to have a form that lets me create a <code>Grammar</code> and one
+<code>GrammarTranslation</code> at the same time. Then, I want the <code>grammars/edit</code>
+page to let me edit the <code>Grammar</code> and edit any of the existing
+`GrammarTranslation`s or create new ones.</p>
+</div>
+<div class="paragraph">
+<p>Note: you can see a full example application that uses nested form
+objects <a href="https://git.sr.ht/~andrewzah/korean_grammar_data_entry">here</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_setup">Setup</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_schema">Schema</h3>
+<div class="paragraph">
+<p>This is what the migration schema looks like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-ruby" data-lang="ruby">class Foo
+end
+
+Sequel.migration do
+  up do
+    create_table :grammars do
+      primary_key :id
+      String :grammar, null: false
+      String :alternatives
+      String :verb_type, null: false
+      DateTime :created_at
+    end
+
+    create_table :grammar_translations do
+      primary_key :id
+      foreign_key :grammar_id, :grammars
+      String :language_code, null: false
+      String :meanings, null: false
+      String :notes
+      DateTime :created_at
+    end
+  end
+
+  down do
+    drop_table :grammar_translations
+    drop_table :grammars
+  end
+end</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You’ll want to run</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">padrino generate app &lt;app_name&gt; # etc
+padrino generate migration AddGrammarsAndTranslations
+# you might have to initialize the table manually if this doesn't work
+rake sq:create
+rake sq:migrate</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_models">Models</h3>
+<div class="paragraph">
+<p>The main model <code>Grammar</code> needs a tag, which differs by which ORM you’re
+using. If it’s Sequel, use the <code>nested_attributes</code> tag.\{\{cite(n=0)}}
+For ActiveRecord users, instead use
+<code>accepts_nested_attributes_for</code>.\{\{cite(n=1)}} Both accept the
+<code>allow_destroy: true</code> option. Padrino also needs the plugin to
+explicitly be enabled.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-ruby" data-lang="ruby"># models/grammar.rb
+
+class Grammar &lt; Sequel::Model
+  one_to_many :translations, class: :GrammarTranslation
+
+  plugin :nested_attributes
+  nested_attributes :translations, destroy: true
+
+  # Replace ActiveRecord method.
+  # (I had to add this to get padrino to stop complaining)
+  def self.find_by_id(id)
+    self[id] rescue nil
+  end
+end</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-ruby" data-lang="ruby"># models/grammar_translation.rb
+
+class GrammarTranslation &lt; Sequel::Model
+  many_to_one :grammar
+
+  # Replace ActiveRecord method.
+  def self.find_by_id(id)
+    self[id] rescue nil
+  end
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_form_views">Form Views</h3>
+<div class="paragraph">
+<p>We use the <code>new</code> and <code>edit</code> templates to initialize the form and pass it
+as a variable, <code>f</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-slim" data-lang="slim">// app/views/grammar/new.slim
+
+h2
+  New Grammar
+
+= form_for @grammar, '/grammar/create' do |f|
+  = partial 'grammar/form', :locals =&gt; { :f =&gt; f }</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-slim" data-lang="slim">// app/views/grammar/edit.slim
+
+h2
+  Update Grammar
+
+= form_for :grammar, url(:grammar, :update, id: @grammar.id), method: :put do |f|
+  = partial 'grammar/form', :locals =&gt; { :f =&gt; f }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Since we won’t always add a new translation, always marking the fields
+as required won’t work. Instead we can mark fields as required only for
+existing translations, not new ones.</p>
+</div>
+<div class="paragraph">
+<p>We can iterate over nested resources with the <code>fields_for :model</code> tag
+now available to us.</p>
+</div>
+<div class="paragraph">
+<p><strong>Note1</strong>: Don’t forget to setup the <code>id</code> hidden field! Otherwise the orm
+won’t realize it’s an existing nested resource.</p>
+</div>
+<div class="paragraph">
+<p><strong>Note2</strong>: For the destroy checkbox, you must pass <code>:_delete</code>, Not
+<code>:_destroy</code>. The padrino docs are incorrect here! I had to do a bit of
+sleuthing to figure out the correct method to send.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-slim" data-lang="slim">// app/views/grammar/_form.slim
+
+= f.label 'Grammar'
+= f.text_field :grammar, required: true
+
+= f.label 'Alternatives (comma separated)'
+= f.text_field :alternatives, required: true
+
+= f.label "Verb Type"
+= f.select :verb_type, options: ["형용사", "동사", "Both"],
+  required: true
+
+h3 Translations
+
+= f.fields_for :translations do |af|
+  - unless af.object.new?
+    = af.hidden_field :id, value: af.object.id
+
+  = af.label "Language Code"
+  - if af.object.new?
+    = af.text_field :language_code
+  - else
+    = af.text_field :language_code, required: true
+
+  = af.label "Meanings (comma separated)"
+  - if af.object.new?
+    = af.text_field :meanings
+  - else
+    = af.text_field :meanings, required: true
+
+  = af.label "Notes"
+  = af.text_area :notes
+
+  - unless af.object.new?
+    = af.label "Destroy"
+    = af.check_box :_delete
+
+  hr
+
+= submit_tag pat(:save)
+= submit_tag pat(:save_and_continue), :name =&gt; 'save_and_continue'
+= link_to pat(:cancel), url(:grammar, :index)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_controller_and_routes">Controller and Routes</h3>
+<div class="paragraph">
+<p>Lastly we need some basic controller and routing code. <code>index</code> is still
+simple:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-ruby" data-lang="ruby"># app/controllers/grammar.rb
+
+get :index do
+  @grammars = Grammar.all
+  render 'grammar/index'
+end</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When it comes to new/create, an empty <code>GrammarTranslation`s object needs
+to be initialized. In Padrino this is accomplished by initializing the
+`&lt;model&gt;_attributes</code> field, which comes from the <code>nested_attributes</code>
+tag.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-ruby" data-lang="ruby"># app/controllers/grammar.rb
+
+get :new do
+  @grammar = Grammar.new(translations_attributes: [{}])
+  render 'new'
+end
+
+post :create do
+  @grammar = Grammar.new(params[:grammar])
+
+  if (grammar = @grammar.save)
+    flash[:success] = 'Successfully saved grammar &amp; translation.'
+
+    if params[:save_and_continue]
+      redirect url_for(:grammar, :grammar, id: grammar.id)
+    else
+      redirect url(:grammar, :new)
+    end
+  else
+    flash[:error] = "Error saving grammar: " +
+      @grammar.errors.map(&amp;:message).join(", ")
+    render 'new'
+  end
+end</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For the <code>edit</code> route, a new <code>GrammarTranslation</code> is appended because we
+want to be able to create new <code>GrammarTranslation`s from a `Grammar</code>’s
+edit page.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-ruby" data-lang="ruby"># app/controllers/grammar.rb
+
+get :edit, with: :id do
+  @grammar = Grammar[params[:id]]
+  @grammar.translations &lt;&lt; GrammarTranslation.new
+
+  if @grammar
+    render 'grammar/edit'
+  else
+    flash[:warning] = pat(
+      :create_error,
+      model: 'grammar',
+      id: params[:id].to_s
+    )
+    halt 404
+  end
+end</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For <code>update</code>, since we added a blank <code>GrammarTranslation</code>, it’s
+necessary to filter it out if none of the fields were filled out in the
+form. Otherwise, every single time you upated a <code>Grammar</code>, a new
+<code>GrammarTranslation</code> would be created.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-ruby" data-lang="ruby"># app/controllers/grammar.rb
+
+put :update, with: :id do
+  @grammar = Grammar[params[:id]]
+
+  # filter out the new translation
+  params[:grammar][:translations_attributes]
+    .select!{ |_k, v| v[:language_code].present? == true }
+
+  if @grammar.modified! &amp;&amp; @grammar.update(params[:grammar])
+    flash[:success] = pat(:update_success, model: 'Grammar', id: params[:id].to_s)
+    if params[:save_and_continue]
+      redirect(url(:grammar, :new))
+    else
+      redirect(url(:grammar, :edit, id: @grammar.id))
+    end
+  else
+    flash.now[:error] = pat(:update_error, model: 'grammar')
+    render 'accounts/edit'
+  end
+end</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_object_views">Object Views</h3>
+<div class="paragraph">
+<p>Nothing complicated here. The nested resource is available under the
+main object, so we can use <code>@grammar.translations</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-slim" data-lang="slim">// app/views/grammar/index.slim
+
+- @grammars.each do |g|
+  = link_to g.grammar, "/grammar/#{g.id}"
+  br</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-slim" data-lang="slim">// app/views/grammar/show.slim
+
+h2
+  = @grammar.grammar
+p
+  | Alternatives:
+  = @grammar.alternatives
+h4 Translations
+- @translations.each do |t|
+  div
+    p
+      | Lang:
+      =&lt; t.language_code
+    p
+      | Meaning:
+      =&lt; t.meanings</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conclusion">Conclusion</h3>
+<div class="paragraph">
+<p>I hope this short guide helped you. You should now be able to create a
+model and a nested object at the same time!</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_references">References</h2>
+<div class="sectionbody">
+<div class="ulist bibliography">
+<ul class="bibliography">
+<li>
+<p><a href="https://sequel.jeremyevans.net/rdoc-plugins/classes/Sequel/Plugins/NestedAttributes.html">Sequel Plugins Nested Attributes Reference</a></p>
+</li>
+<li>
+<p><a href="https://api.rubyonrails.org/classes/ActiveRecord/NestedAttributes/ClassMethods.html">Rails Api Reference for Nested Attributes</a></p>
+</li>
+<li>
+<p><a href="http://padrinorb.com/guides/application-helpers/nested-object-form-support/">Padrino Nested Form Reference</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+  </section>
+</article>
+
+<p class="divider">&#x203b;</p>
+
+
+<section id="after-post" class="page">
+  
+
+  
+    
+  
+    
+  
+</section>
+      </div><div id="footer" class="container">
+  <p> Copyright Andrew Zah (2016&ndash;2020) unless stated otherwise.</p>
+</div>
+</div>
+  </body>
+</html>

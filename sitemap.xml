@@ -1,318 +1,261 @@
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
-    <url>
-      <loc>https://andrewzah.com/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/about/</loc>
+    <lastmod>2020-03-24T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/404/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/posts/</loc>
+    <lastmod>2020-01-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/categories/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/</loc>
+    <lastmod>2020-01-11T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/categories/education/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/tags/anki/</loc>
+    <lastmod>2020-01-11T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/categories/general/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/categories/</loc>
+    <lastmod>2020-01-11T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/categories/learning/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/tags/docker/</loc>
+    <lastmod>2020-01-11T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/categories/programming/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/posts/2020/my-850-dollar-watch-cant-render-korean-text/</loc>
+    <lastmod>2020-01-11T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/categories/rants/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/tags/programming/</loc>
+    <lastmod>2020-01-11T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/categories/self/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/categories/rants/</loc>
+    <lastmod>2020-01-11T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/categories/selfhosting/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/tags/</loc>
+    <lastmod>2020-01-11T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/categories/talks/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/tags/watches/</loc>
+    <lastmod>2020-01-11T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/contact/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/tags/freebsd/</loc>
+    <lastmod>2019-12-22T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/friends/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/posts/2019/hosting-minecraft-servers-bungeecord-freenas/</loc>
+    <lastmod>2019-12-22T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/pages/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/tags/minecraft/</loc>
+    <lastmod>2019-12-22T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/posts/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/categories/selfhosting/</loc>
+    <lastmod>2019-12-22T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/posts/a-new-year-a-new-site/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/posts/2019/building-home-server-freenas/</loc>
+    <lastmod>2019-12-21T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/posts/automatically-deploy-your-blog-via-git-caddy-docker/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/categories/self-hosting/</loc>
+    <lastmod>2019-12-21T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/posts/better-anki-usage-guide-2019/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/tags/servers/</loc>
+    <lastmod>2019-12-21T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/posts/building-home-server-freenas/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/tags/workflow/</loc>
+    <lastmod>2019-12-21T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/posts/hosting-minecraft-servers-bungeecord-freenas/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/posts/2019/my-setup-remote-programming-osx-2019/</loc>
+    <lastmod>2019-10-19T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/posts/korean-cooking-eating-vocabulary-reference/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/tags/backpacking/</loc>
+    <lastmod>2019-09-20T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/posts/korean-for-programmers/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/posts/2019/09-19_backpacking_six_month_retro/</loc>
+    <lastmod>2019-09-20T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/posts/living-out-of-two-backpacks-a-six-month-retrospective/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/categories/travel/</loc>
+    <lastmod>2019-09-20T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/posts/making-a-discord-bot-in-crystal-intro/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/posts/2019/06-02_zola_caddy_git_automatic_deploy/</loc>
+    <lastmod>2019-06-02T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/posts/my-850-dollar-watch-cant-render-korean-text/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/tags/caddy/</loc>
+    <lastmod>2019-06-02T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/posts/my-growth-self-taught-software-developer-in-2018/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/tags/zola/</loc>
+    <lastmod>2019-06-02T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/posts/my-setup-remote-programming-osx-2019/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/posts/2019/better-anki-usage-guide-2019/</loc>
+    <lastmod>2019-05-19T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/posts/nested-resource-forms-tutorial-with-padrino-rails/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/categories/learning/</loc>
+    <lastmod>2019-05-19T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/posts/selfhosting-git-with-gitea-docker-caddy/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/tags/memorization/</loc>
+    <lastmod>2019-05-19T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/posts/things-to-avoid-with-anki/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/posts/2019/05-18_things_to_avoid_in_anki/</loc>
+    <lastmod>2019-05-18T00:00:00-04:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/posts/ultimate-list-of-resources-for-learning-korean-in-2019/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/posts/2019/04-11_padrino_nested_forms/</loc>
+    <lastmod>2019-04-11T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/projects/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/tags/padrino/</loc>
+    <lastmod>2019-04-11T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/quotes/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/categories/programming/</loc>
+    <lastmod>2019-04-11T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/tags/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/tags/ruby/</loc>
+    <lastmod>2019-04-11T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/tags/anki/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/tags/korean/</loc>
+    <lastmod>2019-03-04T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/tags/backpacking/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/categories/languages/</loc>
+    <lastmod>2019-03-04T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/tags/caddy/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/tags/learning/</loc>
+    <lastmod>2019-03-04T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/tags/clojure/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/posts/2019/03-04_korean_learning_resources_2019/</loc>
+    <lastmod>2019-03-04T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/tags/cooking/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/posts/2019/02-16_programming_korean/</loc>
+    <lastmod>2019-02-16T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/tags/crystal/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/tags/cooking/</loc>
+    <lastmod>2018-12-28T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/tags/discord/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/categories/education/</loc>
+    <lastmod>2018-12-28T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/tags/docker/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/posts/2018/korean-cooking-eating-vocabulary-reference/</loc>
+    <lastmod>2018-12-28T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/tags/forms/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/tags/vocabulary/</loc>
+    <lastmod>2018-12-28T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/tags/freebsd/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/posts/2018/my-growth-self-taught-software-developer-in-2018/</loc>
+    <lastmod>2018-11-18T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/tags/gitea/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/categories/self/</loc>
+    <lastmod>2018-11-18T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/tags/korean/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/tags/gitea/</loc>
+    <lastmod>2018-05-15T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/tags/learning/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/posts/2018/05-15_selfhosted_git_gitea_docker_caddy/</loc>
+    <lastmod>2018-05-15T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/tags/linguistics/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/posts/2018/02-21_a_new_year_2018/</loc>
+    <lastmod>2018-02-01T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/tags/memorization/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/talks/blahblah/</loc>
+    <lastmod>2018-02-01T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/tags/minecraft/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/tags/self/</loc>
+    <lastmod>2018-02-01T00:00:00+00:00</lastmod>
+  </url>
   
-    <url>
-      <loc>https://andrewzah.com/tags/padrino/</loc>
-      
-    </url>
-  
-    <url>
-      <loc>https://andrewzah.com/tags/programming/</loc>
-      
-    </url>
-  
-    <url>
-      <loc>https://andrewzah.com/tags/ruby/</loc>
-      
-    </url>
-  
-    <url>
-      <loc>https://andrewzah.com/tags/rust/</loc>
-      
-    </url>
-  
-    <url>
-      <loc>https://andrewzah.com/tags/selfhosting/</loc>
-      
-    </url>
-  
-    <url>
-      <loc>https://andrewzah.com/tags/servers/</loc>
-      
-    </url>
-  
-    <url>
-      <loc>https://andrewzah.com/tags/vocabulary/</loc>
-      
-    </url>
-  
-    <url>
-      <loc>https://andrewzah.com/tags/watches/</loc>
-      
-    </url>
-  
-    <url>
-      <loc>https://andrewzah.com/tags/webassembly/</loc>
-      
-    </url>
-  
-    <url>
-      <loc>https://andrewzah.com/tags/workflow/</loc>
-      
-    </url>
-  
-    <url>
-      <loc>https://andrewzah.com/tags/zola/</loc>
-      
-    </url>
-  
-    <url>
-      <loc>https://andrewzah.com/talks/</loc>
-      
-    </url>
-  
-    <url>
-      <loc>https://andrewzah.com/talks/web-assembly-rust-seoul/</loc>
-      
-    </url>
+  <url>
+    <loc>https://andrewzah.com/talks/</loc>
+    <lastmod>2018-02-01T00:00:00+00:00</lastmod>
+  </url>
   
 </urlset>

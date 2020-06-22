@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>programming on Andrew Zah</title>
+    <link>https://andrewzah.com/tags/programming/</link>
+    <description>Recent content in programming on Andrew Zah</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>zah@andrewzah.com (Andrew Zah)</managingEditor>
+    <webMaster>zah@andrewzah.com (Andrew Zah)</webMaster>
+    <lastBuildDate>Sat, 11 Jan 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://andrewzah.com/tags/programming/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>My $850 smartwatch can’t render Korean text</title>
+      <link>https://andrewzah.com/posts/2020/my-850-dollar-watch-cant-render-korean-text/</link>
+      <pubDate>Sat, 11 Jan 2020 00:00:00 +0000</pubDate>
+      <author>zah@andrewzah.com (Andrew Zah)</author>
+      <guid>https://andrewzah.com/posts/2020/my-850-dollar-watch-cant-render-korean-text/</guid>
+      <description>I recently acquired a Garmin Fenix 6X, currently Garmin’s flagship model. While I did research beforehand, I forgot that my phone was in Korean, and thus the notifications would be in Korean… Silly me.</description>
+    </item>
+    
+    <item>
+      <title>My setup for remote programming on OSX in 2019</title>
+      <link>https://andrewzah.com/posts/2019/my-setup-remote-programming-osx-2019/</link>
+      <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
+      <author>zah@andrewzah.com (Andrew Zah)</author>
+      <guid>https://andrewzah.com/posts/2019/my-setup-remote-programming-osx-2019/</guid>
+      <description>Hi! My name is Andrew, and I work remotely as a software developer. I’ve worked while traveling across America with spotty or no internet connection.</description>
+    </item>
+    
+    <item>
+      <title>Korean for Programmers</title>
+      <link>https://andrewzah.com/posts/2019/02-16_programming_korean/</link>
+      <pubDate>Sat, 16 Feb 2019 00:00:00 +0000</pubDate>
+      <author>zah@andrewzah.com (Andrew Zah)</author>
+      <guid>https://andrewzah.com/posts/2019/02-16_programming_korean/</guid>
+      <description>I was inspired to write this after reading German for Programmers.\{\{cite(n=0)}} It’s quite likely that I’m just biased to see things a certain way because I work with programming languages for a living, but I often find myself drawing comparisons among Korean and programming.</description>
+    </item>
+    
+    <item>
+      <title>My growth as a self-taught developer in 2018</title>
+      <link>https://andrewzah.com/posts/2018/my-growth-self-taught-software-developer-in-2018/</link>
+      <pubDate>Sun, 18 Nov 2018 00:00:00 +0000</pubDate>
+      <author>zah@andrewzah.com (Andrew Zah)</author>
+      <guid>https://andrewzah.com/posts/2018/my-growth-self-taught-software-developer-in-2018/</guid>
+      <description>Now that 2019 is almost here, I’ve been reflecting on my personal &amp;amp; professional journey as a self taught programmer so far.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+      
+        My setup for remote programming on OSX in 2019 | Andrew Zah
+      
+    </title>
+  
+
+  <meta name="author" content="Andrew Zah">
+  <meta name="application-name" content="Andrew Zah"><link rel="stylesheet" href="https://andrewzah.com/scss/main.min.css">
+
+
+  </head>
+<body>
+    <div id="wrapper">
+      
+
+      <div id="content" class="container page">
+
+<a href="https://andrewzah.com/">Home</a>
+
+<article id="post" class="page">
+  <section id="post-header">
+    <h2 class="post-title">
+      
+      My setup for remote programming on OSX in 2019
+    </h2>
+    
+<div id="post-meta">
+  <time datetime="Oct 10, 2019">
+    October 10, 2019
+  </time> &mdash;
+  1941 words
+
+  
+</div>
+
+<p class="divider">&#x203b;</p>
+
+
+  </section>
+
+  <section id="post-body">
+    <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Hi! My name is Andrew, and I work remotely as a software developer. I’ve
+worked while traveling across America with spotty or no internet
+connection. I’ve worked in countries like South Korea and Japan. I like
+traveling, and this is how I stay productive.</p>
+</div>
+<div class="imageblock full-width">
+<div class="content">
+<img src="https://s3.amazonaws.com/andrewzah.com/posts/015/wework-gangnam.jpg" alt="Working remotely at WeWork in Gangnam Seoul">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_development_machine">Development Machine</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Before we begin, why apple and osx?</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>battery life</p>
+</li>
+<li>
+<p><em>battery life</em></p>
+</li>
+<li>
+<p>weight</p>
+</li>
+<li>
+<p>unix-like environment</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>and to an extent, some proprietary or osx-only apps: photoshop,
+premiere, affinity designer, and sketch.</p>
+</div>
+<div class="paragraph">
+<p>Before you scoff, I used freebsd and arch on my home pc as daily
+drivers. I used a modded thinkpad t430 for a few months as
+well.\{\{fn(n=0)}} I put in an i7-3632QM (quadcore) chip, a quieter
+heatsink, 2x8gb memory, a t420 old-style keyboard, and a 9 cell battery.</p>
+</div>
+<div class="paragraph">
+<p>It was sweet… before I started lugging it around.</p>
+</div>
+<div class="paragraph">
+<p>Weight-wise it was slightly heavier than my 15" macbook (~4.5lbs?), and
+the battery life made it unusable. I was getting 4-5 hours, max, and
+occasionally it would just die earlier than expected. (Forcing me to go
+reset the system time in BIOS).</p>
+</div>
+<div class="paragraph">
+<p>I was always worried about my power source. I
+<a href="https://andrewzah.com/posts/living-out-of-two-backpacks-a-six-month-retrospective/">have
+lived out of two backpacks</a> and worked remotely while traveling, so I
+can’t rely on always being next to an outlet. My 2015 13" macbook pro’s
+battery is still good to the point that I can get 6-7 hours out of it
+while working with Rust/C#. It’s more like 8-9 if I’m only doing light
+writing, etc.</p>
+</div>
+<div class="paragraph">
+<p>I know someone’s going to respond with ``but oh, you should’ve just used
+power with x, y, z configurations!''. I _did_ experiment with
+different settings with power and other alternative tools–nothing
+seemed to help. Call me a grumpy old man but I want to work and get
+things done… not fiddle about with battery tuning settings and the like.</p>
+</div>
+<div class="paragraph">
+<p>Eventually I’ll need to replace this mac. All post-2015 macbooks have
+been undesirable to me so I’ll probably go with a dell xps 13", or maybe
+a System76 Galago. I just want a durable machine with an excellent
+battery that’ll work years later and won’t have me configuring things
+constantly. Is that too much to ask?</p>
+</div>
+<hr>
+<div class="paragraph">
+<p>At home I do have an x201 and x220 thinkpad however. They’re great for
+testing different operating systems, etc. I just don’t like traveling
+with them. The x201 is quite small so hopefully it’ll become my main
+writing machine.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuring_osx_tools">Configuring OSX &amp; Tools</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The first thing I always do is install xcode-tools, iTerm2, brew, and
+zsh. Then I clone the osx branch of my
+<a href="https://git.sr.ht/~andrewzah/dotfiles/tree">dotfiles repo</a> and symlink
+the files where they need to be. I should automate this part with a
+script, but making that script would take me far more more time than
+just doing it manually. Not worth it, for now at least.</p>
+</div>
+<div class="paragraph">
+<p>You can use <code>brew leaves</code> to see installed items and <code>brew cask list</code>
+for cask items. I
+<a href="https://git.sr.ht/~andrewzah/dotfiles/tree/osx/brew-leaves">stored</a>
+<a href="https://git.sr.ht/~andrewzah/dotfiles/tree/osx/cask-list">mine</a> when I
+originally started abstracting out my dotfiles.</p>
+</div>
+<div class="sect2">
+<h3 id="_poor_mans_window_tiling">poor man’s window tiling</h3>
+<div class="paragraph">
+<p>After using i3 I can’t go back to non-tiling window managers. I long for
+the day that i3 works natively on osx. Sigh.</p>
+</div>
+<div class="paragraph">
+<p>I’ve somewhat replicated it with
+<a href="https://koekeishiya.github.io/chunkwm/">chunkwm</a>,
+<a href="https://github.com/koekeishiya/skhd">skhd</a>, and
+<a href="https://github.com/tekezo/Karabiner">karabiner</a>. Chunkwm is a tiling
+window manager, but it doesn’t handle keyboard input. That’s where skhd
+comes in. I copy/pasted to my
+<a href="https://git.sr.ht/~andrewzah/dotfiles/tree/osx/.khdrc">khdrc</a> but to be
+honest I don’t use most of these hotkeys still.</p>
+</div>
+<div class="paragraph">
+<p>Then, I use karabiner to make my right command key into a hyper key– it
+presses shift, command, control, and option.</p>
+</div>
+<div class="sect3">
+<h4 id="_cons">cons</h4>
+<div class="paragraph">
+<p>Some applications have minimum window sizes. So if I have too many
+windows in one workspace, they will just overlap. Spotify and KakaoTalk
+are example offenders.</p>
+</div>
+<div class="imageblock full-width">
+<div class="content">
+<img src="https://s3.amazonaws.com/andrewzah.com/posts/015/overlap.png" alt="An example image showing how Kakaotalk does not layout correctly when I have a terminal kakaotalk and two chat windows open">
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_poor_mans_workspaces">poor man’s workspaces</h3>
+<div class="paragraph">
+<p>I use 10 Spaces. I added shortcuts to quickly focus them: hyper + 1-5,
+w-y.</p>
+</div>
+<div class="paragraph">
+<p>I disable ``Automatically rearrange Spaces based on most recent use'',
+in Settings &#8594; Mission Control. This has got to be one of the worst
+defaults ever made.</p>
+</div>
+<div class="paragraph">
+<p>My workspaces generally follow this order:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>terminal (currently iterm2)</p>
+</li>
+<li>
+<p>browser (firefox)</p>
+</li>
+<li>
+<p>misc / Rider / Safari</p>
+</li>
+<li>
+<p>misc</p>
+</li>
+<li>
+<p>misc</p>
+</li>
+<li>
+<p>[w] misc / desktop / vlc / signal</p>
+</li>
+<li>
+<p>[e] misc / discord</p>
+</li>
+<li>
+<p>[r] kakaotalk, messages app</p>
+</li>
+<li>
+<p>[t] anki</p>
+</li>
+<li>
+<p>[y] thunderbird</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Something about the Catalina update broke <code>hyper + q</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_apps">apps</h3>
+<div class="paragraph">
+<p>I almost always have iterm2, firefox, kakaotalk, anki, and thunderbird
+running.</p>
+</div>
+<div class="paragraph">
+<p>Misc tools I generally use:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>DB Browser for SQLite</p>
+</li>
+<li>
+<p>Insomnia (REST api testing)</p>
+</li>
+<li>
+<p>Azure Data Studio (ms-sql querying)</p>
+</li>
+<li>
+<p>Datagrip (reading stored procedures / db schemas)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Task bar apps: * Harvest (time tracking) * Duet (use my ipad as an extra
+display)_ _ Caffeine (prevent my computer from sleeping) * SnapScan
+client (for my
+<a href="https://www.fujitsu.com/global/products/computing/peripheral/scanners/scansnap/ix500/">Fujitsu
+ix500 scanner</a>)</p>
+</div>
+<div class="paragraph">
+<p>And non programming-related ones: * Discord (messaging, language study,
+rss) * KakaoTalk (messaging) * Line (messaging) * Signal (messaging) *
+Anki (flash card study)</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_code_editor">code editor</h3>
+<div class="paragraph">
+<p>For non-C# code, I use neovim, vim, or vi, in that order. I don’t really
+care what you use. I like (neo)vim, so I use that. I just become
+disappointed when people reflexively dismiss it (or Emacs) because they
+have any learning curve, like at all. There’s a <em>reason</em> why vim has
+one, and it’s not because Bram Moolenaar is particularly masochistic. In
+particular, modal editing and buffers\{\{refer(n=0)}} are why I enjoy
+vim.</p>
+</div>
+<div class="paragraph">
+<p>Even if you don’t use vim, I urge you to read the manuals of the
+software that you do use. Small tidbits of knowledge add up over time,
+especially with common repetitive actions.</p>
+</div>
+<div class="paragraph">
+<p>It’s also good to know a little <code>vi</code> when you mess up your FreeBSD
+installation and have to dip into an emergency shell. Will <code>nano</code> be
+accessible then?</p>
+</div>
+<div class="paragraph">
+<p><em>Modern Vim</em> by Drew Neil is a fantastic read. I read parts of it here
+and there to glean ways I can improve my vim usage. Every vim user
+should read <em>Oil and vinegar - split windows and the project drawer</em>
+<a href="http://vimcasts.org/blog/2013/01/oil-and-vinegar-split-windows-and-project-drawer/">from
+vimcasts</a>.</p>
+</div>
+<hr>
+<div class="paragraph">
+<p>You can see my
+<a href="https://git.sr.ht/~andrewzah/dotfiles/tree/osx/config/nvim/init.vim">neovim
+configuration here</a> here, although I need to prune it a bit. The biggest
+changes I’ve made are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>mapping jj to escape from insert mode, or otherwise using ctrl-[
+otherwise to avoid repetitive strain from hitting escape</p>
+</li>
+<li>
+<p>using <a href="https://github.com/junegunn/fzf">fzf</a><br>
+<a href="https://github.com/junegunn/fzf">fzf.vim</a> to fuzzy search through my
+files.</p>
+</li>
+<li>
+<p>using <a href="https://github.com/w0rp/ale">ale</a> to asynchronously lint and fix
+files (but only on file save. I hate over-eager tools that complain when
+I’m halfway through writing code)</p>
+</li>
+<li>
+<p>using <a href="https://github.com/junegunn/vim-plug">plug</a> to manage plugins and
+lazily-load them</p>
+</li>
+<li>
+<p>disabling vim’s annoying swapfile system.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Oh, and <a href="https://github.com/morhetz/gruvbox">gruvbox</a>, possibly one of the
+best color schemes ever made. Every once in a while I experiment with a
+different scheme but I inevitably get drawn back to the king. If someone
+made <a href="https://github.com/arcticicestudio/nord">Nord</a> but with green as the
+main color instead of blue, I might use that.</p>
+</div>
+<div class="sect3">
+<h4 id="_cons_2">cons</h4>
+<div class="paragraph">
+<p>Vim’s autocompletion… exists I guess. A while ago I looked into it but
+it seemed not worth the hassle to set up. Anyway, ctrl-p in <code>insert</code>
+mode brings up suggestions from open buffers. Good thing <code>p</code> is right
+next to <code>[</code>, which takes you out of <code>insert</code> mode. /s</p>
+</div>
+<div class="paragraph">
+<p>As an aside, did you know that <code>vim</code> displays
+<code>Type :quit&lt;Enter&gt; to exit Vim</code> if you hit ctrl-c, and that it’s done so
+for a long time? Is your joke very outdated and unoriginal? Yes, yes it
+is.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_code_editor_for_c">code editor (for C#)</h3>
+<div class="paragraph">
+<p>I use <a href="https://www.jetbrains.com/rider/">IntelliJ Rider</a> on both osx and
+arch. I think the value is worth it. It’s definitely nowhere near as
+snappy as vim but doing C# without autocompletions would eb… rough. The
+build profiles and test runners are pretty nice. Modifying environment
+variables and profile configurations is tedious.</p>
+</div>
+<div class="paragraph">
+<p>The Intellij plugin ecosystem is great- you can easily install plugins
+in any of their editors, to my knowledge. There’s even an official
+<a href="https://intellij-rust.github.io/">rust plugin</a>.</p>
+</div>
+<div class="paragraph">
+<p>However, cmd-4 is the shortcut to close tabs..?! The default controls
+are interesting, to put it one way.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_workflow">Workflow</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_tasks">tasks</h3>
+<div class="paragraph">
+<p>Everything starts and ends with meetings and slack. I work on different
+projects for clients and my team has a daily 5-30min call at 9am (10pm
+in Korea).</p>
+</div>
+<div class="paragraph">
+<p>In Slack and our meetings we’ll discuss what needs to be done. I or
+others will make bullet points of the most pertinent stuff that needs to
+be done. No agile or anything,
+<a href="https://steve-yegge.blogspot.com/2006/09/good-agile-bad-agile_27.html">thank
+god</a>. We previously used a few different ticket tracking systems and
+I’ve found that they all suck.
+<a href="https://www.jetbrains.com/youtrack/">YouTrack</a> sucks, but it was better
+than the proprietary abomination one of our clients made us use. The
+only good system I’ve found is:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>make a list (or queue, if you prefer it that way) of things</p>
+</li>
+<li>
+<p>roughly ballpark estimates, with the understanding that estimating
+things is notoriously difficult</p>
+</li>
+<li>
+<p>accurately prioritize those things (if everything is #1/urgent,
+nothing is)</p>
+</li>
+<li>
+<p>work on those things</p>
+</li>
+<li>
+<p>discuss progress and blockers in daily call and/or slack</p>
+</li>
+<li>
+<p>repeat</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>That’s it.</p>
+</div>
+<div class="paragraph">
+<p>On top of this, issues in github/gitlab/etc are also pretty good if you
+come up with good labels. Right now I’m experimenting with Github’s
+Projects and semi-automated issues on our newest project.</p>
+</div>
+<hr>
+<div class="paragraph">
+<p>Being 13 hours ahead does pose issues occasionally, but I solved this by
+going to sleep a bit later (about 1am or so). Having different things to
+work on is also important– if I’m ever blocked on something, such as
+waiting for a teammate to wake up and answer a question, I can just work
+on something else in the meantime. This async style of work won’t work
+if you always need rapid communication with your team.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_logging_my_thoughts">logging my thoughts</h3>
+<div class="paragraph">
+<p>The <a href="http://notational.net/">Notational Velocity</a> application changed my
+life. At its core, the idea is deceivingly simple.</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>NOTIONAL VELOCITY is an application that <strong>stores and retrieves notes</strong>.</p>
+</div>
+<div class="paragraph">
+<p>It is an attempt to loosen the mental blockages to recording information
+and to scrape away the tartar of convention that handicaps its
+retrieval.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>You store text in notes. There is only one search box–if a file doesn’t
+exist for your search string, one will automatically be created.</p>
+</div>
+<div class="paragraph">
+<p>I began to use it for just about everything, since any and all
+information I had written down could now be easily searched through and
+found.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>seldom-used vim tidbits</p>
+</li>
+<li>
+<p>miscellaneous knowledge about real languages (I study Korean)</p>
+</li>
+<li>
+<p>random snippets for programming languages (how do I open a file in
+ruby again?)</p>
+</li>
+<li>
+<p>tentative to-do lists</p>
+</li>
+<li>
+<p>niche, detailed information like serial numbers and specs for
+equipment that I bought</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>It was glorious. Except… it was, and still is, mac only. At home I use
+*nix systems or windows, so using it became tedious and I eventually
+stopped.</p>
+</div>
+<div class="paragraph">
+<p>As I was writing this article, I discovered
+<a href="https://brettterpstra.com/projects/nvalt/">nVALT</a>–Brett Terpstra’s fork.
+It has more functionality like markdown support and a better interface.
+No vim keybindings though, which made it unpleasant for me to use.
+Terpstra is working on
+<a href="https://brettterpstra.com/2019/04/10/codename-nvultra/">nvUltra</a>
+currently which may fix this.</p>
+</div>
+<hr>
+<div class="imageblock full-width">
+<div class="content">
+<img src="https://raw.githubusercontent.com/alok/notational-fzf-vim/master/screenshots/usage.gif" alt="A gif showcasing how notational fzf vim works.">
+</div>
+</div>
+<div class="paragraph">
+<p>After I started writing this article, Alex Singh released
+<a href="https://github.com/alok/notational-fzf-vim">notational-fzf-vim</a>, which is
+basically notational velocity but in vim! As the name implies, fulltext
+searching is powered by <a href="https://github.com/junegunn/fzf">fzf</a>, which in
+turn uses <a href="https://github.com/BurntSushi/ripgrep">ripgrep</a> by default.
+Both are excellent tools I use daily.</p>
+</div>
+<div class="paragraph">
+<p>The preview window is amazing..!</p>
+</div>
+<div class="paragraph">
+<p>In order to use it, you need to specify at least one directory for the
+plugin to search. This will be the primary directory where new notes
+will be saved, but you can search multiple directories.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-vim" data-lang="vim">" notational fzf vim
+let g:nv_search_paths =
+  \ ['~/Desktop/Sync/thoughts',
+    \ '~/Desktop/Sync/thoughts/korean',
+  \]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and some example files that I’ve written to this week:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>packing-list.md
+self-publishing.md
+useful-shell-scripts.md
+vim.md
+watches.md
+youtube-videos.md
+korean/colloquial-or-slang.md
+korean/color-names.md
+korean/clothes-verbs.md</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion">Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is my personal setup. I find it fascinaing to look at other
+people’s workflows and see how they handle things. Usually I can take
+away a thing or two and improve my own workflow. Feel free to make
+suggestions.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_references">References</h2>
+<div class="sectionbody">
+<div class="ulist bibliography">
+<ul class="bibliography">
+<li>
+<p><a href="https://medium.com/@n4ru/the-definitive-t430-modding-guide-3dff3f6a8e2e">Definitive T430 Modding Guide</a></p>
+</li>
+<li>
+<p><a href="https://stackoverflow.com/questions/26708822/why-do-vim-experts-prefer-buffers-over-tabs">SO: Why do Vim experts prefer buffers over tabs?</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+  </section>
+</article>
+
+<p class="divider">&#x203b;</p>
+
+
+<section id="after-post" class="page">
+  
+
+  
+    
+      <strong>other <span class="underline">programming</span> posts</strong>
+      
+        
+          <div class="post-link">
+  <span class="post-date">
+    <a href="https://andrewzah.com/posts/2020/my-850-dollar-watch-cant-render-korean-text/">
+      01/11
+    </a>
+  </span>
+
+  <span class="post-title">
+    <a href="https://andrewzah.com/posts/2020/my-850-dollar-watch-cant-render-korean-text/">
+      My $850 smartwatch can’t render Korean text
+    </a>
+  </span>
+</div>
+
+        
+      
+        
+      
+        
+          <div class="post-link">
+  <span class="post-date">
+    <a href="https://andrewzah.com/posts/2019/02-16_programming_korean/">
+      02/16
+    </a>
+  </span>
+
+  <span class="post-title">
+    <a href="https://andrewzah.com/posts/2019/02-16_programming_korean/">
+      Korean for Programmers
+    </a>
+  </span>
+</div>
+
+        
+      
+        
+          <div class="post-link">
+  <span class="post-date">
+    <a href="https://andrewzah.com/posts/2018/my-growth-self-taught-software-developer-in-2018/">
+      11/18
+    </a>
+  </span>
+
+  <span class="post-title">
+    <a href="https://andrewzah.com/posts/2018/my-growth-self-taught-software-developer-in-2018/">
+      My growth as a self-taught developer in 2018
+    </a>
+  </span>
+</div>
+
+        
+      
+    
+  
+    
+      <strong>other <span class="underline">workflow</span> posts</strong>
+      
+        
+          <div class="post-link">
+  <span class="post-date">
+    <a href="https://andrewzah.com/posts/2019/building-home-server-freenas/">
+      12/21
+    </a>
+  </span>
+
+  <span class="post-title">
+    <a href="https://andrewzah.com/posts/2019/building-home-server-freenas/">
+      Building a Home Server with FreeNAS
+    </a>
+  </span>
+</div>
+
+        
+      
+        
+      
+    
+  
+</section>
+      </div><div id="footer" class="container">
+  <p> Copyright Andrew Zah (2016&ndash;2020) unless stated otherwise.</p>
+</div>
+</div>
+  </body>
+</html>

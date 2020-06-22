@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>self-hosting on Andrew Zah</title>
+    <link>https://andrewzah.com/categories/self-hosting/</link>
+    <description>Recent content in self-hosting on Andrew Zah</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>zah@andrewzah.com (Andrew Zah)</managingEditor>
+    <webMaster>zah@andrewzah.com (Andrew Zah)</webMaster>
+    <lastBuildDate>Sat, 21 Dec 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://andrewzah.com/categories/self-hosting/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Building a Home Server with FreeNAS</title>
+      <link>https://andrewzah.com/posts/2019/building-home-server-freenas/</link>
+      <pubDate>Sat, 21 Dec 2019 00:00:00 +0000</pubDate>
+      <author>zah@andrewzah.com (Andrew Zah)</author>
+      <guid>https://andrewzah.com/posts/2019/building-home-server-freenas/</guid>
+      <description>Table of Contents My Goals The Requirements Part List Usage A Use for the Raspberry Pi   References   A few months ago I got gripped with server fever.</description>
+    </item>
+    
+    <item>
+      <title>Automatically deploy your blog via Git with Caddy and Docker</title>
+      <link>https://andrewzah.com/posts/2019/06-02_zola_caddy_git_automatic_deploy/</link>
+      <pubDate>Sun, 02 Jun 2019 00:00:00 +0000</pubDate>
+      <author>zah@andrewzah.com (Andrew Zah)</author>
+      <guid>https://andrewzah.com/posts/2019/06-02_zola_caddy_git_automatic_deploy/</guid>
+      <description>Over the years, I’ve incrementally optimized my blog. I used to use an entire rails setup with postgres, because that was the first thing I learned… Yet that’s quite the overkill for a blog with static content.</description>
+    </item>
+    
+    <item>
+      <title>Selfhosting git with Gitea, Docker, Caddy</title>
+      <link>https://andrewzah.com/posts/2018/05-15_selfhosted_git_gitea_docker_caddy/</link>
+      <pubDate>Tue, 15 May 2018 00:00:00 +0000</pubDate>
+      <author>zah@andrewzah.com (Andrew Zah)</author>
+      <guid>https://andrewzah.com/posts/2018/05-15_selfhosted_git_gitea_docker_caddy/</guid>
+      <description>Something I’ve been doing recently is starting to self-host as much as I can. I don’t like relying on businesses, since they can change their services on a whim.</description>
+    </item>
+    
+  </channel>
+</rss>

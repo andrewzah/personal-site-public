@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+      
+        Building a Home Server with FreeNAS | Andrew Zah
+      
+    </title>
+  
+
+  <meta name="author" content="Andrew Zah">
+  <meta name="application-name" content="Andrew Zah"><link rel="stylesheet" href="https://andrewzah.com/scss/main.min.css">
+
+
+  </head>
+<body>
+    <div id="wrapper">
+      
+
+      <div id="content" class="container page">
+
+<a href="https://andrewzah.com/">Home</a>
+
+<article id="post" class="page">
+  <section id="post-header">
+    <h2 class="post-title">
+      
+      Building a Home Server with FreeNAS
+    </h2>
+    
+<div id="post-meta">
+  <time datetime="Dec 12, 2019">
+    December 12, 2019
+  </time> &mdash;
+  1212 words
+
+  
+</div>
+
+<p class="divider">&#x203b;</p>
+
+
+  </section>
+
+  <section id="post-body">
+    <div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_my_goals">My Goals</a></li>
+<li><a href="#_the_requirements">The Requirements</a>
+<ul class="sectlevel2">
+<li><a href="#_part_list">Part List</a></li>
+<li><a href="#_usage">Usage</a></li>
+<li><a href="#_a_use_for_the_raspberry_pi">A Use for the Raspberry Pi</a></li>
+</ul>
+</li>
+<li><a href="#_references">References</a></li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>A few months ago I got gripped with server fever. I’d had a raspberry pi
+for a while, but I could never find a meaningful use for it. I’d tried
+running plex, etc, but the pi3 would choke after a bit and sputter out.</p>
+</div>
+<div class="paragraph">
+<p>One day I decided enough was enough: it was time to build a more beefy
+server. (and I found a compelling use for the pi!)</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://s3.amazonaws.com/andrewzah.com/posts/serverbuild-freenas/freenas-info.png" alt="Current FreeNAS server information">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_my_goals">My Goals</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I had a few goals I wanted to achieve:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>be relatively future-proof</p>
+</li>
+<li>
+<p>host a plex server</p>
+</li>
+<li>
+<p>be able to spin up multiple VMs for various reasons like testing
+ansible scripts</p>
+</li>
+<li>
+<p>potentially host games for me and my brother</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>If all you want to do is host Plex/jellyfish, a raspberry pi should
+suffice. As long as your media isn’t hvec x265. Before I built this
+server I had two 2tb drives plugged into my raspberry pi, and other
+content was fine for the most part.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_requirements">The Requirements</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I don’t have space in my home for a rack for a server, due to both the
+size and noise. That immediately eliminated a lot of build paths that I
+saw.</p>
+</div>
+<div class="paragraph">
+<p>The ideal spot for the server was my living room, so I needed a
+relatively low profile server- and a <em>quiet</em> one.</p>
+</div>
+<div class="paragraph">
+<p>The remaining requirements were:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>at least 8 hard drive bays</p>
+</li>
+<li>
+<p>a relatively modern/beefy cpu</p>
+</li>
+<li>
+<p>low(er) power consumption</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>I felt like 8 drives (+1 or 2 ssds) was enough for future expansion,
+even with RAID-10 taken into account. I went with a mirrored structure
+so I could replace drives without heavy rebuild times, and so I could
+easily expand the pool if necessary. I started with 6 drives, so I have
+a zpool with 3 vdevs of 2 drives each.</p>
+</div>
+<div class="sect2">
+<h3 id="_part_list">Part List</h3>
+<div class="paragraph">
+<p>What I thought was going to be a relatively simple task turned into a
+huge amount of research… I spent most of my time on
+<a href="https://www.ixsystems.com/community/">iXsystems’ community forum</a> and
+<a href="https://www.reddit.com/r/homelab/">/r/homelab</a> on reddit. The people on
+iXsystems’ forum were very helpful and detailed. However, most of the
+information for iXsystems is based around used intel boards. Much less
+material is available if you’re like me and are interested in newer AMD
+cpus.</p>
+</div>
+<div class="paragraph">
+<p>So how did I narrow it down? I did what I always do: make a spreadsheet.
+There are simply way too many options presented to figure what cpu/mobo
+to choose without spreadsheet analysis. Without further ado:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>case:
+<a href="https://docs.google.com/spreadsheets/d/1pThQQLHIcB_LO6-PmypGOSeaErY_ip6FY2lmbkS0DYc/Fractal%20Design%20Node%20804%20Black%20Window%20Aluminum/Steel%20MATX">Fractal
+Node 804 Micro Atx Case</a></p>
+</li>
+<li>
+<p>boot ssd (nvme):
+<a href="https://www.newegg.com/western-digital-black-nvme-250gb/p/N82E16820250097">WD
+Black NVMe M.2 2280 250Gb PCI-Express 3.0 x4 SSD WDS250G2X0C</a></p>
+</li>
+<li>
+<p>ssd:
+<a href="https://www.newegg.com/apc-bx1500m-5-x-nema-5-15r-5-x-nema-5-15r/p/N82E16842301561?Description=APC%20BX1500M%20Back-UPS%20Pro%201500VA%2f900W&amp;cm_re=APC_BX1500M_Back-UPS_Pro_1500VA%2f900W-" class="bare">https://www.newegg.com/apc-bx1500m-5-x-nema-5-15r-5-x-nema-5-15r/p/N82E16842301561?Description=APC%20BX1500M%20Back-UPS%20Pro%201500VA%2f900W&amp;cm_re=APC_BX1500M_Back-UPS_Pro_1500VA%2f900W-</a><em>-42-301-561-</em>-Product[SAMSUNG
+860 EVO Series 2.5" 500GB MZ-76E500B/AM]</p>
+</li>
+<li>
+<p>intake fans x4:
+<a href="https://smile.amazon.com/dp/B00650P2ZC/?tag=ozlp-20">Noctua NF-F12 WPM
+120mm</a></p>
+</li>
+<li>
+<p>exhaust fans x2:
+<a href="https://smile.amazon.com/dp/B00CP6QLY6/?tag=ozlp-20">Noctua NF-A14 PWM
+140mm</a></p>
+</li>
+<li>
+<p>cpu cooler:
+<a href="https://smile.amazon.com/Noctua-NH-L12S-Low-Profile-Cooler-Quiet/dp/B075SF5QQ8/ref=sr_1_2?keywords=NH-L12S&amp;qid=1565553407&amp;s=gateway&amp;sr=8-2">Noctua
+NH-L12S 70mm Low-Profile CPU Cooler</a></p>
+</li>
+<li>
+<p>ups/apc:
+<a href=""><a href="https://www.newegg.com/apc-bx1500m-5-x-nema-5-15r-5-x-nema-5-15r/p/N82E16842301561?Description=APC%20BX1500M%20Back-UPS%20Pro%201500VA%2f900W&amp;cm_re=APC_BX1500M_Back-UPS_Pro_1500VA%2f900W-" class="bare">https://www.newegg.com/apc-bx1500m-5-x-nema-5-15r-5-x-nema-5-15r/p/N82E16842301561?Description=APC%20BX1500M%20Back-UPS%20Pro%201500VA%2f900W&amp;cm_re=APC_BX1500M_Back-UPS_Pro_1500VA%2f900W-</a><em>-42-301-561-</em>-Product</a></p>
+</li>
+<li>
+<p>psu:
+<a href="https://www.newegg.com/seasonic-focus-plus-650-gold-ssr-650fx-650w/p/N82E16817151186">Seasonic
+FOCUS Plus Series SSR-650FX 650W</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The total comes out to around $632. I don’t know why anyone would build
+a server without getting some sort of UPS/APC as well.</p>
+</div>
+<hr>
+<div class="ulist">
+<ul>
+<li>
+<p>cpu:
+<a href="https://www.newegg.com/amd-ryzen-5-3600/p/N82E16819113569?Description=5%203600%20amd&amp;cm_re=5_3600_amd-" class="bare">https://www.newegg.com/amd-ryzen-5-3600/p/N82E16819113569?Description=5%203600%20amd&amp;cm_re=5_3600_amd-</a><em>-19-113-569-</em>-Product[AMD
+Ryzen 5 3600 - 3.6Ghz/4.2Ghz 6-core]</p>
+</li>
+<li>
+<p>mobo:
+<a href="https://www.newegg.com/p/N82E16813157887?Description=asrock%20x570m%20&amp;cm_re=asrock_x570m-" class="bare">https://www.newegg.com/p/N82E16813157887?Description=asrock%20x570m%20&amp;cm_re=asrock_x570m-</a><em>-13-157-887-</em>-Product[ASRock
+X570M Pro4 AM4 MicroAtx]</p>
+</li>
+<li>
+<p>ram x3:
+<a href="https://smile.amazon.com/Crucial-DDR4-21300-Server-Memory-CT16G4WFD8266/dp/B078N7HC6L">Crucial
+16GB DDR4-2666 ECC UDIMM CT16G4WFD8266</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The total was $676 for these parts, with $291 for the memory alone. DDR4
+ram with ecc isn’t cheap. For comparison, a Xeon E5-2650 V2 goes for
+around $70 on ebay, with significantly cheaper DDR3 ram.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+I’ve used the ryzen setup for 3+ months now with no issues.
+</td>
+</tr>
+</table>
+</div>
+<hr>
+<div class="paragraph">
+<p>So I was already at $1,300, <em>before</em> purchasing hard drives. I bought 6
+Western Digital Red 4TB drives initially, @ $100. Later on I got 2 more
+drives, and another stick of ram.</p>
+</div>
+<div class="paragraph">
+<p>Altogether, it was $1300 for the parts + $800 for the drives, or ~$2100
+in total.</p>
+</div>
+<div class="paragraph">
+<p>I didn’t go with a used intel board because of the higher power usage
+and less powerful specs. This made my build much more expensive, but
+also more future proof.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_usage">Usage</h3>
+<div class="paragraph">
+<p>I adapted my jail setup and structure from
+<a href="https://gist.github.com/mow4cash/e2fd4991bd2b787ca407a355d134b0ff">this
+gist</a>, and installed rancheros via
+<a href="https://github.com/redshift-s/rancheros-docker-media">this guide</a>.</p>
+</div>
+<div class="paragraph">
+<p>I currently have 20 <a href="https://en.wikipedia.org/wiki/FreeBSD_jail">jails</a>
+running, and 5 docker containers running in
+<a href="https://rancher.com/rancher-os/">RancherOS</a> (which
+<a href="https://www.ixsystems.com/documentation/freenas/11.2-U7/virtualmachines.html">runs
+in a VM</a> with 2 cpus and 4GB memory).</p>
+</div>
+<div class="paragraph">
+<p>Why jails over docker? Convenience, I guess. It’s far easier for me to
+muck around in iocage jails than it is to inspect and debug docker
+containers. Unfortunately this does mean if I lose my server, I’d have
+to recreate all those jails… but setting them up in the first place was
+pretty easy once I learned how
+<a href="https://www.freebsd.org/cgi/man.cgi?query=rc.d&amp;sektion=8&amp;n=1">rc.d</a>
+worked.</p>
+</div>
+<div class="paragraph">
+<p>Services that I run:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>backblaze
+  -&gt; data backup
+bazarr
+  -&gt; grabs subtitles in multiple languages, hooks into radarr/sonarr
+caddy
+  -&gt; reverse proxy to some of these services
+calendar
+  -&gt; radicale
+kitana
+  -&gt; ui for plex plugins
+mailbackup
+  -&gt; offlineimap + cron
+node_exporter
+  -&gt; feeds into prometheus on the raspberry pi
+paperless
+  -&gt; digital document store
+plex
+  -&gt; media catalogue + streaming
+radarr
+  -&gt; monitors local shows for for bazarr subtitle grabbing
+sonarr
+  -&gt; monitors local movies for for bazarr subtitle grabbing
+syncthing
+  -&gt; seamlessly sync files between computers
+thelounge
+  -&gt; modern irc client. I used to use znc+weechat, but I got
+     tired of weechat's ux. thelounge is simple and pretty.</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>postgres
+mysql</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Several services use databases, so I elected to set aside jails for
+them.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>mc_main
+mc_creative
+mc_survival</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I also run 3 instances of minecraft via <a href="https://papermc.io/">PaperMC</a>, a
+high performance fork of <a href="https://www.spigotmc.org/">Spigot</a>. The main
+jail runs <a href="https://github.com/PaperMC/Waterfall">Waterfall</a> (a fork of
+<a href="https://github.com/SpigotMC/BungeeCord">bungeecord</a>) along with a hub
+instance. Waterfall acts as a proxy and lets one access multiple servers
+within a network.</p>
+</div>
+<div class="paragraph">
+<p>My docker services:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>andrewzah/gollum
+  -&gt; a wiki with changes automatically git pushed
+  -&gt; a fork of gollum with user logins
+insekticid/docker-piwiki (matomo)
+  -&gt; self-hosted analytics (tracking andrewzah.com)
+  -&gt; respects requests to not track user
+radhifadlillah/shiori
+  -&gt; self-hosted website backup, similar to archive.web
+huginn/huginn
+  -&gt; self-hosted, more powerful version of IFTTT
+cwspear/docker-local-persist-volume-plugin
+  -&gt; allows local volume mounts in portainer/rancheros
+portainer/portainer</pre>
+</div>
+</div>
+<div class="imageblock full-width">
+<div class="content">
+<img src="https://s3.amazonaws.com/andrewzah.com/posts/serverbuild-freenas/freenas-memory.png" alt="Current FreeNAS memory graph">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_a_use_for_the_raspberry_pi">A Use for the Raspberry Pi</h3>
+<div class="paragraph">
+<p>Once I built the server, I had no use for my raspberry pi3 and 4. Until
+I learned about <a href="https://prometheus.io/">prometheus</a> and
+<a href="https://grafana.com/">grafana</a>.</p>
+</div>
+<div class="paragraph">
+<p>Having metrics and a dashboard is awesome, but if my server crashes, I
+no longer have access to the metrics… So they have to be run somewhere
+else! This is where the raspberry pi comes in- it just sits on my local
+network ingesting traffic.</p>
+</div>
+<div class="paragraph">
+<p>Unfortunately, node_exporter doesn’t seem to export hdd temperature
+values, which is pretty important. I’ll probably have to write a simple
+script to pull those values and host another metrics target for
+prometheus.</p>
+</div>
+<div class="imageblock full-width">
+<div class="content">
+<img src="https://s3.amazonaws.com/andrewzah.com/posts/serverbuild-freenas/grafana-node-exporter.png" alt="Grafana with node_exporter metrics from FreeNAS">
+</div>
+</div>
+<div class="sect3">
+<h4 id="_why_freenas">Why FreeNAS?</h4>
+<div class="paragraph">
+<p>FreeNAS has extensive documentation. and *BSDs are nice. ZFS and RAID
+are nice. Free Software is nice.</p>
+</div>
+<div class="paragraph">
+<p>If I didn’t use docker so heavily I would likely use FreeBSD or OpenBSD
+for my personal computers as well instead of Debian.</p>
+</div>
+<hr>
+<div class="paragraph">
+<p>Overall the process of building a server was pretty fun, but I’m glad
+I’m done with that for the foreseeable future. I didn’t self-host that
+much when I began, but once I started adding services I started thinking
+about everything I could self host.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_references">References</h2>
+<div class="sectionbody">
+<div class="ulist bibliography">
+<ul class="bibliography">
+<li>
+<p><a href="https://www.ixsystems.com/documentation/freenas/11.2-U7-legacy/freenas.html">FreeNAS® 11.2-U7 User Guide</a></p>
+</li>
+<li>
+<p><a href="https://www.ixsystems.com/community/resources/links-to-useful-threads.108/">iXsystems: Links to useful threads</a></p>
+</li>
+<li>
+<p><a href="https://www.ixsystems.com/community/resources/specific-build-components-list-up-to-32gb-ram.109/">iXsystems: Specific build components list - up to 32GB RAM</a></p>
+</li>
+<li>
+<p><a href="https://www.ixsystems.com/community/threads/slideshow-explaining-vdev-zpool-zil-and-l2arc-for-noobs.7775/">iXsystems: Slideshow explaining VDev, zpool, ZIL and L2ARC for noobs!</a></p>
+</li>
+<li>
+<p><a href="https://www.ixsystems.com/community/threads/amd-ryzen-build.74232/">AMD Ryzen Build</a></p>
+</li>
+<li>
+<p><a href="https://www.ixsystems.com/blog/zfs-dictionary/">iXsystems: ZFS dictionary</a></p>
+</li>
+<li>
+<p><a href="https://www.freebsd.org/doc/en_US.ISO8859-1/articles/rc-scripting/index.html">Practical rc.d scripting in BSD</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+  </section>
+</article>
+
+<p class="divider">&#x203b;</p>
+
+
+<section id="after-post" class="page">
+  
+
+  
+    
+  
+    
+      <strong>other <span class="underline">workflow</span> posts</strong>
+      
+        
+      
+        
+          <div class="post-link">
+  <span class="post-date">
+    <a href="https://andrewzah.com/posts/2019/my-setup-remote-programming-osx-2019/">
+      10/19
+    </a>
+  </span>
+
+  <span class="post-title">
+    <a href="https://andrewzah.com/posts/2019/my-setup-remote-programming-osx-2019/">
+      My setup for remote programming on OSX in 2019
+    </a>
+  </span>
+</div>
+
+        
+      
+    
+  
+</section>
+      </div><div id="footer" class="container">
+  <p> Copyright Andrew Zah (2016&ndash;2020) unless stated otherwise.</p>
+</div>
+</div>
+  </body>
+</html>

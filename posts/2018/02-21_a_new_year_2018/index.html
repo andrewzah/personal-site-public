@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+      
+        A new year, a new site | Andrew Zah
+      
+    </title>
+  
+
+  <meta name="author" content="Andrew Zah">
+  <meta name="application-name" content="Andrew Zah"><link rel="stylesheet" href="https://andrewzah.com/scss/main.min.css">
+
+
+  </head>
+<body>
+    <div id="wrapper">
+      
+
+      <div id="content" class="container page">
+
+<a href="https://andrewzah.com/">Home</a>
+
+<article id="post" class="page">
+  <section id="post-header">
+    <h2 class="post-title">
+      
+      A new year, a new site
+    </h2>
+    
+<div id="post-meta">
+  <time datetime="Feb 02, 2018">
+    February 2, 2018
+  </time> &mdash;
+  850 words
+
+  
+</div>
+
+<p class="divider">&#x203b;</p>
+
+
+  </section>
+
+  <section id="post-body">
+    <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>I’ve migrated my website. Again.</p>
+</div>
+<div class="paragraph">
+<p>This time, I decided to implement it using
+<a href="https://www.getgutenberg.io">Gutenberg</a>, a static website generator which
+is written in <a href="https://www.rust-lang.org/">Rust</a>. I decided it was finally
+time to stop saying ``I’ll learn Rust'', and just started.</p>
+</div>
+<div class="paragraph">
+<p>I also revisited Docker and containerized my website, with
+<a href="https://caddyserver.com/">Caddy</a> as the HTTP/2 server. After using Caddy,
+I simply don’t want to go back to Apache2 or Nginx for personal projects
+ever again. Caddy’s configs are minimal and it automatically handles
+HTTPS certificates using <a href="https://letsencrypt.org/">Let’s Encrypt</a>.</p>
+</div>
+<div class="paragraph">
+<p>Here’s what my Caddyfile for <code>andrewzah.com</code>, <code>andrei.blue</code>, and
+<code>znc.andrewzah.com</code> looks like:</p>
+</div>
+<div class="listingblock">
+<div class="title">Caddyfile</div>
+<div class="content">
+<pre class="highlight"><code class="language-caddyfile" data-lang="caddyfile">andrewzah.com, andrei.blue {
+  tls your@email.com
+
+  log / stdout {combined}
+  errors stderr
+
+  proxy / http://web:1111
+}
+
+znc.andrewzah.com {
+  tls your@email.com
+
+  log / stdout {combined}
+  errors stderr
+
+  proxy / http://znc:6697
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>That’s it. Then with Docker, I can use a Caddy proxy per service.</p>
+</div>
+<div class="paragraph">
+<p>As Gutenberg is a static website generator I have no need for a
+database. Indeed, I thought it was overkill to run an application and a
+Postgres instance just for a handful of posts. I much prefer storing my
+posts <a href="https://github.com/azah/personal-blog">through git</a>. The
+application’s footprint is overall much smaller and I have less
+dependencies to manage. I want to focus on other programming projects,
+not so much my website.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_2017_in_review">2017 in Review</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>2017 was an exploratory year for me. I looked at Docker a lot more,
+learned a bit of Clojure, and delved into Rust.</p>
+</div>
+<div class="sect2">
+<h3 id="_docker">Docker</h3>
+<div class="paragraph">
+<p>I can’t really say much other than Docker is simply amazing. After I
+nuked my first VPS setup, I realized how tedious and truly
+time-consuming manually setting up a server is. It’s ridiculous. Now it
+takes me about 20-25 minutes to set up a server, and that’s only because
+I still do a bit manually (like a docker user, ssh keys, etc). In 2018 I
+plan on studying better provisioning and setup techniques so I can
+automate it completely.</p>
+</div>
+<div class="paragraph">
+<p>My <a href="https://github.com/azah/personal-blog">docker setup</a> utilizes a script
+to manage several services, such as this website and my personal ZNC
+server. Adding a docker service is as simple as getting a premade docker
+image and making a Caddy proxy:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml"># compose.yml
+version: "3.3"
+
+services:
+  bitlbee_tls_proxy:
+    build:
+      context: ${COMPOSE_ROOT}/services/bitlbee/
+      dockerfile: Dockerfile-caddy-net
+    volumes:
+      - type: bind
+        source: ${COMPOSE_ROOT}/services/bitlbee/Caddyfile
+        target: /etc/Caddyfile
+      - type: bind
+        source: ${COMPOSE_ROOT}/data/caddy/caddypath-bitlbee/
+        target: /var/caddy/
+    environment:
+      CADDYPATH: "/var/caddy"
+    ports:
+      - "6667:6667"
+    restart: always
+  bitlbee:
+    build:
+      context: ${COMPOSE_ROOT}/services/bitlbee
+dockerfile: Dockerfile-bitlbee</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">proxy :6667 bitlbee:6667 {
+  host znc.andrewzah.com
+  tls your@email.com
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>So that uses my bitlbee Dockerfile and creates a Caddy proxy in the
+docker container. You can see all of my services
+<a href="https://github.com/azah/andrewzah.com/tree/master/services">here</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_clojure">Clojure</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Studying Clojure — and forcing myself to stick with it — truly changed
+me as a programmer. Shifting from a pure Object Oriented mindset towards
+Functional Programming is easier said than done, but I cannot state how
+important it is to at least understand FP. <code>Map</code>, <code>Reduce</code>, and <code>Filter</code>
+are <em>powerful</em>. Languages like Ruby have implementations of these of
+course, but it’s tough to force yourself to actually use them.</p>
+</div>
+<div class="paragraph">
+<p>Likewise with immutability. Coming from a Ruby background, having to
+program with immutable variables was like learning how to program all
+over again. It was tough. Yet as I reflect now, I think it’s a much
+better approach — although mutable variables are still a good choice in
+certain situations.</p>
+</div>
+<div class="sect2">
+<h3 id="_reducers_transducers">Reducers &amp; Transducers</h3>
+<div class="paragraph">
+<p>I particularly liked Clojure’s
+<a href="https://clojure.org/reference/reducers">reducers</a> &amp;
+<a href="https://clojure.org/reference/transducers">transducers</a>. Again, it took
+time to understand, but once I did… it felt absolutely amazing to
+transform incoming data streams via concise, logical functions. Speaking
+of functions, it was quite a lot of fun to learn about the various
+functions Clojure provides, such as
+<a href="https://clojuredocs.org/clojure.core/zipmap">zipmap</a> and
+<a href="https://clojuredocs.org/clojure.core/trampoline">trampoline</a>.</p>
+</div>
+<div class="paragraph">
+<p>I really like Clojure. Studying the standard library’s functions felt
+rewarding. The only thing I didn’t like was its debugging / compiler
+output. It was not particularly great, coming from a statically typed
+language like <a href="https://crystal-lang.org/">Crystal</a>. I’m still quite new to
+Clojure, but I think it made some things much more frustrating than it
+needed to be.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_rust">Rust</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ah, Rust, what seems like the most talked about language recently. I’ve
+only been studying a bit since December, but I adore it so far. From
+everything that I’ve seen, it looks like Rust takes great concepts from
+various programming styles and paradigms and implements them well. Since
+Rust is new(er) it can take advantage of concepts like
+<a href="https://en.wikipedia.org/wiki/Communicating_sequential_processes">concurrent
+programming</a>, as well as fix or address past issues in other languages.</p>
+</div>
+<div class="paragraph">
+<p>What I will say is that Rust’s compiler is <em>phenomenal</em>. It makes error
+hunting so easy, it’s almost like a joy. <a href="https://crates.io/">Crates.io</a>
+is also fantastic. Shoutouts to those developers.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ownership">Ownership</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>What I love so far about rust is its model on
+<a href="https://doc.rust-lang.org/book/second-edition/ch04-01-what-is-ownership.html">Ownership</a>.
+I still don’t know all that much about Rust, but it’s been a lot of fun
+reading the <a href="https://doc.rust-lang.org/book/second-edition/">Rust Book</a>
+and O’Reilly’s
+<a href="http://shop.oreilly.com/product/0636920040385.do">Programming Rust</a></p>
+</div>
+<div class="paragraph">
+<p>My goal in 2018 is to deeply study Rust and explore safe systems
+programming. Possibly with audio hardware? We’ll just have to see.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_non_programming">Non-programming</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I also spent almost 7 months in Korea. More info on that will come, but
+I truly enjoyed my time there, and I’m making a plan on returning
+full-time as a programmer.</p>
+</div>
+</div>
+</div>
+
+  </section>
+</article>
+
+<p class="divider">&#x203b;</p>
+
+
+<section id="after-post" class="page">
+  
+
+  
+    
+      <strong>other <span class="underline">self</span> posts</strong>
+      
+        
+      
+        
+      
+    
+  
+</section>
+      </div><div id="footer" class="container">
+  <p> Copyright Andrew Zah (2016&ndash;2020) unless stated otherwise.</p>
+</div>
+</div>
+  </body>
+</html>

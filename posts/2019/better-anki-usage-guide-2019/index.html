@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+      
+        Better Anki Usage Guide [2019] | Andrew Zah
+      
+    </title>
+  
+
+  <meta name="author" content="Andrew Zah">
+  <meta name="application-name" content="Andrew Zah"><link rel="stylesheet" href="https://andrewzah.com/scss/main.min.css">
+
+
+  </head>
+<body>
+    <div id="wrapper">
+      
+
+      <div id="content" class="container page">
+
+<a href="https://andrewzah.com/">Home</a>
+
+<article id="post" class="page">
+  <section id="post-header">
+    <h2 class="post-title">
+       [Draft] 
+      Better Anki Usage Guide [2019]
+    </h2>
+    
+<div id="post-meta">
+  <time datetime="May 05, 2019">
+    May 5, 2019
+  </time> &mdash;
+  2220 words
+
+  
+</div>
+
+<p class="divider">&#x203b;</p>
+
+
+  </section>
+
+  <section id="post-body">
+    <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>references = [ [<code>Guide to Anki Intervals and Learning Steps'',
+</code><a href="https://www.youtube.com/watch?v=1XaJjbCSXT0''" class="bare">https://www.youtube.com/watch?v=1XaJjbCSXT0''</a>], [<code>Enhancing learning
+and retarding forgetting: Choices and consequences, Pashler, Rohrer,
+Cepeda, &amp; Carpenter (2007)'',
+</code><a href="https://s3.amazonaws.com/andrewzah.com/studies/Pashler.Rohrer.Cepeda.Carpenter_2007.pdf''" class="bare">https://s3.amazonaws.com/andrewzah.com/studies/Pashler.Rohrer.Cepeda.Carpenter_2007.pdf''</a>],
+[<code>MAINTENANCE OF FOREIGN LANGUAGE VOCABULARY AND THE SPACING EFFECT,
+Bahrick Et al (1993)'',
+</code><a href="https://s3.amazonaws.com/andrewzah.com/studies/Bahrick-et-al-1993-spacing-effect.pdf''" class="bare">https://s3.amazonaws.com/andrewzah.com/studies/Bahrick-et-al-1993-spacing-effect.pdf''</a>],
+[<code>Low-Key Anki'',
+</code><a href="https://massimmersionapproach.com/table-of-contents/anki/''" class="bare">https://massimmersionapproach.com/table-of-contents/anki/''</a>],
+[<code>Targeting an 80-90% Success Rate in Anki'',
+</code><a href="https://eshapard.github.io/anki/target-an-80-90-percent-success-rate-in-anki.html''" class="bare">https://eshapard.github.io/anki/target-an-80-90-percent-success-rate-in-anki.html''</a>],
+[<code>Low-Key Anki: No Penalties or Boosting'',
+</code><a href="https://massimmersionapproach.com/table-of-contents/anki/low-key-anki/low-key-anki-no-penalties-or-boosting/''" class="bare">https://massimmersionapproach.com/table-of-contents/anki/low-key-anki/low-key-anki-no-penalties-or-boosting/''</a>],
+[<code>Low-Key Anki: ResetEZ'',
+</code><a href="https://massimmersionapproach.com/table-of-contents/anki/low-key-anki/low-key-anki-no-penalties-or-boosting/''" class="bare">https://massimmersionapproach.com/table-of-contents/anki/low-key-anki/low-key-anki-no-penalties-or-boosting/''</a>],]</p>
+</div>
+<div class="paragraph">
+<p>resources = [ [<code>Anki Documentation'',
+</code><a href="https://apps.ankiweb.net/docs/manual.html''" class="bare">https://apps.ankiweb.net/docs/manual.html''</a>], [<code>Anki’s Starting Ease
+Factor Setting'',
+</code><a href="https://eshapard.github.io/anki/ankis-initial-ease-factor-setting.html''" class="bare">https://eshapard.github.io/anki/ankis-initial-ease-factor-setting.html''</a>],
+[<code>Augmenting Long-term Memory'',
+</code><a href="http://augmentingcognition.com/ltm.html''" class="bare">http://augmentingcognition.com/ltm.html''</a>], [<code>Everything I Know:
+Strategies, Tips, and Tricks for Anki'',
+</code><a href="https://senrigan.io/blog/everything-i-know-strategies-tips-and-tricks-for-spaced-repetition-anki/''" class="bare">https://senrigan.io/blog/everything-i-know-strategies-tips-and-tricks-for-spaced-repetition-anki/''</a>],
+[<code>John Baez on Research Tactics'',
+</code><a href="https://intelligence.org/2014/02/21/john-baez-on-research-tactics/''" class="bare">https://intelligence.org/2014/02/21/john-baez-on-research-tactics/''</a>],
+[<code>Supermemo Algorithm'',
+</code><a href="https://www.supermemo.com/en/archives1990-2015/english/ol/sm2''" class="bare">https://www.supermemo.com/en/archives1990-2015/english/ol/sm2''</a>],
+[<code>Supermemo Research'',
+</code><a href="https://www.supermemo.com/en/archives1990-2015/english/ol/beginning#Algorithm''" class="bare">https://www.supermemo.com/en/archives1990-2015/english/ol/beginning#Algorithm''</a>]]</p>
+</div>
+<div class="paragraph">
+<p>As you may or may not know, I love <a href="https://apps.ankiweb.net/">Anki</a>, the
+spaced repetition flash cards app. I’ve been using it in my Korean
+learning journey for almost one and a half years now and I’ve written
+about it before. It’s a good app, but you can have a much better
+experience by making some modifications to it.</p>
+</div>
+<div class="paragraph">
+<p>If you don’t know what Anki is or why it’s compelling, I recommend you
+read <a href="http://augmentingcognition.com/ltm.html"><em>Augmenting Long-term
+Memory</em></a>, a blog post by Michael Nielsen.
+<a href="https://senrigan.io/blog/everything-i-know-strategies-tips-and-tricks-for-spaced-repetition-anki/"><em>Everything
+I know: Tips and Tricks for Anki</em></a> by Jeff Shek also has a beginner’s
+guide.</p>
+</div>
+<div class="paragraph">
+<p>If you’re new to Anki, the very first thing I recommend doing is
+<a href="https://apps.ankiweb.net/docs/manual.html">reading the manual</a>, or at
+least <a href="https://apps.ankiweb.net/docs/manual.html#the-basics">the basics</a>.</p>
+</div>
+<div class="paragraph">
+<p>I recommend using Anki for at least 2-3 weeks before reading the rest of
+this article.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_changing_default_settings">Changing default settings</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Anki out of the box has two problematic defaults, and one default that I
+don’t recommend personally.</p>
+</div>
+<div class="sect2">
+<h3 id="_resetting_card_progress">Resetting card progress</h3>
+<div class="paragraph">
+<p>Let’s say you have learned a card, but when you review it you make a
+mistake in recalling it, for whatever reason. Call it a brain fart, or
+pressing too quickly, etc. Or you simply forgot!</p>
+</div>
+<div class="paragraph">
+<p>By default, Anki resets your progress to that of a new card. So even if
+you had worked the card up to a ~4 month interval, now you have to see
+it in 1 day, 2 days, 4 days, all over again…</p>
+</div>
+<div class="paragraph">
+<p>Even if you forget a card, you still had learned it at one point. Which
+means re-learning it is now significantly easier. By completely
+resetting the card’s intervals, Anki is wasting your time. It slowly
+conditions you to be unwilling to press <code>Again</code>, which is not desireable
+at all.\{\{fn(n=0)}}</p>
+</div>
+<div class="paragraph">
+<p><strong>Solution</strong>: In your deck’s options group under Lapses, change
+<code>New interval</code> to <code>70%</code>. This means if you forget a card, the new
+interval will be 70% of the old one. As for why I chose 70%, it just
+felt like an appropriate amount–feel free to play with different
+percentages to see what works best for you.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_taking_too_long_to_mark_leeches">Taking too long to mark Leeches</h3>
+<div class="paragraph">
+<p>After you initially learn a card (the card reached a 1 day interval in
+default anki), if you forget it 8 times, Anki marks it as a Leech and
+suspends the card, not showing it to you anymore.</p>
+</div>
+<div class="paragraph">
+<p>A card being a leech generally means its too complicated, or you’re
+getting it confused with a similar one. 8 times means it’s going to take
+way too long to identify cards that are problematic.</p>
+</div>
+<div class="paragraph">
+<p><strong>Solution</strong>: In your deck’s options group under Lapses, change
+<code>Leech threshold</code> to <code>4</code>. You may also want to change <code>Leech action</code> to
+<code>tag only</code>. This way you can easily sort for leech cards and modify or
+delete them.</p>
+</div>
+<div class="paragraph">
+<p>As for handling leech cards, you generally want to simplify the card, or
+delete it outright. With the time and energy that you wasted on trying
+to recall a leech you could have learned a bunch of other cards. If it’s
+a word that you don’t want to delete, you can suspend the card, and
+practice using that word outside of anki. When you feel more comfortable
+with it you can unsuspend it.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mixing_new_and_review_cards">Mixing new and review cards</h3>
+<div class="paragraph">
+<p>By default, Anki mixes new and review cards. However, reviewing is
+vastly more important than learning new cards–it’s okay if you don’t
+memorize new cards every day, but missing reviews really hurts your
+memorization progress.</p>
+</div>
+<div class="paragraph">
+<p>By putting reviews first, you can always do reviews daily and then
+choose to learn new words or not depending on how busy you are, how
+tired you are, etc. If the cards are mixed you can’t do this, making it
+likely you’ll just skip Anki for that day entirely, which can can
+quickly snowball into not using anki at all anymore. This happened to
+me.</p>
+</div>
+<div class="paragraph">
+<p><strong>Solution</strong>: In Anki’s preferences, change <code>Mix new cards and reviews</code> to
+<code>Show new cards after reviews</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_making_better_card_templates">Making better card templates</h3>
+<div class="paragraph">
+<p>The <strong>Basic</strong> card template in Anki has two fields: <code>Front</code> and <code>Back</code>.
+This is the minimum for flashcards obviously, but as you make cards it’s
+likely you’ll want to have separate information.</p>
+</div>
+<div class="paragraph">
+<p>Over time my personal <strong>Zah Korean</strong> card template has grown to eight
+fields: <code>english</code>, <code>korean</code>, <code>grammarType</code>, <code>samples</code>, <code>hanja</code>, <code>notes</code>,
+<code>image</code> and <code>sound</code>. On the front I show <code>english</code>, and <code>grammarType</code> as
+a hint. Some people put sample sentences but I find this leads to
+short-circuiting your recall; instead of recalling the word you
+recognize that sentence.</p>
+</div>
+<div class="paragraph">
+<p>I also have a <strong>Zah Colorcard</strong> template which has a <code>hexColor</code> field.
+Because I initially tried to learn colors in Korean like regular
+vocabulary, which makes no sense. Anki lets you pull in values easily in
+the template’s html and css sections.</p>
+</div>
+<div class="paragraph">
+<p>You can modify a card’s fields by going to Add or Edit, then clicking on
+<code>Fields&#8230;&#8203;</code>. You can add a new card type by going to Add or Edit, then
+click on the type, and then click <code>Manage</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_better_styling_with_html_and_css">Better styling with html and css</h3>
+<div class="paragraph">
+<p>Default anki’s styling is very plain. I recommend modifying it to show
+different fields in different colors. For example, my <code>grammarType</code>
+field is rendered in green while <code>hanja</code> is rendered in purple. I render
+my color card’s hex value dynamically. Here’s what my cards look like;
+the horizontal line denotes the front and back:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://s3.amazonaws.com/andrewzah.com/posts/017/templates.jpg" alt="How my templates look for sample cards">
+</div>
+</div>
+<div class="paragraph">
+<p>You can go to Browse, Add, or Edit and click on <code>Cards&#8230;&#8203;</code> to get to the
+style dialogue. Some premade decks include nice styling for you, or
+default to a night mode. For more in-depth info, you can visit
+<a href="https://apps.ankiweb.net/docs/manual.html#card-styling">styling in the
+anki manual</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_why_behavior_changing_plugins_are_needed">Why behavior-changing plugins are needed</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Essentially, the way Anki treats cards is not intuitive, and actually
+hampers your memorization progress. Let’s say you’re reviewing a
+card–you have four options. <code>Again</code>, if you forget, and <code>Hard</code>, <code>Good</code>,
+or <code>Easy</code>.</p>
+</div>
+<div class="paragraph">
+<p>You would assume this means "I (the user) had a hard/good/easy time
+recalling this card today", right? Well, Anki actually sees it as
+"this card is intrinsically more difficult; please modify it
+permanently".</p>
+</div>
+<div class="paragraph">
+<p>Huh?</p>
+</div>
+<div class="paragraph">
+<p>You see, every card in Anki has an individual <code>ease</code> percentage,
+starting at 250% by default. The algorithm that calculates a new
+interval goes like:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>NewInterval = OldInterval × CardEase × DeckIntervalModifier
+
+Where:
+  OldInterval: 1 day is the first default value
+  CardEase: 250% by default
+  DeckIntervalModifier: 1.0 by default, set on a per-deck basis</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When you hit <code>Again</code>, <code>Hard</code> or <code>Easy</code>, Anki modifies the ease by
+<code>-20%</code>, <code>-15%</code>, or <code>+15%</code>, respectively. A card’s ease can’t go lower
+than 130%. You can see now why people recommend not hitting <code>Easy</code> at
+all.. it quickly snowballs.</p>
+</div>
+<div class="imageblock smol">
+<div class="content">
+<img src="https://s3.amazonaws.com/andrewzah.com/posts/017/wack.jpg" alt="still of Hannibal Buress on The Eric Andre Show saying the word wack">
+</div>
+</div>
+<div class="paragraph">
+<p>So you might be saying, why is seeing cards too often, aka
+"overlearning", an issue? Either way, I’m seeing more difficult cards
+more often.. Well, research suggests that after an initial period, the
+extra time spent doesn’t actually lead to better recall.</p>
+</div>
+<div class="paragraph">
+<p>In one study (Rohrer, Taylor, Pashler, Wixted, &amp; Cepeda, 2005), college
+students learned novel vocabulary (e.g., cicatrix–scar), cycling through
+a list of word–definition pairs either 5 or 10 times. <strong>The extra 5
+cycles yielded a substantial benefit after 1 week, but the gain was no
+longer apparent after 4 weeks</strong> … From a long-term perspective,
+overlearning appears to be inefficient almost to the point of wasting
+time.[0]</p>
+</div>
+<div class="paragraph">
+<p>Now take a look at what happens in Anki if you lower the ease too much:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://s3.amazonaws.com/andrewzah.com/posts/017/ease-example.jpg" alt="Image taken from Guide to Anki Intervals and Learning Steps[1]">
+</div>
+</div>
+<div class="paragraph">
+<p>So even if you know a card enough to hit <code>Good</code>, if you had hit <code>Hard</code>
+3-4 times prior, the interval growth rate is permanently stunted due to
+how Anki works. You would have to hit <code>Easy</code> to balance it which is
+counterintuitive.</p>
+</div>
+<div class="paragraph">
+<p>Research also suggests that larger spacing is better in the long term.</p>
+</div>
+<div class="paragraph">
+<p>In a 9-year longitudinal investigation, 4 subjects learned and relearned
+300 English-foreign language word pairs. Either 13 or 26 relearning
+sessions were administered at intervals of 14, 28, or 56 days. Retention
+was tested for 1, 2, 3, or 5 years after training terminated. <strong>The
+longer intersession intervals slowed down acquisition slightly, but this
+disadvantage during training was offset hy substantially higher
+retention.</strong> Thirteen retraining sessions spaced at 56 days yielded
+retention comparable to 26 sessions spaced at 14 days.[2]</p>
+</div>
+<div class="paragraph">
+<p>Our results can be summarized as follows. We find that over substantial
+time periods, spacing has powerful (and typically nonmonotonic) effects
+on retention, with optimal memory occurring when spacing is some modest
+fraction of the final retention interval (perhaps about 10%–20%).[1]</p>
+</div>
+<div class="paragraph">
+<p>With that out of the way, here are the plugins I use.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_utilizing_subdecks">Utilizing subdecks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you review from multiple decks daily, you can use a parent deck with
+subdecks to mix reviews. This is my own personal opinion, but I think
+it’s better for recall if you change contexts. This is more like recall
+in real life.</p>
+</div>
+<div class="paragraph">
+<p>Making subdecks in anki is really easy–just make a parent deck, and drag
+decks onto it. Or you can manually rename the deck in this format:
+<code>Parent Deck Name::Subdeck Name</code>. If done right, it should appear like
+this:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://s3.amazonaws.com/andrewzah.com/posts/017/subdecks.png" alt="A picture of anki open displaying how the interface shows subdecks">
+</div>
+</div>
+<div class="paragraph">
+<p>The only issue is Anki will still do reviews one deck at a time. I tried
+using the experimental V2 scheduler, but it didn’t work for me. So now
+we have to turn to a plugin:
+<a href="https://ankiweb.net/shared/info/1460733408">HoochieMama: Randomize Rev
+Queue</a>. After you install this, open Anki’s preferences, and in the
+Muffins tab enable <code>Hoochie Mama! RandRevQ w/ subdeck limit</code>. <strong>Note</strong>:
+back up your anki before adding behavior modification plugins like this.</p>
+</div>
+<div class="paragraph">
+<p>That’s it! Now you can review from multiple subdecks, and new cards are
+still deck by deck. If you want to mix new cards as well, there’s
+<a href="https://ankiweb.net/shared/info/1173108619">Hoochie Papa</a>. I personally
+don’t think that is as useful.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_utilizing_filter_decks">Utilizing filter decks</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_visual_plugins">Visual Plugins</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>These aren’t really necessary but I like seeing stats. Give me all the
+stats.</p>
+</div>
+<div class="sect2">
+<h3 id="true-retention-by-card-maturityretention"><a href="https://ankiweb.net/shared/info/923360400" class="bare">https://ankiweb.net/shared/info/923360400</a>[True Retention by Card</h3>
+<div class="paragraph">
+<p>Maturity]</p>
+</div>
+<div class="paragraph">
+<p>This is basically a fancy stats plugin. You can see a detailed breakdown
+by day, week, and month, and see your true retention rate. You want
+roughly 80-90% retention. [TODO]</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="more-decks-stats-and-time-leftmore-decks"><a href="https://ankiweb.net/shared/info/1556734708" class="bare">https://ankiweb.net/shared/info/1556734708</a>[More decks stats and time</h3>
+<div class="paragraph">
+<p>left]</p>
+</div>
+<div class="paragraph">
+<p>``This addon shows extra information of the due cards and returns the
+expected time to finalize (Due+New).''</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enhance-main-windowenhance"><a href="https://ankiweb.net/shared/info/877182321">Enhance main window</a></h3>
+<div class="paragraph">
+<p>This adds more stats to the main window via columns. As you can see in
+that link, the default config adds quite a lot, so I
+<a href="https://gist.github.com/azah/0391ce0fc3e90f3defea75ef518fd195">modified
+my config</a> to pare it down, which looks like this:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://s3.amazonaws.com/andrewzah.com/posts/017/enhanced.png" alt="A picture displaying how the anki main window looks different with this plugin enabled">
+</div>
+</div>
+<div class="paragraph">
+<p>Note that the stats at the bottom are from the
+<code>More decks stats and time left</code> plugin.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="progress-graphs-and-stats-for-mature-and-learned-cardsprogress-graphs"><a href="https://ankiweb.net/shared/info/266436365" class="bare">https://ankiweb.net/shared/info/266436365</a>[Progress graphs and stats</h3>
+<div class="paragraph">
+<p>for mature and learned cards]</p>
+</div>
+<div class="paragraph">
+<p>Adds two new graphs to the stats window.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="button-colours-good-againbutton-colors"><a href="https://ankiweb.net/shared/info/2494384865" class="bare">https://ankiweb.net/shared/info/2494384865</a>[Button Colours (Good,</h3>
+<div class="paragraph">
+<p>Again)]</p>
+</div>
+<div class="paragraph">
+<p>Simply colorizes Again to be red, Good to be green, etc. It’s a small
+but nice thing to have when reviewing. There’s also
+<a href="https://ankiweb.net/shared/info/1829090218">Large and Colorful Buttons</a>
+if you wanted even more colorful buttons.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="kanji-gridkanji-grid"><a href="https://ankiweb.net/shared/info/909972618">Kanji Grid</a></h3>
+<div class="paragraph">
+<p>This is an awesome plugin that visually shows your kanji learning
+progress. Simply select a deck that has a <code>kanji</code> field, and run Tools &gt;
+<code>Generate Kanji Grid</code>. It looks like this:</p>
+</div>
+<div class="imageblock full-width">
+<div class="content">
+<img src="https://s3.amazonaws.com/andrewzah.com/posts/017/kanji-grid.png" alt="A grid showing kanji characters with a color background based on how long the current interval is">
+</div>
+</div>
+<div class="paragraph">
+<p>This was generated from my deck with the default settings.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_behavior_plugins">Behavior Plugins</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is where things get fun. These plugins change the core
+functionality of Anki, so please, read about them and make sure you
+understand what they do before adding them.</p>
+</div>
+<div class="paragraph">
+<p><strong>Back up your Anki before installing these</strong>.</p>
+</div>
+<div class="sect2">
+<h3 id="search-in-add-card-dialoguesearch-in"><a href="https://ankiweb.net/shared/info/1781298089" class="bare">https://ankiweb.net/shared/info/1781298089</a>[Search in Add Card</h3>
+<div class="paragraph">
+<p>Dialogue]</p>
+</div>
+<div class="paragraph">
+<p>This adds a pane to the <code>Add Card</code> window, letting you quickly search
+through your Anki decks for keywords. It’s very useful for finding
+duplicates, or searching among sample sentences.</p>
+</div>
+<div class="paragraph">
+<p>The only con is the search doesn’t work for non-ascii text. When I have
+time I plan on fixing this.</p>
+</div>
+<div id="resetezlowkey-install" class="paragraph">
+<p>===
+<a href="https://massimmersionapproach.com/table-of-contents/anki/low-key-anki/low-key-anki-summary-and-installation/">ResetEZ</a></p>
+</div>
+<div class="paragraph">
+<p>This adds a command in your Tools menu called
+<code>Reset Ease + Force Sync After</code>. It resets <strong>all</strong> Anki cards to have the
+default ease value, 250%. You have to install it manually.</p>
+</div>
+<div id="no-penalties-or-boostinglowkey-install" class="paragraph">
+<p>===
+<a href="https://massimmersionapproach.com/table-of-contents/anki/low-key-anki/low-key-anki-summary-and-installation/">No
+Penalties or Boosting</a></p>
+</div>
+<div class="paragraph">
+<p>This changes <code>Again</code>, <code>Hard</code>, and <code>Easy</code> to not change the card’s ease
+value. By default, Anki modifies it by -20%, -15%, or +15%,
+respectively. This is a bad idea, and I go into more detail [in my other
+anki post][TODO]. This goes hand in hand with ResetEZ. It also needs to
+be manually installed.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="hoochie-mama-randomize-rev-queuehoochie"><a href="https://ankiweb.net/shared/info/1460733408" class="bare">https://ankiweb.net/shared/info/1460733408</a>[Hoochie Mama: Randomize</h3>
+<div class="paragraph">
+<p>Rev Queue]</p>
+</div>
+<div class="paragraph">
+<p>See <a href="#utilizing-subdecks">Making use of subdecks</a> above. This
+randomizes review cards in subdecks.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_other_plugins">Other Plugins</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There may be plugins for the language that you’re learning. Japanese has
+several, for example. It’s worth searching ``anki {language}'' to see
+what’s available.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_conclusion">Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Considering that we end up using Anki for years, it’s worth taking some
+time to improve it and read the documentation closely. Is there a plugin
+or change that you feel like I missed? Let me know.</p>
+</div>
+<div class="paragraph">
+<p>I have also written a post on
+<a href="../posts/things-to-avoid-with-anki">general things to avoid while
+using Anki</a> that I recommend you check out.</p>
+</div>
+</div>
+</div>
+
+  </section>
+</article>
+
+<p class="divider">&#x203b;</p>
+
+
+<section id="after-post" class="page">
+  
+
+  
+    
+      <strong>other <span class="underline">anki</span> posts</strong>
+      
+        
+          <div class="post-link">
+  <span class="post-date">
+    <a href="https://andrewzah.com/posts/2020/my-850-dollar-watch-cant-render-korean-text/">
+      01/11
+    </a>
+  </span>
+
+  <span class="post-title">
+    <a href="https://andrewzah.com/posts/2020/my-850-dollar-watch-cant-render-korean-text/">
+      My $850 smartwatch can’t render Korean text
+    </a>
+  </span>
+</div>
+
+        
+      
+        
+      
+        
+          <div class="post-link">
+  <span class="post-date">
+    <a href="https://andrewzah.com/posts/2019/05-18_things_to_avoid_in_anki/">
+      05/18
+    </a>
+  </span>
+
+  <span class="post-title">
+    <a href="https://andrewzah.com/posts/2019/05-18_things_to_avoid_in_anki/">
+      Things to avoid with Anki
+    </a>
+  </span>
+</div>
+
+        
+      
+    
+  
+    
+      <strong>other <span class="underline">memorization</span> posts</strong>
+      
+        
+      
+        
+          <div class="post-link">
+  <span class="post-date">
+    <a href="https://andrewzah.com/posts/2019/05-18_things_to_avoid_in_anki/">
+      05/18
+    </a>
+  </span>
+
+  <span class="post-title">
+    <a href="https://andrewzah.com/posts/2019/05-18_things_to_avoid_in_anki/">
+      Things to avoid with Anki
+    </a>
+  </span>
+</div>
+
+        
+      
+    
+  
+</section>
+      </div><div id="footer" class="container">
+  <p> Copyright Andrew Zah (2016&ndash;2020) unless stated otherwise.</p>
+</div>
+</div>
+  </body>
+</html>
