@@ -31,13 +31,28 @@
     </h2>
     
 <div id="post-meta">
-  <time datetime="Oct 10, 2019">
+  <time itemprop="datePublished" datetime="Oct 10, 2019">
     October 10, 2019
   </time> &mdash;
-  1941 words
+  1999 words
+  &mdash;
+  <ul class="post-tags">
+    under
+    
+    
 
-  
-</div>
+    
+      <li>
+        <a class="link" href="https://andrewzah.com/tags/programming/">programming</a>,</li>
+    
+      <li>
+        <a class="link" href="https://andrewzah.com/tags/workflow/">workflow</a></li>
+    
+  </ul>
+
+  <br><time itemprop="dateModified" datetime="Oct 10, 2019">
+        Updated on October 10, 2019
+      </time></div>
 
 <p class="divider">&#x203b;</p>
 
@@ -45,7 +60,30 @@
   </section>
 
   <section id="post-body">
-    <div id="preamble">
+    <div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_development_machine">1. Development Machine</a></li>
+<li><a href="#_configuring_osx_tools">2. Configuring OSX &amp; Tools</a>
+<ul class="sectlevel2">
+<li><a href="#_poor_mans_window_tiling">2.1. poor man’s window tiling</a></li>
+<li><a href="#_poor_mans_workspaces">2.2. poor man’s workspaces</a></li>
+<li><a href="#_apps">2.3. apps</a></li>
+<li><a href="#_code_editor">2.4. code editor</a></li>
+<li><a href="#_code_editor_for_c">2.5. code editor (for C#)</a></li>
+</ul>
+</li>
+<li><a href="#_workflow">3. Workflow</a>
+<ul class="sectlevel2">
+<li><a href="#_tasks">3.1. tasks</a></li>
+<li><a href="#_logging_my_thoughts">3.2. logging my thoughts</a></li>
+</ul>
+</li>
+<li><a href="#_conclusion">4. Conclusion</a></li>
+<li><a href="#_references">References</a></li>
+</ul>
+</div>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>Hi! My name is Andrew, and I work remotely as a software developer. I’ve
@@ -57,11 +95,12 @@ traveling, and this is how I stay productive.</p>
 <div class="content">
 <img src="https://s3.amazonaws.com/andrewzah.com/posts/015/wework-gangnam.jpg" alt="Working remotely at WeWork in Gangnam Seoul">
 </div>
+<div class="title">Figure 1. Working remotely at WeWork in 강남</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_development_machine">Development Machine</h2>
+<h2 id="_development_machine"><a class="anchor" href="#_development_machine"></a>1. Development Machine</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Before we begin, why apple and osx?</p>
@@ -89,7 +128,7 @@ premiere, affinity designer, and sketch.</p>
 <div class="paragraph">
 <p>Before you scoff, I used freebsd and arch on my home pc as daily
 drivers. I used a modded thinkpad t430 for a few months as
-well.\{\{fn(n=0)}} I put in an i7-3632QM (quadcore) chip, a quieter
+well. <a href="#tmg">[0]</a> I put in an i7-3632QM (quadcore) chip, a quieter
 heatsink, 2x8gb memory, a t420 old-style keyboard, and a 9 cell battery.</p>
 </div>
 <div class="paragraph">
@@ -103,16 +142,16 @@ reset the system time in BIOS).</p>
 </div>
 <div class="paragraph">
 <p>I was always worried about my power source. I
-<a href="https://andrewzah.com/posts/living-out-of-two-backpacks-a-six-month-retrospective/">have
-lived out of two backpacks</a> and worked remotely while traveling, so I
+<a href="https://andrewzah.com/posts/2019/living-out-of-2-backpacks-6-month-retrospective/">have lived out of two backpacks</a>
+and worked remotely while traveling, so I
 can’t rely on always being next to an outlet. My 2015 13" macbook pro’s
 battery is still good to the point that I can get 6-7 hours out of it
 while working with Rust/C#. It’s more like 8-9 if I’m only doing light
 writing, etc.</p>
 </div>
 <div class="paragraph">
-<p>I know someone’s going to respond with ``but oh, you should’ve just used
-power with x, y, z configurations!''. I _did_ experiment with
+<p>I know someone’s going to respond with "but oh, you should’ve just used
+power with x, y, z configurations!". I _did_ experiment with
 different settings with power and other alternative tools–nothing
 seemed to help. Call me a grumpy old man but I want to work and get
 things done… not fiddle about with battery tuning settings and the like.</p>
@@ -134,7 +173,7 @@ writing machine.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_configuring_osx_tools">Configuring OSX &amp; Tools</h2>
+<h2 id="_configuring_osx_tools"><a class="anchor" href="#_configuring_osx_tools"></a>2. Configuring OSX &amp; Tools</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The first thing I always do is install xcode-tools, iTerm2, brew, and
@@ -152,7 +191,7 @@ for cask items. I
 originally started abstracting out my dotfiles.</p>
 </div>
 <div class="sect2">
-<h3 id="_poor_mans_window_tiling">poor man’s window tiling</h3>
+<h3 id="_poor_mans_window_tiling"><a class="anchor" href="#_poor_mans_window_tiling"></a>2.1. poor man’s window tiling</h3>
 <div class="paragraph">
 <p>After using i3 I can’t go back to non-tiling window managers. I long for
 the day that i3 works natively on osx. Sigh.</p>
@@ -172,27 +211,22 @@ honest I don’t use most of these hotkeys still.</p>
 presses shift, command, control, and option.</p>
 </div>
 <div class="sect3">
-<h4 id="_cons">cons</h4>
+<h4 id="_cons"><a class="anchor" href="#_cons"></a>2.1.1. cons</h4>
 <div class="paragraph">
 <p>Some applications have minimum window sizes. So if I have too many
 windows in one workspace, they will just overlap. Spotify and KakaoTalk
 are example offenders.</p>
 </div>
-<div class="imageblock full-width">
-<div class="content">
-<img src="https://s3.amazonaws.com/andrewzah.com/posts/015/overlap.png" alt="An example image showing how Kakaotalk does not layout correctly when I have a terminal kakaotalk and two chat windows open">
-</div>
-</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_poor_mans_workspaces">poor man’s workspaces</h3>
+<h3 id="_poor_mans_workspaces"><a class="anchor" href="#_poor_mans_workspaces"></a>2.2. poor man’s workspaces</h3>
 <div class="paragraph">
 <p>I use 10 Spaces. I added shortcuts to quickly focus them: hyper + 1-5,
 w-y.</p>
 </div>
 <div class="paragraph">
-<p>I disable ``Automatically rearrange Spaces based on most recent use'',
+<p>I disable "Automatically rearrange Spaces based on most recent use",
 in Settings &#8594; Mission Control. This has got to be one of the worst
 defaults ever made.</p>
 </div>
@@ -238,7 +272,7 @@ defaults ever made.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_apps">apps</h3>
+<h3 id="_apps"><a class="anchor" href="#_apps"></a>2.3. apps</h3>
 <div class="paragraph">
 <p>I almost always have iterm2, firefox, kakaotalk, anki, and thunderbird
 running.</p>
@@ -263,27 +297,53 @@ running.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Task bar apps: * Harvest (time tracking) * Duet (use my ipad as an extra
-display)_ _ Caffeine (prevent my computer from sleeping) * SnapScan
-client (for my
-<a href="https://www.fujitsu.com/global/products/computing/peripheral/scanners/scansnap/ix500/">Fujitsu
-ix500 scanner</a>)</p>
+<p>Task bar apps:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Harvest (time tracking)</p>
+</li>
+<li>
+<p>Duet (to use my ipad as an extra display)</p>
+</li>
+<li>
+<p>Caffeine (prevent my computer from sleeping)</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>And non programming-related ones: * Discord (messaging, language study,
-rss) * KakaoTalk (messaging) * Line (messaging) * Signal (messaging) *
-Anki (flash card study)</p>
+<p>And non programming-related ones:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Discord (messaging, language study, rss)</p>
+</li>
+<li>
+<p>KakaoTalk (messaging)</p>
+</li>
+<li>
+<p>Line (messaging)</p>
+</li>
+<li>
+<p>Signal (messaging)</p>
+</li>
+<li>
+<p>Anki (flash card study)</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_code_editor">code editor</h3>
+<h3 id="_code_editor"><a class="anchor" href="#_code_editor"></a>2.4. code editor</h3>
 <div class="paragraph">
 <p>For non-C# code, I use neovim, vim, or vi, in that order. I don’t really
 care what you use. I like (neo)vim, so I use that. I just become
 disappointed when people reflexively dismiss it (or Emacs) because they
 have any learning curve, like at all. There’s a <em>reason</em> why vim has
 one, and it’s not because Bram Moolenaar is particularly masochistic. In
-particular, modal editing and buffers\{\{refer(n=0)}} are why I enjoy
+particular, modal editing and buffers <a href="#buf">[1]</a> are why I enjoy
 vim.</p>
 </div>
 <div class="paragraph">
@@ -343,7 +403,7 @@ made <a href="https://github.com/arcticicestudio/nord">Nord</a> but with green a
 main color instead of blue, I might use that.</p>
 </div>
 <div class="sect3">
-<h4 id="_cons_2">cons</h4>
+<h4 id="_cons_2"><a class="anchor" href="#_cons_2"></a>2.4.1. cons</h4>
 <div class="paragraph">
 <p>Vim’s autocompletion… exists I guess. A while ago I looked into it but
 it seemed not worth the hassle to set up. Anyway, ctrl-p in <code>insert</code>
@@ -359,7 +419,7 @@ is.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_code_editor_for_c">code editor (for C#)</h3>
+<h3 id="_code_editor_for_c"><a class="anchor" href="#_code_editor_for_c"></a>2.5. code editor (for C#)</h3>
 <div class="paragraph">
 <p>I use <a href="https://www.jetbrains.com/rider/">IntelliJ Rider</a> on both osx and
 arch. I think the value is worth it. It’s definitely nowhere near as
@@ -380,10 +440,10 @@ are interesting, to put it one way.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_workflow">Workflow</h2>
+<h2 id="_workflow"><a class="anchor" href="#_workflow"></a>3. Workflow</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_tasks">tasks</h3>
+<h3 id="_tasks"><a class="anchor" href="#_tasks"></a>3.1. tasks</h3>
 <div class="paragraph">
 <p>Everything starts and ends with meetings and slack. I work on different
 projects for clients and my team has a daily 5-30min call at 9am (10pm
@@ -443,10 +503,10 @@ if you always need rapid communication with your team.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_logging_my_thoughts">logging my thoughts</h3>
+<h3 id="_logging_my_thoughts"><a class="anchor" href="#_logging_my_thoughts"></a>3.2. logging my thoughts</h3>
 <div class="paragraph">
-<p>The <a href="http://notational.net/">Notational Velocity</a> application changed my
-life. At its core, the idea is deceivingly simple.</p>
+<p>The <a href="http://notational.net/">Notational Velocity</a> application massively improved the quality of my life.
+At its core, the idea is deceivingly simple.</p>
 </div>
 <div class="quoteblock">
 <blockquote>
@@ -458,11 +518,14 @@ life. At its core, the idea is deceivingly simple.</p>
 and to scrape away the tartar of convention that handicaps its
 retrieval.</p>
 </div>
-</blockquote>
-</div>
 <div class="paragraph">
 <p>You store text in notes. There is only one search box–if a file doesn’t
 exist for your search string, one will automatically be created.</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; National Velocity
+</div>
 </div>
 <div class="paragraph">
 <p>I began to use it for just about everything, since any and all
@@ -555,7 +618,7 @@ korean/clothes-verbs.md</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_conclusion">Conclusion</h2>
+<h2 id="_conclusion"><a class="anchor" href="#_conclusion"></a>4. Conclusion</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This is my personal setup. I find it fascinaing to look at other
@@ -566,15 +629,15 @@ suggestions.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_references">References</h2>
+<h2 id="_references"><a class="anchor" href="#_references"></a>References</h2>
 <div class="sectionbody">
 <div class="ulist bibliography">
 <ul class="bibliography">
 <li>
-<p><a href="https://medium.com/@n4ru/the-definitive-t430-modding-guide-3dff3f6a8e2e">Definitive T430 Modding Guide</a></p>
+<p><a id="tmg"></a>[0] <a href="https://medium.com/@n4ru/the-definitive-t430-modding-guide-3dff3f6a8e2e">Definitive T430 Modding Guide</a></p>
 </li>
 <li>
-<p><a href="https://stackoverflow.com/questions/26708822/why-do-vim-experts-prefer-buffers-over-tabs">SO: Why do Vim experts prefer buffers over tabs?</a></p>
+<p><a id="buf"></a>[1] <a href="https://stackoverflow.com/questions/26708822/why-do-vim-experts-prefer-buffers-over-tabs">SO: Why do Vim experts prefer buffers over tabs?</a></p>
 </li>
 </ul>
 </div>

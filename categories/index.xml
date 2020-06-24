@@ -8,19 +8,10 @@
     <language>en-us</language>
     <managingEditor>zah@andrewzah.com (Andrew Zah)</managingEditor>
     <webMaster>zah@andrewzah.com (Andrew Zah)</webMaster>
-    <lastBuildDate>Sat, 11 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 22 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://andrewzah.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>rants</title>
-      <link>https://andrewzah.com/categories/rants/</link>
-      <pubDate>Sat, 11 Jan 2020 00:00:00 +0000</pubDate>
-      <author>zah@andrewzah.com (Andrew Zah)</author>
-      <guid>https://andrewzah.com/categories/rants/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>selfhosting</title>
@@ -55,15 +46,6 @@
       <pubDate>Sun, 19 May 2019 00:00:00 +0000</pubDate>
       <author>zah@andrewzah.com (Andrew Zah)</author>
       <guid>https://andrewzah.com/categories/learning/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>programming</title>
-      <link>https://andrewzah.com/categories/programming/</link>
-      <pubDate>Thu, 11 Apr 2019 00:00:00 +0000</pubDate>
-      <author>zah@andrewzah.com (Andrew Zah)</author>
-      <guid>https://andrewzah.com/categories/programming/</guid>
       <description></description>
     </item>
     

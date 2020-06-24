@@ -14,20 +14,11 @@
     
     
     <item>
-      <title>anki</title>
-      <link>https://andrewzah.com/tags/anki/</link>
+      <title>languages</title>
+      <link>https://andrewzah.com/tags/languages/</link>
       <pubDate>Sat, 11 Jan 2020 00:00:00 +0000</pubDate>
       <author>zah@andrewzah.com (Andrew Zah)</author>
-      <guid>https://andrewzah.com/tags/anki/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>docker</title>
-      <link>https://andrewzah.com/tags/docker/</link>
-      <pubDate>Sat, 11 Jan 2020 00:00:00 +0000</pubDate>
-      <author>zah@andrewzah.com (Andrew Zah)</author>
-      <guid>https://andrewzah.com/tags/docker/</guid>
+      <guid>https://andrewzah.com/tags/languages/</guid>
       <description></description>
     </item>
     
@@ -41,11 +32,11 @@
     </item>
     
     <item>
-      <title>watches</title>
-      <link>https://andrewzah.com/tags/watches/</link>
+      <title>rants</title>
+      <link>https://andrewzah.com/tags/rants/</link>
       <pubDate>Sat, 11 Jan 2020 00:00:00 +0000</pubDate>
       <author>zah@andrewzah.com (Andrew Zah)</author>
-      <guid>https://andrewzah.com/tags/watches/</guid>
+      <guid>https://andrewzah.com/tags/rants/</guid>
       <description></description>
     </item>
     
@@ -104,11 +95,29 @@
     </item>
     
     <item>
+      <title>docker</title>
+      <link>https://andrewzah.com/tags/docker/</link>
+      <pubDate>Sun, 02 Jun 2019 00:00:00 +0000</pubDate>
+      <author>zah@andrewzah.com (Andrew Zah)</author>
+      <guid>https://andrewzah.com/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>zola</title>
       <link>https://andrewzah.com/tags/zola/</link>
       <pubDate>Sun, 02 Jun 2019 00:00:00 +0000</pubDate>
       <author>zah@andrewzah.com (Andrew Zah)</author>
       <guid>https://andrewzah.com/tags/zola/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>anki</title>
+      <link>https://andrewzah.com/tags/anki/</link>
+      <pubDate>Sun, 19 May 2019 00:00:00 +0000</pubDate>
+      <author>zah@andrewzah.com (Andrew Zah)</author>
+      <guid>https://andrewzah.com/tags/anki/</guid>
       <description></description>
     </item>
     

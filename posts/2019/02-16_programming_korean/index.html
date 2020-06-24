@@ -26,18 +26,33 @@
 <article id="post" class="page">
   <section id="post-header">
     <h2 class="post-title">
-       [Draft] 
+      
       Korean for Programmers
     </h2>
     
 <div id="post-meta">
-  <time datetime="Feb 02, 2019">
+  <time itemprop="datePublished" datetime="Feb 02, 2019">
     February 2, 2019
   </time> &mdash;
-  2627 words
+  2724 words
+  &mdash;
+  <ul class="post-tags">
+    under
+    
+    
 
-  
-</div>
+    
+      <li>
+        <a class="link" href="https://andrewzah.com/tags/programming/">programming</a>,</li>
+    
+      <li>
+        <a class="link" href="https://andrewzah.com/tags/korean/">korean</a></li>
+    
+  </ul>
+
+  <br><time itemprop="dateModified" datetime="Feb 02, 2019">
+        Updated on June 6, 2020
+      </time></div>
 
 <p class="divider">&#x203b;</p>
 
@@ -45,11 +60,34 @@
   </section>
 
   <section id="post-body">
-    <div id="preamble">
+    <div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_hangeul_basics">1. Hangeul Basics</a>
+<ul class="sectlevel2">
+<li><a href="#_grid_system">1.1. Grid System</a></li>
+</ul>
+</li>
+<li><a href="#_subject_elision_especially_you">2. Subject Elision, especially -you-</a></li>
+<li><a href="#_sentences_grammar">3. Sentences &amp; Grammar</a>
+<ul class="sectlevel2">
+<li><a href="#_sentence_order">3.1. Sentence Order</a></li>
+<li><a href="#_finally_a_sentence">3.2. Finally, a sentence</a></li>
+<li><a href="#_markers">3.3. Markers</a></li>
+<li><a href="#_pipelining_data_transformations">3.4. Pipelining Data Transformations</a></li>
+<li><a href="#_adding_to_the_stack">3.5. Adding to the Stack</a></li>
+<li><a href="#_language_tidbits">3.6. Language Tidbits</a></li>
+</ul>
+</li>
+<li><a href="#_contributors">4. Contributors</a></li>
+<li><a href="#_references">References</a></li>
+</ul>
+</div>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>I was inspired to write this after reading <em>German for
-Programmers</em>.\{\{cite(n=0)}} It’s quite likely that I’m just biased to
+Programmers</em>. <a href="#gfp">[0]</a> It’s quite likely that I’m just biased to
 see things a certain way because I work with programming languages for a
 living, but I often find myself drawing comparisons among Korean and
 programming.</p>
@@ -57,7 +95,7 @@ programming.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_hangeul_basics">Hangeul Basics</h2>
+<h2 id="_hangeul_basics">1. Hangeul Basics</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Before we can get into grammar, some explanation about Hangeul–the
@@ -66,15 +104,15 @@ letters are put together, so you can read any Korean once you learn
 Hangeul. However, Korean letters join together in syllable blocks.</p>
 </div>
 <div class="paragraph">
-<p>You may have seen the infamous ``Learn how to read Hangeul in 10
-minutes'' graphic. While Hangeul is indeed very easy to learn, it does
+<p>You may have seen the infamous "Learn how to read Hangeul in 10
+minutes" graphic. While Hangeul is indeed very easy to learn, it does
 have exceptions–quite a few actually. So maybe you can read 독립
 (independence), but the actual pronunciation is different from what’s
-written due to ㄹ following ㄱ. These are called 받침\{\{cite(n=1)}}
-rules and one just has to memorize ’em.</p>
+written due to ㄹ following ㄱ. These are called 받침 <a href="#batchim">[1]</a>
+rules and one just has to memorize 'em.</p>
 </div>
 <div class="sect2">
-<h3 id="_grid_system">Grid System</h3>
+<h3 id="_grid_system">1.1. Grid System</h3>
 <div class="paragraph">
 <p>Unlike Chinese or Japanese, Korean syllable blocks take the Hangeul
 letters and make them into grids in a particular order.</p>
@@ -87,8 +125,8 @@ letters and make them into grids in a particular order.</p>
 <div class="paragraph">
 <p>Each block contains a vowel and it’s always the second character. The
 block are constructed depending on whether the vowel is vertical (ㅣ ㅏ
-ㅓ) or horizontal (ㅡㅜㅗ). If you want to say <code>`ah'', ㅇ is used as a
-silent character in the first slot–which makes 아: `ㅇ</code> + <code>ㅏ</code>.</p>
+ㅓ) or horizontal (ㅡㅜㅗ). If you want to say 'ah', ㅇ is used as a
+silent character in the first slot–which makes 아: <code>ㅇ</code> + <code>ㅏ</code>.</p>
 </div>
 <div class="paragraph">
 <p>Some vowels can also be combined: <code>ㅚ</code> is <code>ㅜ</code> + <code>ㅣ</code>, <code>ㅙ</code> is <code>ㅗ</code><br>
@@ -99,55 +137,55 @@ silent character in the first slot–which makes 아: `ㅇ</code> + <code>ㅏ</c
 included because it’s possible to construct them via grid rules, but a
 fair amount are just gibberish. Hangeul is represented by 5 unicode
 blocks in total and I recommend reading about how they get composed
-together.\{\{cite(n=2)}}</p>
+together. <a href="#hunicode">[2]</a></p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_subject_elision_especially_you">Subject Elision, especially -you-</h2>
+<h2 id="_subject_elision_especially_you">2. Subject Elision, especially -you-</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In English, we (almost) always need to specify the subject. I can’t
-write just <code>Can’t write.'' or </code>Ate an apple.''. In Korean however, the
+<p>In English, we always need to specify the subject except in very casual situations. I can’t
+write just "Can’t write" or "Ate an apple". In Korean however, the
 subject isn’t necessary in every sentence. In fact, always including it
 isn’t natural at all! Korean is highly contextual, so if you say:</p>
 </div>
 <div class="paragraph">
-<p>먹었어요 – literally: ate. –&gt; interpreted as: ``I ate''</p>
+<p>밥 먹었어요 – literally: ate.</p>
 </div>
 <div class="paragraph">
 <p>In a lot of contexts, that would make most sense as (I) ate. However if
-someone asks you, ``Did Charlie eat?'', you can still say:</p>
+someone asks you, "Did Charlie eat?", you can still say:</p>
 </div>
 <div class="paragraph">
-<p>(네,) 먹었어요. – (yes,) ate. –&gt; ``Yes, Charlie ate.''</p>
+<p>(네,) 밥 먹었어요. – (yes,) ate. –&gt; "Yes, Charlie ate."</p>
 </div>
 <div class="paragraph">
 <p>Similarly if you ask someone else a question, it’s usually obvious if
 they are the subject.</p>
 </div>
 <div class="paragraph">
-<p>이 책을 읽었어요? – lit: this book read? –&gt; ``Did you read this book?''</p>
+<p>이 책을 읽었어요? – lit: this book read? –&gt; "Did you read this book?"</p>
 </div>
 <div class="paragraph">
-<p>It makes little sense to ask <code>Did I read this book?'' in most
-situations. (If you want to muse to yourself like </code>ah, did I (already)
-read this book..?'', that requires a specific grammar point.)</p>
+<p>It makes little sense to ask "Did I read this book?" in most
+situations. (If you want to muse to yourself like "ah, did I (already)
+read this book..?", that requires a specific grammar point.)</p>
 </div>
 <div class="paragraph">
 <p>If you’re wondering, people do clarify from time to time.</p>
 </div>
 <div class="paragraph">
-<p><code>먹었어요?'' - ate? –&gt; </code>(Did you) eat?''</p>
+<p>"밥 먹었어요? - ate?" –&gt; ""(Did you/he) eat?"</p>
 </div>
 <div class="paragraph">
-<p><code>저요? / 저는요?'' –&gt; </code>(were you referring to) Me?'' / ``As for me?''</p>
+<p>"저요? / 저는요?" –&gt; "(were you referring to) Me?"</p>
 </div>
 <hr>
 <div class="paragraph">
 <p>The subject/topic still has to be included when it changes or it’s
-ambiguous. If you start off by saying <code>저는 …'' (</code>as for me, …''),
+ambiguous. If you start off by saying "저는 …" ("as for me, …"),
 it’s implied the following sentences will still be about you.</p>
 </div>
 <div class="paragraph">
@@ -155,28 +193,37 @@ it’s implied the following sentences will still be about you.</p>
 typed–but that’s a tenuous comparison. Anyway, it’s different from
 English where the subject almost always must be specified (strongly
 typed…?), except in some spoken slang. Even very informal slang like
-``d’ya eat?'' still includes the subject. We’re playing a bit fast and
+"d’ya eat?" still includes the subject. We’re playing a bit fast and
 loose here with the comparisons.</p>
 </div>
 <hr>
-<div class="paragraph">
-<p>A word of caution: Using the direct words for <code>you'' (너, 네가, 당신)
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Caution</div>
+</td>
+<td class="content">
+Using the direct words for "you" (너, 네가, 당신)
 is also quite rude unless you are close with someone. Papago and google
-translate often translate </code>you'' to 너 or 네가. Don’t use these until
+translate often translate "you" to 너 or 네가. Don’t use these until
 you know what you’re doing. 당신 has different nuances and should also
-be avoided. It’s really hard for English speakers to let go of ``you'',
-but you must.</p>
+be avoided. It’s really hard for English speakers to let go of "you",
+but you must.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_sentences_grammar">Sentences &amp; Grammar</h2>
+<h2 id="_sentences_grammar">3. Sentences &amp; Grammar</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_sentence_order">Sentence Order</h3>
+<h3 id="_sentence_order">3.1. Sentence Order</h3>
 <div class="paragraph">
-<p>English is an SVO (Subject Verb Object) language. <code>Billy ate an
-apple''. Korean is an SOV language. </code>Billy apple ate''. This reversal
+<p>English is an SVO (Subject Verb Object) language. "Billy ate an
+apple". Korean is an SOV language. "Billy apple ate". This reversal
 makes thinking in Korean actually quite difficult once one gets to
 causation and more difficult sentences.</p>
 </div>
@@ -195,40 +242,63 @@ utterly fascinating. With English the last bit of the sentence usually
 has the important bit:</p>
 </div>
 <div class="paragraph">
-<p>``Do you know where the <em>bathroom</em> is?''</p>
+<p>"Do you know where the <span class="hl hl-word hl-red">
+  bathroom
+</span>
+ is?"</p>
 </div>
 <div class="paragraph">
 <p>You basically have to finish the whole sentence there before the other
 person can understand what you intend. Now with Korean:</p>
 </div>
 <div class="paragraph">
-<p><em>화장실</em>이 어디에 있는지 아세요?</p>
+<p>혹시 <span class="hl hl-word hl-red">
+  화장실이
+</span>
+ 어디에 있는지 아세요?</p>
 </div>
 <div class="paragraph">
-<p>I often can barely get this out in time before I start getting an
+<p>I often can barely get the first half of this out before I start getting an answer.
 answer.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_finally_a_sentence">Finally, a sentence</h3>
+<h3 id="_finally_a_sentence">3.2. Finally, a sentence</h3>
 <div class="paragraph">
 <p>We made it! Let’s start with a simple sample sentence in Korean.</p>
 </div>
 <div class="paragraph">
-<p>저는 사과를 어제 먹었어요.</p>
+<p>저는 사과를 어제 먹었어요. ~ [As for me], I ate an apple yesterday.</p>
 </div>
 <div class="paragraph">
-<p>\{\{hlw(c=<code>green'',t=</code>저(는)'')}} \{\{hlw(c=<code>red'',t=</code>사과(를)'')}}
-\{\{hlw(c=<code>pink'', t=</code>어제'')}}
-\{\{hll(c=<code>blue'',t=</code>먹'')}}\{\{hlm(c=<code>purple'',t=</code>었'')}}\{\{hlr(c=<code>yellow'',
-t=</code>어요'')}}.</p>
+<p><span class="hl hl-word hl-green">
+  저(는)
+</span>
+ <span class="hl hl-word hl-red">
+  사과(를)
+</span>
+
+<span class="hl hl-word hl-pink">
+  어제
+</span>
+
+<span class="hl hl-left hl-blue">먹</span><span class="hl hl-middle hl-purple">었</span><span class="hl hl-right hl-yellow">어요</span>.</p>
 </div>
 <div class="paragraph">
-<p>\{\{hlw(c=<code>green'',t=</code>subject + marker'')}}
-\{\{hlw(c=<code>red'',t=</code>object + marker'')}} \{\{hlw(c=<code>pink'',
-t=</code>adverb'')}} \{\{hll(c=<code>blue'',t=</code>verb
-stem'')}}\{\{hlm(c=<code>purple'',t=</code>past tense
-modifier'')}}\{\{hlr(c=<code>yellow'', t=</code>politness conjugation'')}}.</p>
+<p><span class="hl hl-word hl-green">
+  subject &#43; marker
+</span>
+
+<span class="hl hl-word hl-red">
+  object &#43; marker
+</span>
+ <span class="hl hl-word hl-pink">
+  adverb
+</span>
+
+<span class="hl hl-left hl-blue">verb stem</span>
+<span class="hl hl-middle hl-purple">past tense modifier</span>
+<span class="hl hl-right hl-yellow">politness conjugation</span>.</p>
 </div>
 <div class="paragraph">
 <p>There’s already a lot going on here. The first difference you may notice
@@ -240,7 +310,7 @@ the time.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_markers">Markers</h3>
+<h3 id="_markers">3.3. Markers</h3>
 <div class="paragraph">
 <p>Korean has a number of postpositional particles that imbue meaning, some
 of which vary if the last character is a vowel or not. We can easily use
@@ -274,36 +344,139 @@ inside the parentheses is used if the last character is a consonant:</p>
 </li>
 <li>
 <p>~(으)로 &#8658; several meanings. roughly-speaking it shows how/via what
-method or material something is carried out, or <code>toward'' a place if
-used with </code>to go'', etc.</p>
+method or material something is carried out, or "toward" a place if
+used with "to go", etc.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_pipelining_data_transformations">Pipelining Data Transformations</h3>
+<h3 id="_pipelining_data_transformations">3.4. Pipelining Data Transformations</h3>
 <div class="paragraph">
 <p>Where the previous sentence started to get interesting was at the end,
 with the verb, tense, and politeness. That’s not all we can transform
-though. The next two sentences here are <code>I closed the door'' (informal
-impolite, then informal polite), after is </code>My parents closed the door''
-(formal, polite).</p>
+though:</p>
 </div>
 <div class="paragraph">
-<p>\{\{hlw(c=<code>green'',t=</code>나는'')}} \{\{hlw(c=<code>red'',t=</code>그것을'')}}
-\{\{hll(c=<code>blue'',t=</code>닫'')}}\{\{hlm(c=<code>purple'',t=</code>았'')}}\{\{hlr(c=<code>yellow'',t=</code>어'')}}.</p>
+<p><span class="hl hl-word hl-green">
+  나는
+</span>
+
+<span class="hl hl-word hl-grey">
+  그
+</span>
+ <span class="hl hl-word hl-red">
+  문을
+</span>
+
+<span class="hl hl-left hl-blue">닫</span><span class="hl hl-middle hl-purple">았</span><span class="hl hl-right hl-yellow">어</span>.
+~ <span class="hl hl-word hl-green">
+  I
+</span>
+ <span class="hl hl-word hl-blue">
+  closed
+</span>
+ <span class="hl hl-word hl-grey">
+  the/that
+</span>
+ <span class="hl hl-word hl-red">
+  door
+</span>
+.
+(<span class="hl hl-word hl-yellow">
+  impolite
+</span>
+, <span class="hl hl-word hl-purple">
+  past tense marker
+</span>
+)</p>
 </div>
 <div class="paragraph">
-<p>\{\{hlw(c=<code>green'',t=</code>저는'')}} \{\{hlw(c=<code>red'',t=</code>그것을'')}}
-\{\{hll(c=<code>blue'',t=</code>닫'')}}\{\{hlm(c=<code>purple'',t=</code>았'')}}\{\{hlr(c=<code>yellow'',t=</code>어요'')}}.</p>
+<p><span class="hl hl-word hl-green">
+  저는
+</span>
+
+<span class="hl hl-word hl-grey">
+  그
+</span>
+ <span class="hl hl-word hl-red">
+  문을
+</span>
+
+<span class="hl hl-left hl-blue">닫</span><span class="hl hl-middle hl-purple">았</span><span class="hl hl-right hl-yellow">어요</span>.
+~ <span class="hl hl-word hl-green">
+  I (humble)
+</span>
+ <span class="hl hl-word hl-blue">
+  closed
+</span>
+ <span class="hl hl-word hl-grey">
+  the/that
+</span>
+ <span class="hl hl-word hl-red">
+  door
+</span>
+.
+(<span class="hl hl-word hl-yellow">
+  polite
+</span>
+, <span class="hl hl-word hl-purple">
+  past tense marker
+</span>
+)</p>
 </div>
 <div class="paragraph">
-<p>\{\{hlw(c=<code>green'',t=</code>우리 부모님은'')}}
-\{\{hlw(c=<code>red'',t=</code>그것을'')}}
-\{\{hll(c=<code>blue'',t=</code>닫'')}}\{\{hlm(c=<code>orange'',t=</code>으시'')}}\{\{hlm(c=<code>purple'',t=</code>었'')}}\{\{hlr(c=<code>yellow'',t=</code>습니다'')}}.
-(Note that I’m showing
-\{\{hll(c=<code>orange'',t=</code>시'')}}\{\{hlrw(c=<code>purple'',t=</code>었'')}} here
-separately to break down the components but they would get merged to 셨)</p>
+<p><span class="hl hl-word hl-green">
+  우리 부모님은
+</span>
+
+<span class="hl hl-word hl-grey">
+  그
+</span>
+ <span class="hl hl-word hl-red">
+  문을
+</span>
+
+<span class="hl hl-left hl-blue">닫</span><span class="hl hl-middle hl-orange">으시</span><span class="hl hl-middle hl-purple">었</span><span class="hl hl-right hl-yellow">습니다</span>.
+~ <span class="hl hl-word hl-green">
+  My parents (respectful)
+</span>
+ <span class="hl hl-word hl-blue">
+  closed
+</span>
+ <span class="hl hl-word hl-grey">
+  the/that
+</span>
+ <span class="hl hl-word hl-red">
+  door
+</span>
+.
+(<span class="hl hl-word hl-orange">
+  honorific marker
+</span>
+, <span class="hl hl-word hl-purple">
+  past tense marker
+</span>
+, <span class="hl hl-word hl-yellow">
+  formal
+</span>
+)</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+I’m showing <span class="hl hl-left hl-orange">시</span><span class="hl hl-right hl-word hl-purple">
+  었
+</span>
+ here
+separately to break down the components but they would get merged to 셨.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>The main verb here is 닫다–to close. All Korean verbs end in 다, so the
@@ -311,8 +484,8 @@ first thing we need to do is get the stem by removing <code>다</code>.</p>
 </div>
 <div class="paragraph">
 <p>Now we need the honorific level. In the first two sentences I’m talking
-about myself, so I can’t use honorifics. However when the actor is <code>`my
-parents'' it’s common to use honorifics, which is `~(으)시</code>.</p>
+about myself, so I can’t use honorifics. However when the actor is "my
+parents" it’s common to use honorifics, which is <code>~(으)시</code>.</p>
 </div>
 <div class="paragraph">
 <p>Before we can add a tense, we need to determine what vowel to add, and
@@ -349,24 +522,20 @@ details.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Note that there are even more transformations that we can apply
+<p>There are even more transformations that we can apply
 depending on the grammar point and the nuance of what one is trying to
 say. Fun, isn’t it? At least it’s relatively consistent unlike
 English–even irregular verb rules are fairly regular.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_adding_to_the_stack">Adding to the Stack</h3>
-<div class="quoteblock">
-<blockquote>
+<h3 id="_adding_to_the_stack">3.5. Adding to the Stack</h3>
 <div class="paragraph">
 <p>In linguistics, nominalization or nominalisation is the use of a word
 which is not a noun (e.g., a verb, an adjective or an adverb) as a noun,
 … The term refers, for instance, to the process of producing a noun from
 another part of speech by adding a derivational affix (e.g., the noun
 legalization from the verb legalize).</p>
-</div>
-</blockquote>
 </div>
 <div class="paragraph">
 <p>In Korean, one can nominalize entire clauses and use them in other
@@ -378,81 +547,189 @@ forms, like <code>던</code>, which is <code>더~ + ~ㄴ/은</code>. Digging int
 beyond the scope of this post.</p>
 </div>
 <div class="paragraph">
-<p>To give you a small example, one way to say <code>exit'' in Korean is
-literally </code>going out place'', or ``a place that one goes out''.</p>
+<p>To give you a small example, one way to say "exit" in Korean is
+literally "going out place", or "a place that one goes out".</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="https://s3.amazonaws.com/andrewzah.com/posts/008/exit.jpg" alt="A Korean subway exit sign.">
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_source_wikipedia_나가는_곳">Source: Wikipedia 나가는 곳</h3>
-<div class="paragraph">
-<p>\{\{hlw(c=<code>purple'',t=</code>나가다'')}} means <code>to go out''.
-\{\{hlw(c=</code>red'',t=<code>곳'')}} means place. A
-\{\{hll(c=</code>purple'',t=<code>나가'')}}는 \{\{hlw(c=</code>red'',t=<code>곳'')}} is a
-\{\{hlw(c=</code>purple'',t=<code>going out'')}}
-\{\{hlr(c=</code>red'',t=``place'')}}.</p>
+<div class="title">Figure 1. Source: Wikipedia 나가는 곳</div>
 </div>
 <div class="paragraph">
-<p>Note that 나가다 is a pure Korean word. To the right is 出口 (pronounced
+<p><span class="hl hl-word hl-purple">
+  나가다
+</span>
+ means "to go out".
+<span class="hl hl-word hl-red">
+  곳
+</span>
+ means place. Using the <span class="hl hl-word hl-grey">
+  는 것
+</span>
+ principle: A
+<span class="hl hl-left hl-purple">나가</span><span class="hl hl-right hl-grey">는</span>
+<span class="hl hl-word hl-red">
+  곳
+</span>
+ is a
+<span class="hl hl-word hl-purple">
+  going out
+</span>
+
+<span class="hl hl-right hl-red">place</span>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+나가다 is a pure Korean word. To the right is 出口 (pronounced
 출구), which also means exit, and is derived from classical Chinese.
 Just like English has Latin and Greek influences, Korean has Chinese and
-to a small extent, Japanese influences.</p>
+to a small extent, Japanese influences.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect3">
-<h4 id="_sentence_the_first">Sentence the First</h4>
+<h4 id="_sentence_the_first">3.5.1. Sentence the First</h4>
 <div class="paragraph">
 <p>So, let’s take `the girl walked to school'. In English and Korean this
 is straightfoward enough:</p>
 </div>
 <div class="paragraph">
-<p>\{\{hlw(c=<code>green'', t=</code>여자는'')}}
-\{\{hll(c=<code>pink'',t=</code>학교'')}}\{\{hlr(c=<code>purple'',t=</code>로'')}}
-\{\{hlw(c=<code>blue'',t=</code>걸어'')}} \{\{hlw(c=<code>blue'',t=</code>갔어요'')}} —
-\{\{hlw(c=<code>green'',t=</code>The girl'')}} \{\{hlw(c=<code>blue'',t=</code>walked'')}}
-\{\{hlw(c=<code>purple'',t=</code>to'')}} \{\{hlrw(c=<code>pink'',t=</code>school'')}}</p>
+<p><span class="hl hl-word hl-green">
+  여자는
+</span>
+
+<span class="hl hl-left hl-pink">학교</span><span class="hl hl-right hl-purple">로</span>
+<span class="hl hl-word hl-blue">
+  걸어
+</span>
+ <span class="hl hl-word hl-blue">
+  갔어요
+</span>
+ —
+<span class="hl hl-word hl-green">
+  The girl
+</span>
+ <span class="hl hl-word hl-blue">
+  walked
+</span>
+
+<span class="hl hl-word hl-purple">
+  to
+</span>
+ <span class="hl hl-right hl-word hl-pink">
+  school
+</span>
+</p>
 </div>
 <div class="paragraph">
-<p>But what if you wanted to talk <em>about</em> that person? You could say <code>`the
-girl <em>who</em> walked to school''. In English, this these are known as
-relative causes. They can begin with `who</code>, <code>which</code>, <code>that</code>, <code>where</code>,
-etc, <em>following</em> the noun. Korean uses the <code>~는 것</code> nominalizer <em>before</em>
+<p>But what if you wanted to talk <em>about</em> that person? You could say "the
+girl who walked to school". In English, this these are known as
+relative causes. They can begin with <code>who</code>, <code>which</code>, <code>that</code>, <code>where</code>,
+etc, following the noun. Korean uses the <code>~는 것</code> nominalizer <em>before</em>
 the noun, which leads to:</p>
 </div>
 <div class="paragraph">
-<p>\{\{hll(c=<code>pink'', t=</code>학교'')}}\{\{hlrw(c=<code>purple'', t=</code>로'')}}
-\{\{hlw(c=<code>blue'',t=</code>걸어'')}} \{\{hlw(c=<code>orange'',t=</code>간'')}}
-\{\{hlrw(c=<code>green'',t=</code>여자'')}}!\{\{fn(n=0)}}<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup></p>
+<p><span class="hl hl-left hl-pink">학교</span><span class="hl hl-right hl-word hl-purple">
+  로
+</span>
+
+<span class="hl hl-word hl-blue">
+  걸어
+</span>
+ <span class="hl hl-word hl-orange">
+  간
+</span>
+
+<span class="hl hl-right hl-word hl-green">
+  여자
+</span>
+</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<code>갔</code> changed to <code>간</code>. <code>갔</code> is 가다 (to go) + <code>~ㅆ</code> (past tense). But the past tense nominalization form uses <code>~ㄴ (것)</code>. Instead of 것 (thing) we swapped it for another noun&mdash;여자 (woman).
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Not that one would only say ``the girl who walked to school'' by itself,
+<p>Not that one would only say "the girl who walked to school" by itself,
 but we can now use the entire construct as a noun in other sentences:</p>
 </div>
 <div class="paragraph">
-<p>\{\{hlw(c=<code>green'',t=</code>저는'')}} \{\{hlw(c=<code>red'',t=</code>학교로 걸어 간
-여자를'')}} \{\{hlrw(c=<code>blue'',t=</code>알았어요'')}} —
-\{\{hlw(c=<code>green'',t=</code>I'')}} \{\{hlw(c=<code>red'',t=</code>the girl who walked
-to school'')}} \{\{hlrw(c=<code>blue'',t=</code>knew'')}}</p>
+<p><span class="hl hl-word hl-green">
+  저는
+</span>
+ <span class="hl hl-word hl-red">
+  학교로 걸어 간 여자를
+</span>
+ <span class="hl hl-right hl-word hl-blue">
+  알았어요
+</span>
+ —
+<span class="hl hl-word hl-green">
+  I
+</span>
+ <span class="hl hl-word hl-red">
+  the girl who walked to school
+</span>
+ <span class="hl hl-right hl-word hl-blue">
+  knew
+</span>
+</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_sentence_the_second">Sentence the Second</h4>
+<h4 id="_sentence_the_second">3.5.2. Sentence the Second</h4>
 <div class="paragraph">
-<p>We can try a more complex sentence now: <code>That’s the place (that) I
-thought I went to!''. First, we need to break it down in a sentence can
-that be nominalized. </code>I thought I went''. Here we can use the grammar
+<p>We can try a more complex sentence now: "That’s the place (that) I
+thought I went to!". First, we need to break it down in a sentence can
+that be nominalized. "I thought I went". Here we can use the grammar
 point <code>~ㄴ 줄 알다</code> which when used means the speaker thought something
 was true, but realized it wasn’t–due to a lapse in judgement, etc.</p>
 </div>
 <div class="paragraph">
-<p>\{\{hlw(c=<code>purple'', t=</code>제가'')}} \{\{hlw(c=<code>red'',t=</code>간 줄'')}}
-\{\{hlrw(c=<code>blue'',t=</code>알다'')}} – \{\{hlw(c=<code>green'', t=</code>I'')}}
-\{\{hlw(c=<code>blue'',t=</code>thought'')}}
-\{\{hlw(c=<code>red'',t=</code>(that)'')}}\{\{hlw(c=<code>purple'',t=</code>I'')}}
-\{\{hlw(c=<code>red'',t=</code>went'')}}</p>
+<p><span class="hl hl-word hl-purple">
+  제가
+</span>
+ <span class="hl hl-word hl-red">
+  간 줄
+</span>
+
+<span class="hl hl-right hl-word hl-blue">
+  알다
+</span>
+ – <span class="hl hl-word hl-green">
+  I
+</span>
+
+<span class="hl hl-word hl-blue">
+  thought
+</span>
+
+<span class="hl hl-word hl-red">
+   that &gt;
+</span>
+<span class="hl hl-word hl-purple">
+  I
+</span>
+
+<span class="hl hl-word hl-red">
+  went
+</span>
+</p>
 </div>
 <div class="paragraph">
 <p>You may have noticed that this grammar point itself uses <code>~ㄴ 것</code>, but
@@ -461,31 +738,60 @@ only be described by a <code>~는 것</code> clause. Outside of <code>~ㄴ 줄 �
 also be a regular noun meaning line/rope.</p>
 </div>
 <div class="paragraph">
-<p>\{\{hlw(c=<code>green'',t=</code>그곳은'')}} \{\{hll(c=<code>red'',t=</code>제가 어디에 간
-줄 알았'')}}\{\{hlrw(c=<code>yellow'',t=</code>던'')}}
-\{\{hll(c=<code>purple'',t=</code>곳'')}}\{\{hlrw(c=<code>blue'',t=</code>이야!'')}} –
-\{\{hlw(c=<code>green'',t=</code>That'')}} \{\{hlw(c=<code>blue'',t=</code>is'')}}
-\{\{hlw(c=<code>purple'',t=</code>the place'')}} \{\{hlr(c=<code>red'',t=</code>I thought
-I went to!'')}}</p>
+<p><span class="hl hl-word hl-green">
+  그곳은
+</span>
+ <span class="hl hl-left hl-red">제가 어디에 간 줄 알았</span><span class="hl hl-right hl-word hl-yellow">
+  던
+</span>
+
+<span class="hl hl-left hl-purple">곳</span><span class="hl hl-right hl-word hl-blue">
+  이야!
+</span>
+ –
+<span class="hl hl-word hl-green">
+  That
+</span>
+ <span class="hl hl-word hl-blue">
+  is
+</span>
+ <span class="hl hl-word hl-purple">
+  the place
+</span>
+ <span class="hl hl-right hl-red">I thought I went to!</span></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_sentence_the_third">Sentence the Third</h4>
+<h4 id="_sentence_the_third">3.5.3. Sentence the Third</h4>
 <div class="paragraph">
 <p>Can we go even deeper?</p>
 </div>
 <div class="paragraph">
-<p>\{\{hlw(c=<code>green'',t=</code>[나는]'')}} (((\{\{hll(c=<code>blue'',t=</code>상황이
-억울하다고
-말하는'')}}\{\{hll(c=<code>yellow'',t=</code>불평불만'')}})\{\{hlrw(c=<code>red'',t=</code>만
-하는 사람은'')}}) (\{\{hll(c=<code>pink'',t=</code>별로
-좋아하'')}}\{\{hlr(c=<code>purple'',t=</code>지 않는다'')}}).</p>
+<p><span class="hl hl-word hl-green">
+  [나는]
+</span>
+
+((<span class="hl hl-left hl-blue">상황이 억울하다고 말하는</span>
+<span class="hl hl-left hl-yellow">불평불만</span>) <span class="hl hl-right hl-word hl-red">
+  만 하는 사람은
+</span>
+) <span class="hl hl-left hl-pink">별로 좋아하</span><span class="hl hl-right hl-purple">지 않는다</span>.</p>
 </div>
 <div class="paragraph">
-<p>\{\{hlw(c=<code>green'',t=</code>[I’m]'')}} (\{\{hlw(c=<code>purple'',t=</code>not'')}}
-\{\{hlr(c=<code>pink'',t=</code>keen on'')}}) (\{\{hlw(c=<code>red'',t=</code>people who
-only'')}} (\{\{hlw(c=<code>yellow'',
-t=</code>complain'')}}\{\{hlr(c=<code>blue'',t=</code>that things are unfair'')}})).</p>
+<p><span class="hl hl-word hl-green">
+  [I’m]
+</span>
+ <span class="hl hl-word hl-purple">
+  not
+</span>
+
+<span class="hl hl-right hl-pink">keen on</span> (<span class="hl hl-word hl-red">
+  people who only
+</span>
+ (<span class="hl hl-word hl-yellow">
+  complain
+</span>
+<span class="hl hl-right hl-blue">that things are unfair</span>)).</p>
 </div>
 <div class="paragraph">
 <p>This sentence doesn’t really translate 1:1 to English, as is the case
@@ -496,23 +802,41 @@ with most intermediate/advanced Korean sentences.</p>
 <p>Nominalizing with <code>~는 것</code> is my favorite aspect of Korean because it’s
 an important grammar point that blew my mind once I learned how it
 worked. It’s quite commonly used as well. In day to day usage I might
-say something like \{\{hlw(c=<code>purple'',t=</code>the house (that)'')}}
-\{\{hlw(c=<code>green'',t=</code>I'')}} \{\{hlw(c=<code>red'',t=</code>used to'')}}
-\{\{hlw(c=<code>blue'',t=</code>live (in)'')}}
-– \{\{hlw(c=<code>green'',t=</code>제가'')}}
-\{\{hll(c=<code>blue'',t=</code>살'')}}\{\{hlrw(c=<code>red'',t=</code>았던'')}}
-\{\{hlr(c=<code>purple'',t=</code>집'')}}, et cetera.</p>
+say something like <span class="hl hl-word hl-purple">
+  the house (that)
+</span>
+
+<span class="hl hl-word hl-green">
+  I
+</span>
+ <span class="hl hl-word hl-red">
+  used to
+</span>
+
+<span class="hl hl-word hl-blue">
+  live  in &gt;
+</span>
+
+– <span class="hl hl-word hl-green">
+  제가
+</span>
+
+<span class="hl hl-left hl-blue">살</span><span class="hl hl-right hl-word hl-red">
+  았던
+</span>
+
+<span class="hl hl-right hl-purple">집</span>  et cetera.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_language_tidbits">Language Tidbits</h3>
+<h3 id="_language_tidbits">3.6. Language Tidbits</h3>
 <div class="paragraph">
 <p>These are some cool traits about Korean, or things related to this post,
 that don’t necessarily have to deal with programming.</p>
 </div>
 <div class="sect3">
-<h4 id="_politeness_formality">Politeness / Formality</h4>
+<h4 id="_politeness_formality">3.6.1. Politeness / Formality</h4>
 <div class="paragraph">
 <p>The Korean language conjugates differently based on the status of
 speaker and intended audience. For example, one of the simplest ways to
@@ -520,8 +844,8 @@ conjugate any verb is to add <code>~어/아/여</code> to it. This is based on t
 last <em>vowel</em>, not the last character.</p>
 </div>
 <div class="paragraph">
-<p>For example, you may have seen 감사합니다 before (<code>`thank you'', formal
-polite). This is 감사하다, merged with `~ㅂ니다</code> because <code>하</code> ends in a
+<p>For example, you may have seen 감사합니다 before ("thank you", formal
+polite). This is 감사하다, merged with <code>~ㅂ니다</code> because <code>하</code> ends in a
 vowel. 고마워요 is another way to say thank you(informal polite): 고맙다
 + apply <code>irregular ㅂ</code> consonant ending filter + <code>~아/어/여요</code>.</p>
 </div>
@@ -546,7 +870,7 @@ vowel. 고마워요 is another way to say thank you(informal polite): 고맙다
 </div>
 </div>
 <div class="paragraph">
-<p>Korean has seven speech levels \{\{cite(n=4)}}. When learning Korean,
+<p>Korean has seven speech levels. <a href="#levels">[3]</a> When learning Korean,
 the <code>아/어/여요</code> and <code>~ㅂ/습니다</code> levels are commonly used, in that
 order. Using <code>아/어/여</code> (no <code>요</code>) to anyone other than close friends
 (who have agreed to use lowered speech) or young kids is rude.
@@ -558,15 +882,15 @@ and books/novels.</p>
 </div>
 <div class="paragraph">
 <p>English lacks this concept, as we use the same conjugation for everyone
-– <code>the prisoner ate'', </code>the king ate'', and <code>a God ate''. What
-English does have is different registers\{\{cite(n=5)}}, such as when
+– "the prisoner ate", "the king ate", and "a God ate". What
+English does have is different registers <a href="#registers">[4]</a>, such as when
 you text versus when you write an academic paper or a business email.
-This includes overly polite language like </code>Might you be interested in
-eating, sir?'', but nevertheless the verb remains the same.</p>
+This includes overly polite language like "Might you be interested in
+eating, sir?", but nevertheless the verb remains the same.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_quoting_statements">Quoting Statements</h4>
+<h4 id="_quoting_statements">3.6.2. Quoting Statements</h4>
 <div class="paragraph">
 <p>Quoting plain statements in Korean is very easy. All you need to do is
 take the sentence, conjugate the verb into plain form, and append
@@ -574,9 +898,20 @@ take the sentence, conjugate the verb into plain form, and append
 it’s just <code>다</code>, or the base verb.</p>
 </div>
 <div class="paragraph">
-<p>(저는) 먹었어요. \{\{hll(c=<code>green'',t=</code>(제가)
-먹었'')}}\{\{hlrw(c=<code>purple'',t=</code>다고 말했다'')}} – I ate. I said I
-ate.</p>
+<p><span class="hl hl-word hl-green">
+  (저는)
+</span>
+ <span class="hl hl-word hl-blue">
+  먹었어요
+</span>
+.
+<span class="hl hl-word hl-green">
+  (제가)
+</span>
+ <span class="hl hl-left hl-blue">먹었</span><span class="hl hl-right hl-word hl-purple">
+  다고 말했다
+</span>
+ – I ate. I said I ate.</p>
 </div>
 <div class="paragraph">
 <p>Depending on the type of statement, different particles than 다 are
@@ -611,7 +946,7 @@ natives because Korean pronunciation is tough.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_lack_of_romanization">Lack of Romanization</h4>
+<h4 id="_lack_of_romanization">3.6.3. Lack of Romanization</h4>
 <div class="paragraph">
 <p>Why does this article lack romanization? Because romanization is bad.
 English and Korean sounds do not map neatly to one another. The issue
@@ -643,34 +978,7 @@ romanized Korean it forces me to go and learn the older system as well.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_references">References</h2>
-<div class="sectionbody">
-<div class="ulist bibliography">
-<ul class="bibliography">
-<li>
-<p><a href="https://wickedchicken.github.io/post/german-for-programmers/">German for Programmers</a></p>
-</li>
-<li>
-<p><a href="https://www.howtostudykorean.com/unit0/unit0lesson1/">Hangeul Grid Order</a></p>
-</li>
-<li>
-<p><a href="http://www.koreanwikiproject.com/wiki/%EB%B0%9B%EC%B9%A8">Final Consonant Exception Rules</a></p>
-</li>
-<li>
-<p><a href="https://en.wikipedia.org/wiki/Korean_language_and_computers#Hangul_in_Unicode">Hangeul in Unicode</a></p>
-</li>
-<li>
-<p><a href="https://en.wikipedia.org/wiki/Korean_speech_levels">Korean Speech Levels</a></p>
-</li>
-<li>
-<p><a href="https://en.wikipedia.org/wiki/Register_(sociolinguistics)">English Registers</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_contributors">Contributors</h2>
+<h2 id="_contributors">4. Contributors</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -684,10 +992,31 @@ romanized Korean it forces me to go and learn the older system as well.
 </div>
 </div>
 </div>
-<div id="footnotes">
-<hr>
-<div class="footnote" id="_footnotedef_1">
-<a href="#_footnoteref_1">1</a>. Note that <code>갔</code> changed to <code>간</code>. <code>갔</code> is 가다 (to go) + <code>~ㅆ</code> (past tense). But the past tense nominalization form uses <code>~ㄴ (것)</code>. Instead of 것 (thing) we swapped it for another noun 여자 (woman).
+<div class="sect1">
+<h2 id="_references">References</h2>
+<div class="sectionbody">
+<div class="ulist bibliography">
+<ul class="bibliography">
+<li>
+<p><a id="gfp"></a>[0] <a href="https://wickedchicken.github.io/post/german-for-programmers/">German for Programmers</a></p>
+</li>
+<li>
+<p><a id="batchim"></a>[1] <a href="https://www.howtostudykorean.com/unit0/unit0lesson1/">Hangeul Grid Order</a></p>
+</li>
+<li>
+<p><a id="hunicode"></a>[2] <a href="https://en.wikipedia.org/wiki/Korean_language_and_computers#Hangul_in_Unicode">Hangeul in Unicode</a></p>
+</li>
+<li>
+<p><a id="levels"></a>[3] <a href="https://en.wikipedia.org/wiki/Korean_speech_levels">Korean Speech Levels</a></p>
+</li>
+<li>
+<p><a id="registers"></a>[4] <a href="https://en.wikipedia.org/wiki/Register_(sociolinguistics)">English Registers</a></p>
+</li>
+<li>
+<p><a href="http://www.koreanwikiproject.com/wiki/%EB%B0%9B%EC%B9%A8">Final Consonant Exception Rules</a></p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 
