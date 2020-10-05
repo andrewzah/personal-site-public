@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+      
+        How to run Kakaotalk on Linux in 2020 | Andrew Zah
+      
+    </title>
+  
+
+  <meta name="author" content="Andrew Zah">
+  <meta name="application-name" content="Andrew Zah"><link rel="stylesheet" href="https://andrewzah.com/scss/main.min.css?1601923739">
+
+  </head>
+<body>
+    <div id="wrapper">
+      <div id="content" class="container page">
+
+<a href="https://andrewzah.com/">Home</a>
+
+<article id="post" class="page">
+  <section id="post-header">
+    <h2 class="post-title">
+      
+      How to run Kakaotalk on Linux in 2020
+    </h2>
+    
+<div id="post-meta">
+  <time itemprop="datePublished" datetime="Oct 05, 2020">
+    October 5, 2020
+  </time> &mdash;
+  237 words
+  &mdash;
+  <ul class="post-tags">
+    
+    
+
+    about
+    
+      <li><a class="link" href="https://andrewzah.com/tags/linux/">linux</a>,</li>
+    
+      <li><a class="link" href="https://andrewzah.com/tags/korean/">korean</a></li>
+    
+  </ul>
+
+  <br></div>
+
+<p class="divider">&#x203b;</p>
+
+
+  </section>
+
+  <section id="post-body">
+    <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Thankfully, installing Kakaotalk has become much easier than before now that it&#8217;s 64bit.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_preparation">Preparation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For this, we&#8217;ll need to install wine and playonlinux. This guide assumes you&#8217;re using debian/ubuntu, but it should work the same for other distros.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash"><span style="color: #0086B3">sudo </span>apt <span style="color: #0086B3">install</span> <span style="color: #000080">-y</span> wine playonlinux</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Next, download the PC version of <a href="https://www.kakaocorp.com/service/KakaoTalk?lang=en">Kakaotalk.exe</a>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://s3.amazonaws.com/andrewzah.com/posts/2020_10_05_kakaotalk_linux/kakaotalk_exe.png" alt="Kakaotalk download page">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_install">Install</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Open <code>playonlinux</code> and click Install. (Kakaotalk will show up here once you&#8217;ve installed it).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://s3.amazonaws.com/andrewzah.com/posts/2020_10_05_kakaotalk_linux/playonlinux_main.png" alt="Main menu of playonlinux">
+</div>
+</div>
+<div class="paragraph">
+<p>Click <code>Install a non-listed program</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://s3.amazonaws.com/andrewzah.com/posts/2020_10_05_kakaotalk_linux/playonlinux_install_nonlisted.png" alt="Install a non-listed program window">
+</div>
+</div>
+<div class="paragraph">
+<p>Click through the initial prompts. Then select <code>Install a program in a new virtual drive</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://s3.amazonaws.com/andrewzah.com/posts/2020_10_05_kakaotalk_linux/install_new_virtual_drive.png" alt="Install a program in a new virtual drive window">
+</div>
+</div>
+<div class="paragraph">
+<p>Give it a name with no spaces, such as <code>kakaotalk</code> or <code>kkt</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://s3.amazonaws.com/andrewzah.com/posts/2020_10_05_kakaotalk_linux/drive_name.png" alt="Enter a drive name window">
+</div>
+</div>
+<div class="paragraph">
+<p>Don&#8217;t check any of these options, just click <code>Next</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://s3.amazonaws.com/andrewzah.com/posts/2020_10_05_kakaotalk_linux/pre_install_choices.png" alt="Pre-install choices window">
+</div>
+</div>
+<div class="paragraph">
+<p>Select <code>64 bits windows installation</code> and wait a bit for the drive to be created.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+This step is important!
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://s3.amazonaws.com/andrewzah.com/posts/2020_10_05_kakaotalk_linux/64_bits.png" alt="32bit or 64bit selection window">
+</div>
+</div>
+<div class="paragraph">
+<p>Select the <code>Kakaotalk.exe</code> file you downloaded earlier.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://s3.amazonaws.com/andrewzah.com/posts/2020_10_05_kakaotalk_linux/file_select.png" alt="File selection window">
+</div>
+</div>
+<div class="paragraph">
+<p>Continue through the Kakaotalk installation, just hit <code>Next</code> until the last prompt. Do not hit <code>Finish</code> before unselecting <code>Run KakaoTalk</code>.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+Make sure to unselect <code>Run KakoTalk</code> before proceeding.
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://s3.amazonaws.com/andrewzah.com/posts/2020_10_05_kakaotalk_linux/installation_completed.png" alt="Kakaotalk installation completed">
+</div>
+</div>
+<div class="paragraph">
+<p>Wait for playonlinux to scan the drive, then select <code>Kakaotalk.exe</code> for the shortcut. Give it whatever shortcut name you want, like <code>KakaoTalk</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://s3.amazonaws.com/andrewzah.com/posts/2020_10_05_kakaotalk_linux/select_shortcut.png" alt="Shortcut selection window">
+</div>
+</div>
+<div class="paragraph">
+<p>Now select <code>I don&#8217;t want to make another shortcut</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://s3.amazonaws.com/andrewzah.com/posts/2020_10_05_kakaotalk_linux/2nd_shortcut_select.png" alt="Shortcut selection window again">
+</div>
+</div>
+<div class="paragraph">
+<p>Kakaotalk is now installed! You should now see this screen:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://s3.amazonaws.com/andrewzah.com/posts/2020_10_05_kakaotalk_linux/main_menu.png" alt="Playonlinux main menu">
+</div>
+</div>
+<div class="paragraph">
+<p>Double click KakaoTalk and sign in. Congrats, you now have KakaoTalk running on linux!</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+I had issues downloading my chat backup. So I skipped that, but everything else works for me now.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+
+  </section>
+</article>
+
+<p class="divider">&#x203b;</p>
+
+
+<section id="after-post" class="page">
+  
+
+  
+    
+  
+    
+      <strong>other <span class="underline">korean</span> posts</strong>
+      
+        
+      
+        
+          <div class="post-link">
+  <span class="post-date">
+    <a href="https://andrewzah.com/posts/2019/03-04_korean_learning_resources_2019/">
+      03/04
+    </a>
+  </span>
+
+  <span class="post-title">
+    <a href="https://andrewzah.com/posts/2019/03-04_korean_learning_resources_2019/">
+      Ultimate List of Resources for Learning Korean in 2019
+    </a>
+  </span>
+</div>
+
+        
+      
+        
+          <div class="post-link">
+  <span class="post-date">
+    <a href="https://andrewzah.com/posts/2019/korean_for_programmers/">
+      02/16
+    </a>
+  </span>
+
+  <span class="post-title">
+    <a href="https://andrewzah.com/posts/2019/korean_for_programmers/">
+      Korean for Programmers
+    </a>
+  </span>
+</div>
+
+        
+      
+        
+          <div class="post-link">
+  <span class="post-date">
+    <a href="https://andrewzah.com/posts/2018/korean-cooking-eating-vocabulary-reference/">
+      12/28
+    </a>
+  </span>
+
+  <span class="post-title">
+    <a href="https://andrewzah.com/posts/2018/korean-cooking-eating-vocabulary-reference/">
+      Korean Food &amp; Cooking Vocabulary Reference
+    </a>
+  </span>
+</div>
+
+        
+      
+    
+  
+</section>
+      </div>
+
+      <div id="footer" class="container">
+  <p> Copyright Andrew Zah (2016&ndash;2020) unless stated otherwise.</p>
+</div>
+
+    </div>
+
+    <script data-goatcounter="https://stats.andrewzah.com/count"
+        async src="//stats.andrewzah.com/count.js"></script>
+  </body>
+</html>

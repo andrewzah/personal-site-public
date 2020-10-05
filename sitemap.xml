@@ -3,19 +3,44 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://andrewzah.com/about/</loc>
-    <lastmod>2020-03-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://andrewzah.com/posts/</loc>
-    <lastmod>2020-06-22T00:00:00+00:00</lastmod>
+    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://andrewzah.com/</loc>
-    <lastmod>2020-06-22T00:00:00+00:00</lastmod>
+    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andrewzah.com/posts/2020/how-to-kakaotalk-linux-2020/</loc>
+    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andrewzah.com/tags/korean/</loc>
+    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andrewzah.com/tags/linux/</loc>
+    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andrewzah.com/tags/</loc>
+    <lastmod>2020-10-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andrewzah.com/about/</loc>
+    <lastmod>2020-08-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andrewzah.com/friends/</loc>
+    <lastmod>2020-08-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -36,11 +61,6 @@
   <url>
     <loc>https://andrewzah.com/tags/rants/</loc>
     <lastmod>2020-01-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://andrewzah.com/tags/</loc>
-    <lastmod>2020-06-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -129,27 +149,47 @@
   </url>
   
   <url>
+    <loc>https://andrewzah.com/tags/rust/</loc>
+    <lastmod>2019-05-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andrewzah.com/talks/</loc>
+    <lastmod>2019-05-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andrewzah.com/talks/web-assembly-what-is-it-does-it-do-things/</loc>
+    <lastmod>2019-05-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andrewzah.com/tags/webassembly/</loc>
+    <lastmod>2019-05-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://andrewzah.com/tags/anki/</loc>
-    <lastmod>2019-05-19T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://andrewzah.com/posts/2019/better-anki-usage-guide-2019/</loc>
-    <lastmod>2019-05-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://andrewzah.com/categories/learning/</loc>
-    <lastmod>2019-05-19T00:00:00+00:00</lastmod>
+    <loc>https://andrewzah.com/posts/2019/better-anki-usage-guide/</loc>
+    <lastmod>2020-08-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://andrewzah.com/tags/memorization/</loc>
-    <lastmod>2019-05-19T00:00:00+00:00</lastmod>
+    <lastmod>2020-08-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://andrewzah.com/posts/2019/05-18_things_to_avoid_in_anki/</loc>
+    <loc>https://andrewzah.com/categories/learning/</loc>
+    <lastmod>2019-05-18T00:00:00-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://andrewzah.com/posts/2019/things-to-avoid-with-anki/</loc>
     <lastmod>2019-05-18T00:00:00-04:00</lastmod>
   </url>
   
@@ -169,11 +209,6 @@
   </url>
   
   <url>
-    <loc>https://andrewzah.com/tags/korean/</loc>
-    <lastmod>2020-06-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://andrewzah.com/categories/languages/</loc>
     <lastmod>2020-06-22T00:00:00+00:00</lastmod>
   </url>
@@ -189,7 +224,7 @@
   </url>
   
   <url>
-    <loc>https://andrewzah.com/posts/2019/02-16_programming_korean/</loc>
+    <loc>https://andrewzah.com/posts/2019/korean_for_programmers/</loc>
     <lastmod>2020-06-22T00:00:00+00:00</lastmod>
   </url>
   
@@ -234,22 +269,12 @@
   </url>
   
   <url>
-    <loc>https://andrewzah.com/posts/2018/02-21_a_new_year_2018/</loc>
-    <lastmod>2018-02-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://andrewzah.com/talks/blahblah/</loc>
+    <loc>https://andrewzah.com/posts/2018/new-year-new-site-2018/</loc>
     <lastmod>2018-02-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://andrewzah.com/tags/self/</loc>
-    <lastmod>2018-02-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://andrewzah.com/talks/</loc>
     <lastmod>2018-02-01T00:00:00+00:00</lastmod>
   </url>
   
