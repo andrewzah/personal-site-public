@@ -8,10 +8,33 @@
     <language>en-us</language>
     <managingEditor>zah@andrewzah.com (Andrew Zah)</managingEditor>
     <webMaster>zah@andrewzah.com (Andrew Zah)</webMaster>
-    <lastBuildDate>Mon, 05 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 08 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://andrewzah.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>politics</title>
+      <link>https://andrewzah.com/tags/politics/</link>
+      <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
+      <author>zah@andrewzah.com (Andrew Zah)</author>
+      <guid>https://andrewzah.com/tags/politics/</guid>
+      <description></description>
+    </item>
     
-	<atom:link href="https://andrewzah.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>programming</title>
+      <link>https://andrewzah.com/tags/programming/</link>
+      <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
+      <author>zah@andrewzah.com (Andrew Zah)</author>
+      <guid>https://andrewzah.com/tags/programming/</guid>
+      <description></description>
+    </item>
     
+    <item>
+      <title>slactivism</title>
+      <link>https://andrewzah.com/tags/slactivism/</link>
+      <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
+      <author>zah@andrewzah.com (Andrew Zah)</author>
+      <guid>https://andrewzah.com/tags/slactivism/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>korean</title>
@@ -37,15 +60,6 @@
       <pubDate>Sat, 11 Jan 2020 00:00:00 +0000</pubDate>
       <author>zah@andrewzah.com (Andrew Zah)</author>
       <guid>https://andrewzah.com/tags/languages/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>programming</title>
-      <link>https://andrewzah.com/tags/programming/</link>
-      <pubDate>Sat, 11 Jan 2020 00:00:00 +0000</pubDate>
-      <author>zah@andrewzah.com (Andrew Zah)</author>
-      <guid>https://andrewzah.com/tags/programming/</guid>
       <description></description>
     </item>
     

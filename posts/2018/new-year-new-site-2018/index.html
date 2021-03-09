@@ -11,7 +11,7 @@
   
 
   <meta name="author" content="Andrew Zah">
-  <meta name="application-name" content="Andrew Zah"><link rel="stylesheet" href="https://andrewzah.com/scss/main.min.css?1601923739">
+  <meta name="application-name" content="Andrew Zah"><link rel="stylesheet" href="https://andrewzah.com/scss/main.min.css?1615260396">
 
   </head>
 <body>
@@ -60,7 +60,7 @@
 <p>This time, I decided to implement it using
 <a href="https://www.getgutenberg.io">Gutenberg</a>, a static website generator which
 is written in <a href="https://www.rust-lang.org/">Rust</a>. I decided it was finally
-time to stop saying ``I’ll learn Rust'', and just started.</p>
+time to stop saying ``I’ll learn Rust&#39;&#39;, and just started.</p>
 </div>
 <div class="paragraph">
 <p>I also revisited Docker and containerized my website, with
@@ -135,7 +135,7 @@ image and making a Caddy proxy:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-yaml" data-lang="yaml"># compose.yml
-version: "3.3"
+version: &#34;3.3&#34;
 
 services:
   bitlbee_tls_proxy:
@@ -150,9 +150,9 @@ services:
         source: ${COMPOSE_ROOT}/data/caddy/caddypath-bitlbee/
         target: /var/caddy/
     environment:
-      CADDYPATH: "/var/caddy"
+      CADDYPATH: &#34;/var/caddy&#34;
     ports:
-      - "6667:6667"
+      - &#34;6667:6667&#34;
     restart: always
   bitlbee:
     build:
@@ -281,7 +281,7 @@ full-time as a programmer.</p>
       </div>
 
       <div id="footer" class="container">
-  <p> Copyright Andrew Zah (2016&ndash;2020) unless stated otherwise.</p>
+  <p> Copyright Andrew Zah (2016&ndash;2021) unless stated otherwise.</p>
 </div>
 
     </div>

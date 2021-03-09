@@ -8,11 +8,7 @@
     <language>en-us</language>
     <managingEditor>zah@andrewzah.com (Andrew Zah)</managingEditor>
     <webMaster>zah@andrewzah.com (Andrew Zah)</webMaster>
-    <lastBuildDate>Sun, 22 Dec 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://andrewzah.com/tags/minecraft/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 22 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://andrewzah.com/tags/minecraft/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hosting Minecraft Servers &#43; BungeeCord with FreeNAS</title>
       <link>https://andrewzah.com/posts/2019/hosting-minecraft-servers-bungeecord-freenas/</link>

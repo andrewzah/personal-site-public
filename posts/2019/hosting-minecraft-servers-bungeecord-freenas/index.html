@@ -11,7 +11,7 @@
   
 
   <meta name="author" content="Andrew Zah">
-  <meta name="application-name" content="Andrew Zah"><link rel="stylesheet" href="https://andrewzah.com/scss/main.min.css?1601923739">
+  <meta name="application-name" content="Andrew Zah"><link rel="stylesheet" href="https://andrewzah.com/scss/main.min.css?1615260396">
 
   </head>
 <body>
@@ -66,7 +66,7 @@ settings accordingly.</p>
 </div>
 <div class="imageblock full-width">
 <div class="content">
-<img src="https://s3.amazonaws.com/andrewzah.com/posts/freenas_minecraft_guide/dynmap.png" alt="Dynmap rendering of our FreeNAS minecaft server">
+<img src="https://s3.amazonaws.com/andrewzah.com/posts/freenas_minecraft_guide/dynmap.png" alt="Dynmap rendering of our FreeNAS minecaft server"/>
 </div>
 </div>
 </div>
@@ -111,7 +111,7 @@ your server is running.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash"><span style="color: #0086B3">echo</span> <span style="color: #d14">'{"pkgs":["openjdk12", "curl"]}'</span> <span style="color: #000000;font-weight: bold">&gt;</span> /tmp/minecraft.json</code></pre>
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash"><span style="color: #0086B3">echo</span> <span style="color: #d14">&#39;{&#34;pkgs&#34;:[&#34;openjdk12&#34;, &#34;curl&#34;]}&#39;</span> <span style="color: #000000;font-weight: bold">&gt;</span> /tmp/minecraft.json</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -124,11 +124,11 @@ saves us some commands in the next step.</p>
   <span style="color: #000080">--name</span> &lt;name&gt; <span style="color: #d14">\</span>
   <span style="color: #000080">--pkglist</span> /tmp/minecraft.json
   <span style="color: #000080">--release</span> 11.2-RELEASE <span style="color: #d14">\</span>
-  <span style="color: #008080">ip4_addr</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"vnet0|192.168.1.xxx/24"</span> <span style="color: #d14">\</span>
-  <span style="color: #008080">defaultrouter</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"192.168.1.1"</span> <span style="color: #d14">\</span>
-  <span style="color: #008080">vnet</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"on"</span> <span style="color: #d14">\</span>
-  <span style="color: #008080">allow_raw_sockets</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"1"</span> <span style="color: #d14">\</span>
-  <span style="color: #008080">boot</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"on"</span></code></pre>
+  <span style="color: #008080">ip4_addr</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">&#34;vnet0|192.168.1.xxx/24&#34;</span> <span style="color: #d14">\</span>
+  <span style="color: #008080">defaultrouter</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">&#34;192.168.1.1&#34;</span> <span style="color: #d14">\</span>
+  <span style="color: #008080">vnet</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">&#34;on&#34;</span> <span style="color: #d14">\</span>
+  <span style="color: #008080">allow_raw_sockets</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">&#34;1&#34;</span> <span style="color: #d14">\</span>
+  <span style="color: #008080">boot</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">&#34;on&#34;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -198,7 +198,7 @@ jarfile:</p>
 <pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash"><span style="color: #0086B3">cd</span> /root/minecraft
 
 <span style="color: #999988;font-style: italic"># paper</span>
-curl <span style="color: #000080">-L</span> <span style="color: #d14">'https://papermc.io/api/v1/paper/1.15.1/27/download'</span> <span style="color: #000080">-o</span> paper-1.15.1_27.jar</code></pre>
+curl <span style="color: #000080">-L</span> <span style="color: #d14">&#39;https://papermc.io/api/v1/paper/1.15.1/27/download&#39;</span> <span style="color: #000080">-o</span> paper-1.15.1_27.jar</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -215,7 +215,7 @@ the file with:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash"><span style="color: #0086B3">sed</span> <span style="color: #000080">-i</span> .bak <span style="color: #d14">'s/eula=false/eula=true/g'</span> /root/minecraft/eula.txt</code></pre>
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash"><span style="color: #0086B3">sed</span> <span style="color: #000080">-i</span> .bak <span style="color: #d14">&#39;s/eula=false/eula=true/g&#39;</span> /root/minecraft/eula.txt</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -260,12 +260,12 @@ manage it for us. Add this script to <code>/usr/local/etc/minecraftd</code>:</p>
 #
 # Use the following variables to configure the minecraft server. For example, to
 # configure the ON/OFF knob variable:
-# sysrc minecraftd_enable="YES"
+# sysrc minecraftd_enable=&#34;YES&#34;
 #
-# minecraftd_enable="YES"
-# minecraftd_user_dir="/root/minecraft"
-# minecraftd_jar_path="/root/minecraft/server.jar"
-# minecraftd_java_opts="-Xms1024M -Xmx1024M"
+# minecraftd_enable=&#34;YES&#34;
+# minecraftd_user_dir=&#34;/root/minecraft&#34;
+# minecraftd_jar_path=&#34;/root/minecraft/server.jar&#34;
+# minecraftd_java_opts=&#34;-Xms1024M -Xmx1024M&#34;
 
 . /etc/rc.subr
 
@@ -275,43 +275,43 @@ pidfile=/var/run/minecraftd.pid
 
 load_rc_config $name
 
-start_cmd="${name}_start"
-stop_cmd="${name}_stop"
-status_cmd="${name}_status"
+start_cmd=&#34;${name}_start&#34;
+stop_cmd=&#34;${name}_stop&#34;
+status_cmd=&#34;${name}_status&#34;
 
-: ${minecraftd_enable="NO"}
-: ${minecraftd_user_dir="/root/minecraft"}
-: ${minecraftd_jar_path="/root/minecraft/server.jar"}
-: ${minecraftd_java_opts="-Xms1024M -Xmx1024M"}
+: ${minecraftd_enable=&#34;NO&#34;}
+: ${minecraftd_user_dir=&#34;/root/minecraft&#34;}
+: ${minecraftd_jar_path=&#34;/root/minecraft/server.jar&#34;}
+: ${minecraftd_java_opts=&#34;-Xms1024M -Xmx1024M&#34;}
 
 minecraftd_start() {
     if [ -e $pidfile ]; then
-        echo "$name already running."
+        echo &#34;$name already running.&#34;
     else
-        echo "Starting $name..."
+        echo &#34;Starting $name...&#34;
         /usr/sbin/daemon -f -p $pidfile \
             /usr/local/bin/java -Duser.dir=$minecraftd_user_dir \
             $minecraftd_java_opts \
             -jar $minecraftd_jar_path nogui
-        echo "$name started."
+        echo &#34;$name started.&#34;
     fi
 }
 
 minecraftd_stop() {
     if [ -e $pidfile ]; then
-        echo "Stopping $name..."
+        echo &#34;Stopping $name...&#34;
         cat $pidfile | xargs kill
-        echo "Stopped."
+        echo &#34;Stopped.&#34;
     else
-        echo "$name is not running."
+        echo &#34;$name is not running.&#34;
     fi
 }
 
 minecraftd_status() {
     if [ -e $pidfile ]; then
-        echo "$name is running."
+        echo &#34;$name is running.&#34;
     else
-        echo "$name is not running."
+        echo &#34;$name is not running.&#34;
     fi
 }
 
@@ -332,9 +332,9 @@ manually. However we also need to update some settings:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash">sysrc <span style="color: #008080">minecraftd_enable</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"YES"</span>
-sysrc <span style="color: #008080">minecraftd_jar_path</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"/root/minecraft/server.jar"</span>
-sysrc <span style="color: #008080">minecraftd_java_opts</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"-Xms1G -Xmx1G"</span></code></pre>
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash">sysrc <span style="color: #008080">minecraftd_enable</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">&#34;YES&#34;</span>
+sysrc <span style="color: #008080">minecraftd_jar_path</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">&#34;/root/minecraft/server.jar&#34;</span>
+sysrc <span style="color: #008080">minecraftd_java_opts</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">&#34;-Xms1G -Xmx1G&#34;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -428,7 +428,7 @@ the <code>waterfall</code> directory now.</p>
 <pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash"><span style="color: #0086B3">cd</span> /root/waterfall
 
 <span style="color: #999988;font-style: italic"># waterfall</span>
-curl <span style="color: #000080">-L</span> <span style="color: #d14">'https://papermc.io/api/v1/waterfall/1.15/309/download'</span> <span style="color: #000080">-o</span> waterfall-1.15_309.jar</code></pre>
+curl <span style="color: #000080">-L</span> <span style="color: #d14">&#39;https://papermc.io/api/v1/waterfall/1.15/309/download&#39;</span> <span style="color: #000080">-o</span> waterfall-1.15_309.jar</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -444,7 +444,7 @@ curl <span style="color: #000080">-L</span> <span style="color: #d14">'https://p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash"><span style="color: #0086B3">sed</span> <span style="color: #000080">-i</span> .bak <span style="color: #d14">'s/eula=false/eula=true/g'</span> /root/waterfall/eula.txt</code></pre>
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash"><span style="color: #0086B3">sed</span> <span style="color: #000080">-i</span> .bak <span style="color: #d14">&#39;s/eula=false/eula=true/g&#39;</span> /root/waterfall/eula.txt</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -455,7 +455,7 @@ change it to the following:</p>
 <div class="content">
 <pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="yaml"><span style="color: #008080">servers</span><span style="background-color: #f8f8f8">:</span>
   <span style="color: #008080">hub</span><span style="background-color: #f8f8f8">:</span>
-    <span style="color: #008080">motd</span><span style="background-color: #f8f8f8">:</span> <span style="color: #d14">'</span><span style="color: #d14">&amp;1My</span><span style="color: #008080"> </span><span style="color: #d14">amazing</span><span style="color: #008080"> </span><span style="color: #d14">hub</span><span style="color: #008080"> </span><span style="color: #d14">server'</span>
+    <span style="color: #008080">motd</span><span style="background-color: #f8f8f8">:</span> <span style="color: #d14">&#39;</span><span style="color: #d14">&amp;1My</span><span style="color: #008080"> </span><span style="color: #d14">amazing</span><span style="color: #008080"> </span><span style="color: #d14">hub</span><span style="color: #008080"> </span><span style="color: #d14">server&#39;</span>
     <span style="color: #008080">address</span><span style="background-color: #f8f8f8">:</span> <span style="color: #d14">localhost:25566</span>
     <span style="color: #008080">restricted</span><span style="background-color: #f8f8f8">:</span> <span style="color: #008080">false</span></code></pre>
 </div>
@@ -494,12 +494,12 @@ script like before:</p>
 <span style="color: #999988;font-style: italic">#</span>
 <span style="color: #999988;font-style: italic"># Use the following variables to configure the minecraft server. For example, to</span>
 <span style="color: #999988;font-style: italic"># configure the ON/OFF knob variable:</span>
-<span style="color: #999988;font-style: italic"># sysrc waterfall_enable="YES"</span>
+<span style="color: #999988;font-style: italic"># sysrc waterfall_enable=&#34;YES&#34;</span>
 <span style="color: #999988;font-style: italic">#</span>
-<span style="color: #999988;font-style: italic"># waterfall_enable="YES"</span>
-<span style="color: #999988;font-style: italic"># waterfall_user_dir="/root/waterfall"</span>
-<span style="color: #999988;font-style: italic"># waterfall_jar_path="/root/waterfall/waterfall.jar"</span>
-<span style="color: #999988;font-style: italic"># waterfall_java_opts="-Xms512M -Xmx1024M"</span>
+<span style="color: #999988;font-style: italic"># waterfall_enable=&#34;YES&#34;</span>
+<span style="color: #999988;font-style: italic"># waterfall_user_dir=&#34;/root/waterfall&#34;</span>
+<span style="color: #999988;font-style: italic"># waterfall_jar_path=&#34;/root/waterfall/waterfall.jar&#34;</span>
+<span style="color: #999988;font-style: italic"># waterfall_java_opts=&#34;-Xms512M -Xmx1024M&#34;</span>
 
 <span style="color: #0086B3">.</span> /etc/rc.subr
 
@@ -509,44 +509,44 @@ script like before:</p>
 
 load_rc_config <span style="color: #008080">$name</span>
 
-<span style="color: #008080">start_cmd</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"</span><span style="color: #000000;font-weight: bold">${</span><span style="color: #008080">name</span><span style="color: #000000;font-weight: bold">}</span><span style="color: #d14">_start"</span>
-<span style="color: #008080">stop_cmd</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"</span><span style="color: #000000;font-weight: bold">${</span><span style="color: #008080">name</span><span style="color: #000000;font-weight: bold">}</span><span style="color: #d14">_stop"</span>
-<span style="color: #008080">status_cmd</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"</span><span style="color: #000000;font-weight: bold">${</span><span style="color: #008080">name</span><span style="color: #000000;font-weight: bold">}</span><span style="color: #d14">_status"</span>
+<span style="color: #008080">start_cmd</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">&#34;</span><span style="color: #000000;font-weight: bold">${</span><span style="color: #008080">name</span><span style="color: #000000;font-weight: bold">}</span><span style="color: #d14">_start&#34;</span>
+<span style="color: #008080">stop_cmd</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">&#34;</span><span style="color: #000000;font-weight: bold">${</span><span style="color: #008080">name</span><span style="color: #000000;font-weight: bold">}</span><span style="color: #d14">_stop&#34;</span>
+<span style="color: #008080">status_cmd</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">&#34;</span><span style="color: #000000;font-weight: bold">${</span><span style="color: #008080">name</span><span style="color: #000000;font-weight: bold">}</span><span style="color: #d14">_status&#34;</span>
 
-: <span style="color: #000000;font-weight: bold">${</span><span style="color: #008080">waterfall_enable</span><span style="background-color: #f8f8f8">=</span><span style="color: #d14">"NO"</span><span style="color: #000000;font-weight: bold">}</span>
-: <span style="color: #000000;font-weight: bold">${</span><span style="color: #008080">waterfall_user_dir</span><span style="background-color: #f8f8f8">=</span><span style="color: #d14">"/root/waterfall"</span><span style="color: #000000;font-weight: bold">}</span>
-: <span style="color: #000000;font-weight: bold">${</span><span style="color: #008080">waterfall_jar_path</span><span style="background-color: #f8f8f8">=</span><span style="color: #d14">"/root/waterfall/waterfall.jar"</span><span style="color: #000000;font-weight: bold">}</span>
-: <span style="color: #000000;font-weight: bold">${</span><span style="color: #008080">waterfall_java_opts</span><span style="background-color: #f8f8f8">=</span><span style="color: #d14">"-Xms512M -Xmx1024M"</span><span style="color: #000000;font-weight: bold">}</span>
+: <span style="color: #000000;font-weight: bold">${</span><span style="color: #008080">waterfall_enable</span><span style="background-color: #f8f8f8">=</span><span style="color: #d14">&#34;NO&#34;</span><span style="color: #000000;font-weight: bold">}</span>
+: <span style="color: #000000;font-weight: bold">${</span><span style="color: #008080">waterfall_user_dir</span><span style="background-color: #f8f8f8">=</span><span style="color: #d14">&#34;/root/waterfall&#34;</span><span style="color: #000000;font-weight: bold">}</span>
+: <span style="color: #000000;font-weight: bold">${</span><span style="color: #008080">waterfall_jar_path</span><span style="background-color: #f8f8f8">=</span><span style="color: #d14">&#34;/root/waterfall/waterfall.jar&#34;</span><span style="color: #000000;font-weight: bold">}</span>
+: <span style="color: #000000;font-weight: bold">${</span><span style="color: #008080">waterfall_java_opts</span><span style="background-color: #f8f8f8">=</span><span style="color: #d14">&#34;-Xms512M -Xmx1024M&#34;</span><span style="color: #000000;font-weight: bold">}</span>
 
 waterfall_start<span style="color: #000000;font-weight: bold">()</span> <span style="color: #000000;font-weight: bold">{</span>
     <span style="color: #000000;font-weight: bold">if</span> <span style="color: #000000;font-weight: bold">[</span> <span style="color: #000080">-e</span> <span style="color: #008080">$pidfile</span> <span style="color: #000000;font-weight: bold">]</span><span style="background-color: #f8f8f8">;</span> <span style="color: #000000;font-weight: bold">then
-        </span><span style="color: #0086B3">echo</span> <span style="color: #d14">"</span><span style="color: #008080">$name</span><span style="color: #d14"> already running."</span>
+        </span><span style="color: #0086B3">echo</span> <span style="color: #d14">&#34;</span><span style="color: #008080">$name</span><span style="color: #d14"> already running.&#34;</span>
     <span style="color: #000000;font-weight: bold">else
-        </span><span style="color: #0086B3">echo</span> <span style="color: #d14">"Starting </span><span style="color: #008080">$name</span><span style="color: #d14">..."</span>
+        </span><span style="color: #0086B3">echo</span> <span style="color: #d14">&#34;Starting </span><span style="color: #008080">$name</span><span style="color: #d14">...&#34;</span>
         <span style="color: #0086B3">cd</span> <span style="color: #008080">$waterfall_user_dir</span>
         /usr/sbin/daemon <span style="color: #000080">-f</span> <span style="color: #000080">-p</span> <span style="color: #008080">$pidfile</span> <span style="color: #d14">\</span>
             /usr/local/bin/java <span style="color: #000080">-Duser</span>.dir<span style="color: #000000;font-weight: bold">=</span><span style="color: #008080">$waterfall_user_dir</span> <span style="color: #d14">\</span>
             <span style="color: #008080">$waterfall_java_opts</span> <span style="color: #d14">\</span>
             <span style="color: #000080">-jar</span> <span style="color: #008080">$waterfall_jar_path</span>  nogui
-        <span style="color: #0086B3">echo</span> <span style="color: #d14">"</span><span style="color: #008080">$name</span><span style="color: #d14"> started."</span>
+        <span style="color: #0086B3">echo</span> <span style="color: #d14">&#34;</span><span style="color: #008080">$name</span><span style="color: #d14"> started.&#34;</span>
     <span style="color: #000000;font-weight: bold">fi</span>
 <span style="color: #000000;font-weight: bold">}</span>
 
 waterfall_stop<span style="color: #000000;font-weight: bold">()</span> <span style="color: #000000;font-weight: bold">{</span>
     <span style="color: #000000;font-weight: bold">if</span> <span style="color: #000000;font-weight: bold">[</span> <span style="color: #000080">-e</span> <span style="color: #008080">$pidfile</span> <span style="color: #000000;font-weight: bold">]</span><span style="background-color: #f8f8f8">;</span> <span style="color: #000000;font-weight: bold">then
-        </span><span style="color: #0086B3">echo</span> <span style="color: #d14">"Stopping </span><span style="color: #008080">$name</span><span style="color: #d14">..."</span>
+        </span><span style="color: #0086B3">echo</span> <span style="color: #d14">&#34;Stopping </span><span style="color: #008080">$name</span><span style="color: #d14">...&#34;</span>
         <span style="color: #0086B3">cat</span> <span style="color: #008080">$pidfile</span> | xargs <span style="color: #0086B3">kill
-        echo</span> <span style="color: #d14">"Stopped."</span>
+        echo</span> <span style="color: #d14">&#34;Stopped.&#34;</span>
     <span style="color: #000000;font-weight: bold">else
-        </span><span style="color: #0086B3">echo</span> <span style="color: #d14">"</span><span style="color: #008080">$name</span><span style="color: #d14"> is not running."</span>
+        </span><span style="color: #0086B3">echo</span> <span style="color: #d14">&#34;</span><span style="color: #008080">$name</span><span style="color: #d14"> is not running.&#34;</span>
     <span style="color: #000000;font-weight: bold">fi</span>
 <span style="color: #000000;font-weight: bold">}</span>
 
 waterfall_status<span style="color: #000000;font-weight: bold">()</span> <span style="color: #000000;font-weight: bold">{</span>
     <span style="color: #000000;font-weight: bold">if</span> <span style="color: #000000;font-weight: bold">[</span> <span style="color: #000080">-e</span> <span style="color: #008080">$pidfile</span> <span style="color: #000000;font-weight: bold">]</span><span style="background-color: #f8f8f8">;</span> <span style="color: #000000;font-weight: bold">then
-        </span><span style="color: #0086B3">echo</span> <span style="color: #d14">"</span><span style="color: #008080">$name</span><span style="color: #d14"> is running."</span>
+        </span><span style="color: #0086B3">echo</span> <span style="color: #d14">&#34;</span><span style="color: #008080">$name</span><span style="color: #d14"> is running.&#34;</span>
     <span style="color: #000000;font-weight: bold">else
-        </span><span style="color: #0086B3">echo</span> <span style="color: #d14">"</span><span style="color: #008080">$name</span><span style="color: #d14"> is not running."</span>
+        </span><span style="color: #0086B3">echo</span> <span style="color: #d14">&#34;</span><span style="color: #008080">$name</span><span style="color: #d14"> is not running.&#34;</span>
     <span style="color: #000000;font-weight: bold">fi</span>
 <span style="color: #000000;font-weight: bold">}</span>
 
@@ -566,8 +566,8 @@ run_rc_command <span style="color: #008080">$1</span></code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash">sysrc <span style="color: #008080">waterfall_enable</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"YES"</span>
-sysrc <span style="color: #008080">waterfall_jar_path</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"/root/waterfall/waterfall-1.15_309.jar"</span></code></pre>
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash">sysrc <span style="color: #008080">waterfall_enable</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">&#34;YES&#34;</span>
+sysrc <span style="color: #008080">waterfall_jar_path</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">&#34;/root/waterfall/waterfall-1.15_309.jar&#34;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -578,7 +578,7 @@ sysrc <span style="color: #008080">waterfall_jar_path</span><span style="color: 
 <pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash">service waterfall start</code></pre>
 </div>
 </div>
-<hr>
+<hr/>
 <div class="paragraph">
 <p>Congrats, you’ve set up a minecraft server and a proxy server in
 FreeNAS!</p>
@@ -593,15 +593,15 @@ config to something like below:</p>
 <div class="content">
 <pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="yaml"><span style="color: #008080">servers</span><span style="background-color: #f8f8f8">:</span>
   <span style="color: #008080">hub</span><span style="background-color: #f8f8f8">:</span>
-    <span style="color: #008080">motd</span><span style="background-color: #f8f8f8">:</span> <span style="color: #d14">'</span><span style="color: #d14">My</span><span style="color: #008080"> </span><span style="color: #d14">hub</span><span style="color: #008080"> </span><span style="color: #d14">server'</span>
+    <span style="color: #008080">motd</span><span style="background-color: #f8f8f8">:</span> <span style="color: #d14">&#39;</span><span style="color: #d14">My</span><span style="color: #008080"> </span><span style="color: #d14">hub</span><span style="color: #008080"> </span><span style="color: #d14">server&#39;</span>
     <span style="color: #008080">address</span><span style="background-color: #f8f8f8">:</span> <span style="color: #d14">localhost:25566</span>
     <span style="color: #008080">restricted</span><span style="background-color: #f8f8f8">:</span> <span style="color: #008080">false</span>
   <span style="color: #008080">creative</span><span style="background-color: #f8f8f8">:</span>
-    <span style="color: #008080">motd</span><span style="background-color: #f8f8f8">:</span> <span style="color: #d14">'</span><span style="color: #d14">My</span><span style="color: #008080"> </span><span style="color: #d14">creative</span><span style="color: #008080"> </span><span style="color: #d14">server'</span>
+    <span style="color: #008080">motd</span><span style="background-color: #f8f8f8">:</span> <span style="color: #d14">&#39;</span><span style="color: #d14">My</span><span style="color: #008080"> </span><span style="color: #d14">creative</span><span style="color: #008080"> </span><span style="color: #d14">server&#39;</span>
     <span style="color: #008080">address</span><span style="background-color: #f8f8f8">:</span> <span style="color: #d14">192.168.1.21:25566</span>
     <span style="color: #008080">restricted</span><span style="background-color: #f8f8f8">:</span> <span style="color: #008080">false</span>
   <span style="color: #008080">survival</span><span style="background-color: #f8f8f8">:</span>
-    <span style="color: #008080">motd</span><span style="background-color: #f8f8f8">:</span> <span style="color: #d14">'</span><span style="color: #d14">My</span><span style="color: #008080"> </span><span style="color: #d14">survival</span><span style="color: #008080"> </span><span style="color: #d14">server'</span>
+    <span style="color: #008080">motd</span><span style="background-color: #f8f8f8">:</span> <span style="color: #d14">&#39;</span><span style="color: #d14">My</span><span style="color: #008080"> </span><span style="color: #d14">survival</span><span style="color: #008080"> </span><span style="color: #d14">server&#39;</span>
     <span style="color: #008080">address</span><span style="background-color: #f8f8f8">:</span> <span style="color: #d14">192.168.1.22:25566</span>
     <span style="color: #008080">restricted</span><span style="background-color: #f8f8f8">:</span> <span style="color: #008080">false</span></code></pre>
 </div>
@@ -618,7 +618,7 @@ Here’s how you can do it:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash"><span style="color: #0086B3">echo</span> <span style="color: #d14">'{"pkgs":["mysql80-server"]}'</span> <span style="color: #000000;font-weight: bold">&gt;</span> /tmp/mysql.json</code></pre>
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash"><span style="color: #0086B3">echo</span> <span style="color: #d14">&#39;{&#34;pkgs&#34;:[&#34;mysql80-server&#34;]}&#39;</span> <span style="color: #000000;font-weight: bold">&gt;</span> /tmp/mysql.json</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -627,10 +627,10 @@ Here’s how you can do it:</p>
   <span style="color: #000080">--name</span> mysql <span style="color: #d14">\</span>
   <span style="color: #000080">--pkglist</span> /tmp/minecraft.json
   <span style="color: #000080">--release</span> 11.2-RELEASE
-  <span style="color: #008080">ip4_addr</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"vnet0|192.168.1.xxx/24"</span> <span style="color: #d14">\</span>
-  <span style="color: #008080">defaultrouter</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"192.168.1.1"</span> <span style="color: #d14">\</span>
-  <span style="color: #008080">vnet</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"on"</span> <span style="color: #d14">\</span>
-  <span style="color: #008080">boot</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"on"</span></code></pre>
+  <span style="color: #008080">ip4_addr</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">&#34;vnet0|192.168.1.xxx/24&#34;</span> <span style="color: #d14">\</span>
+  <span style="color: #008080">defaultrouter</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">&#34;192.168.1.1&#34;</span> <span style="color: #d14">\</span>
+  <span style="color: #008080">vnet</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">&#34;on&#34;</span> <span style="color: #d14">\</span>
+  <span style="color: #008080">boot</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">&#34;on&#34;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -657,10 +657,10 @@ iocage fstab <span style="color: #000080">-a</span> mysql <span style="color: #d
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash">sysrc <span style="color: #008080">mysql_enable</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"YES"</span>
-sysrc <span style="color: #008080">mysql_dbdir</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"/data"</span>
-sysrc <span style="color: #008080">mysql_confdir</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"/config"</span>
-sysrc <span style="color: #008080">mysql_optfile</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">"/config/my.cnf"</span></code></pre>
+<pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash">sysrc <span style="color: #008080">mysql_enable</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">&#34;YES&#34;</span>
+sysrc <span style="color: #008080">mysql_dbdir</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">&#34;/data&#34;</span>
+sysrc <span style="color: #008080">mysql_confdir</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">&#34;/config&#34;</span>
+sysrc <span style="color: #008080">mysql_optfile</span><span style="color: #000000;font-weight: bold">=</span><span style="color: #d14">&#34;/config/my.cnf&#34;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -692,13 +692,13 @@ using. For example, if we were making a database for <code>coreprotect</code>:</
 <div class="content">
 <pre class="rouge highlight" style="background-color: #f8f8f8"><code data-lang="bash">create database coreprotect_hub<span style="background-color: #f8f8f8">;</span>
 
-CREATE USER <span style="color: #d14">'coreprotect'</span>@<span style="color: #d14">'192.168.1.0/255.255.255.0'</span> IDENTIFIED WITH mysql_native_password BY <span style="color: #d14">'password'</span><span style="background-color: #f8f8f8">;</span>
+CREATE USER <span style="color: #d14">&#39;coreprotect&#39;</span>@<span style="color: #d14">&#39;192.168.1.0/255.255.255.0&#39;</span> IDENTIFIED WITH mysql_native_password BY <span style="color: #d14">&#39;password&#39;</span><span style="background-color: #f8f8f8">;</span>
 
-grant all privileges on coreprotect_hub.<span style="color: #000000;font-weight: bold">*</span> to <span style="color: #d14">'coreprotect'</span>@<span style="color: #d14">'192.168.1.0/255.255.255.0'</span><span style="background-color: #f8f8f8">;</span></code></pre>
+grant all privileges on coreprotect_hub.<span style="color: #000000;font-weight: bold">*</span> to <span style="color: #d14">&#39;coreprotect&#39;</span>@<span style="color: #d14">&#39;192.168.1.0/255.255.255.0&#39;</span><span style="background-color: #f8f8f8">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The reason we’re using <code>@'192.168.1.0/255.255.255.0'</code> is to allow remote
+<p>The reason we’re using <code>@&#39;192.168.1.0/255.255.255.0&#39;</code> is to allow remote
 connections, but only within the local network.</p>
 </div>
 <div class="paragraph">
@@ -752,7 +752,7 @@ and <code>coreprotect_creative</code>, both of which have different users.</p>
       </div>
 
       <div id="footer" class="container">
-  <p> Copyright Andrew Zah (2016&ndash;2020) unless stated otherwise.</p>
+  <p> Copyright Andrew Zah (2016&ndash;2021) unless stated otherwise.</p>
 </div>
 
     </div>

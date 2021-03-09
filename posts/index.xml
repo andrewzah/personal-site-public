@@ -8,10 +8,15 @@
     <language>en-us</language>
     <managingEditor>zah@andrewzah.com (Andrew Zah)</managingEditor>
     <webMaster>zah@andrewzah.com (Andrew Zah)</webMaster>
-    <lastBuildDate>Mon, 05 Oct 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://andrewzah.com/posts/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Mon, 08 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://andrewzah.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Master &amp; Main</title>
+      <link>https://andrewzah.com/posts/2021/main-master/</link>
+      <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
+      <author>zah@andrewzah.com (Andrew Zah)</author>
+      <guid>https://andrewzah.com/posts/2021/main-master/</guid>
+      <description>2020 was a hell of a year. One of the many things that occurred is programmers began to re-evaluate certain terminology, starting with master/slave.</description>
+    </item>
     
     <item>
       <title>How to run Kakaotalk on Linux in 2020</title>
@@ -19,8 +24,8 @@
       <pubDate>Mon, 05 Oct 2020 00:00:00 +0000</pubDate>
       <author>zah@andrewzah.com (Andrew Zah)</author>
       <guid>https://andrewzah.com/posts/2020/how-to-kakaotalk-linux-2020/</guid>
-      <description>Thankfully, installing Kakaotalk has become much easier than before now that it&amp;#8217;s 64bit.
-   Preparation For this, we&amp;#8217;ll need to install wine and playonlinux.</description>
+      <description>Thankfully, installing Kakaotalk has become much easier than before now that it’s 64bit.
+   Preparation For this, we’ll need to install wine and playonlinux.</description>
     </item>
     
     <item>
@@ -48,7 +53,7 @@
       <pubDate>Sat, 21 Dec 2019 00:00:00 +0000</pubDate>
       <author>zah@andrewzah.com (Andrew Zah)</author>
       <guid>https://andrewzah.com/posts/2019/building-home-server-freenas/</guid>
-      <description>Table of Contents My Goals The Requirements Part List Usage A Use for the Raspberry Pi   References   A few months ago I got gripped with server fever.</description>
+      <description>A few months ago I got gripped with server fever. I’d had a raspberry pi for a while, but I could never find a meaningful use for it.</description>
     </item>
     
     <item>
@@ -57,7 +62,7 @@
       <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
       <author>zah@andrewzah.com (Andrew Zah)</author>
       <guid>https://andrewzah.com/posts/2019/my-setup-remote-programming-osx-2019/</guid>
-      <description>Table of Contents 1. Development Machine 2. Configuring OSX &amp;amp; Tools 2.1. poor man’s window tiling 2.</description>
+      <description>Hi! My name is Andrew, and I work remotely as a software developer. I’ve worked while traveling across America with spotty or no internet connection.</description>
     </item>
     
     <item>
@@ -66,7 +71,7 @@
       <pubDate>Thu, 19 Sep 2019 00:00:00 +0000</pubDate>
       <author>zah@andrewzah.com (Andrew Zah)</author>
       <guid>https://andrewzah.com/posts/2019/living-out-of-2-backpacks-6-month-retrospective/</guid>
-      <description>Table of Contents 1. My Philosophy 2. Life Abroad 2.1. Socializing 2.2. Food 2.3. Work 2.</description>
+      <description>In January of this year, I set out for semi-permanent traveling with only two* backpacks: A Goruck GR1 26L, and a Goruck GR2 40L.</description>
     </item>
     
     <item>
@@ -84,7 +89,7 @@
       <pubDate>Sun, 19 May 2019 00:00:00 +0000</pubDate>
       <author>zah@andrewzah.com (Andrew Zah)</author>
       <guid>https://andrewzah.com/posts/2019/better-anki-usage-guide/</guid>
-      <description>Table of Contents 1. Changing default settings 1.1. Resetting card progress 1.2. Taking too long to mark Leeches 1.</description>
+      <description>As you may or may not know, I love Anki, the spaced repetition flash cards app.</description>
     </item>
     
     <item>
@@ -121,7 +126,7 @@
       <pubDate>Sat, 16 Feb 2019 00:00:00 +0000</pubDate>
       <author>zah@andrewzah.com (Andrew Zah)</author>
       <guid>https://andrewzah.com/posts/2019/korean_for_programmers/</guid>
-      <description>Table of Contents 1. Hangeul Basics 1.1. Grid System   2. Subject Elision, especially -you- 3.</description>
+      <description>I was inspired to write this after reading German for Programmers. [0] It’s quite likely that I’m just biased to see things a certain way because I work with programming languages for a living, but I often find myself drawing comparisons among Korean and programming.</description>
     </item>
     
     <item>

@@ -8,11 +8,7 @@
     <language>en-us</language>
     <managingEditor>zah@andrewzah.com (Andrew Zah)</managingEditor>
     <webMaster>zah@andrewzah.com (Andrew Zah)</webMaster>
-    <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://andrewzah.com/talks/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 28 May 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://andrewzah.com/talks/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Web Assembly: What is it? Does it do things? Let&#39;s find out!</title>
       <link>https://andrewzah.com/talks/web-assembly-what-is-it-does-it-do-things/</link>

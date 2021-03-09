@@ -11,7 +11,7 @@
   
 
   <meta name="author" content="Andrew Zah">
-  <meta name="application-name" content="Andrew Zah"><link rel="stylesheet" href="https://andrewzah.com/scss/main.min.css?1601923739">
+  <meta name="application-name" content="Andrew Zah"><link rel="stylesheet" href="https://andrewzah.com/scss/main.min.css?1615260396">
 
   </head>
 <body>
@@ -104,13 +104,13 @@ mere <code>34MB</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">version: "3.3"
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">version: &#34;3.3&#34;
 
 services:
   git:
     image: gitea/gitea:latest
     ports:
-      - "3000"
+      - &#34;3000&#34;
     volumes:
       - type: bind
         source: ./data/git
@@ -192,11 +192,11 @@ connection to the local gitea container we just created, on port <code>3000</cod
         source: ./Caddyfile
         target: /etc/Caddyfile
     environment:
-      CADDYPATH: "/var/caddy"
+      CADDYPATH: &#34;/var/caddy&#34;
     env_file: ./secret.env
     ports:
-      - "xxx.xxx.xxx.xxx:443:443"
-      - "xxx.xxx.xxx.xxx:80:80"
+      - &#34;xxx.xxx.xxx.xxx:443:443&#34;
+      - &#34;xxx.xxx.xxx.xxx:80:80&#34;
     restart: always</code></pre>
 </div>
 </div>
@@ -313,26 +313,26 @@ PasswordAuthentication no</pre>
   git:
     image: gitea/gitea:latest
     ports:
-      - "22:22"</code></pre>
+      - &#34;22:22&#34;</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Now when we do <code>git push origin master</code>, with <code>origin</code> set to
-<code><a href="https://git.andrewzah.com/&#8230;&#8203" class="bare">https://git.andrewzah.com/&#8230;&#8203</a>;</code>, it’ll reach the gitea container!</p>
+<code><a href="https://git.andrewzah.com/…​" class="bare">https://git.andrewzah.com/…​</a>;</code>, it’ll reach the gitea container!</p>
 </div>
 <div class="paragraph">
 <p>In total, it should look like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">version: "3.3"
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">version: &#34;3.3&#34;
 
 services:
   git:
     image: gitea/gitea:latest
     ports:
-      - "3000"
-      - "22:22"
+      - &#34;3000&#34;
+      - &#34;22:22&#34;
     volumes:
       - type: bind
         source: ./data/git
@@ -342,7 +342,7 @@ services:
   git_db:
     image: postgres:9.6.7-alpine
     env_file:
-      - ./secret.env"
+      - ./secret.env&#34;
     restart: always
     volumes:
       - type: bind
@@ -365,11 +365,11 @@ services:
         source: ./Caddyfile
         target: /etc/Caddyfile
     environment:
-      CADDYPATH: "/var/caddy"
+      CADDYPATH: &#34;/var/caddy&#34;
     env_file: ./secret.env
     ports:
-      - "xxx.xxx.xxx.xxx:443:443"
-      - "xxx.xxx.xxx.xxx:80:80"
+      - &#34;xxx.xxx.xxx.xxx:443:443&#34;
+      - &#34;xxx.xxx.xxx.xxx:80:80&#34;
     restart: always</code></pre>
 </div>
 </div>
@@ -418,7 +418,7 @@ get an idea.</p>
           <div class="post-link">
   <span class="post-date">
     <a href="https://andrewzah.com/posts/2019/06-02_zola_caddy_git_automatic_deploy/">
-      06/02
+      06/02/19
     </a>
   </span>
 
@@ -442,7 +442,7 @@ get an idea.</p>
           <div class="post-link">
   <span class="post-date">
     <a href="https://andrewzah.com/posts/2019/06-02_zola_caddy_git_automatic_deploy/">
-      06/02
+      06/02/19
     </a>
   </span>
 
@@ -465,7 +465,7 @@ get an idea.</p>
       </div>
 
       <div id="footer" class="container">
-  <p> Copyright Andrew Zah (2016&ndash;2020) unless stated otherwise.</p>
+  <p> Copyright Andrew Zah (2016&ndash;2021) unless stated otherwise.</p>
 </div>
 
     </div>

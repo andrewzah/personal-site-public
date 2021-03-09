@@ -8,11 +8,7 @@
     <language>en-us</language>
     <managingEditor>zah@andrewzah.com (Andrew Zah)</managingEditor>
     <webMaster>zah@andrewzah.com (Andrew Zah)</webMaster>
-    <lastBuildDate>Sat, 18 May 2019 00:00:00 -0400</lastBuildDate>
-    
-	<atom:link href="https://andrewzah.com/categories/learning/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 18 May 2019 00:00:00 -0400</lastBuildDate><atom:link href="https://andrewzah.com/categories/learning/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Things to avoid with Anki</title>
       <link>https://andrewzah.com/posts/2019/things-to-avoid-with-anki/</link>

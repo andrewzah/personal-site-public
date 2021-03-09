@@ -11,7 +11,7 @@
   
 
   <meta name="author" content="Andrew Zah">
-  <meta name="application-name" content="Andrew Zah"><link rel="stylesheet" href="https://andrewzah.com/scss/main.min.css?1601923739">
+  <meta name="application-name" content="Andrew Zah"><link rel="stylesheet" href="https://andrewzah.com/scss/main.min.css?1615260396">
 
   </head>
 <body>
@@ -159,7 +159,7 @@ want. I generally have one per page or page type, such as /projects or
 <p>At a minimum, you probably want a
 <a href="https://git.sr.ht/~andrewzah/personal-site/tree/master/templates/base.html">base.html</a>
 to deal with the oh-so-fun SEO stuff, and a <code>macros.html</code> for
-``dynamically'' rendering things. I use it for the navigation bar,
+``dynamically&#39;&#39; rendering things. I use it for the navigation bar,
 footnotes, references, citations, and rendering links.</p>
 </div>
 <div class="paragraph">
@@ -171,7 +171,7 @@ parent:</p>
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;!-- base.html --&gt;
 &lt;head&gt;
   &lt;!-- constants in base.html header --&gt;
-  &lt;meta charset="UTF-8"&gt;
+  &lt;meta charset=&#34;UTF-8&#34;&gt;
 
   &lt;!-- set from child --&gt;
   &lt;title&gt;{% block title %}{% endblock title %}&lt;/title&gt;
@@ -206,13 +206,13 @@ the tags and categories below a post:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">{% macro render_tags(tags) %}
-  &lt;div class="tags"&gt;
+  &lt;div class=&#34;tags&#34;&gt;
     Tags:
     {% for tag in tags %}
       {% if loop.last %}
-        &lt;a href="https://andrewzah.com/tags/{{ tag | slugify }}/"&gt;{{ tag | title }}&lt;/a&gt;
+        &lt;a href=&#34;/tags/{{ tag | slugify }}/&#34;&gt;{{ tag | title }}&lt;/a&gt;
       {% else %}
-        &lt;a href="https://andrewzah.com/tags/{{ tag | slugify }}/"&gt;{{ tag | title }}&lt;/a&gt; |
+        &lt;a href=&#34;/tags/{{ tag | slugify }}/&#34;&gt;{{ tag | title }}&lt;/a&gt; |
       {% endif %}
     {% endfor %}
   &lt;/div&gt;
@@ -242,30 +242,30 @@ now.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;!-- img.html --&gt;
-&lt;a href="{{url}}" data-lity data-lity-desc="{{desc}}" alt="{{desc}}"&gt;
-  &lt;img class="full" async-src="{{url}}"/&gt;
+&lt;a href=&#34;{{url}}&#34; data-lity data-lity-desc=&#34;{{desc}}&#34; alt=&#34;{{desc}}&#34;&gt;
+  &lt;img class=&#34;full&#34; async-src=&#34;{{url}}&#34;/&gt;
 &lt;/a&gt;
 {% if t %}
-  &lt;p class="image-desc"&gt; {{t}} &lt;/p&gt;
+  &lt;p class=&#34;image-desc&#34;&gt; {{t}} &lt;/p&gt;
 {% endif %}</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;!-- fn.html --&gt;
-&lt;a id="footnote-cite-{{num}}" href="#footnote-{{num}}"&gt;({{num}})&lt;/a&gt;</code></pre>
+&lt;a id=&#34;footnote-cite-{{num}}&#34; href=&#34;#footnote-{{num}}&#34;&gt;({{num}})&lt;/a&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>My <a href="../korean-for-programmers/#finally-a-sentence">Korean for
 Programmers</a> post uses ~5 shortcodes to
-\{\{hl(t=<code>highlight'',c=</code>red'')}} words in different colors:</p>
+\{\{hl(t=<code>highlight&#39;&#39;,c=</code>red&#39;&#39;)}} words in different colors:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-html" data-lang="html">&lt;!-- hlm.html --&gt;
 &lt;!-- where t=text,c=css color class name--&gt;
-&lt;span class="hl hl-middle hl-{{c}}"&gt;
+&lt;span class=&#34;hl hl-middle hl-{{c}}&#34;&gt;
   {{t}}
 &lt;/span&gt;</code></pre>
 </div>
@@ -312,11 +312,11 @@ automatically update!</p>
 <p>Let’s create the Caddyfile:</p>
 </div>
 <div class="paragraph">
-<p>\{\{note(c=<code>Warning'', t=</code>Use a port (like :2015) for local testing
+<p>\{\{note(c=<code>Warning&#39;&#39;, t=</code>Use a port (like :2015) for local testing
 instead of the actual domain! If you run Caddy with this caddyfile
 locally without the -disable-acme-auth, caddy will repeatedly try to
 authorize, quickly ratelimiting you from Let’s Encrypt! You can also
-use''tls off" to skip it entirely.") }}</p>
+use&#39;&#39;tls off&#34; to skip it entirely.&#34;) }}</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -397,7 +397,7 @@ www.andrewzah.com, andrewzah.com, andrei.blue {
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-docker" data-lang="docker">FROM alpine:edge
-LABEL caddy_version = "1.0.0" architecture="amd64"
+LABEL caddy_version = &#34;1.0.0&#34; architecture=&#34;amd64&#34;
 
 # Caddy
 RUN adduser -S caddy
@@ -408,8 +408,8 @@ ARG version=v1.0.0
 RUN apk add --no-cache --virtual .build-caddy openssh-client tar curl \
   &amp;&amp; apk add --no-cache git \
   &amp;&amp; curl --silent --show-error --fail --location \
-  --header "Accept: application/tar+gzip, application/x-zip, application/octet-stream" -p \
-  "https://caddyserver.com/download/linux/amd64?version=${version}&amp;plugins=${plugins}&amp;license=personal&amp;telemetry=off" \
+  --header &#34;Accept: application/tar+gzip, application/x-zip, application/octet-stream&#34; -p \
+  &#34;https://caddyserver.com/download/linux/amd64?version=${version}&amp;plugins=${plugins}&amp;license=personal&amp;telemetry=off&#34; \
   | tar --no-same-owner -C /usr/bin -xz caddy \
   &amp;&amp; chmod 0755 /usr/bin/caddy \
   &amp;&amp; apk del --purge .build-caddy
@@ -421,8 +421,8 @@ RUN mkdir /www \
 COPY Caddyfile /etc/Caddyfile
 
 USER caddy
-ENTRYPOINT ["/usr/bin/caddy"]
-CMD ["--conf", "/etc/Caddyfile", "--log", "stdout", "-agree"]</code></pre>
+ENTRYPOINT [&#34;/usr/bin/caddy&#34;]
+CMD [&#34;--conf&#34;, &#34;/etc/Caddyfile&#34;, &#34;--log&#34;, &#34;stdout&#34;, &#34;-agree&#34;]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -430,7 +430,7 @@ CMD ["--conf", "/etc/Caddyfile", "--log", "stdout", "-agree"]</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-yaml" data-lang="yaml">version: '3.7'
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">version: &#39;3.7&#39;
 
 services:
   web:
@@ -439,9 +439,9 @@ services:
       context: .
     image: &lt;your_dockerhub_username&gt;/personal-site
     ports:
-      - "1111"
+      - &#34;1111&#34;
     env_file:
-      - ".env"</code></pre>
+      - &#34;.env&#34;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -458,7 +458,7 @@ no?</p>
 <p>Deploying the image is just <code>docker push</code> once you’ve signed in via the
 docker cli.</p>
 </div>
-<hr>
+<hr/>
 <div class="paragraph">
 <p>…and that’s pretty much it. For your VPS, you’ll want to install docker
 and/or docker-compose, then run the image. If you set up a corresponding
@@ -475,12 +475,12 @@ assets and automatically have the container pull them in!</p>
 </div>
 <div class="paragraph">
 <p>footnotes = [ <code>Philipp Offerman’s fantastic blog, Writing an OS in
-Rust, uses Zola.'', </code>Initially I made the mistake of including binary
+Rust, uses Zola.&#39;&#39;, </code>Initially I made the mistake of including binary
 data in my site’s repo. This blew up my docker alpine image from ~2mb to
-~35mb before I realized. Whoops.'', <code>`I made this mistake when I ran the
+~35mb before I realized. Whoops.&#39;&#39;, <code>`I made this mistake when I ran the
 the Docker image for the first time. Hitting `ctrl-c</code> wouldn’t kill it,
 I had to run <code>docker-compose down</code>… but I ran it too late. I had to wait
-24 hours to deploy HTTPS for my site after that.''] +</p>
+24 hours to deploy HTTPS for my site after that.&#39;&#39;] +</p>
 </div>
 </div>
 </div>
@@ -506,7 +506,7 @@ I had to run <code>docker-compose down</code>… but I ran it too late. I had to
           <div class="post-link">
   <span class="post-date">
     <a href="https://andrewzah.com/posts/2018/05-15_selfhosted_git_gitea_docker_caddy/">
-      05/15
+      05/15/18
     </a>
   </span>
 
@@ -530,7 +530,7 @@ I had to run <code>docker-compose down</code>… but I ran it too late. I had to
           <div class="post-link">
   <span class="post-date">
     <a href="https://andrewzah.com/posts/2018/05-15_selfhosted_git_gitea_docker_caddy/">
-      05/15
+      05/15/18
     </a>
   </span>
 
@@ -549,7 +549,7 @@ I had to run <code>docker-compose down</code>… but I ran it too late. I had to
       </div>
 
       <div id="footer" class="container">
-  <p> Copyright Andrew Zah (2016&ndash;2020) unless stated otherwise.</p>
+  <p> Copyright Andrew Zah (2016&ndash;2021) unless stated otherwise.</p>
 </div>
 
     </div>

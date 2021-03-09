@@ -8,18 +8,14 @@
     <language>en-us</language>
     <managingEditor>zah@andrewzah.com (Andrew Zah)</managingEditor>
     <webMaster>zah@andrewzah.com (Andrew Zah)</webMaster>
-    <lastBuildDate>Sat, 21 Dec 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://andrewzah.com/tags/workflow/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 21 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://andrewzah.com/tags/workflow/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Building a Home Server with FreeNAS</title>
       <link>https://andrewzah.com/posts/2019/building-home-server-freenas/</link>
       <pubDate>Sat, 21 Dec 2019 00:00:00 +0000</pubDate>
       <author>zah@andrewzah.com (Andrew Zah)</author>
       <guid>https://andrewzah.com/posts/2019/building-home-server-freenas/</guid>
-      <description>Table of Contents My Goals The Requirements Part List Usage A Use for the Raspberry Pi   References   A few months ago I got gripped with server fever.</description>
+      <description>A few months ago I got gripped with server fever. I’d had a raspberry pi for a while, but I could never find a meaningful use for it.</description>
     </item>
     
     <item>
@@ -28,7 +24,7 @@
       <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
       <author>zah@andrewzah.com (Andrew Zah)</author>
       <guid>https://andrewzah.com/posts/2019/my-setup-remote-programming-osx-2019/</guid>
-      <description>Table of Contents 1. Development Machine 2. Configuring OSX &amp;amp; Tools 2.1. poor man’s window tiling 2.</description>
+      <description>Hi! My name is Andrew, and I work remotely as a software developer. I’ve worked while traveling across America with spotty or no internet connection.</description>
     </item>
     
   </channel>

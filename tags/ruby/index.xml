@@ -8,11 +8,7 @@
     <language>en-us</language>
     <managingEditor>zah@andrewzah.com (Andrew Zah)</managingEditor>
     <webMaster>zah@andrewzah.com (Andrew Zah)</webMaster>
-    <lastBuildDate>Thu, 11 Apr 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://andrewzah.com/tags/ruby/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 11 Apr 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://andrewzah.com/tags/ruby/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Nested Resource Forms Tutorial with Padrino or Rails</title>
       <link>https://andrewzah.com/posts/2019/04-11_padrino_nested_forms/</link>

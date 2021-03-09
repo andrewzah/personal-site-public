@@ -8,11 +8,7 @@
     <language>en-us</language>
     <managingEditor>zah@andrewzah.com (Andrew Zah)</managingEditor>
     <webMaster>zah@andrewzah.com (Andrew Zah)</webMaster>
-    <lastBuildDate>Sun, 18 Nov 2018 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://andrewzah.com/categories/self/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 18 Nov 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://andrewzah.com/categories/self/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>My growth as a self-taught developer in 2018</title>
       <link>https://andrewzah.com/posts/2018/my-growth-self-taught-software-developer-in-2018/</link>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>politics on Andrew Zah</title>
+    <link>https://andrewzah.com/tags/politics/</link>
+    <description>Recent content in politics on Andrew Zah</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>zah@andrewzah.com (Andrew Zah)</managingEditor>
+    <webMaster>zah@andrewzah.com (Andrew Zah)</webMaster>
+    <lastBuildDate>Mon, 08 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://andrewzah.com/tags/politics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Master &amp; Main</title>
+      <link>https://andrewzah.com/posts/2021/main-master/</link>
+      <pubDate>Mon, 08 Mar 2021 00:00:00 +0000</pubDate>
+      <author>zah@andrewzah.com (Andrew Zah)</author>
+      <guid>https://andrewzah.com/posts/2021/main-master/</guid>
+      <description>2020 was a hell of a year. One of the many things that occurred is programmers began to re-evaluate certain terminology, starting with master/slave.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -11,7 +11,7 @@
   
 
   <meta name="author" content="Andrew Zah">
-  <meta name="application-name" content="Andrew Zah"><link rel="stylesheet" href="https://andrewzah.com/scss/main.min.css?1601923739">
+  <meta name="application-name" content="Andrew Zah"><link rel="stylesheet" href="https://andrewzah.com/scss/main.min.css?1615260396">
 
   </head>
 <body>
@@ -127,7 +127,7 @@ end</code></pre>
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">padrino generate app &lt;app_name&gt; # etc
 padrino generate migration AddGrammarsAndTranslations
-# you might have to initialize the table manually if this doesn't work
+# you might have to initialize the table manually if this doesn&#39;t work
 rake sq:create
 rake sq:migrate</code></pre>
 </div>
@@ -189,8 +189,8 @@ as a variable, <code>f</code>.</p>
 h2
   New Grammar
 
-= form_for @grammar, '/grammar/create' do |f|
-  = partial 'grammar/form', :locals =&gt; { :f =&gt; f }</code></pre>
+= form_for @grammar, &#39;/grammar/create&#39; do |f|
+  = partial &#39;grammar/form&#39;, :locals =&gt; { :f =&gt; f }</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -201,7 +201,7 @@ h2
   Update Grammar
 
 = form_for :grammar, url(:grammar, :update, id: @grammar.id), method: :put do |f|
-  = partial 'grammar/form', :locals =&gt; { :f =&gt; f }</code></pre>
+  = partial &#39;grammar/form&#39;, :locals =&gt; { :f =&gt; f }</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -226,14 +226,14 @@ sleuthing to figure out the correct method to send.</p>
 <div class="content">
 <pre class="highlight"><code class="language-slim" data-lang="slim">// app/views/grammar/_form.slim
 
-= f.label 'Grammar'
+= f.label &#39;Grammar&#39;
 = f.text_field :grammar, required: true
 
-= f.label 'Alternatives (comma separated)'
+= f.label &#39;Alternatives (comma separated)&#39;
 = f.text_field :alternatives, required: true
 
-= f.label "Verb Type"
-= f.select :verb_type, options: ["형용사", "동사", "Both"],
+= f.label &#34;Verb Type&#34;
+= f.select :verb_type, options: [&#34;형용사&#34;, &#34;동사&#34;, &#34;Both&#34;],
   required: true
 
 h3 Translations
@@ -242,29 +242,29 @@ h3 Translations
   - unless af.object.new?
     = af.hidden_field :id, value: af.object.id
 
-  = af.label "Language Code"
+  = af.label &#34;Language Code&#34;
   - if af.object.new?
     = af.text_field :language_code
   - else
     = af.text_field :language_code, required: true
 
-  = af.label "Meanings (comma separated)"
+  = af.label &#34;Meanings (comma separated)&#34;
   - if af.object.new?
     = af.text_field :meanings
   - else
     = af.text_field :meanings, required: true
 
-  = af.label "Notes"
+  = af.label &#34;Notes&#34;
   = af.text_area :notes
 
   - unless af.object.new?
-    = af.label "Destroy"
+    = af.label &#34;Destroy&#34;
     = af.check_box :_delete
 
   hr
 
 = submit_tag pat(:save)
-= submit_tag pat(:save_and_continue), :name =&gt; 'save_and_continue'
+= submit_tag pat(:save_and_continue), :name =&gt; &#39;save_and_continue&#39;
 = link_to pat(:cancel), url(:grammar, :index)</code></pre>
 </div>
 </div>
@@ -281,7 +281,7 @@ simple:</p>
 
 get :index do
   @grammars = Grammar.all
-  render 'grammar/index'
+  render &#39;grammar/index&#39;
 end</code></pre>
 </div>
 </div>
@@ -297,14 +297,14 @@ tag.</p>
 
 get :new do
   @grammar = Grammar.new(translations_attributes: [{}])
-  render 'new'
+  render &#39;new&#39;
 end
 
 post :create do
   @grammar = Grammar.new(params[:grammar])
 
   if (grammar = @grammar.save)
-    flash[:success] = 'Successfully saved grammar &amp; translation.'
+    flash[:success] = &#39;Successfully saved grammar &amp; translation.&#39;
 
     if params[:save_and_continue]
       redirect url_for(:grammar, :grammar, id: grammar.id)
@@ -312,9 +312,9 @@ post :create do
       redirect url(:grammar, :new)
     end
   else
-    flash[:error] = "Error saving grammar: " +
-      @grammar.errors.map(&amp;:message).join(", ")
-    render 'new'
+    flash[:error] = &#34;Error saving grammar: &#34; +
+      @grammar.errors.map(&amp;:message).join(&#34;, &#34;)
+    render &#39;new&#39;
   end
 end</code></pre>
 </div>
@@ -333,11 +333,11 @@ get :edit, with: :id do
   @grammar.translations &lt;&lt; GrammarTranslation.new
 
   if @grammar
-    render 'grammar/edit'
+    render &#39;grammar/edit&#39;
   else
     flash[:warning] = pat(
       :create_error,
-      model: 'grammar',
+      model: &#39;grammar&#39;,
       id: params[:id].to_s
     )
     halt 404
@@ -363,15 +363,15 @@ put :update, with: :id do
     .select!{ |_k, v| v[:language_code].present? == true }
 
   if @grammar.modified! &amp;&amp; @grammar.update(params[:grammar])
-    flash[:success] = pat(:update_success, model: 'Grammar', id: params[:id].to_s)
+    flash[:success] = pat(:update_success, model: &#39;Grammar&#39;, id: params[:id].to_s)
     if params[:save_and_continue]
       redirect(url(:grammar, :new))
     else
       redirect(url(:grammar, :edit, id: @grammar.id))
     end
   else
-    flash.now[:error] = pat(:update_error, model: 'grammar')
-    render 'accounts/edit'
+    flash.now[:error] = pat(:update_error, model: &#39;grammar&#39;)
+    render &#39;accounts/edit&#39;
   end
 end</code></pre>
 </div>
@@ -388,7 +388,7 @@ main object, so we can use <code>@grammar.translations</code>.</p>
 <pre class="highlight"><code class="language-slim" data-lang="slim">// app/views/grammar/index.slim
 
 - @grammars.each do |g|
-  = link_to g.grammar, "/grammar/#{g.id}"
+  = link_to g.grammar, &#34;/grammar/#{g.id}&#34;
   br</code></pre>
 </div>
 </div>
@@ -459,7 +459,7 @@ model and a nested object at the same time!</p>
       </div>
 
       <div id="footer" class="container">
-  <p> Copyright Andrew Zah (2016&ndash;2020) unless stated otherwise.</p>
+  <p> Copyright Andrew Zah (2016&ndash;2021) unless stated otherwise.</p>
 </div>
 
     </div>
